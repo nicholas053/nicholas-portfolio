@@ -237,7 +237,7 @@ export default function HomePage() {
           <a href="https://github.com/nicholas053" target="_blank" rel="noreferrer" className="block text-sky-500">GitHub</a>
         </div>
         <div className="mt-6">
-          <a href="/public/Chong Shi Loong.pdf" className="px-5 py-3 rounded-xl bg-gray-200 dark:bg-gray-700">Resume</a>
+          <a href="/public/resume.pdf" className="px-5 py-3 rounded-xl bg-gray-200 dark:bg-gray-700">Resume</a>
         </div>
         <div className="mt-6">
           <button onClick={() => scrollTo("projects")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">View My Work</button>
