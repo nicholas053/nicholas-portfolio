@@ -13,7 +13,7 @@ export default function HomePage() {
     const handleScroll = () => {
       const sections = ["home", "projects", "about", "contact"]
       const scrollY = window.scrollY + 200
-      for (let id of sections) {
+      for (const id of sections) {
         const el = document.getElementById(id)
         if (el && el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
           setActiveSection(id)
