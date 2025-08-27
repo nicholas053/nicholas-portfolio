@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
+import { DiNodejs } from "react-icons/di"
 import { FaJava, FaProjectDiagram } from "react-icons/fa"
 
 export default function HomePage() {
@@ -178,7 +179,7 @@ export default function HomePage() {
               <SiNextdotjs title="Next.js" />
               <SiReact title="React" className="text-sky-500" />
               <SiTailwindcss title="TailwindCSS" className="text-sky-400" />
-              <SiNodedotjs title="Node.js" className="text-green-600" />
+              <DiNodejs title="Node.js" className="text-green-600" />
               <SiPrisma title="Prisma" />
               <SiPostgresql title="PostgreSQL" className="text-blue-600" />
               <SiVercel title="Vercel" />
