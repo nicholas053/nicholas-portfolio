@@ -1,4 +1,5 @@
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel } from 'react-icons/si'
+import { DiNodejs } from "react-icons/di";
 import FeatureRow from '@/components/FeatureRow'
 
 export default function ProjectTaskSystemPage() {
@@ -79,7 +80,7 @@ export default function ProjectTaskSystemPage() {
           <SiTailwindcss title="TailwindCSS" className="text-sky-400" />
           <SiPrisma title="Prisma" />
           <SiPostgresql title="PostgreSQL" className="text-blue-600" />
-          <SiNodedotjs title="Node.js" className="text-green-600" />
+          <DiNodejs title="Node.js" className="text-green-600" />
           <SiVercel title="Vercel" />
         </div>
         <div className="max-w-3xl mx-auto text-gray-700 dark:text-gray-300 space-y-2 text-center">
