@@ -1,6 +1,7 @@
-import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel } from 'react-icons/si'
+import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel, SiDotnet } from 'react-icons/si'
 import { DiNodejs } from "react-icons/di";
 import FeatureRow from '@/components/FeatureRow'
+import { FiExternalLink } from 'react-icons/fi'
 
 export default function ProjectTaskSystemPage() {
   return (
@@ -11,6 +12,16 @@ export default function ProjectTaskSystemPage() {
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           A collaborative project management system designed for teams to track progress, make decisions, and for individuals to clearly monitor their own contributions.
         </p>
+        <div className="flex items-center justify-center gap-4">
+            <a
+                href="https://github.com/nicholas053/Wish-We-Don-t-Resign"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="px-5 py-2 rounded-xl bg-black text-white dark:bg-white dark:text-black inline-flex items-center gap-2 shadow"
+            >
+                Code on Github <FiExternalLink />
+            </a>
+        </div>
       </section>
 
       {/* Overview */}

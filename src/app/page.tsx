@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
+import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiDotnet, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
 import { DiNodejs } from "react-icons/di"
 import { FaJava, FaProjectDiagram } from "react-icons/fa"
 
@@ -105,10 +105,12 @@ export default function HomePage() {
       <section id="projects" className="py-24 max-w-6xl mx-auto px-4 space-y-12">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center">Selected Projects</motion.h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        
+        {/* Changed to flexbox layout */}
+        <div className="flex flex-wrap justify-center gap-8">
           {/* Project Card Example */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
+            className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
             <h3 className="text-xl font-semibold">Project Task Management System</h3>
             <p className="text-gray-600 dark:text-gray-300">A collaborative platform with task assignment, drag-and-drop stages, comments, votes, and dashboards.</p>
             <a 
@@ -120,8 +122,9 @@ export default function HomePage() {
               See Details →
             </a>
           </motion.div>
+
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
-            className="rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
+            className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
             <h3 className="text-xl font-semibold">Church / Community Management System</h3>
             <p className="text-gray-600 dark:text-gray-300">An internal system for event registration, attendance, outing requests, and user administration with role-based access.</p>
             <a 
@@ -133,7 +136,22 @@ export default function HomePage() {
               See Details →
             </a>
           </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.6 }}
+            className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
+            <h3 className="text-xl font-semibold">E-commerce System</h3>
+            <p className="text-gray-600 dark:text-gray-300">A full-stack platform featuring JWT authentication, product catalog, cart & checkout, order management, and an admin dashboard with inventory tracking and reports.</p>
+            <a 
+              href="/projects/ecommerce-system" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sky-500"
+            >
+              See Details →
+            </a>
+          </motion.div>
         </div>
+
         <div className="text-center">
           <button onClick={() => scrollTo("about")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">Learn More About Me</button>
         </div>
@@ -158,7 +176,7 @@ export default function HomePage() {
               },
               {
                 year: "2025 Apr – Now",
-                text: "Designed and built two full-scale systems — a Church Management System and a Project & Task Management System — using a modern and efficient tech stack (React, Next.js, Prisma, PostgreSQL, Tailwind). Focused on scalability, real-world workflows, and advanced features like drag-and-drop task management, voting, and audit trails."
+                text: "Designed and built three full-scale systems: a Church Management System, a Project & Task Management System (React, Next.js, Tailwind CSS, Prisma, PostgreSQL), and an Ecommerce Platform (C# .NET Core backend with React/Next.js/Tailwind frontend). Focused on creating scalable, workflow-driven solutions with advanced features like drag-and-drop task flows, voting, audit trails, and smooth backend–frontend integration."
               }
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }}
@@ -193,12 +211,13 @@ export default function HomePage() {
           <div className="space-y-6 text-center p-6 rounded-2xl border dark:border-gray-700">
             <h3 className="text-2xl font-semibold">Additional Skills</h3>
             <div className="flex flex-wrap justify-center gap-6 text-4xl">
+              <SiDotnet title=".NET (C#)" className="text-slate-600" />
               <SiCplusplus title="C++" className="text-blue-500" />
               <FaJava title="Java" className="text-red-500" />
               <SiGithub title="GitHub" />
             </div>
             <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Experience with C++ and Java for performance-critical or enterprise-level systems, along with Git & GitHub for version control and collaboration.
+              Proficient in .NET (C#) for developing secure and scalable backend APIs, experienced in C++ for performance-oriented applications, Java for enterprise solutions, and skilled in Git & GitHub for version control and team collaboration.
             </p>
           </div>
 
@@ -231,7 +250,7 @@ export default function HomePage() {
       <section id="contact" className="py-24 px-4 max-w-3xl mx-auto text-center space-y-6">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold">Let’s Connect</motion.h2>
-        <p className="text-gray-600 dark:text-gray-300">Open to freelance projects, junior developer, and collaborations.</p>
+        <p className="text-gray-600 dark:text-gray-300">Open to freelance projects, job opportunity as junior developer, and collaborations.</p>
         <div className="space-y-4">
           <a href="mailto:shiloong53bii@gmail.com" className="block text-sky-500">shiloong53bii@gmail.com</a>
           <a href="https://wa.me/+60122657856" target="_blank" rel="noreferrer" className="block text-sky-500">WhatsApp Contact</a>
