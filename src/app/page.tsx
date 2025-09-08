@@ -192,7 +192,7 @@ export default function HomePage() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-xl md:text-2xl font-medium text-gray-800 max-w-3xl"
         >
-          I design and build web applications that help teams collaborate effectively and communities stay connected.
+          I design and develop end-to-end web applications, turning ideas into reliable and user-friendly products.
         </motion.p>
 
         <motion.p 
@@ -201,7 +201,7 @@ export default function HomePage() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-lg text-gray-600 max-w-2xl"
         >
-          My work spans across different domains — such as project & task management systems and church/community management platforms — always with a focus on scalability, usability, and real-world impact.
+           My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
         </motion.p>
 
         <div className="flex gap-4">
