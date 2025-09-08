@@ -140,21 +140,6 @@ export default function EcommerceProjectPage() {
           </div>
         </div>
       </section>
-
-      {/* Getting Started / Callouts */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-semibold text-center">Getting Started & Notes</h2>
-        <div className="max-w-3xl mx-auto text-gray-700 dark:text-gray-300 space-y-2 text-center">
-          <p>
-            The backend issues JWTs and persists refresh tokens. The frontend uses internal API proxy routes
-            to set HttpOnly cookies and securely forward authenticated requests to the backend.
-          </p>
-          <p>
-            For portfolio screenshots, include: product list, product detail with Add to Cart, cart page, checkout (address form),
-            an order detail page, and the admin dashboard showing low-stock or inventory transactions.
-          </p>
-        </div>
-      </section>
     </main>
   );
 }
