@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiDotnet, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
 import { DiNodejs } from "react-icons/di"
 import { FaJava, FaProjectDiagram } from "react-icons/fa"
+// import HeroLines from "@/components/HeroLines"
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState("home")
@@ -176,7 +177,8 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
+      <section id="home" className="bg-gray-50 min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
+        {/* <HeroLines /> */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
@@ -275,7 +277,7 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-gray-50 px-4">
+      <section id="about" className="py-24 px-4 bg-gray-50">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</motion.h2>
 
@@ -305,7 +307,7 @@ export default function HomePage() {
         </div>
 
         {/* Tech Stack Section */}
-        <div className="mt-20 max-w-6xl mx-auto">
+        <div className="mt-20 max-w-6xl mx-auto bg-gray-50">
           <h3 className="text-2xl font-semibold text-center mb-6">Tech Stack</h3>
 
           <div className="relative overflow-hidden p-6 bg-transparent">
