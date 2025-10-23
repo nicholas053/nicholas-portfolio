@@ -1,11 +1,22 @@
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel, SiDotnet } from 'react-icons/si'
 import { DiNodejs } from "react-icons/di";
 import FeatureRow from '@/components/FeatureRow'
-import { FiExternalLink } from 'react-icons/fi'
+import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
+import Link from 'next/link';
 
 export default function ProjectTaskSystemPage() {
   return (
     <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+
+      <div>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+        >
+          <FiArrowLeft className="w-4 h-4" />
+          <span>Back</span>
+        </Link>
+      </div>
       {/* Page Title */}
       <section className="text-center space-y-6">
         <h1 className="text-4xl md:text-5xl font-bold">Project & Task Management System</h1>

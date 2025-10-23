@@ -1,11 +1,22 @@
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel } from 'react-icons/si'
 import { DiNodejs } from "react-icons/di";
-import { FiExternalLink } from 'react-icons/fi'
+import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
+import Link from 'next/link';
 import FeatureRow from '@/components/FeatureRow'
 
 export default function ChurchSystemPage() {
   return (
     <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+
+      <div>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+        >
+          <FiArrowLeft className="w-4 h-4" />
+          <span>Back</span>
+        </Link>
+      </div>
       {/* Hero */}
       <section className="text-center space-y-6">
         <h1 className="text-4xl md:text-5xl font-bold">Church / Community Management System</h1>
