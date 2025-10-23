@@ -12,20 +12,20 @@ export default function HomePage() {
   const [activeSection, setActiveSection] = useState("home")
 
   // Scroll listener to update navbar highlight
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["home", "projects", "about", "contact"]
-      const scrollY = window.scrollY + 200
-      for (const id of sections) {
-        const el = document.getElementById(id)
-        if (el && el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
-          setActiveSection(id)
-        }
-      }
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const sections = ["home", "projects", "about", "contact"]
+  //     const scrollY = window.scrollY + 200
+  //     for (const id of sections) {
+  //       const el = document.getElementById(id)
+  //       if (el && el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
+  //         setActiveSection(id)
+  //       }
+  //     }
+  //   }
+  //   window.addEventListener("scroll", handleScroll)
+  //   return () => window.removeEventListener("scroll", handleScroll)
+  // }, [])
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
@@ -74,12 +74,13 @@ export default function HomePage() {
         const rect1 = group.getBoundingClientRect()
         const rect2 = next.getBoundingClientRect()
         // distance between left edges (includes gap)
-        const w = Math.ceil(Math.max(0, rect2.left - rect1.left))
+        const w = Math.max(0, rect2.left - rect1.left);
         groupWidthRef.current = w
       } else {
-        // fallback: width of single group
-        const w = Math.ceil(group.getBoundingClientRect().width)
-        groupWidthRef.current = w
+        const groupWidth = group.getBoundingClientRect().width;
+        const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+
+        groupWidthRef.current = groupWidth + gap;
       }
 
       // ensure pos inside [0, w)
@@ -182,64 +183,64 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="bg-gray-50 min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
+      <motion.section id="home" className="bg-gray-50 min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
         {/* <HeroLines /> */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-6xl font-bold"
         >
           Hi, I’m Nic — Full Stack Developer
         </motion.h1>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-xl md:text-2xl font-medium text-gray-800 max-w-3xl"
         >
           I design and develop end-to-end web applications, turning ideas into reliable and user-friendly products.
         </motion.p>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-lg text-gray-600 max-w-2xl"
         >
-           My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
+          My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
         </motion.p>
 
         <div className="flex gap-4">
-          <button 
-            onClick={() => scrollTo("projects")} 
+          <button
+            onClick={() => scrollTo("projects")}
             className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow hover:bg-sky-600 transition"
           >
             View My Work
           </button>
-          <button 
-            onClick={() => scrollTo("contact")} 
+          <button
+            onClick={() => scrollTo("contact")}
             className="px-5 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
           >
             Contact Me
           </button>
         </div>
-      </section>
+      </motion.section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 max-w-6xl mx-auto px-4 space-y-12">
+      <motion.section id="projects" className="py-24 max-w-6xl mx-auto px-4 space-y-12">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center">Selected Projects</motion.h2>
-        
+
         <div className="flex flex-wrap justify-center gap-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
             <h3 className="text-xl font-semibold">Project Task Management System</h3>
             <p className="text-gray-600">A collaborative platform with task assignment, drag-and-drop stages, comments, votes, and dashboards.</p>
-            <a 
-              href="/projects/task-system" 
-              target="_self" 
+            <a
+              href="/projects/task-system"
+              target="_self"
               rel="noopener noreferrer"
               className="text-sky-500"
             >
@@ -247,13 +248,13 @@ export default function HomePage() {
             </a>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
             className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
             <h3 className="text-xl font-semibold">Church / Community Management System</h3>
             <p className="text-gray-600">An internal system for event registration, attendance, outing requests, and user administration with role-based access.</p>
-            <a 
-              href="/projects/church-system" 
-              target="_self" 
+            <a
+              href="/projects/church-system"
+              target="_self"
               rel="noopener noreferrer"
               className="text-sky-500"
             >
@@ -261,13 +262,13 @@ export default function HomePage() {
             </a>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.6 }}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
             className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
             <h3 className="text-xl font-semibold">E-commerce System</h3>
             <p className="text-gray-600">A full-stack platform featuring JWT authentication, product catalog, cart & checkout, order management, and an admin dashboard with inventory tracking and reports.</p>
-            <a 
-              href="/projects/ecommerce-system" 
-              target="_self" 
+            <a
+              href="/projects/ecommerce-system"
+              target="_self"
               rel="noopener noreferrer"
               className="text-sky-500"
             >
@@ -279,10 +280,10 @@ export default function HomePage() {
         <div className="text-center">
           <button onClick={() => scrollTo("about")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">Learn More About Me</button>
         </div>
-      </section>
+      </motion.section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-4 bg-gray-50">
+      <motion.section id="about" className="py-24 px-4 bg-gray-50">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</motion.h2>
 
@@ -304,18 +305,18 @@ export default function HomePage() {
               {
                 year: "2025 Oct – Now",
                 text: (<>
-                Working as a Web Developer at{" "}
-                <a
-                  href="https://www.dataflows.co/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-sky-600"
-                >
-                  Data Flows Sdn Bhd
-                </a>
-                . Contributing to various web applications and gaining hands-on
-                experience in a professional development environment.
-              </>)
+                  Working as a Web Developer at{" "}
+                  <a
+                    href="https://www.dataflows.co/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-sky-600"
+                  >
+                    Data Flows Sdn Bhd
+                  </a>
+                  . Contributing to various web applications and gaining hands-on
+                  experience in a professional development environment.
+                </>)
               }
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }}
@@ -328,7 +329,7 @@ export default function HomePage() {
         </div>
 
         {/* Tech Stack Section */}
-        <div className="mt-20 max-w-6xl mx-auto bg-gray-50">
+        <motion.div className="mt-20 max-w-6xl mx-auto bg-gray-50">
           <h3 className="text-2xl font-semibold text-center mb-6">Tech Stack</h3>
 
           <div className="relative overflow-hidden p-6 bg-transparent">
@@ -356,8 +357,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32" style={{ background: "linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0))" }} />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32" style={{ background: "linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0))" }} />
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32" style={{ background: "linear-gradient(to right, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0))" }} />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32" style={{ background: "linear-gradient(to left, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0))" }} />
 
             <p className="mt-4 text-center text-sm text-gray-600">Core tools I use for building reliable, maintainable web apps.</p>
           </div>
@@ -375,28 +376,43 @@ export default function HomePage() {
               .marquee-track > .marquee-group > div { width:56px; height:56px; }
             }
           `}</style>
-        </div>
+        </motion.div>
 
         {/* Personal philosophy */}
         <div className="mt-20 max-w-3xl mx-auto text-center">
-          <p className="italic text-gray-700">
+          <motion.p className="italic text-gray-700">
             “I enjoy solving problems with technology and creating tools that help communities work more effectively.
             Outside of coding, I also explore philosophy writing and photography — both of which influence my design thinking and creativity.”
-          </p>
+          </motion.p>
         </div>
 
         <div className="text-center mt-12">
           <button onClick={() => scrollTo("projects")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">View My Work</button>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-4 max-w-3xl mx-auto text-center space-y-6">
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold">Let’s Connect</motion.h2>
+      <motion.section
+        id="contact"
+        onViewportEnter={() => setActiveSection("contact")}
+        viewport={{ amount: 0.2 }}
+        className="py-24 px-4 max-w-3xl mx-auto text-center space-y-6"
+      >
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold"
+        >
+          Let’s Connect
+        </motion.h2>
         <p className="text-gray-600">Enjoy working as a Web Developer in a Supportive and Inspiring company.</p>
 
-        <div className="mt-6 flex flex-col md:flex-row items-start md:items-center justify-center gap-6">
+        <div className="mt-6 grid grid-cols-2 gap-4 md:flex md:flex-row md:items-center md:justify-center md:gap-2">
+          {/* 'grid grid-cols-2 gap-4' applies on mobile.
+            'md:flex md:flex-row ...' overrides it on medium screens and up.
+          */}
+
           <a href="mailto:shiloong53bii@gmail.com" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
             <BiLogoGmail className="w-8 h-8 text-sky-500" />
             <div className="text-left">
@@ -417,7 +433,7 @@ export default function HomePage() {
             <FaWhatsapp className="w-8 h-8 text-sky-500" />
             <div className="text-left">
               <div className="text-sm font-semibold">WhatsApp</div>
-              <div className="text-xs text-gray-600">+60 12-265 7856</div>
+              <div className="text-xs text-gray-600">+60122657856</div>
             </div>
           </a>
 
@@ -430,13 +446,23 @@ export default function HomePage() {
           </a>
         </div>
 
-        <div className="mt-6">
-          <a href="/resume.pdf" target="_blank" className="px-5 py-3 rounded-xl bg-gray-200">Resume</a>
+        {/* This button section is unchanged */}
+        <div className="mt-8 px-10 flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            className="px-6 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition shadow-sm"
+          >
+            Resume
+          </a>
+          <button
+            onClick={() => scrollTo("projects")}
+            className="px-6 py-3 rounded-xl bg-sky-500 text-white shadow hover:bg-sky-600 transition"
+          >
+            View My Work
+          </button>
         </div>
-        <div className="mt-6">
-          <button onClick={() => scrollTo("projects")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">View My Work</button>
-        </div>
-      </section>
+      </motion.section>
     </main>
   )
 }
