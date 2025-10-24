@@ -27,6 +27,45 @@ export default function HomePage() {
   //   return () => window.removeEventListener("scroll", handleScroll)
   // }, [])
 
+  useEffect(() => {
+    const sections = ["home", "projects", "about", "contact"]
+
+    const handleScroll = () => {
+      // Check if it is at the bottom of the page
+      // (window.innerHeight + window.scrollY) is the position of the bottom of the viewport
+      // document.body.offsetHeight is the total height of the page
+      // We use a 50px buffer just to be safe
+      const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50
+
+      if (atBottom) {
+        setActiveSection("contact")
+        return
+      }
+
+      // If not at the bottom, find the section in the middle of the screen
+      // window.scrollY + (window.innerHeight / 2) is the exact middle of the viewport
+      const triggerPoint = window.scrollY + window.innerHeight / 2
+
+      for (const id of sections) {
+        const el = document.getElementById(id)
+        if (el) {
+          const { offsetTop, offsetHeight } = el
+          // Check if the middle of the viewport is *within* this section's boundaries
+          if (triggerPoint >= offsetTop && triggerPoint < (offsetTop + offsetHeight)) {
+            setActiveSection(id)
+            return // Found the correct section, no need to check others
+          }
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    // Run it once on load to set the initial state
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
     if (el) el.scrollIntoView({ behavior: "smooth" })
@@ -183,7 +222,10 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <motion.section id="home" className="bg-gray-50 min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
+      <motion.section id="home"
+        // onViewportEnter={() => setActiveSection("home")}
+        // viewport={{ margin: "-40% 0px -40% 0px" }}
+        className="bg-gray-50 min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
         {/* <HeroLines /> */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -229,7 +271,10 @@ export default function HomePage() {
       </motion.section>
 
       {/* Projects Section */}
-      <motion.section id="projects" className="py-24 max-w-6xl mx-auto px-4 space-y-12">
+      <motion.section id="projects"
+        // onViewportEnter={() => setActiveSection("projects")}
+        // viewport={{ margin: "-40% 0px -40% 0px" }}
+        className="py-24 max-w-6xl mx-auto px-4 space-y-12">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center">Selected Projects</motion.h2>
 
@@ -283,7 +328,10 @@ export default function HomePage() {
       </motion.section>
 
       {/* About Section */}
-      <motion.section id="about" className="py-24 px-4 bg-gray-50">
+      <motion.section id="about"
+        // onViewportEnter={() => setActiveSection("about")}
+        // viewport={{ margin: "-40% 0px -40% 0px" }}
+        className="py-24 px-4 bg-gray-50">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</motion.h2>
 
@@ -394,8 +442,8 @@ export default function HomePage() {
       {/* Contact Section */}
       <motion.section
         id="contact"
-        onViewportEnter={() => setActiveSection("contact")}
-        viewport={{ amount: 0.2 }}
+        // onViewportEnter={() => setActiveSection("contact")}
+        // viewport={{ margin: "-30% 0px -30% 0px" }}
         className="py-24 px-4 max-w-3xl mx-auto text-center space-y-6"
       >
         <motion.h2
