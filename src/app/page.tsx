@@ -414,23 +414,23 @@ export default function HomePage() {
           */}
 
           <a href="mailto:shiloong53bii@gmail.com" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <BiLogoGmail className="w-8 h-8 text-sky-500" />
+            <BiLogoGmail className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
-              <div className="text-sm font-semibold">Email</div>
-              <div className="text-xs text-gray-600">shiloong53bii@gmail.com</div>
+              <div className="text-sm font-semibold">Gmail</div>
+              <div className="text-xs text-gray-600">shiloong53bii</div>
             </div>
           </a>
 
           <a href="https://github.com/nicholas053" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <SiGithub className="w-8 h-8 text-sky-500" />
+            <SiGithub className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">GitHub</div>
-              <div className="text-xs text-gray-600">github.com/nicholas053</div>
+              <div className="text-xs text-gray-600">nicholas053</div>
             </div>
           </a>
 
           <a href="https://wa.me/+60122657856" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <FaWhatsapp className="w-8 h-8 text-sky-500" />
+            <FaWhatsapp className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">WhatsApp</div>
               <div className="text-xs text-gray-600">+60122657856</div>
@@ -438,7 +438,7 @@ export default function HomePage() {
           </a>
 
           <a href="https://www.instagram.com/nicholas_loong" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <FaInstagram className="w-8 h-8 text-sky-500" />
+            <FaInstagram className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">Instagram</div>
               <div className="text-xs text-gray-600">nicholas_loong</div>
