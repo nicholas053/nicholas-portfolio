@@ -233,7 +233,7 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-6xl font-bold"
         >
-          Hi, I’m Nic — Full Stack Developer
+          Hi, I’m Nic — Building Robust Systems & Digital Solutions
         </motion.h1>
 
         <motion.p
@@ -242,7 +242,7 @@ export default function HomePage() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-xl md:text-2xl font-medium text-gray-800 max-w-3xl"
         >
-          I design and develop end-to-end web applications, turning ideas into reliable and user-friendly products.
+          Full Stack Developer with a System Analyst mindset. Turning complex workflows into intuitive software.
         </motion.p>
 
         <motion.p
@@ -454,7 +454,7 @@ export default function HomePage() {
         >
           Let’s Connect
         </motion.h2>
-        <p className="text-gray-600">Enjoy working as a Web Developer in a Supportive and Inspiring company.</p>
+        <p className="text-gray-600">Looking for a problem solver who understands both Code and Business Logic? Let's chat.</p>
 
         <div className="mt-6 grid grid-cols-2 gap-4 md:flex md:flex-row md:items-center md:justify-center md:gap-2">
           {/* 'grid grid-cols-2 gap-4' applies on mobile.
