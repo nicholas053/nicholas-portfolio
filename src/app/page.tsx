@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiDotnet, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
 import { DiNodejs } from "react-icons/di"
-import { FaJava, FaProjectDiagram, FaAngular, FaLaravel, FaPhp, FaWhatsapp, FaInstagram } from "react-icons/fa"
+import { FaJava, FaProjectDiagram, FaAngular, FaLaravel, FaPhp, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode } from "react-icons/fa"
 import { BiLogoTypescript, BiLogoGmail } from "react-icons/bi"
 // import HeroLines from "@/components/HeroLines"
 
@@ -233,7 +233,7 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-6xl font-bold"
         >
-          Hi, I’m Nic — Building Robust Systems & Digital Solutions
+          Hi, I’m Nic — Full-Stack Developer & Product Engineer
         </motion.h1>
 
         <motion.p
@@ -242,17 +242,17 @@ export default function HomePage() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-xl md:text-2xl font-medium text-gray-800 max-w-3xl"
         >
-          Full Stack Developer with a System Analyst mindset. Turning complex workflows into intuitive software.
+          Focusing on building scalable end-to-end systems and bridging the gap between ambiguous business requirements and technical execution.
         </motion.p>
 
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-lg text-gray-600 max-w-2xl"
         >
           My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
-        </motion.p>
+        </motion.p> */}
 
         <div className="flex gap-4">
           <button
@@ -270,56 +270,121 @@ export default function HomePage() {
         </div>
       </motion.section>
 
+      <motion.section className="py-20 bg-white px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10 md:mb-12">
+            <h2 className="text-xs md:text-sm font-bold tracking-widest text-sky-500 uppercase">My Workflow</h2>
+            <h3 className="text-2xl md:text-3xl font-bold mt-2">More than just writing code.</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 relative">
+            
+            <div className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
+              <div className="flex-shrink-0 w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0">
+                <FaUsers />
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-gray-900">Requirement Engineering</h4>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  Before writing a single line of code, I proactively clarify ambiguous client requirements, ensuring the team builds the <i>right</i> product, not just <i>any</i> product.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
+              <div className="flex-shrink-0 w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0">
+                <FaProjectDiagram />
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-gray-900">Architecture & Logic</h4>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  Proficient in translating complex business logic into clear Workflow and Sequence Diagrams, aligning stakeholders and developers on technical feasibility.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
+              <div className="flex-shrink-0 w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0">
+                <FaCode />
+              </div>
+              <div>
+                <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-gray-900">Execution & Delivery</h4>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  Delivering pixel-perfect, maintainable code while simultaneously overseeing cross-functional communication to prevent project bottlenecks.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </motion.section>
+
       {/* Projects Section */}
       <motion.section id="projects"
         // onViewportEnter={() => setActiveSection("projects")}
         // viewport={{ margin: "-40% 0px -40% 0px" }}
         className="py-24 max-w-6xl mx-auto px-4 space-y-12">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center">Selected Projects</motion.h2>
+          className="text-3xl md:text-4xl font-bold text-center">Selected Works & Impacts</motion.h2>
 
-        <div className="flex flex-wrap justify-center gap-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">Project Task Management System</h3>
-            <p className="text-gray-600">A collaborative platform with task assignment, drag-and-drop stages, comments, votes, and dashboards.</p>
-            <a
-              href="/projects/task-system"
-              target="_self"
-              rel="noopener noreferrer"
-              className="text-sky-500"
-            >
-              See Details →
-            </a>
-          </motion.div>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start">
+            <div className="md:w-1/3 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-bold uppercase tracking-wide">
+                <FaLock className="text-gray-500" /> Confidential / NDA
+              </div>
+              <h3 className="text-2xl font-bold">Enterprise System Turnaround</h3>
+              <p className="text-gray-600 font-medium">Role: Tech BA & Front-End Dev</p>
+            </div>
+
+            <div className="md:w-2/3 space-y-6">
+              <div>
+                <h4 className="font-bold text-gray-900 mb-1">The Challenge</h4>
+                <p className="text-gray-600">Intercepted an ongoing project suffering from severe logic flaws and misaligned client expectations midway through development.</p>
+              </div>
+              <div className="space-y-3">
+                <h4 className="font-bold text-gray-900 mb-1">Actions & Impact</h4>
+                <ul className="space-y-2 text-gray-600 list-disc list-inside">
+                  <li><strong className="text-gray-800">Risk Mitigation:</strong> Halted incorrect execution, redefined project scope, and led requirement realignment meetings.</li>
+                  <li><strong className="text-gray-800">Tech Consulting:</strong> Provided real-time technical feasibility assessments during client syncs to guide viable solutions.</li>
+                  <li><strong className="text-gray-800">Clear Documentation:</strong> Authored comprehensive sequence diagrams to translate ambiguous scopes into actionable dev tasks.</li>
+                  <li><strong className="text-gray-800">Seamless Delivery:</strong> Simultaneously maintained full responsibility for front-end architecture, delivering the redefined goals.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="flex overflow-x-auto md:flex-wrap md:justify-center md:overflow-visible snap-x snap-mandatory gap-6 md:gap-8 pt-8 pb-8 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">Church / Community Management System</h3>
-            <p className="text-gray-600">An internal system for event registration, attendance, outing requests, and user administration with role-based access.</p>
-            <a
-              href="/projects/church-system"
-              target="_self"
-              rel="noopener noreferrer"
-              className="text-sky-500"
-            >
-              See Details →
-            </a>
+            className="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] shrink-0 snap-center rounded-2xl border p-6 flex flex-col hover:shadow-lg transition bg-white">
+            <div className="flex-grow space-y-4">
+              <h3 className="text-xl font-bold">Church Management System</h3>
+              <p className="text-gray-600">Event registration, attendance tracking, outing requests, and role-based administration.</p>
+            </div>
+            <a href="/projects/church-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+            className="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] shrink-0 snap-center rounded-2xl border p-6 flex flex-col hover:shadow-lg transition bg-white">
+            <div className="flex-grow space-y-4">
+              <h3 className="text-xl font-bold">Task Management System</h3>
+              <p className="text-gray-600">A collaborative platform with task assignment, drag-and-drop stages, comments, votes, and dashboards.</p>
+            </div>
+            <a href="/projects/task-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-            className="w-full md:w-[45%] lg:w-[30%] rounded-2xl border p-6 space-y-4 hover:shadow-lg transition">
-            <h3 className="text-xl font-semibold">E-commerce System</h3>
-            <p className="text-gray-600">A full-stack platform featuring JWT authentication, product catalog, cart & checkout, order management, and an admin dashboard with inventory tracking and reports.</p>
-            <a
-              href="/projects/ecommerce-system"
-              target="_self"
-              rel="noopener noreferrer"
-              className="text-sky-500"
-            >
-              See Details →
-            </a>
+            className="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] shrink-0 snap-center rounded-2xl border p-6 flex flex-col hover:shadow-lg transition bg-white">
+            <div className="flex-grow space-y-4">
+              <h3 className="text-xl font-bold">E-commerce Platform</h3>
+              <p className="text-gray-600">Full-stack platform featuring JWT auth, cart checkout, order management, and admin inventory dashboard.</p>
+            </div>
+            <a href="/projects/ecommerce-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
           </motion.div>
+
         </div>
 
         <div className="text-center">
@@ -423,6 +488,8 @@ export default function HomePage() {
             @media (max-width: 420px) {
               .marquee-track > .marquee-group > div { width:56px; height:56px; }
             }
+            .hide-scrollbar::-webkit-scrollbar { display: none; }
+            .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
           `}</style>
         </motion.div>
 

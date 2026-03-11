@@ -36,11 +36,32 @@ export default function ChurchSystemPage() {
       </section>
 
       {/* Overview */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-semibold text-center">Overview</h2>
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-          The system serves two audiences: visitors can register for public events without an account, while logged-in members and leaders gain access to management features such as creating events, marking attendance, submitting outing requests, and administering users and roles.
-        </p>
+      <section className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div className="space-y-4 p-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+          <div className="w-12 h-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xl mb-6">
+            <span className="font-bold">The Problem</span>
+          </div>
+          <h3 className="text-2xl font-bold">Administrative Nightmare</h3>
+          <ul className="space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside">
+            <li><strong className="text-gray-800 dark:text-gray-200">Data Fragmentation:</strong> Relied on duplicating Google Forms for every event, causing scattered data.</li>
+            <li><strong className="text-gray-800 dark:text-gray-200">Manual Logistics:</strong> Admins had to manually count participants by region to arrange transportation.</li>
+            <li><strong className="text-gray-800 dark:text-gray-200">Data Duplication:</strong> Members frequently submitted multiple registrations due to uncertainty.</li>
+            <li><strong className="text-gray-800 dark:text-gray-200">Painful Auditing:</strong> Year-end attendance tracking required manually cross-referencing massive Google Sheets.</li>
+          </ul>
+        </div>
+
+        <div className="space-y-4 p-8 bg-sky-50 dark:bg-sky-900/20 rounded-2xl border border-sky-100 dark:border-sky-800">
+          <div className="w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl mb-6">
+            <span className="font-bold">The Solution</span>
+          </div>
+          <h3 className="text-2xl font-bold">Centralized Automation</h3>
+          <ul className="space-y-3 text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside">
+            <li><strong className="text-gray-800 dark:text-gray-200">Self-Service Portal:</strong> Members can track, update, or cancel their own registrations via internal accounts.</li>
+            <li><strong className="text-gray-800 dark:text-gray-200">Automated Logistics:</strong> Dashboards auto-filter and aggregate transportation needs by area.</li>
+            <li><strong className="text-gray-800 dark:text-gray-200">Smart Attendance:</strong> Cell Group Leaders get 1-click attendance checklists pre-filtered for their members, replacing Excel entirely.</li>
+            <li><strong className="text-gray-800 dark:text-gray-200">Anti-Spam Architecture:</strong> Public registration is allowed, but strictly blocks duplicate phone numbers.</li>
+          </ul>
+        </div>
       </section>
 
       {/* Feature Rows */}
@@ -82,6 +103,35 @@ export default function ChurchSystemPage() {
         videoSrc="https://res.cloudinary.com/dqkjvme8f/video/upload/f_auto,q_auto/v1755757603/importcsv_peyipn.mp4"
         reverse
       />
+
+      <section className="py-12 border-y border-gray-200 dark:border-gray-800 my-16">
+        <h2 className="text-3xl font-semibold text-center mb-10">Engineering Spotlight</h2>
+        <div className="grid md:grid-cols-2 gap-10">
+          
+          <div className="space-y-3">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <span className="text-sky-500">01.</span> Granular RBAC & Security
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">
+              To handle complex church hierarchies, I implemented a multi-tier Role-Based Access Control (RBAC) system. 
+              Using Next.js Middleware and JWT, routes are strictly protected. On the client side, custom React hooks compute integer-based role levels (e.g., Level {'>'} 5 for Admins) to dynamically render UI components. 
+              Account creation is entirely closed off from the public (handled exclusively via CSV import) to eliminate spam accounts.
+            </p>
+            
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <span className="text-sky-500">02.</span> Prisma Aggregation & Data Integrity
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">
+              Replaced manual spreadsheet calculations with dynamic PostgreSQL queries via Prisma. The backend API handles pagination, multi-parameter filtering (by date and event type), and complex joins to generate instant attendance rate statistics. 
+              Additionally, the system enforces strict unique constraints (like phone number validation) to prevent data duplication from visitors.
+            </p>
+          </div>
+
+        </div>
+      </section>
 
       {/* Tech Stack */}
       <section className="space-y-10">

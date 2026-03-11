@@ -19,7 +19,7 @@ export default function ProjectTaskSystemPage() {
       </div>
       {/* Page Title */}
       <section className="text-center space-y-6">
-        <h1 className="text-4xl md:text-5xl font-bold">Project & Task Management System</h1>
+        <h1 className="text-4xl md:text-5xl font-bold ">Project & Task Management System</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           A collaborative project management system designed for teams to track progress, make decisions, and for individuals to clearly monitor their own contributions.
         </p>
@@ -36,20 +36,26 @@ export default function ProjectTaskSystemPage() {
       </section>
 
       {/* Overview */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-semibold text-center">Overview</h2>
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-          This system enables multiple team members to collaborate effectively on projects, ensuring transparent progress tracking, fair task distribution, and structured decision-making. It is built to help both teams and individuals stay on top of their goals.
-        </p>
-        <video
-          className="w-full rounded-2xl shadow-xl"
-          src="https://res.cloudinary.com/dqkjvme8f/video/upload/f_auto,q_auto/v1755755372/overview_xlc6mi.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls
-        />
+      <section className="grid md:grid-cols-2 gap-8 md:gap-12 pb-10">
+        <div className="space-y-4 p-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
+          <div className="w-12 h-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xl mb-6">
+            <span className="font-bold">The Problem</span>
+          </div>
+          <h3 className="text-2xl font-bold">The Startup Dilemma</h3>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            A friend's interior design startup needed a reliable task management system to coordinate projects. However, enterprise tools like ClickUp were too expensive for a small team. More importantly, dealing with sensitive client floor plans and design assets required strict data privacy, making them hesitant to rely on third-party public cloud SaaS.
+          </p>
+        </div>
+
+        <div className="space-y-4 p-8 bg-sky-50 dark:bg-sky-900/20 rounded-2xl border border-sky-100 dark:border-sky-800">
+          <div className="w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl mb-6">
+            <span className="font-bold">The Solution</span>
+          </div>
+          <h3 className="text-2xl font-bold">A Self-Hosted Ecosystem</h3>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            I built a lightweight, performant project management platform designed specifically for self-hosting on a custom homelab. It delivers core enterprise features—like Kanban boards, project-level voting, and granular task assignments—without the bloat, ensuring 100% data sovereignty and zero recurring SaaS costs for the startup.
+          </p>
+        </div>
       </section>
 
       {/* Task Progress & Assignment */}
@@ -88,6 +94,33 @@ export default function ProjectTaskSystemPage() {
         <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
           The interface supports dark mode for a modern and user-friendly experience, ensuring accessibility and comfort across environments.
         </p>
+      </section>
+
+      <section className="py-12 border-y border-gray-200 dark:border-gray-800 my-16">
+        <h2 className="text-3xl font-semibold text-center mb-10">Engineering Spotlight</h2>
+        <div className="grid md:grid-cols-2 gap-10">
+          
+          <div className="space-y-3">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <span className="text-sky-500">01.</span> Advanced Drag & Drop (DnD) Architecture
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">
+              Implementing the Kanban board wasn't just about UI; it required precise event handling across devices. I utilized <code>@dnd-kit/core</code> with custom sensor orchestration: <i>MouseSensors</i> for desktop precision, and <i>TouchSensors</i> with delay/tolerance constraints to allow native page scrolling on mobile without triggering accidental drags. 
+              UI updates are handled optimistically on the client to ensure zero-latency feedback before syncing the new state to the PostgreSQL database.
+            </p>
+            
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <span className="text-sky-500">02.</span> Complex State Lifting & Component Decoupling
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">
+              To keep the architecture clean, I heavily decoupled the UI components. For example, when a task is moved or marked 'COMPLETE', the <code>ProjectBoard</code> computes real-time statistics (completion rates and priority distributions) and lifts this state via an <code>onStatsChange</code> callback to the parent <code>ClientProjectPage</code>. This ensures the dashboard header reflects live data without prop-drilling or relying on heavy state management libraries.
+            </p>
+          </div>
+
+        </div>
       </section>
 
       {/* Tech Stack */}
