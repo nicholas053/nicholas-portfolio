@@ -564,7 +564,7 @@ export default function HomePage() {
         {/* This button section is unchanged */}
         <div className="mt-8 px-10 flex flex-col sm:flex-row justify-center gap-4">
           <a
-            href="/Chong Shi Loong (Resume).pdf"
+            href="/Chong_Shi_Loong_Resume.pdf"
             target="_blank"
             className="px-6 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition shadow-sm"
           >
