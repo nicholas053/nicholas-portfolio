@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiDotnet, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
 import { DiNodejs } from "react-icons/di"
-import { FaJava, FaProjectDiagram, FaAngular, FaLaravel, FaPhp, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode } from "react-icons/fa"
+import { FaJava, FaProjectDiagram, FaAngular, FaLaravel, FaPhp, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode, FaGlobe } from "react-icons/fa"
 import { BiLogoTypescript, BiLogoGmail } from "react-icons/bi"
 // import HeroLines from "@/components/HeroLines"
 
@@ -255,29 +255,38 @@ export default function HomePage() {
           My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
         </motion.p> */}
 
-        <div className="mx-auto grid w-max max-w-[min(100%-1.5rem,19rem)] grid-cols-2 gap-2 sm:max-w-none sm:w-auto sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3">
-          <button
-            onClick={() => scrollTo("projects")}
-            className="order-1 min-w-0 justify-self-stretch px-3 py-2.5 text-center text-xs font-medium leading-tight text-white shadow sm:order-1 sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base rounded-xl bg-sky-500 hover:bg-sky-600 transition"
-          >
-            View My Work
-          </button>
-          <button
-            onClick={() => scrollTo("contact")}
-            className="order-2 min-w-0 justify-self-stretch border border-gray-300 px-3 py-2.5 text-center text-xs font-medium leading-tight hover:bg-gray-100 transition dark:border-gray-600 dark:hover:bg-gray-800/50 sm:order-3 sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base rounded-xl"
-          >
-            Contact Me
-          </button>
-          <Link
-            href="/notes"
-            className="order-3 col-span-2 flex w-full items-center justify-center whitespace-normal px-3 py-2.5 text-center text-xs font-medium leading-snug text-gray-800 shadow-sm sm:order-2 sm:col-span-1 sm:w-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal rounded-xl border border-gray-300 hover:bg-gray-100 transition dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800/50"
-          >
-            How I Solve Problems
-          </Link>
-        </div>
-        <p className="max-w-md text-center text-xs text-gray-500 dark:text-gray-400">
-          Technical notes: architecture write-ups, refactors, and assessments — with diagrams.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.72, duration: 0.55 }}
+          className="flex flex-col items-center gap-3"
+        >
+          <div className="mx-auto grid w-max max-w-[min(100%-1.5rem,19rem)] grid-cols-2 gap-2 sm:max-w-none sm:w-auto sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3">
+            <button
+              type="button"
+              onClick={() => scrollTo("projects")}
+              className="order-1 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-transparent bg-sky-500 px-3 py-2.5 text-center text-xs font-medium leading-tight text-white shadow transition hover:bg-sky-600 sm:order-1 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+            >
+              View My Work
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollTo("contact")}
+              className="order-2 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-gray-300 px-3 py-2.5 text-center text-xs font-medium leading-tight transition hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800/50 sm:order-3 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+            >
+              Contact Me
+            </button>
+            <Link
+              href="/notes"
+              className="order-3 col-span-2 inline-flex min-h-[2.75rem] w-full items-center justify-center whitespace-nowrap rounded-xl border border-gray-300 px-3 py-2.5 text-center text-xs font-medium leading-tight text-gray-800 transition hover:bg-gray-100 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800/50 sm:order-2 sm:col-span-1 sm:min-h-[3rem] sm:w-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+            >
+              How I Solve Problems
+            </Link>
+          </div>
+          <p className="max-w-md text-center text-xs text-gray-500 dark:text-gray-400">
+            Technical notes: architecture write-ups, refactors, and assessments — with diagrams.
+          </p>
+        </motion.div>
       </motion.section>
 
       <motion.section className="py-20 bg-white px-4">
@@ -381,36 +390,37 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        <div className="flex overflow-x-auto md:flex-wrap md:justify-center md:overflow-visible snap-x snap-mandatory gap-6 md:gap-8 pt-8 pb-8 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
-            className="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] shrink-0 snap-center rounded-2xl border p-6 flex flex-col hover:shadow-lg transition bg-white">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-8 hide-scrollbar -mx-4 px-4 md:mx-0 md:flex-wrap md:justify-center md:gap-8 md:overflow-visible md:px-0"
+        >
+          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
             <div className="flex-grow space-y-4">
               <h3 className="text-xl font-bold">Church Management System</h3>
               <p className="text-gray-600">Event registration, attendance tracking, outing requests, and role-based administration.</p>
             </div>
             <a href="/projects/church-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] shrink-0 snap-center rounded-2xl border p-6 flex flex-col hover:shadow-lg transition bg-white">
+          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
             <div className="flex-grow space-y-4">
               <h3 className="text-xl font-bold">Task Management System</h3>
               <p className="text-gray-600">A collaborative platform with task assignment, drag-and-drop stages, comments, votes, and dashboards.</p>
             </div>
             <a href="/projects/task-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </motion.div>
+          </div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-            className="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[30%] shrink-0 snap-center rounded-2xl border p-6 flex flex-col hover:shadow-lg transition bg-white">
+          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
             <div className="flex-grow space-y-4">
               <h3 className="text-xl font-bold">E-commerce Platform</h3>
               <p className="text-gray-600">Full-stack platform featuring JWT auth, cart checkout, order management, and admin inventory dashboard.</p>
             </div>
             <a href="/projects/ecommerce-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </motion.div>
-
-        </div>
+          </div>
+        </motion.div>
 
         <div className="text-center">
           <button onClick={() => scrollTo("about")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">Learn More About Me</button>
@@ -464,6 +474,32 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-sky-100 bg-white p-6 shadow-sm dark:border-sky-900/40 dark:bg-gray-900/30 md:p-8"
+          >
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white md:text-xl">
+              Client &amp; Project Work — LokaTech
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+              Alongside my portfolio here, I run{" "}
+              <span className="text-sky-600 dark:text-sky-200 font-medium">LokaTech</span>
+              , my own practice for freelance and scoped product engagements — from
+              discovery and builds to ongoing support. If you are looking to hire
+              for a client project, that is the best place to start.
+            </p>
+            <a
+              href="https://lokatech.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:underline md:text-base dark:text-sky-400"
+            >
+              Visit lokatech.co →
+            </a>
+          </motion.div>
         </div>
 
         {/* Tech Stack Section */}
@@ -526,8 +562,20 @@ export default function HomePage() {
           </motion.p>
         </div>
 
-        <div className="text-center mt-12">
-          <button onClick={() => scrollTo("projects")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">View My Work</button>
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <button
+            type="button"
+            onClick={() => scrollTo("projects")}
+            className="inline-flex min-h-[2.75rem] w-full max-w-xs items-center justify-center rounded-xl border border-transparent bg-sky-500 px-5 py-3 text-sm font-medium text-white shadow transition hover:bg-sky-600 sm:w-auto sm:min-h-[3rem] sm:text-base"
+          >
+            View My Work
+          </button>
+          <Link
+            href="/notes"
+            className="inline-flex min-h-[2.75rem] w-full max-w-xs items-center justify-center whitespace-nowrap rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium text-gray-800 transition hover:bg-gray-100 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800/50 sm:w-auto sm:min-h-[3rem] sm:text-base"
+          >
+            How I Solve Problems
+          </Link>
         </div>
       </motion.section>
 
@@ -546,7 +594,26 @@ export default function HomePage() {
         >
           Let’s Connect
         </motion.h2>
-        <p className="text-gray-600">Looking for a problem solver who understands both Code and Business Logic? Let's chat.</p>
+        <p className="text-gray-600">Looking for a problem solver who understands both Code and Business Logic? Let&apos;s chat.</p>
+
+        <div className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 text-left shadow-sm dark:border-gray-700 dark:bg-gray-800/40">
+          <p className="text-sm font-semibold text-gray-900 dark:text-white">
+            Hiring for a client or product?
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            I operate my independent business through{" "}
+            <span className="text-sky-600 dark:text-sky-200 font-medium">LokaTech</span>
+            . For services, scope, and how we can work together, open the site below.
+          </p>
+          <a
+            href="https://lokatech.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:underline dark:text-sky-400"
+          >
+            lokatech.co →
+          </a>
+        </div>
 
         <div className="mt-6 grid grid-cols-2 gap-4 md:flex md:flex-row md:items-center md:justify-center md:gap-2">
           {/* 'grid grid-cols-2 gap-4' applies on mobile.
@@ -587,17 +654,25 @@ export default function HomePage() {
         </div>
 
         {/* This button section is unchanged */}
-        <div className="mt-8 px-10 flex flex-col sm:flex-row justify-center gap-4">
+        <div className="mt-8 flex flex-col items-stretch justify-center gap-4 px-6 sm:flex-row sm:flex-wrap sm:items-center sm:px-10">
           <a
             href="/Chong_Shi_Loong_Resume.pdf"
             target="_blank"
-            className="px-6 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 transition shadow-sm"
+            className="px-6 py-3 rounded-xl bg-gray-200 text-center hover:bg-gray-300 transition shadow-sm"
           >
             Resume
           </a>
+          <a
+            href="https://lokatech.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 rounded-xl border-2 border-sky-500 text-center font-medium text-sky-600 transition hover:bg-sky-50 dark:border-sky-400 dark:text-sky-400 dark:hover:bg-sky-950/30"
+          >
+            LokaTech — hire me for client work
+          </a>
           <button
             onClick={() => scrollTo("projects")}
-            className="px-6 py-3 rounded-xl bg-sky-500 text-white shadow hover:bg-sky-600 transition"
+            className="px-6 py-3 rounded-xl bg-sky-500 text-center text-white shadow hover:bg-sky-600 transition"
           >
             View My Work
           </button>

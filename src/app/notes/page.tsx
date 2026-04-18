@@ -33,7 +33,7 @@ const notes = [
     href: "/notes/performance-evaluation-360",
     title: "360° Performance Evaluation Module",
     blurb:
-      "Auto-generated 360° assignments, JSONB schema-driven forms, and token-based external partner submissions.",
+      "Full-stack 360° HR: generation engine, JSONB, tokenized partner API, and Angular schema-driven forms with responsive Likert layouts.",
     badge: "NDA" as const,
     ready: true,
   },

@@ -66,7 +66,7 @@ export const PERF_EVAL_FLOW = `flowchart TD
         S13[Completed forms from others]
         S14[View response]
         S15[Load record and JSON payload]
-        S16[Read-only schema render]
+        S16[Angular read-only schema render]
         S1 --> S2
         S2 -->|Feedback given| S3
         S3 --> S4 --> S5

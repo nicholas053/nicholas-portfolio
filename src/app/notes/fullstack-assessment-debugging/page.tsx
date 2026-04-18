@@ -135,18 +135,21 @@ export default function FullstackAssessmentDebuggingPage() {
           Impact
         </h2>
         <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-lg">
-          The take-home already showed I could ship a coherent full-stack slice
-          under time pressure. The follow-up showed something rarer: I can{" "}
+          I treated the take-home as a chance to ship a small but coherent
+          full-stack slice under time pressure—an honest best effort, not a
+          claim to being flawless. After the interview, I still had open
+          questions in my own head, so I went back, reproduced the issue locally,
+          and tried to{" "}
           <strong className="text-gray-900 dark:text-gray-100">
-            own uncertainty
-          </strong>
-          , trace a cross-layer bug, and explain the fix in plain language. I
-          also documented{" "}
-          <strong className="text-gray-900 dark:text-gray-100">
-            where I used AI-assisted tooling
+            trace the cross-layer bug
           </strong>{" "}
-          (boilerplate, test scaffolding, wording)—never as a substitute for
-          validating behavior against the network tab and server logs.
+          and write it up in plain language, mainly out of respect for the time
+          the panel had already given me. I also documented{" "}
+          <strong className="text-gray-900 dark:text-gray-100">
+            where AI-assisted tooling helped
+          </strong>{" "}
+          (boilerplate, test scaffolding, wording)—and made clear it never
+          replaced validating behavior against the network tab and server logs.
         </p>
       </section>
 

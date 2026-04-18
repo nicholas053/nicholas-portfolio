@@ -6,7 +6,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "360° performance evaluation module",
   description:
-    "End-to-end HR evaluation: auto-generated assignments, JSONB schema-driven forms, and token-based external partner submissions.",
+    "Full-stack HR 360°: generation engine and tokenized partner API on the backend; Angular schema-driven forms, shared UI, and responsive Likert layouts on the frontend.",
   alternates: {
     canonical: "/notes/performance-evaluation-360",
   },
@@ -35,68 +35,107 @@ export default function PerformanceEvaluation360Page() {
           End-to-End 360° Performance Evaluation Module
         </h1>
         <p className="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300 md:text-lg">
-          Full-stack developer &amp; feature owner — annual KPI-linked reviews
-          across peers, managers, and external partners, with generated
-          assignments and login-free partner access.
+          Full-stack developer &amp; feature owner — annual KPI-linked 360°
+          reviews across peers, managers, and external partners. I owned both
+          the assignment engine / public API and the Angular experience for
+          complex, schema-driven forms on desktop and mobile.
         </p>
       </header>
 
       <section className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
-        <div className="space-y-4 rounded-2xl border border-gray-100 bg-gray-50 p-6 md:p-8 dark:border-gray-700 dark:bg-gray-800/50">
-          <div className="mb-2 inline-flex rounded-lg bg-red-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-red-700 dark:bg-red-900/40 dark:text-red-200">
+        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-gray-100 bg-gray-50 p-6 md:p-8 dark:border-gray-700 dark:bg-gray-800/50">
+          <div className="mb-2 inline-flex self-start rounded-lg bg-red-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-red-700 dark:bg-red-900/40 dark:text-red-200">
             Challenge
           </div>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl">
-            360° scope, hierarchy, and external access
+            Engine, security model, and evaluator UX
           </h2>
           <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
-            The business needed a full{" "}
+            The enterprise needed a comprehensive{" "}
             <strong className="text-gray-800 dark:text-gray-200">
-              360-degree
+              360° performance review
             </strong>{" "}
-            review tied to annual KPIs: multiple evaluator types,{" "}
+            tied to annual KPIs. The work split naturally in two directions: a
+            backend that could resolve{" "}
             <strong className="text-gray-800 dark:text-gray-200">
-              dynamic org hierarchy
+              dynamic hierarchies
             </strong>
-            , and forms that could not be hand-maintained per release. External
-            partners had to submit feedback{" "}
+            , mint secure access for{" "}
             <strong className="text-gray-800 dark:text-gray-200">
-              without accounts
+              external partner feedback without logins
             </strong>
-            , while keeping data integrity and auditability.
+            , and persist audit-friendly payloads; and a frontend that could
+            render{" "}
+            <strong className="text-gray-800 dark:text-gray-200">
+              schema-driven evaluation forms
+            </strong>{" "}
+            (many question types, dense matrices) with a smooth experience on
+            both desktop and mobile.
           </p>
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-sky-100 bg-sky-50 p-6 md:p-8 dark:border-sky-800 dark:bg-sky-900/20">
-          <div className="mb-2 inline-flex rounded-lg bg-sky-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-sky-800 dark:bg-sky-900/60 dark:text-sky-100">
+        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-sky-100 bg-sky-50 p-6 md:p-8 dark:border-sky-800 dark:bg-sky-900/20">
+          <div className="mb-2 inline-flex self-start rounded-lg bg-sky-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-sky-800 dark:bg-sky-900/60 dark:text-sky-100">
             Solution
           </div>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl">
-            Generation engine, JSONB, and tokenized public API
+            Backend engine, Angular forms, responsive matrices
           </h2>
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
-            Owned the feature end-to-end: a backend engine that{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
-              auto-matches department members
-            </strong>{" "}
-            and assigns the right form schema from{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
-              employee rank and relationship
-            </strong>
-            ;{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
-              JSONB payloads
-            </strong>{" "}
-            plus a{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
-              schema-driven UI
-            </strong>{" "}
-            so new question sets do not require new React screens; and a{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
-              token-based, stateless public API
-            </strong>{" "}
-            so partners complete evaluations securely without logins.
+          <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+            Owned the feature end-to-end—from persistence and APIs through the
+            evaluator UI.
           </p>
+          <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+            <li>
+              <span className="font-semibold text-gray-800 dark:text-gray-200">
+                Backend architecture:
+              </span>{" "}
+              Built a generation engine that{" "}
+              <strong className="text-gray-800 dark:text-gray-200">
+                auto-matches department members
+              </strong>{" "}
+              and assigns form types from rank and relationship; stored answers
+              in{" "}
+              <strong className="text-gray-800 dark:text-gray-200">
+                JSONB
+              </strong>
+              ; exposed a{" "}
+              <strong className="text-gray-800 dark:text-gray-200">
+                stateless, token-based public API
+              </strong>{" "}
+              so partners submit securely without accounts.
+            </li>
+            <li>
+              <span className="font-semibold text-gray-800 dark:text-gray-200">
+                Frontend (Angular):
+              </span>{" "}
+              Modular app with{" "}
+              <strong className="text-gray-800 dark:text-gray-200">
+                shared UI components
+              </strong>
+              . A dynamic{" "}
+              <strong className="text-gray-800 dark:text-gray-200">
+                EvaluationFormComponent
+              </strong>{" "}
+              reads varying JSON schemas (flat vs. sectioned) and renders the
+              right controls for each question type.
+            </li>
+            <li>
+              <span className="font-semibold text-gray-800 dark:text-gray-200">
+                Responsive UX:
+              </span>{" "}
+              Used programmatic viewport checks (
+              <code className="rounded bg-white/80 px-1 py-0.5 text-xs dark:bg-gray-900/80">
+                matchMedia
+              </code>
+              ) so large Likert matrices reflow into a mobile-friendly layout
+              without breaking{" "}
+              <strong className="text-gray-800 dark:text-gray-200">
+                reactive form groupings
+              </strong>
+              .
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -105,17 +144,18 @@ export default function PerformanceEvaluation360Page() {
           Impact
         </h2>
         <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-lg">
-          Replaced manual HR tracking with a{" "}
+          Delivered a{" "}
           <strong className="text-gray-900 dark:text-gray-100">
-            fully automated pipeline
+            fully automated, scalable HR evaluation path
           </strong>{" "}
-          from activation through completion. New evaluation types can be added
-          with{" "}
+          from cycle activation through completion. The schema-driven Angular
+          surface decoupled the UI from hardcoded questionnaires, so the
+          business could introduce{" "}
           <strong className="text-gray-900 dark:text-gray-100">
-            configuration and schema
+            new evaluation types through configuration
           </strong>{" "}
-          rather than redeploying the whole frontend, keeping the module
-          scalable as policy evolves.
+          instead of shipping new form screens for every change—while keeping
+          submissions reliable across desktop and mobile.
         </p>
       </section>
 
@@ -125,8 +165,9 @@ export default function PerformanceEvaluation360Page() {
             Technical architecture
           </h2>
           <p className="mx-auto mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-300 md:mx-0 md:text-base">
-            Data model, end-user and admin flow, then a high-level sequence for
-            internal vs token-based external submissions.
+            Data model, admin and staff flows (including schema-driven form
+            steps), then a sequence view contrasting authenticated staff calls
+            with token-based partner submissions.
           </p>
         </div>
 
