@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Nicholas Chong",
-  description: "Portfolio of Nicholas Chong, a full-stack developer.",
+  description: "Portfolio of Nicholas Chong, a Full-Stack Product Engineer.",
 };
 
 export default function RootLayout({
