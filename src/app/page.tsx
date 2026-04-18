@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiDotnet, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
@@ -254,20 +255,29 @@ export default function HomePage() {
           My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
         </motion.p> */}
 
-        <div className="flex gap-4">
+        <div className="mx-auto grid w-max max-w-[min(100%-1.5rem,19rem)] grid-cols-2 gap-2 sm:max-w-none sm:w-auto sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3">
           <button
             onClick={() => scrollTo("projects")}
-            className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow hover:bg-sky-600 transition"
+            className="order-1 min-w-0 justify-self-stretch px-3 py-2.5 text-center text-xs font-medium leading-tight text-white shadow sm:order-1 sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base rounded-xl bg-sky-500 hover:bg-sky-600 transition"
           >
             View My Work
           </button>
           <button
             onClick={() => scrollTo("contact")}
-            className="px-5 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+            className="order-2 min-w-0 justify-self-stretch border border-gray-300 px-3 py-2.5 text-center text-xs font-medium leading-tight hover:bg-gray-100 transition dark:border-gray-600 dark:hover:bg-gray-800/50 sm:order-3 sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base rounded-xl"
           >
             Contact Me
           </button>
+          <Link
+            href="/notes"
+            className="order-3 col-span-2 flex w-full items-center justify-center whitespace-normal px-3 py-2.5 text-center text-xs font-medium leading-snug text-gray-800 shadow-sm sm:order-2 sm:col-span-1 sm:w-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal rounded-xl border border-gray-300 hover:bg-gray-100 transition dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800/50"
+          >
+            How I Solve Problems
+          </Link>
         </div>
+        <p className="max-w-md text-center text-xs text-gray-500 dark:text-gray-400">
+          Technical notes: architecture write-ups, refactors, and assessments — with diagrams.
+        </p>
       </motion.section>
 
       <motion.section className="py-20 bg-white px-4">
@@ -328,29 +338,44 @@ export default function HomePage() {
           className="text-3xl md:text-4xl font-bold text-center">Selected Works & Impacts</motion.h2>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-          <div className="p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start">
-            <div className="md:w-1/3 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-bold uppercase tracking-wide">
-                <FaLock className="text-gray-500" /> Confidential / NDA
+          className="w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md dark:border-gray-700 dark:bg-gray-900/30">
+          <div className="flex flex-col items-start gap-5 p-5 md:flex-row md:gap-8 md:p-6">
+            <div className="shrink-0 space-y-2 md:max-w-[220px]">
+              <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+                <FaLock className="text-gray-500" aria-hidden /> Confidential / NDA
               </div>
-              <h3 className="text-2xl font-bold">Enterprise System Turnaround</h3>
-              <p className="text-gray-600 font-medium">Role: Tech BA & Front-End Dev</p>
+              <h3 className="text-lg font-bold leading-snug text-gray-900 dark:text-white md:text-xl">
+                Enterprise system turnaround
+              </h3>
+              <p className="text-xs font-medium text-gray-600 dark:text-gray-300 md:text-sm">
+                Role: Tech BA &amp; front-end dev
+              </p>
             </div>
 
-            <div className="md:w-2/3 space-y-6">
-              <div>
-                <h4 className="font-bold text-gray-900 mb-1">The Challenge</h4>
-                <p className="text-gray-600">Intercepted an ongoing project suffering from severe logic flaws and misaligned client expectations midway through development.</p>
-              </div>
-              <div className="space-y-3">
-                <h4 className="font-bold text-gray-900 mb-1">Actions & Impact</h4>
-                <ul className="space-y-2 text-gray-600 list-disc list-inside">
-                  <li><strong className="text-gray-800">Risk Mitigation:</strong> Halted incorrect execution, redefined project scope, and led requirement realignment meetings.</li>
-                  <li><strong className="text-gray-800">Tech Consulting:</strong> Provided real-time technical feasibility assessments during client syncs to guide viable solutions.</li>
-                  <li><strong className="text-gray-800">Clear Documentation:</strong> Authored comprehensive sequence diagrams to translate ambiguous scopes into actionable dev tasks.</li>
-                  <li><strong className="text-gray-800">Seamless Delivery:</strong> Simultaneously maintained full responsibility for front-end architecture, delivering the redefined goals.</li>
-                </ul>
+            <div className="min-w-0 flex-1 space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              <p>
+                Joined mid-flight on a confidential enterprise CRM where logic and
+                expectations had diverged. I stopped build-on-bad-assumptions,
+                led realignment on scope, translated ambiguity into{" "}
+                <strong className="text-gray-800 dark:text-gray-200">
+                  sequence diagrams and actionable work
+                </strong>
+                , and kept{" "}
+                <strong className="text-gray-800 dark:text-gray-200">
+                  front-end architecture
+                </strong>{" "}
+                moving while advising client syncs on feasibility.
+              </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-gray-100 pt-3 text-sm dark:border-gray-700">
+                <Link
+                  href="/notes/flexible-financial-settlement"
+                  className="font-semibold text-sky-600 hover:underline dark:text-sky-400"
+                >
+                  Finance architecture note →
+                </Link>
+                <Link href="/notes" className="font-medium text-gray-700 hover:underline dark:text-gray-200">
+                  All technical notes →
+                </Link>
               </div>
             </div>
           </div>
