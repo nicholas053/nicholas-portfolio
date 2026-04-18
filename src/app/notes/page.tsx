@@ -4,9 +4,12 @@ import { FaLock } from "react-icons/fa"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Technical Notes | Nicholas Chong",
+  title: "Technical notes",
   description:
     "Architecture and problem-solving write-ups — deeper than case-study cards, NDA-safe where noted.",
+  alternates: {
+    canonical: "/notes",
+  },
 }
 
 const notes = [

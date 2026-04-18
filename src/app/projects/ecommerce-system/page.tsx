@@ -2,6 +2,14 @@ import { SiNextdotjs, SiReact, SiTailwindcss, SiPostgresql, SiVercel, SiDotnet }
 import FeatureRow from '@/components/FeatureRow';
 import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
 import Link from 'next/link';
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "E-commerce platform",
+  description:
+    "Case study: full-stack commerce with .NET Core, React, Next.js — JWT auth, cart, checkout, orders, and admin inventory.",
+  alternates: { canonical: "/projects/ecommerce-system" },
+}
 
 export default function EcommerceProjectPage() {
   return (

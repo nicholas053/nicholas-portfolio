@@ -4,9 +4,12 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "360° Performance Evaluation Module | Nicholas Chong",
+  title: "360° performance evaluation module",
   description:
     "End-to-end HR evaluation: auto-generated assignments, JSONB schema-driven forms, and token-based external partner submissions.",
+  alternates: {
+    canonical: "/notes/performance-evaluation-360",
+  },
 }
 
 export default function PerformanceEvaluation360Page() {

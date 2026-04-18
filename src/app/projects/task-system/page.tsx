@@ -3,6 +3,14 @@ import { DiNodejs } from "react-icons/di";
 import FeatureRow from '@/components/FeatureRow'
 import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
 import Link from 'next/link';
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Task management system",
+  description:
+    "Case study: collaborative Kanban, drag-and-drop, comments, voting, dashboards — Next.js, Prisma, PostgreSQL, self-hosted friendly.",
+  alternates: { canonical: "/projects/task-system" },
+}
 
 export default function ProjectTaskSystemPage() {
   return (

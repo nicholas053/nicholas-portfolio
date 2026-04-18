@@ -4,9 +4,12 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Frontend Architecture Refactoring | Nicholas Chong",
+  title: "Frontend architecture refactoring",
   description:
     "Component-driven refactor: unified forms, shared library, RBAC across admin and agent portals — less duplication and faster maintenance.",
+  alternates: {
+    canonical: "/notes/frontend-architecture-refactoring",
+  },
 }
 
 export default function FrontendArchitectureRefactoringPage() {

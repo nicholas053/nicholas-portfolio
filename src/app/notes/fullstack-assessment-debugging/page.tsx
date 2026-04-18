@@ -4,9 +4,12 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Full-Stack Assessment: Performance & Live Debugging | Nicholas Chong",
+  title: "Full-stack assessment — performance & live debugging",
   description:
     "Take-home reflection: Laravel Http pooling, Next.js + SWR infinite scroll, live-session bug, and a concise post-interview follow-up.",
+  alternates: {
+    canonical: "/notes/fullstack-assessment-debugging",
+  },
 }
 
 export default function FullstackAssessmentDebuggingPage() {

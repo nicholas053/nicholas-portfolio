@@ -5,9 +5,12 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Flexible Financial Settlement Engine | Nicholas Chong",
+  title: "Flexible Financial Settlement Engine",
   description:
     "Architecture notes: finance shopping cart model, consolidated payment vouchers, and enterprise CRM commission flow (NDA).",
+  alternates: {
+    canonical: "/notes/flexible-financial-settlement",
+  },
 }
 
 export default function FlexibleFinancialSettlementPage() {

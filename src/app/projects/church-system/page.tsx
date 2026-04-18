@@ -2,7 +2,15 @@ import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotj
 import { DiNodejs } from "react-icons/di";
 import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
 import Link from 'next/link';
+import type { Metadata } from "next"
 import FeatureRow from '@/components/FeatureRow'
+
+export const metadata: Metadata = {
+  title: "Church management system",
+  description:
+    "Case study: Next.js community management — event registration, attendance, outing approvals, roles, and Cloudinary walkthroughs.",
+  alternates: { canonical: "/projects/church-system" },
+}
 
 export default function ChurchSystemPage() {
   return (
