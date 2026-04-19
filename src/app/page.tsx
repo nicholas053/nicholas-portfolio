@@ -444,7 +444,7 @@ export default function HomePage() {
               },
               {
                 year: "2024 Mar – 2025 May",
-                text: "Took a break from formal studies to manage family responsibilities. Continued freelancing — mostly system maintenance with some lightweight development, such as a Badminton Court Booking System and an HR Management System."
+                text: "Transitioned from formal university studies into full-time independent development to focus on real-world software engineering. Architected and delivered end-to-end solutions, such as a Badminton Court Booking System and an HR Management System, while providing ongoing system maintenance and technical support for existing clients."
               },
               {
                 year: "2025 Apr – 2025 Sept",
