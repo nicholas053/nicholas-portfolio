@@ -120,3 +120,61 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Resume: print / Save as PDF */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  body {
+    background: white !important;
+  }
+  .resume-root {
+    background: white !important;
+  }
+  /* Keep each case study block on one page when it fits (shorten copy if a block exceeds a page). */
+  .resume-case {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+  /* Keep section heading with at least the start of its content */
+  .resume-section {
+    break-inside: auto;
+  }
+  .resume-h2 {
+    break-after: avoid;
+  }
+  .resume-sheet {
+    font-size: 10pt;
+    line-height: 1.35;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .resume-sheet h1 {
+    font-size: 16pt;
+    line-height: 1.2;
+  }
+  .resume-sheet header {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .resume-case-p,
+  .resume-case dd {
+    orphans: 2;
+    widows: 2;
+  }
+}
+
+.resume-h2 {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(0.45 0.02 260);
+  border-bottom: 1px solid oklch(0.9 0.01 260);
+  padding-bottom: 0.35rem;
+}
