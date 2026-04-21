@@ -1,12 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { motion } from "framer-motion"
-import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiDotnet, SiVercel, SiCplusplus, SiGithub } from "react-icons/si"
-import { DiNodejs } from "react-icons/di"
-import { FaJava, FaProjectDiagram, FaAngular, FaLaravel, FaPhp, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode, FaGlobe } from "react-icons/fa"
-import { BiLogoTypescript, BiLogoGmail } from "react-icons/bi"
+import { EDUCATION, EXPERIENCE_TIMELINE, HERO, PERSON } from "@/content/content"
+import { marqueeTechIcons } from "@/content/tech-stack-marquee"
+import { FaProjectDiagram, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode } from "react-icons/fa"
+import { BiLogoGmail } from "react-icons/bi"
+import { SiGithub } from "react-icons/si"
 // import HeroLines from "@/components/HeroLines"
 
 export default function HomePage() {
@@ -72,24 +73,7 @@ export default function HomePage() {
     if (el) el.scrollIntoView({ behavior: "smooth" })
   }
 
-  // --- Tech icons order used in the marquee ---
-  const techIcons = [
-    <SiNextdotjs key="next" title="Next.js" className="w-12 h-12" />,
-    <SiReact key="react" title="React" className="w-12 h-12" />,
-    <SiTailwindcss key="tailwind" title="Tailwind CSS" className="w-12 h-12" />,
-    <SiPrisma key="prisma" title="Prisma" className="w-12 h-12" />,
-    <SiPostgresql key="pg" title="PostgreSQL" className="w-12 h-12" />,
-    <DiNodejs key="dnode" title="Node.js" className="w-12 h-12" />,
-    <SiDotnet key="dotnet" title=".NET (C#)" className="w-12 h-12" />,
-    <SiVercel key="vercel" title="Vercel" className="w-12 h-12" />,
-    <SiCplusplus key="cpp" title="C++" className="w-12 h-12" />,
-    <FaJava key="java" title="Java" className="w-12 h-12" />,
-    <SiGithub key="github" title="GitHub" className="w-12 h-12" />,
-    <FaAngular key="angular" title="Angular" className="w-12 h-12" />,
-    <FaLaravel key="laravel" title="Laravel" className="w-12 h-12" />,
-    <FaPhp key="php" title="PHP" className="w-12 h-12" />,
-    <BiLogoTypescript key="ts" title="TypeScript" className="w-12 h-12" />
-  ]
+  const techIcons = useMemo(() => marqueeTechIcons(), [])
 
   // Refs for marquee
   const trackRef = useRef<HTMLDivElement | null>(null)
@@ -195,7 +179,7 @@ export default function HomePage() {
       window.removeEventListener("resize", onResize)
       window.removeEventListener("orientationchange", onResize)
     }
-  }, [techIcons])
+  }, [techIcons.length])
 
   return (
     <main className="relative">
@@ -234,7 +218,7 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-6xl font-bold"
         >
-          Hi, I’m Nic — Full-Stack Developer & Product Engineer
+          {HERO.title}
         </motion.h1>
 
         <motion.p
@@ -243,7 +227,7 @@ export default function HomePage() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-xl md:text-2xl font-medium text-gray-800 max-w-3xl"
         >
-          Focusing on building scalable end-to-end systems and bridging the gap between ambiguous business requirements and technical execution.
+          {HERO.lead}
         </motion.p>
 
         {/* <motion.p
@@ -437,42 +421,45 @@ export default function HomePage() {
 
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="relative border-l border-gray-300 pl-6">
-            {[
-              {
-                year: "2020 Oct – 2024 Mar",
-                text: "Pursued Software Engineering at University Malaysia Sabah. Self-funded studies while taking on freelance maintenance projects to support tuition."
-              },
-              {
-                year: "2024 Mar – 2025 May",
-                text: "Transitioned from formal university studies into full-time independent development to focus on real-world software engineering. Architected and delivered end-to-end solutions, such as a Badminton Court Booking System and an HR Management System, while providing ongoing system maintenance and technical support for existing clients."
-              },
-              {
-                year: "2025 Apr – 2025 Sept",
-                text: "Designed and built three full-scale systems: a Church Management System, a Project & Task Management System (React, Next.js, Tailwind CSS, Prisma, PostgreSQL), and an Ecommerce Platform (C# .NET Core backend with React/Next.js/Tailwind frontend). Focused on creating scalable, workflow-driven solutions with advanced features like drag-and-drop task flows, voting, audit trails, and smooth backend–frontend integration."
-              },
-              {
-                year: "2025 Oct – Now",
-                text: (<>
-                  Working as a Web Developer at{" "}
-                  <a
-                    href="https://www.dataflows.co/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-sky-600"
-                  >
-                    Data Flows Sdn Bhd
-                  </a>
-                  . Contributing to various web applications and gaining hands-on
-                  experience in a professional development environment.
-                </>)
-              }
-            ].map((item, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }}
+            {EXPERIENCE_TIMELINE.map((item, i) => (
+              <motion.div key={item.period} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }}
                 className="mb-8">
-                <div className="font-semibold">{item.year}</div>
-                <p className="text-gray-600">{item.text}</p>
+                <div className="font-semibold">{item.period}</div>
+                <p className="text-gray-600">
+                  {item.employer ? (
+                    <>
+                      Web Developer at{" "}
+                      <a
+                        href={item.employer.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-sky-600"
+                      >
+                        {item.employer.name}
+                      </a>
+                      . {item.body}
+                    </>
+                  ) : (
+                    item.body
+                  )}
+                </p>
               </motion.div>
             ))}
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white md:text-xl">Education</h3>
+            <ul className="mt-4 space-y-3 border-l border-gray-300 pl-6">
+              {EDUCATION.map((e) => (
+                <li key={e.institution} className="text-gray-600">
+                  <span className="font-semibold text-gray-800">{e.credential}</span>
+                  {e.note ? <span className="text-gray-500"> — {e.note}</span> : null}
+                  <div className="text-sm">
+                    {e.institution} · {e.years}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <motion.div
@@ -620,48 +607,47 @@ export default function HomePage() {
             'md:flex md:flex-row ...' overrides it on medium screens and up.
           */}
 
-          <a href="mailto:shiloong53bii@gmail.com" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
+          <a href={`mailto:${PERSON.email}`} className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
             <BiLogoGmail className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">Gmail</div>
-              <div className="text-xs text-gray-600">shiloong53bii</div>
+              <div className="text-xs text-gray-600">{PERSON.email.split("@")[0]}</div>
             </div>
           </a>
 
-          <a href="https://github.com/nicholas053" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
+          <a href={`https://github.com/${PERSON.githubUsername}`} target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
             <SiGithub className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">GitHub</div>
-              <div className="text-xs text-gray-600">nicholas053</div>
+              <div className="text-xs text-gray-600">{PERSON.githubUsername}</div>
             </div>
           </a>
 
-          <a href="https://wa.me/+60122657856" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
+          <a href={`https://wa.me/${PERSON.phone.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
             <FaWhatsapp className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">WhatsApp</div>
-              <div className="text-xs text-gray-600">+60122657856</div>
+              <div className="text-xs text-gray-600">{PERSON.phone}</div>
             </div>
           </a>
 
-          <a href="https://www.instagram.com/nicholas_loong" target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
+          <a href={`https://www.instagram.com/${PERSON.instagramHandle}`} target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
             <FaInstagram className="w-8 h-8 text-sky-500 flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">Instagram</div>
-              <div className="text-xs text-gray-600">nicholas_loong</div>
+              <div className="text-xs text-gray-600">{PERSON.instagramHandle}</div>
             </div>
           </a>
         </div>
 
         {/* This button section is unchanged */}
         <div className="mt-8 flex flex-col items-stretch justify-center gap-4 px-6 sm:flex-row sm:flex-wrap sm:items-center sm:px-10">
-          <a
-            href="/Chong_Shi_Loong_Resume.pdf"
-            target="_blank"
+          <Link
+            href="/resume"
             className="px-6 py-3 rounded-xl bg-gray-200 text-center hover:bg-gray-300 transition shadow-sm"
           >
             Resume
-          </a>
+          </Link>
           <a
             href="https://lokatech.co"
             target="_blank"
