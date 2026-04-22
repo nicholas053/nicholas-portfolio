@@ -8,6 +8,7 @@ const PATHS = [
   "/notes/frontend-architecture-refactoring",
   "/notes/performance-evaluation-360",
   "/notes/fullstack-assessment-debugging",
+  "/projects/what-i-applied",
   "/projects/church-system",
   "/projects/task-system",
   "/projects/ecommerce-system",

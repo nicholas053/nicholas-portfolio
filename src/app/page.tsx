@@ -383,6 +383,14 @@ export default function HomePage() {
         >
           <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
             <div className="flex-grow space-y-4">
+              <h3 className="text-xl font-bold">What I Applied</h3>
+              <p className="text-gray-600">Personal ATS and career prep: applications, interview pipeline, JD-grounded Gemini assets, and follow-up nudges. Live on Vercel.</p>
+            </div>
+            <a href="/projects/what-i-applied" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
+          </div>
+
+          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
+            <div className="flex-grow space-y-4">
               <h3 className="text-xl font-bold">Church Management System</h3>
               <p className="text-gray-600">Event registration, attendance tracking, outing requests, and role-based administration.</p>
             </div>

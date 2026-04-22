@@ -91,16 +91,16 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
       {
         label: "End-to-End System Architecture (Mar 2024 – Sept 2025):",
         body:
-          "HR and badminton booking systems; church, task, and e-commerce platforms. Workflows, RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET).",
+          "HR and badminton booking systems; church, task, and e-commerce platforms; personal applicant-tracking / AI-assisted career prep (What I Applied). Workflows, RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET).",
       },
       {
         label: "Tech Stack:",
         body: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
       },
     ],
-    body: "Independent Full-Stack Developer (Apr 2022 – Sept 2025). Part-time freelance work grew into full-time independent delivery: HR and badminton booking systems, then church, task, and e-commerce platforms with strong workflows, RBAC, and auditability. Earlier phase focused on landing pages, catalogs, and client maintenance.",
+    body: "Independent Full-Stack Developer (Apr 2022 – Sept 2025). Part-time freelance work grew into full-time independent delivery: HR and badminton booking systems, then church, task, and e-commerce platforms with strong workflows, RBAC, and auditability, plus a personal applicant-tracking / AI-assisted career prep app. Earlier phase focused on landing pages, catalogs, and client maintenance.",
     resumeBody:
-      "Independent full-stack (Apr 2022–Sept 2025): scaled from freelance maintenance to end-to-end systems (HR, booking, church, task, e-commerce); Next.js, .NET Core, Prisma, PostgreSQL.",
+      "Independent full-stack (Apr 2022–Sept 2025): scaled from freelance maintenance to end-to-end systems (HR, booking, church, task, e-commerce, personal ATS/career prep); Next.js, .NET Core, Prisma, PostgreSQL.",
   },
   {
     period: "Oct 2025 – Present",
@@ -175,6 +175,18 @@ export type ResumeCaseStudy = {
 
 /** Personal / shipped product work (`/projects/...`). */
 export const RESUME_PROJECTS: ResumeCaseStudy[] = [
+  {
+    title: "What I Applied — applicant tracking & career prep",
+    brief:
+      "Personal ATS: profile + applications + interview pipeline, Gemini JD-specific assets (Zod-validated JSON), follow-up nudges — Next.js, Prisma, PostgreSQL, NextAuth.",
+    challenge:
+      "Job seekers lose context across tools, redo cover letters from scratch, and miss follow-ups; hiring ATS is not built for one candidate’s pipeline.",
+    solution:
+      "Single profile and per-job JD storage; stage timeline; one server-side Gemini generation stored on the job; 7-day stale reminder with non-AI email template; PDF text-only bootstrap (file not stored).",
+    impact:
+      "Schema-bound AI outputs + retries reduce bad saves; per-user Postgres isolation; free-tier UI caps successful regen per job for predictable API cost.",
+    linkPath: "/projects/what-i-applied",
+  },
   {
     title: "Church / community management system",
     brief: "Events, attendance, outings, roles — Next.js, Prisma, PostgreSQL for ministry operations.",
