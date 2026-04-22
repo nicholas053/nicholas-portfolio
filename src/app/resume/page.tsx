@@ -2,6 +2,7 @@ import Link from "next/link"
 import {
   EDUCATION,
   EXPERIENCE_TIMELINE,
+  experienceUsesEmployerRichBlock,
   PERSON,
   RESUME_ENGINEERING,
   RESUME_PHILOSOPHY,
@@ -69,7 +70,7 @@ export default function ResumePage() {
       <ResumeToolbar />
       <div className="resume-root min-h-screen bg-zinc-100 pb-16 pt-44 text-zinc-900 print:bg-white print:pb-0 print:pt-0 md:pt-40">
         <article className="resume-sheet mx-auto max-w-[210mm] bg-white px-6 py-8 shadow-sm print:mx-0 print:max-w-none print:px-0 print:py-0 print:shadow-none md:px-10 md:py-10">
-          <header className="border-b border-zinc-200 pb-4 print:border-zinc-300 print:pb-2">
+          <header className="pb-2 print:border-zinc-300 print:pb-2">
             <h1 className="text-2xl font-bold tracking-tight text-zinc-950 md:text-3xl">{PERSON.legalName}</h1>
             <p className="mt-0.5 text-sm font-medium text-zinc-600 md:text-base print:text-[10pt]">{PERSON.role}</p>
             <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-zinc-700 md:text-sm print:mt-1 print:text-[8.5pt]">
@@ -111,44 +112,107 @@ export default function ResumePage() {
             <p className="resume-case-p mt-2 text-sm leading-relaxed text-zinc-800 print:text-[9.5pt]">{TECH_STACK_LINE}</p>
           </section>
 
-          <section className="resume-section mt-6 print:mt-3">
-            <h2 className="resume-h2">Background</h2>
-            <ul className="mt-2 space-y-3 print:mt-1.5 print:space-y-2">
-              {EXPERIENCE_TIMELINE.map((entry) => (
-                <li key={entry.period}>
-                  <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
-                    <span className="text-sm font-semibold text-zinc-950 print:text-[9.5pt]">{entry.period}</span>
-                    {entry.employer ? (
-                      <span className="text-[11px] font-medium text-zinc-600 sm:text-xs print:text-[8.5pt]">
-                        Web Developer ·{" "}
-                        <a href={entry.employer.url} className="text-zinc-800 underline decoration-zinc-300 underline-offset-2">
-                          {entry.employer.name}
-                        </a>
-                      </span>
-                    ) : null}
-                  </div>
-                  <p className="resume-case-p mt-1 text-sm leading-snug text-zinc-800 print:text-[9.5pt]">{resumeExperienceBody(entry)}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <div className="resume-bg-edu-row mt-6 grid grid-cols-1 gap-6 print:mt-3 print:grid-cols-[minmax(0,70%)_minmax(0,30%)] print:gap-x-4 print:gap-y-0">
+            <section className="resume-section mt-0 min-w-0 print:mt-0">
+              <h2 className="resume-h2">Background</h2>
+              <ul className="mt-2 space-y-3 print:mt-1.5 print:space-y-2">
+                {EXPERIENCE_TIMELINE.map((entry) => (
+                  <li key={entry.period}>
+                    {experienceUsesEmployerRichBlock(entry) && entry.employer ? (
+                      <div className="space-y-2 print:space-y-1.5">
+                        <p className="flex flex-wrap items-baseline gap-x-1 text-sm print:text-[9.5pt]">
+                          <span className="font-bold print:text-[8.75pt]">{entry.period}</span>
 
-          <section className="resume-section mt-6 print:mt-3">
-            <h2 className="resume-h2">Education</h2>
-            <ul className="mt-2 space-y-2 print:mt-1 print:space-y-1">
-              {EDUCATION.map((e) => (
-                <li key={e.institution} className="text-sm text-zinc-800 print:text-[9.5pt]">
-                  <div className="font-semibold text-zinc-950">
-                    {e.credential}
-                    {e.note ? <span className="font-normal text-zinc-600"> — {e.note}</span> : null}
-                  </div>
-                  <div className="text-zinc-700">
-                    {e.institution} · {e.years}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
+                          <span className="font-bold text-zinc-500 print:text-[9pt]" aria-hidden>
+                            |
+                          </span>
+                          <a
+                            href={entry.employer.url}
+                            className="font-bold text-zinc-950 underline decoration-zinc-300 underline-offset-2 print:text-[9.5pt]"
+                          >
+                            {entry.employer.name}
+                          </a>
+                        </p>
+                        {entry.jobTitle ? (
+                          <p className="text-sm font-bold leading-snug text-zinc-950 print:text-[9.5pt]">{entry.jobTitle}</p>
+                        ) : null}
+                        {entry.summaryLead ? (
+                          <p className="resume-case-p text-sm italic leading-snug text-zinc-600 print:text-[8.75pt]">{entry.summaryLead}</p>
+                        ) : null}
+                        {entry.highlights?.length ? (
+                          <ul className="list-disc space-y-2 pl-4 text-sm leading-snug text-zinc-800 print:space-y-1.5 print:pl-3.5 print:text-[9.5pt]">
+                            {entry.highlights.map((h) => (
+                              <li key={h.label}>
+                                <span className="font-semibold text-zinc-950">{h.label}</span> {h.body}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
+                          <span className="text-sm font-bold text-zinc-950 print:text-[9.5pt]">
+                            {entry.roleTitle ? (
+                              <>
+                                {entry.period}{" "}
+                                <span className="font-normal text-zinc-500">|</span> {entry.roleTitle}
+                              </>
+                            ) : (
+                              entry.period
+                            )}
+                          </span>
+                          {entry.employer ? (
+                            <span className="text-[11px] font-medium text-zinc-600 sm:text-xs print:text-[8.5pt]">
+                              Web Developer ·{" "}
+                              <a href={entry.employer.url} className="text-zinc-800 underline decoration-zinc-300 underline-offset-2">
+                                {entry.employer.name}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                        {entry.employer ? (
+                          <p className="resume-case-p mt-1 text-sm leading-snug text-zinc-800 print:text-[9.5pt]">{resumeExperienceBody(entry)}</p>
+                        ) : entry.highlights?.length ? (
+                          <div className="mt-1 space-y-2 print:space-y-1.5">
+                            {entry.summaryLead ? (
+                              <p className="resume-case-p text-sm italic leading-snug text-zinc-600 print:text-[8.75pt]">{entry.summaryLead}</p>
+                            ) : null}
+                            <ul className="list-disc space-y-2 pl-4 text-sm leading-snug text-zinc-800 print:space-y-1.5 print:pl-3.5 print:text-[9.5pt]">
+                              {entry.highlights.map((h) => (
+                                <li key={h.label}>
+                                  <span className="font-semibold text-zinc-950">{h.label}</span> {h.body}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : (
+                          <p className="resume-case-p mt-1 text-sm leading-snug text-zinc-800 print:text-[9.5pt]">{resumeExperienceBody(entry)}</p>
+                        )}
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="resume-section mt-0 min-w-0 print:mt-0">
+              <h2 className="resume-h2">Education</h2>
+              <ul className="mt-2 space-y-2 print:mt-1 print:space-y-1">
+                {EDUCATION.map((e) => (
+                  <li key={e.institution} className="text-sm text-zinc-800 print:text-[9.5pt]">
+                    <div className="font-semibold text-zinc-950">
+                      {e.credential}
+                      {e.note ? <span className="font-normal text-zinc-600"> — {e.note}</span> : null}
+                    </div>
+                    <div className="text-zinc-700">
+                      {e.institution} · {e.years}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
 
           <section className="resume-section mt-6 print:mt-3">
             <h2 className="resume-h2">Projects</h2>
@@ -156,7 +220,7 @@ export default function ResumePage() {
             <CaseStudyBlocks items={RESUME_PROJECTS} siteUrl={siteUrl} />
           </section>
 
-          <section className="resume-section mt-14 border-t border-zinc-200 pt-10 md:mt-16 md:pt-12 print:mt-10 print:border-zinc-300 print:pt-6">
+          <section className="resume-section mt-14 pt-10 md:mt-16 md:pt-12 print:mt-8 print:pt-4">
             <h2 className="resume-h2">Engineering</h2>
             <p className="mt-1 text-xs text-zinc-600 print:hidden">Enterprise &amp; practice notes — diagrams on the site.</p>
             <CaseStudyBlocks items={RESUME_ENGINEERING} siteUrl={siteUrl} />

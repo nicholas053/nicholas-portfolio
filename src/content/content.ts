@@ -40,9 +40,15 @@ export const EDUCATION: EducationEntry[] = [
     institution: "University Malaysia Sabah (UMS)",
     credential: "Bachelor of Software Engineering",
     years: "2020 – 2024",
-    note: "Incomplete",
+    // note: "Incomplete",
   },
 ]
+
+export type ExperienceHighlight = {
+  /** Bold lead, e.g. "End-to-End System Architecture (Mar 2024 – Sept 2025):" */
+  label: string
+  body: string
+}
 
 export type ExperienceTimelineEntry = {
   period: string
@@ -51,32 +57,76 @@ export type ExperienceTimelineEntry = {
   /** Shorter line for the resume; falls back to `body` if omitted */
   resumeBody?: string
   employer?: { name: string; url: string }
+  /** One-line headline with `period`, e.g. "Independent Full-Stack Developer | Apr 2022 – Sept 2025" */
+  roleTitle?: string
+  /** Italic-style intro when `highlights` is used */
+  summaryLead?: string
+  /** Bulleted detail; when set, About/resume/PDF render this instead of a single `body` paragraph */
+  highlights?: readonly ExperienceHighlight[]
+  /** With `employer` + rich block: bold line under the company headline (e.g. “Web Developer / Product Engineer”). */
+  jobTitle?: string
+}
+
+/** Company-first headline + optional role/summary/bullets (vs plain “Web Developer at …”). */
+export function experienceUsesEmployerRichBlock(entry: ExperienceTimelineEntry): boolean {
+  return Boolean(entry.employer && (entry.highlights?.length || entry.jobTitle || entry.summaryLead))
 }
 
 export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
   {
-    period: "2020 Oct – 2024 Mar",
+    period: "Oct 2020 – Mar 2024",
     body: "Pursued Software Engineering at University Malaysia Sabah. Self-funded studies while taking on freelance maintenance projects to support tuition.",
-    resumeBody:
-      "Software Engineering at UMS (self-funded), alongside freelance maintenance work to support tuition.",
+    resumeBody: "UMS Software Engineering (self-funded); freelance maintenance alongside studies.",
   },
   {
-    period: "2024 Mar – 2025 May",
-    body: "Transitioned from formal university studies into full-time independent development to focus on real-world software engineering. Architected and delivered end-to-end solutions, such as a Badminton Court Booking System and an HR Management System, while providing ongoing system maintenance and technical support for existing clients.",
+    roleTitle: "Independent Full-Stack Developer",
+    period: "Apr 2022 – Sept 2025",
+    summaryLead:
+      "Freelance during university → independent consultancy: shipped end-to-end web apps with strong workflows and client support.",
+    highlights: [
+      {
+        label: "Web Development & Maintenance (Apr 2022 – Mar 2024):",
+        body: "Landing pages, product catalogs, ongoing maintenance and feature work while completing the degree.",
+      },
+      {
+        label: "End-to-End System Architecture (Mar 2024 – Sept 2025):",
+        body:
+          "HR and badminton booking systems; church, task, and e-commerce platforms. Workflows, RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET).",
+      },
+      {
+        label: "Tech Stack:",
+        body: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
+      },
+    ],
+    body: "Independent Full-Stack Developer (Apr 2022 – Sept 2025). Part-time freelance work grew into full-time independent delivery: HR and badminton booking systems, then church, task, and e-commerce platforms with strong workflows, RBAC, and auditability. Earlier phase focused on landing pages, catalogs, and client maintenance.",
     resumeBody:
-      "Full-time independent development after university; architected and delivered solutions (e.g. badminton booking, HR systems) with ongoing maintenance and client support.",
+      "Independent full-stack (Apr 2022–Sept 2025): scaled from freelance maintenance to end-to-end systems (HR, booking, church, task, e-commerce); Next.js, .NET Core, Prisma, PostgreSQL.",
   },
   {
-    period: "2025 Apr – 2025 Sept",
-    body: "Designed and built three full-scale systems: a Church Management System, a Project & Task Management System (React, Next.js, Tailwind CSS, Prisma, PostgreSQL), and an Ecommerce Platform (C# .NET Core backend with React/Next.js/Tailwind frontend). Focused on creating scalable, workflow-driven solutions with advanced features like drag-and-drop task flows, voting, audit trails, and smooth backend–frontend integration.",
+    period: "Oct 2025 – Present",
+    jobTitle: "Web Developer / Product Engineer",
+    summaryLead:
+      "Lead delivery, refactors, and technical BA on enterprise apps; aligned schemas and UI with real finance/ops workflows.",
+    highlights: [
+      {
+        label: "Architected Flexible Financial Settlement Engine:",
+        body:
+          "Lead dev & technical BA: commission payout redesign — batching, partial line items, locks/state aligned with accounting; cut post-launch finance rework.",
+      },
+      {
+        label: "Engineered 360° Performance Evaluation Module:",
+        body:
+          "Owned KPI-linked 360° reviews: auto-assignment, tokenized external access, Angular schema-driven forms + JSONB — new question types via config.",
+      },
+      {
+        label: "Led Frontend Architecture Refactoring:",
+        body:
+          "Unified duplicated portals: dynamic forms by route, RBAC-gated shared component library — fixes ship once across admin/agent views.",
+      },
+    ],
+    body: "At Data Flows Sdn Bhd: led settlement-engine discovery and delivery, owned a KPI-linked 360° review module, and drove frontend architecture unification across enterprise apps.",
     resumeBody:
-      "Delivered three end-to-end systems: church operations, a collaborative task platform (Next.js, Prisma, PostgreSQL), and e-commerce (.NET Core + React/Next). Emphasis on workflows, permissions, voting, audit trails, and clean API/UI integration.",
-  },
-  {
-    period: "2025 Oct – Present",
-    body: "Contributing to various web applications and gaining hands-on experience in a professional development environment.",
-    resumeBody:
-      "Web developer on multiple client web applications in a professional delivery environment.",
+      "Data Flows: lead dev/technical BA on commission settlement redesign; owned 360° performance module (Angular, JSONB); led shared FE architecture and RBAC-gated component library.",
     employer: { name: "Data Flows Sdn Bhd", url: "https://www.dataflows.co/" },
   },
 ]
@@ -187,17 +237,17 @@ export const RESUME_ENGINEERING: ResumeCaseStudy[] = [
     impact: "Fixes land once and propagate across portals instead of hunting siloed copies.",
     linkPath: "/notes/frontend-architecture-refactoring",
   },
-  {
-    title: "Full-stack assessment: performance optimization & live debugging",
-    tag: "Company-anonymous reflection",
-    brief: "Laravel + Next take-home with third-party list API; live session surfaced a concurrency merge bug; post-session write-up.",
-    challenge:
-      "N+1-style latency from row detail fetches; infinite-scroll layout shift; out-of-order pooled responses + SWR revalidation caused inconsistent rows.",
-    solution:
-      "Laravel HTTP pooling; SWR + sentinel pagination + skeletons; post-session index-keyed merge + stricter SWR keys.",
-    impact: "Reproduced locally, documented root cause and guardrails for the panel; kept AI use transparent vs devtools truth.",
-    linkPath: "/notes/fullstack-assessment-debugging",
-  },
+  // {
+  //   title: "Full-stack assessment: performance optimization & live debugging",
+  //   tag: "Company-anonymous reflection",
+  //   brief: "Laravel + Next take-home with third-party list API; live session surfaced a concurrency merge bug; post-session write-up.",
+  //   challenge:
+  //     "N+1-style latency from row detail fetches; infinite-scroll layout shift; out-of-order pooled responses + SWR revalidation caused inconsistent rows.",
+  //   solution:
+  //     "Laravel HTTP pooling; SWR + sentinel pagination + skeletons; post-session index-keyed merge + stricter SWR keys.",
+  //   impact: "Reproduced locally, documented root cause and guardrails for the panel; kept AI use transparent vs devtools truth.",
+  //   linkPath: "/notes/fullstack-assessment-debugging",
+  // },
 ]
 
 export const RESUME_PHILOSOPHY =

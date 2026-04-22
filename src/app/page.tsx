@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion } from "framer-motion"
-import { EDUCATION, EXPERIENCE_TIMELINE, HERO, PERSON } from "@/content/content"
+import { EDUCATION, EXPERIENCE_TIMELINE, experienceUsesEmployerRichBlock, HERO, PERSON } from "@/content/content"
 import { marqueeTechIcons } from "@/content/tech-stack-marquee"
 import { FaProjectDiagram, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode } from "react-icons/fa"
 import { BiLogoGmail } from "react-icons/bi"
@@ -279,9 +279,9 @@ export default function HomePage() {
             <h2 className="text-xs md:text-sm font-bold tracking-widest text-sky-500 uppercase">My Workflow</h2>
             <h3 className="text-2xl md:text-3xl font-bold mt-2">More than just writing code.</h3>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 relative">
-            
+
             <div className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
               <div className="flex-shrink-0 w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0">
                 <FaUsers />
@@ -424,25 +424,74 @@ export default function HomePage() {
             {EXPERIENCE_TIMELINE.map((item, i) => (
               <motion.div key={item.period} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }}
                 className="mb-8">
-                <div className="font-semibold">{item.period}</div>
-                <p className="text-gray-600">
-                  {item.employer ? (
-                    <>
-                      Web Developer at{" "}
+                {!experienceUsesEmployerRichBlock(item) ? (
+                  <div className="font-bold text-gray-900 dark:text-gray-100">
+                    {item.roleTitle ? (
+                      <>
+                        {item.period} <span className="font-normal text-gray-500 dark:text-gray-400">|</span> {item.roleTitle}
+                      </>
+                    ) : (
+                      item.period
+                    )}
+                  </div>
+                ) : null}
+                {item.employer && experienceUsesEmployerRichBlock(item) ? (
+                  <div className="space-y-3 text-gray-600 dark:text-gray-300">
+                    <p className="flex flex-wrap items-baseline gap-x-1.5 text-base text-gray-900 dark:text-gray-100">
+                      <span className="font-bold text-gray-900 dark:text-gray-100">{item.period}</span>
+                      <span className="select-none font-normal text-gray-500 dark:text-gray-400" aria-hidden>
+                        |
+                      </span>
                       <a
                         href={item.employer.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-sky-600"
+                        className="font-bold text-sky-600 hover:text-sky-700 dark:text-white dark:hover:text-sky-300"
                       >
                         {item.employer.name}
                       </a>
-                      . {item.body}
-                    </>
-                  ) : (
-                    item.body
-                  )}
-                </p>
+                    </p>
+                    {item.jobTitle ? (
+                      <p className="text-sm font-bold leading-snug text-gray-900 dark:text-gray-100">{item.jobTitle}</p>
+                    ) : null}
+                    {item.summaryLead ? <p className="italic leading-relaxed">{item.summaryLead}</p> : null}
+                    {item.highlights?.length ? (
+                      <ul className="list-disc space-y-3 pl-5 leading-relaxed">
+                        {item.highlights.map((h) => (
+                          <li key={h.label}>
+                            <span className="text-gray-800 dark:text-gray-200">{h.label}</span> {h.body}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                ) : item.employer ? (
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">
+                    Web Developer at{" "}
+                    <a
+                      href={item.employer.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-sky-600 dark:text-sky-400"
+                    >
+                      {item.employer.name}
+                    </a>
+                    . {item.body}
+                  </p>
+                ) : item.highlights?.length ? (
+                  <div className="mt-2 space-y-3 text-gray-600 dark:text-gray-300">
+                    {item.summaryLead ? <p className="italic leading-relaxed">{item.summaryLead}</p> : null}
+                    <ul className="list-disc space-y-3 pl-5">
+                      {item.highlights.map((h) => (
+                        <li key={h.label} className="leading-relaxed">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">{h.label}</span> {h.body}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">{item.body}</p>
+                )}
               </motion.div>
             ))}
           </div>

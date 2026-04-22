@@ -9,6 +9,7 @@ import {
 import {
   EDUCATION,
   EXPERIENCE_TIMELINE,
+  experienceUsesEmployerRichBlock,
   PERSON,
   RESUME_ENGINEERING,
   RESUME_PROJECTS,
@@ -38,8 +39,12 @@ const styles = StyleSheet.create({
     borderBottomColor: "#d4d4d8",
   },
   contactItem: { marginRight: 12, marginBottom: 3 },
-  /** Theme-aligned links (zinc, not default PDF blue) */
-  link: { color: "#3f3f46", textDecoration: "underline", textDecorationColor: "#a1a1aa" },
+  /** Clickable links: underline matches ink color (avoids default blue / mismatched rule). */
+  link: {
+    color: "#3f3f46",
+    textDecoration: "underline",
+    textDecorationColor: "#3f3f46",
+  },
   sectionTitle: {
     fontSize: 8,
     fontWeight: "bold",
@@ -54,8 +59,73 @@ const styles = StyleSheet.create({
   },
   body: { fontSize: 9, lineHeight: 1.4 },
   muted: { fontSize: 8, color: "#52525b", marginBottom: 4 },
-  timelinePeriod: { fontSize: 9, fontWeight: "bold", marginTop: 6 },
-  timelineMeta: { fontSize: 8, color: "#52525b", marginTop: 2 },
+  /** First line of each Background entry: date range (same look whether alone or before “| …”). */
+  timelineEntryHeadline: {
+    fontSize: 9,
+    lineHeight: 1.35,
+    marginTop: 6,
+    color: "#18181b",
+  },
+  timelinePeriodLead: {
+    fontWeight: "bold",
+  },
+  timelineHeadlineSep: {
+    fontSize: 9,
+    fontWeight: "normal",
+    color: "#71717a",
+  },
+  timelineHeadlineRole: {
+    fontSize: 9,
+    fontWeight: "bold",
+    color: "#18181b",
+  },
+  /** Single line: keeps “Web Developer ·” and employer link on one baseline (row View misaligns Link vs Text). */
+  timelineEmployerLine: {
+    fontSize: 8,
+    lineHeight: 1.35,
+    color: "#52525b",
+    marginTop: 2,
+  },
+  timelineEmployerLink: {
+    fontSize: 8,
+    lineHeight: 1.35,
+    color: "#3f3f46",
+    textDecoration: "underline",
+    textDecorationColor: "#3f3f46",
+  },
+  timelineSummaryLead: {
+    fontSize: 8.5,
+    fontStyle: "italic",
+    color: "#52525b",
+    marginTop: 4,
+    lineHeight: 1.4,
+  },
+  timelineBullet: {
+    fontSize: 9,
+    lineHeight: 1.4,
+    marginTop: 3,
+    color: "#27272a",
+  },
+  timelineBulletLabel: {
+    fontSize: 9,
+    lineHeight: 1.4,
+    fontWeight: "bold",
+    color: "#18181b",
+  },
+  /** Company name after period (rich employer row) */
+  employerHeadlineName: {
+    fontSize: 9,
+    fontWeight: "bold",
+    color: "#18181b",
+    textDecoration: "underline",
+    textDecorationColor: "#18181b",
+  },
+  timelineJobTitle: {
+    fontSize: 9,
+    fontWeight: "bold",
+    marginTop: 4,
+    color: "#18181b",
+  },
   eduLine: { fontSize: 9, marginTop: 5 },
   eduSub: { fontSize: 8, color: "#52525b", marginTop: 1 },
   skillsLine: { marginTop: 4, fontSize: 9, lineHeight: 1.45, color: "#27272a" },
@@ -80,7 +150,7 @@ const styles = StyleSheet.create({
     fontSize: 7.5,
     color: "#3f3f46",
     textDecoration: "underline",
-    textDecorationColor: "#a1a1aa",
+    textDecorationColor: "#3f3f46",
     marginTop: 2,
   },
   caseLinkWrap: { flexShrink: 0, maxWidth: "28%" },
@@ -92,10 +162,22 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   engineeringSection: {
-    marginTop: 14,
-    paddingTop: 10,
-    borderTopWidth: 1,
-    borderTopColor: "#d4d4d8",
+    marginTop: 12,
+  },
+  bgEduRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginTop: 10,
+    gap: 10,
+  },
+  bgCol: {
+    width: "70%",
+    maxWidth: "70%",
+    paddingRight: 4,
+  },
+  eduCol: {
+    width: "30%",
+    minWidth: 0,
   },
 })
 
@@ -111,7 +193,7 @@ function CaseStudiesPdf({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl:
         const linkLabel = item.linkPath.startsWith("/notes") ? "Technical note" : "Case study"
         const isLast = i === items.length - 1
         return (
-          <View key={item.title} style={[styles.caseBlock, isLast ? { borderBottomWidth: 0 } : {}]}>
+          <View key={item.title} wrap={false} style={[styles.caseBlock, isLast ? { borderBottomWidth: 0 } : {}]}>
             <View style={styles.caseTitleRow}>
               <View style={styles.caseTitleCol}>
                 <Text style={styles.caseTitle}>{item.title}</Text>
@@ -177,36 +259,75 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
         <Text style={styles.sectionTitle}>Skills</Text>
         <Text style={styles.skillsLine}>{TECH_STACK_LINE}</Text>
 
-        <Text style={styles.sectionTitle}>Background</Text>
-        {EXPERIENCE_TIMELINE.map((entry) => (
-          <View key={entry.period}>
-            <Text style={styles.timelinePeriod}>{entry.period}</Text>
-            {entry.employer ? (
-              <View style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 2 }}>
-                <Text style={styles.timelineMeta}>Web Developer · </Text>
-                <Link src={entry.employer.url}>
-                  <Text style={[styles.link, { fontSize: 8 }]}>{entry.employer.name}</Text>
-                </Link>
+        <View style={styles.bgEduRow}>
+          <View style={styles.bgCol}>
+            <Text style={[styles.sectionTitle, { marginTop: 0 }]}>Background</Text>
+            {EXPERIENCE_TIMELINE.map((entry) => {
+              const richEmployer = experienceUsesEmployerRichBlock(entry)
+              const headlineSecond =
+                richEmployer && entry.employer ? (
+                  <Link src={entry.employer.url}>
+                    <Text style={styles.employerHeadlineName}>{entry.employer.name}</Text>
+                  </Link>
+                ) : entry.roleTitle ? (
+                  <Text style={styles.timelineHeadlineRole}>{entry.roleTitle}</Text>
+                ) : null
+
+              return (
+                <View key={entry.period}>
+                  {headlineSecond ? (
+                    <Text style={styles.timelineEntryHeadline}>
+                      <Text style={styles.timelinePeriodLead}>{entry.period}</Text>
+                      <Text style={styles.timelineHeadlineSep}> | </Text>
+                      {headlineSecond}
+                    </Text>
+                  ) : (
+                    <Text style={styles.timelineEntryHeadline}>
+                      <Text style={styles.timelinePeriodLead}>{entry.period}</Text>
+                    </Text>
+                  )}
+                  {entry.employer && !richEmployer ? (
+                    <Text style={styles.timelineEmployerLine}>
+                      Web Developer ·{" "}
+                      <Link src={entry.employer.url}>
+                        <Text style={styles.timelineEmployerLink}>{entry.employer.name}</Text>
+                      </Link>
+                    </Text>
+                  ) : null}
+                  {entry.jobTitle && richEmployer ? <Text style={styles.timelineJobTitle}>{entry.jobTitle}</Text> : null}
+                  {entry.highlights?.length ? (
+                    <>
+                      {entry.summaryLead ? <Text style={styles.timelineSummaryLead}>{entry.summaryLead}</Text> : null}
+                      {entry.highlights.map((h, idx) => (
+                        <Text key={`${h.label}-${idx}`} style={styles.timelineBullet}>
+                          <Text style={styles.timelineBulletLabel}>• {h.label}</Text> {h.body}
+                        </Text>
+                      ))}
+                    </>
+                  ) : (
+                    <Text style={[styles.body, { marginTop: 4 }]}>{resumeExperienceBody(entry)}</Text>
+                  )}
+                </View>
+              )
+            })}
+          </View>
+          <View style={styles.eduCol}>
+            <Text style={[styles.sectionTitle, { marginTop: 0 }]}>Education</Text>
+            {EDUCATION.map((e) => (
+              <View key={e.institution}>
+                <Text style={styles.eduLine}>
+                  {e.credential}
+                  {e.note ? ` — ${e.note}` : ""}
+                </Text>
+                <Text style={styles.eduSub}>
+                  {e.institution} · {e.years}
+                </Text>
               </View>
-            ) : null}
-            <Text style={[styles.body, { marginTop: 4 }]}>{resumeExperienceBody(entry)}</Text>
+            ))}
           </View>
-        ))}
+        </View>
 
-        <Text style={styles.sectionTitle}>Education</Text>
-        {EDUCATION.map((e) => (
-          <View key={e.institution}>
-            <Text style={styles.eduLine}>
-              {e.credential}
-              {e.note ? ` — ${e.note}` : ""}
-            </Text>
-            <Text style={styles.eduSub}>
-              {e.institution} · {e.years}
-            </Text>
-          </View>
-        ))}
-
-        <Text style={styles.sectionTitle}>Projects</Text>
+        <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Projects</Text>
         <CaseStudiesPdf items={RESUME_PROJECTS} siteUrl={siteUrl} />
 
         <View style={styles.engineeringSection}>
