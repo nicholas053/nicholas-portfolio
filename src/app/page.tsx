@@ -515,6 +515,59 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/40 md:p-8"
+          >
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white md:text-xl">Technical notes</h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+              Same corporate stories as above, with more depth than resume bullets—each links to a full write-up when you want the architecture narrative.
+            </p>
+            <ul className="mt-4 space-y-3 border-l border-gray-200 pl-4 text-sm leading-relaxed text-gray-700 dark:border-gray-600 dark:text-gray-300 md:text-base">
+              <li>
+                <Link
+                  href="/notes/flexible-financial-settlement"
+                  className="font-semibold text-sky-600 hover:underline dark:text-sky-400"
+                >
+                  Flexible financial settlement
+                </Link>
+                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                Finance “shopping cart” batches, consolidated payment vouchers, commission states (NDA).
+              </li>
+              <li>
+                <Link href="/notes/performance-evaluation-360" className="font-semibold text-sky-600 hover:underline dark:text-sky-400">
+                  360° performance evaluation
+                </Link>
+                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.
+              </li>
+              <li>
+                <Link
+                  href="/notes/frontend-architecture-refactoring"
+                  className="font-semibold text-sky-600 hover:underline dark:text-sky-400"
+                >
+                  Frontend architecture refactoring
+                </Link>
+                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                Unified dynamic forms, shared library, RBAC across admin and agent portals.
+              </li>
+              <li>
+                <Link href="/notes/fullstack-assessment-debugging" className="font-semibold text-sky-600 hover:underline dark:text-sky-400">
+                  Full-stack assessment reflection
+                </Link>
+                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                Pooling, infinite scroll stability, a live merge-order bug, and a transparent post-interview follow-up.
+              </li>
+            </ul>
+            <p className="mt-5 text-sm">
+              <Link href="/notes" className="font-semibold text-sky-600 hover:underline dark:text-sky-400">
+                All technical notes →
+              </Link>
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="rounded-2xl border border-sky-100 bg-white p-6 shadow-sm dark:border-sky-900/40 dark:bg-gray-900/30 md:p-8"
           >
             <h3 className="text-lg font-bold text-gray-900 dark:text-white md:text-xl">
