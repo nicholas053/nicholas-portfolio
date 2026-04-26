@@ -11,6 +11,8 @@ export const PERSON = {
   email: "shiloong53bii@gmail.com",
   githubUsername: "nicholas053",
   instagramHandle: "nicholas_loong",
+  /** Resume / contact — current bases */
+  location: "KL, Seremban",
 } as const
 
 export const HERO = {
@@ -22,6 +24,10 @@ export const HERO = {
 /** Opening paragraph on the resume (keep short for print density). */
 export const RESUME_SUMMARY =
   "Full-stack developer and product engineer: clarify scope, design pragmatic architecture, ship maintainable web apps end-to-end."
+
+/** Substring of `RESUME_SUMMARY` emphasized in sky on resume/PDF. */
+export const RESUME_SUMMARY_ACCENT_PHRASE =
+  "clarify scope, design pragmatic architecture, ship maintainable web apps end-to-end."
 
 export type EducationEntry = {
   institution: string
@@ -48,10 +54,16 @@ export type ExperienceHighlight = {
   /** Bold lead, e.g. "End-to-End System Architecture (Mar 2024 – Sept 2025):" */
   label: string
   body: string
+  /** Optional `/notes/...` path; resume & About show “See full →” after the body. */
+  technicalNotePath?: string
+  /** Substring of `body`; first match is shown in sky on resume/PDF only. */
+  resumeAccentPhrase?: string
 }
 
 export type ExperienceTimelineEntry = {
   period: string
+  /** Optional tenure label after dates (e.g. "3.5 years"); omit for current role if you prefer. */
+  durationLabel?: string
   /** Shown on the portfolio About timeline */
   body: string
   /** Shorter line for the resume; falls back to `body` if omitted */
@@ -81,21 +93,25 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
   {
     roleTitle: "Independent Full-Stack Developer",
     period: "Apr 2022 – Sept 2025",
+    durationLabel: "3.5 years",
     summaryLead:
       "Freelance during university → independent consultancy: shipped end-to-end web apps with strong workflows and client support.",
     highlights: [
       {
         label: "Web Development & Maintenance (Apr 2022 – Mar 2024):",
         body: "Landing pages, product catalogs, ongoing maintenance and feature work while completing the degree.",
+        resumeAccentPhrase: "Landing pages, product catalogs, ongoing maintenance and feature work",
       },
       {
         label: "End-to-End System Architecture (Mar 2024 – Sept 2025):",
         body:
           "HR and badminton booking systems; church, task, and e-commerce platforms; personal applicant-tracking / AI-assisted career prep (What I Applied). Workflows, RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET).",
+        resumeAccentPhrase: "RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET)",
       },
       {
         label: "Tech Stack:",
         body: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
+        resumeAccentPhrase: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
       },
     ],
     body: "Independent Full-Stack Developer (Apr 2022 – Sept 2025). Part-time freelance work grew into full-time independent delivery: HR and badminton booking systems, then church, task, and e-commerce platforms with strong workflows, RBAC, and auditability, plus a personal applicant-tracking / AI-assisted career prep app. Earlier phase focused on landing pages, catalogs, and client maintenance.",
@@ -112,16 +128,22 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
         label: "Architected Flexible Financial Settlement Engine:",
         body:
           "Lead dev & technical BA: commission payout redesign — batching, partial line items, locks/state aligned with accounting; cut post-launch finance rework.",
+        technicalNotePath: "/notes/flexible-financial-settlement",
+        resumeAccentPhrase: "cut post-launch finance rework",
       },
       {
         label: "Engineered 360° Performance Evaluation Module:",
         body:
           "Owned KPI-linked 360° reviews: auto-assignment, tokenized external access, Angular schema-driven forms + JSONB — new question types via config.",
+        technicalNotePath: "/notes/performance-evaluation-360",
+        resumeAccentPhrase: "new question types via config",
       },
       {
         label: "Led Frontend Architecture Refactoring:",
         body:
           "Unified duplicated portals: dynamic forms by route, RBAC-gated shared component library — fixes ship once across admin/agent views.",
+        technicalNotePath: "/notes/frontend-architecture-refactoring",
+        resumeAccentPhrase: "fixes ship once across admin/agent views",
       },
     ],
     body: "At Data Flows Sdn Bhd: led settlement-engine discovery and delivery, owned a KPI-linked 360° review module, and drove frontend architecture unification across enterprise apps.",
@@ -154,6 +176,9 @@ export const TECH_STACK_LINE = TECH_STACK_ITEMS.map((s) => s.label).join(", ")
 
 export type TechStackId = (typeof TECH_STACK_ITEMS)[number]["id"]
 
+/** Emphasized on resume/PDF skills line (core stack). */
+export const RESUME_SKILL_ACCENT_IDS = new Set<TechStackId>(["next", "react", "typescript", "prisma", "postgresql"])
+
 export const LOKATECH = {
   label: "LokaTech",
   url: "https://lokatech.co",
@@ -171,6 +196,8 @@ export type ResumeCaseStudy = {
   linkPath: string
   /** Shown next to the title when relevant (e.g. NDA). */
   tag?: string
+  /** Substring of `impact`; first match is emphasized on resume/PDF. */
+  impactAccentPhrase?: string
 }
 
 /** Personal / shipped product work (`/projects/...`). */
@@ -184,7 +211,8 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
     solution:
       "Single profile and per-job JD storage; stage timeline; one server-side Gemini generation stored on the job; 7-day stale reminder with non-AI email template; PDF text-only bootstrap (file not stored).",
     impact:
-      "Schema-bound AI outputs + retries reduce bad saves; per-user Postgres isolation; free-tier UI caps successful regen per job for predictable API cost.",
+      "Schema-bound AI outputs + retries reduce bad saves; per-user Postgres isolation; free-tier UI caps successful regen per job for predictable API cost. Beta: ~15 users; most said the tool was helpful and easy to use.",
+    impactAccentPhrase: "Beta: ~15 users; most said the tool was helpful and easy to use.",
     linkPath: "/projects/what-i-applied",
   },
   {
@@ -195,7 +223,8 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
     solution:
       "Member portal for registrations; logistics dashboards; leader-scoped attendance; phone-based dedupe; CSV import with strict rules.",
     impact:
-      "Prisma aggregations + constraints replaced spreadsheet workflows; JWT + middleware RBAC matched hierarchy without public signup spam.",
+      "Prisma aggregations + constraints replaced spreadsheet workflows; JWT + middleware RBAC matched hierarchy without public signup spam. Used by 100+ users.",
+    impactAccentPhrase: "Used by 100+ users.",
     linkPath: "/projects/church-system",
   },
   {
@@ -204,61 +233,18 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
     challenge: "Small team needed PM features and data sovereignty without enterprise SaaS cost or public cloud risk.",
     solution: "Self-hosted app: boards, voting, threads, mentions, personal dashboards — no vendor lock-in.",
     impact:
-      "@dnd-kit sensors (touch delay) for scroll vs drag; optimistic UI + DB sync; lifted stats so headers stay live without heavy global state.",
+      "@dnd-kit sensors (touch delay) for scroll vs drag; optimistic UI + DB sync; lifted stats so headers stay live without heavy global state. Used by two startup teams (about 5–10 people each).",
+    impactAccentPhrase: "Used by two startup teams (about 5–10 people each).",
     linkPath: "/projects/task-system",
   },
-  {
-    title: "E-commerce platform",
-    brief: "Full-stack shop: catalog, cart/checkout, orders, admin inventory & reports (.NET Core + React/Next).",
-    challenge: "Split stack needed safe JWT handling, persistent cart, and usable admin for inventory and exports.",
-    solution:
-      "API routes set HttpOnly JWT cookies; Zustand + localStorage cart; admin CRUD, stock adjustments, sales/order exports.",
-    impact: "Traceable orders/stock, finance-friendly exports, credentials kept out of client JS.",
-    linkPath: "/projects/ecommerce-system",
-  },
-]
-
-/** Technical notes & professional delivery (`/notes/...`) — resume snapshot only. */
-export const RESUME_ENGINEERING: ResumeCaseStudy[] = [
-  {
-    title: "Flexible financial settlement engine (enterprise CRM)",
-    tag: "Confidential / NDA",
-    brief: "Lead dev & technical BA: discovery + schema so commission payouts match finance’s real batching model.",
-    challenge:
-      "Model assumed one deal → one payout; reality needed partial line items across partners/times, merged to one payment voucher per agent.",
-    solution:
-      "Finance “shopping cart”: pick commission rows, lock draft batch, generate one PV per agent; aligned schema, locks, and lifecycle states with UI/UX.",
-    impact: "Lowered risk of post-launch finance rework by matching accounting before go-live.",
-    linkPath: "/notes/flexible-financial-settlement",
-  },
-  {
-    title: "End-to-end 360° performance evaluation module",
-    brief: "Owned KPI-linked 360° reviews: assignment engine + JSONB storage + Angular schema-driven forms (desktop/mobile).",
-    challenge:
-      "Dynamic hierarchies, tokenized partner access without accounts, audit-friendly payloads, and dense Likert matrices on small screens.",
-    solution:
-      "Auto-assignment from rank/relationship; JSONB answers; public token API; shared Angular library + schema-driven form component; matchMedia reflow for matrices.",
-    impact: "Automated cycle end-to-end; new question types via config instead of new screens per change.",
-    linkPath: "/notes/performance-evaluation-360",
-  },
-  {
-    title: "Frontend architecture refactoring & component standardization",
-    brief: "Lead FE: dedupe admin vs agent UIs — one source of truth for forms, lists, shared widgets.",
-    challenge: "Forked add/edit pages, duplicated portal trees, copied utilities — high touch count for small changes.",
-    solution: "Unified dynamic forms by route; RBAC-gated shared views; centralized shared component library.",
-    impact: "Fixes land once and propagate across portals instead of hunting siloed copies.",
-    linkPath: "/notes/frontend-architecture-refactoring",
-  },
   // {
-  //   title: "Full-stack assessment: performance optimization & live debugging",
-  //   tag: "Company-anonymous reflection",
-  //   brief: "Laravel + Next take-home with third-party list API; live session surfaced a concurrency merge bug; post-session write-up.",
-  //   challenge:
-  //     "N+1-style latency from row detail fetches; infinite-scroll layout shift; out-of-order pooled responses + SWR revalidation caused inconsistent rows.",
+  //   title: "E-commerce platform",
+  //   brief: "Full-stack shop: catalog, cart/checkout, orders, admin inventory & reports (.NET Core + React/Next).",
+  //   challenge: "Split stack needed safe JWT handling, persistent cart, and usable admin for inventory and exports.",
   //   solution:
-  //     "Laravel HTTP pooling; SWR + sentinel pagination + skeletons; post-session index-keyed merge + stricter SWR keys.",
-  //   impact: "Reproduced locally, documented root cause and guardrails for the panel; kept AI use transparent vs devtools truth.",
-  //   linkPath: "/notes/fullstack-assessment-debugging",
+  //     "API routes set HttpOnly JWT cookies; Zustand + localStorage cart; admin CRUD, stock adjustments, sales/order exports.",
+  //   impact: "Traceable orders/stock, finance-friendly exports, credentials kept out of client JS.",
+  //   linkPath: "/projects/ecommerce-system",
   // },
 ]
 

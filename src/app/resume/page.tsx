@@ -1,16 +1,17 @@
-import Link from "next/link"
 import {
   EDUCATION,
   EXPERIENCE_TIMELINE,
   experienceUsesEmployerRichBlock,
   PERSON,
-  RESUME_ENGINEERING,
-  RESUME_PHILOSOPHY,
   RESUME_PROJECTS,
   type ResumeCaseStudy,
+  RESUME_SKILL_ACCENT_IDS,
   RESUME_SUMMARY,
-  TECH_STACK_LINE,
+  RESUME_SUMMARY_ACCENT_PHRASE,
+  TECH_STACK_ITEMS,
 } from "@/content/content"
+import { ExperienceHighlightBody } from "@/components/ExperienceHighlightBody"
+import { splitResumeAccent } from "@/lib/resume-accent"
 import { getSiteUrl } from "@/lib/site-config"
 import { ResumeToolbar } from "./ResumeToolbar"
 
@@ -24,6 +25,7 @@ function CaseStudyBlocks({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl
       {items.map((item) => {
         const href = `${siteUrl}${item.linkPath}`
         const linkLabel = item.linkPath.startsWith("/notes") ? "Technical note" : "Case study"
+        const impactParts = splitResumeAccent(item.impact, item.impactAccentPhrase)
         return (
           <section key={item.title} className="resume-case border-b border-zinc-100 pb-5 last:border-b-0 last:pb-0 print:pb-3">
             <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
@@ -35,7 +37,7 @@ function CaseStudyBlocks({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl
               </div>
               <a
                 href={href}
-                className="shrink-0 text-[10px] font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-2 hover:text-zinc-950 print:text-[8pt]"
+                className="shrink-0 text-[10px] font-medium text-sky-600 underline decoration-sky-200 underline-offset-2 hover:text-sky-700 print:text-[8pt]"
               >
                 {linkLabel} →
               </a>
@@ -52,7 +54,13 @@ function CaseStudyBlocks({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl
               </div>
               <div>
                 <dt className="text-[0.6rem] font-bold uppercase tracking-wider text-zinc-500 print:text-[7.5pt]">Impact</dt>
-                <dd className="resume-case-p mt-0.5 text-sm leading-snug text-zinc-800 sm:text-[15px] print:text-[9.5pt]">{item.impact}</dd>
+                <dd className="resume-case-p mt-0.5 text-sm leading-snug text-zinc-800 sm:text-[15px] print:text-[9.5pt]">
+                  {impactParts.before}
+                  {impactParts.highlight ? (
+                    <span className="font-medium text-sky-600 print:text-[9.5pt]">{impactParts.highlight}</span>
+                  ) : null}
+                  {impactParts.after}
+                </dd>
               </div>
             </dl>
           </section>
@@ -64,6 +72,7 @@ function CaseStudyBlocks({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl
 
 export default function ResumePage() {
   const siteUrl = getSiteUrl()
+  const summaryParts = splitResumeAccent(RESUME_SUMMARY, RESUME_SUMMARY_ACCENT_PHRASE)
 
   return (
     <>
@@ -99,31 +108,49 @@ export default function ResumePage() {
                   {siteUrl.replace(/^https?:\/\//, "")}
                 </a>
               </li>
+              <li className="text-zinc-600">{PERSON.location}</li>
             </ul>
           </header>
 
           <section className="resume-section mt-6 print:mt-3">
             <h2 className="resume-h2">Summary</h2>
-            <p className="resume-case-p mt-1.5 text-sm leading-snug text-zinc-800 md:text-[15px] print:text-[9.5pt]">{RESUME_SUMMARY}</p>
+            <p className="resume-case-p mt-1.5 text-sm leading-snug text-zinc-800 md:text-[15px] print:text-[9.5pt]">
+              {summaryParts.before}
+              {summaryParts.highlight ? (
+                <span className="font-medium text-sky-600 print:text-[9.5pt]">{summaryParts.highlight}</span>
+              ) : null}
+              {summaryParts.after}
+            </p>
           </section>
 
           <section className="resume-section mt-6 print:mt-3">
             <h2 className="resume-h2">Skills</h2>
-            <p className="resume-case-p mt-2 text-sm leading-relaxed text-zinc-800 print:text-[9.5pt]">{TECH_STACK_LINE}</p>
+            <p className="resume-case-p mt-2 text-sm leading-relaxed text-zinc-800 print:text-[9.5pt]">
+              {TECH_STACK_ITEMS.map((s, i) => (
+                <span key={s.id}>
+                  {i > 0 ? ", " : null}
+                  <span className={RESUME_SKILL_ACCENT_IDS.has(s.id) ? "font-medium text-sky-600" : undefined}>{s.label}</span>
+                </span>
+              ))}
+            </p>
           </section>
 
           <div className="resume-bg-edu-row mt-6 grid grid-cols-1 gap-6 print:mt-3 print:grid-cols-[minmax(0,70%)_minmax(0,30%)] print:gap-x-4 print:gap-y-0">
             <section className="resume-section mt-0 min-w-0 print:mt-0">
               <h2 className="resume-h2">Background</h2>
-              <ul className="mt-2 space-y-3 print:mt-1.5 print:space-y-2">
+              <ul className="mt-2 space-y-5 print:mt-1.5 print:space-y-4">
                 {EXPERIENCE_TIMELINE.map((entry) => (
-                  <li key={entry.period}>
+                  <li key={entry.period} className="resume-timeline-block">
                     {experienceUsesEmployerRichBlock(entry) && entry.employer ? (
                       <div className="space-y-2 print:space-y-1.5">
-                        <p className="flex flex-wrap items-baseline gap-x-1 text-sm print:text-[9.5pt]">
-                          <span className="font-bold print:text-[8.75pt]">{entry.period}</span>
-
-                          <span className="font-bold text-zinc-500 print:text-[9pt]" aria-hidden>
+                        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm print:text-[9.5pt]">
+                          <span className="resume-timeline-date tabular-nums print:text-[8.25pt] print:px-1 print:py-0.5">
+                            <span>{entry.period}</span>
+                            {entry.durationLabel ? (
+                              <span className="resume-timeline-date-muted print:text-[8pt]">· {entry.durationLabel}</span>
+                            ) : null}
+                          </span>
+                          <span className="font-bold text-zinc-400 print:text-[9pt]" aria-hidden>
                             |
                           </span>
                           <a
@@ -134,7 +161,7 @@ export default function ResumePage() {
                           </a>
                         </p>
                         {entry.jobTitle ? (
-                          <p className="text-sm font-bold leading-snug text-zinc-950 print:text-[9.5pt]">{entry.jobTitle}</p>
+                          <p className="text-sm font-bold leading-snug text-sky-600 print:text-[9.5pt]">{entry.jobTitle}</p>
                         ) : null}
                         {entry.summaryLead ? (
                           <p className="resume-case-p text-sm italic leading-snug text-zinc-600 print:text-[8.75pt]">{entry.summaryLead}</p>
@@ -143,7 +170,8 @@ export default function ResumePage() {
                           <ul className="list-disc space-y-2 pl-4 text-sm leading-snug text-zinc-800 print:space-y-1.5 print:pl-3.5 print:text-[9.5pt]">
                             {entry.highlights.map((h) => (
                               <li key={h.label}>
-                                <span className="font-semibold text-zinc-950">{h.label}</span> {h.body}
+                                <span className="font-semibold text-zinc-950">{h.label}</span>{" "}
+                                <ExperienceHighlightBody highlight={h} variant="resume" siteUrl={siteUrl} />
                               </li>
                             ))}
                           </ul>
@@ -151,17 +179,20 @@ export default function ResumePage() {
                       </div>
                     ) : (
                       <>
-                        <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
-                          <span className="text-sm font-bold text-zinc-950 print:text-[9.5pt]">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-3 sm:gap-y-1">
+                          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                            <span className="resume-timeline-date tabular-nums print:text-[8.25pt] print:px-1 print:py-0.5">
+                              <span>{entry.period}</span>
+                              {entry.durationLabel ? (
+                                <span className="resume-timeline-date-muted print:text-[8pt]">· {entry.durationLabel}</span>
+                              ) : null}
+                            </span>
                             {entry.roleTitle ? (
-                              <>
-                                {entry.period}{" "}
-                                <span className="font-normal text-zinc-500">|</span> {entry.roleTitle}
-                              </>
-                            ) : (
-                              entry.period
-                            )}
-                          </span>
+                              <span className="text-sm font-bold text-zinc-950 print:text-[9.5pt]">
+                                <span className="font-normal text-zinc-400">|</span> {entry.roleTitle}
+                              </span>
+                            ) : null}
+                          </div>
                           {entry.employer ? (
                             <span className="text-[11px] font-medium text-zinc-600 sm:text-xs print:text-[8.5pt]">
                               Web Developer ·{" "}
@@ -181,7 +212,8 @@ export default function ResumePage() {
                             <ul className="list-disc space-y-2 pl-4 text-sm leading-snug text-zinc-800 print:space-y-1.5 print:pl-3.5 print:text-[9.5pt]">
                               {entry.highlights.map((h) => (
                                 <li key={h.label}>
-                                  <span className="font-semibold text-zinc-950">{h.label}</span> {h.body}
+                                  <span className="font-semibold text-zinc-950">{h.label}</span>{" "}
+                                  <ExperienceHighlightBody highlight={h} variant="resume" siteUrl={siteUrl} />
                                 </li>
                               ))}
                             </ul>
@@ -218,12 +250,6 @@ export default function ResumePage() {
             <h2 className="resume-h2">Projects</h2>
             <p className="mt-1 text-xs text-zinc-600 print:hidden">Shipped apps — full case studies on the portfolio.</p>
             <CaseStudyBlocks items={RESUME_PROJECTS} siteUrl={siteUrl} />
-          </section>
-
-          <section className="resume-section mt-14 pt-10 md:mt-16 md:pt-12 print:mt-8 print:pt-4">
-            <h2 className="resume-h2">Engineering</h2>
-            <p className="mt-1 text-xs text-zinc-600 print:hidden">Enterprise &amp; practice notes — diagrams on the site.</p>
-            <CaseStudyBlocks items={RESUME_ENGINEERING} siteUrl={siteUrl} />
           </section>
 
           {/* <section className="resume-section mt-6 print:mt-3">

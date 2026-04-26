@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion } from "framer-motion"
+import { ExperienceHighlightBody } from "@/components/ExperienceHighlightBody"
 import { EDUCATION, EXPERIENCE_TIMELINE, experienceUsesEmployerRichBlock, HERO, PERSON } from "@/content/content"
 import { marqueeTechIcons } from "@/content/tech-stack-marquee"
 import { FaProjectDiagram, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode } from "react-icons/fa"
@@ -436,17 +437,31 @@ export default function HomePage() {
                   <div className="font-bold text-gray-900 dark:text-gray-100">
                     {item.roleTitle ? (
                       <>
-                        {item.period} <span className="font-normal text-gray-500 dark:text-gray-400">|</span> {item.roleTitle}
+                        {item.period}
+                        {item.durationLabel ? (
+                          <span className="font-normal text-gray-500 dark:text-gray-400"> · {item.durationLabel}</span>
+                        ) : null}{" "}
+                        <span className="font-normal text-gray-500 dark:text-gray-400">|</span> {item.roleTitle}
                       </>
                     ) : (
-                      item.period
+                      <>
+                        {item.period}
+                        {item.durationLabel ? (
+                          <span className="font-normal text-gray-500 dark:text-gray-400"> · {item.durationLabel}</span>
+                        ) : null}
+                      </>
                     )}
                   </div>
                 ) : null}
                 {item.employer && experienceUsesEmployerRichBlock(item) ? (
                   <div className="space-y-3 text-gray-600 dark:text-gray-300">
                     <p className="flex flex-wrap items-baseline gap-x-1.5 text-base text-gray-900 dark:text-gray-100">
-                      <span className="font-bold text-gray-900 dark:text-gray-100">{item.period}</span>
+                      <span className="font-bold text-gray-900 dark:text-gray-100">
+                        {item.period}
+                        {item.durationLabel ? (
+                          <span className="font-normal text-gray-500 dark:text-gray-400"> · {item.durationLabel}</span>
+                        ) : null}
+                      </span>
                       <span className="select-none font-normal text-gray-500 dark:text-gray-400" aria-hidden>
                         |
                       </span>
@@ -467,7 +482,8 @@ export default function HomePage() {
                       <ul className="list-disc space-y-3 pl-5 leading-relaxed">
                         {item.highlights.map((h) => (
                           <li key={h.label}>
-                            <span className="text-gray-800 dark:text-gray-200">{h.label}</span> {h.body}
+                            <span className="text-gray-800 dark:text-gray-200">{h.label}</span>{" "}
+                            <ExperienceHighlightBody highlight={h} variant="home" />
                           </li>
                         ))}
                       </ul>
@@ -492,7 +508,8 @@ export default function HomePage() {
                     <ul className="list-disc space-y-3 pl-5">
                       {item.highlights.map((h) => (
                         <li key={h.label} className="leading-relaxed">
-                          <span className="font-semibold text-gray-800 dark:text-gray-200">{h.label}</span> {h.body}
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">{h.label}</span>{" "}
+                          <ExperienceHighlightBody highlight={h} variant="home" />
                         </li>
                       ))}
                     </ul>

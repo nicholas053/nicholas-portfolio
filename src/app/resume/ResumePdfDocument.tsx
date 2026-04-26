@@ -11,12 +11,17 @@ import {
   EXPERIENCE_TIMELINE,
   experienceUsesEmployerRichBlock,
   PERSON,
-  RESUME_ENGINEERING,
   RESUME_PROJECTS,
   type ResumeCaseStudy,
+  RESUME_SKILL_ACCENT_IDS,
   RESUME_SUMMARY,
-  TECH_STACK_LINE,
+  RESUME_SUMMARY_ACCENT_PHRASE,
+  TECH_STACK_ITEMS,
 } from "@/content/content"
+import { splitResumeAccent } from "@/lib/resume-accent"
+
+/** Tailwind sky-600 — matches portfolio accent for recruiter highlights. */
+const SKY600 = "#0284c7"
 
 const styles = StyleSheet.create({
   page: {
@@ -39,6 +44,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#d4d4d8",
   },
   contactItem: { marginRight: 12, marginBottom: 3 },
+  contactLocation: { fontSize: 9, color: "#52525b" },
   /** Clickable links: underline matches ink color (avoids default blue / mismatched rule). */
   link: {
     color: "#3f3f46",
@@ -49,25 +55,51 @@ const styles = StyleSheet.create({
     fontSize: 8,
     fontWeight: "bold",
     letterSpacing: 1.2,
-    color: "#71717a",
+    color: SKY600,
     textTransform: "uppercase",
     marginTop: 10,
     marginBottom: 5,
     paddingBottom: 3,
     borderBottomWidth: 0.5,
-    borderBottomColor: "#e4e4e7",
+    borderBottomColor: "#bae6fd",
   },
   body: { fontSize: 9, lineHeight: 1.4 },
   muted: { fontSize: 8, color: "#52525b", marginBottom: 4 },
-  /** First line of each Background entry: date range (same look whether alone or before “| …”). */
-  timelineEntryHeadline: {
-    fontSize: 9,
-    lineHeight: 1.35,
-    marginTop: 6,
-    color: "#18181b",
+  /** One Background / experience block (rail + content). */
+  timelineEntryBlock: {
+    marginTop: 9,
+    paddingLeft: 8,
+    borderLeftWidth: 2,
+    borderLeftColor: "#38bdf8",
+    paddingTop: 1,
   },
-  timelinePeriodLead: {
+  timelineEntryBlockFirst: {
+    marginTop: 4,
+  },
+  timelineHeadRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    marginBottom: 2,
+  },
+  timelineDatePill: {
+    backgroundColor: "#f0f9ff",
+    borderWidth: 1,
+    borderColor: "#bae6fd",
+    borderRadius: 3,
+    paddingVertical: 2,
+    paddingHorizontal: 5,
+    marginRight: 4,
+  },
+  timelineDatePillText: {
+    fontSize: 8.5,
     fontWeight: "bold",
+    color: "#0c4a6e",
+  },
+  timelineDatePillDur: {
+    fontSize: 8,
+    fontWeight: "normal",
+    color: "#0369a1",
   },
   timelineHeadlineSep: {
     fontSize: 9,
@@ -124,11 +156,22 @@ const styles = StyleSheet.create({
     fontSize: 9,
     fontWeight: "bold",
     marginTop: 4,
-    color: "#18181b",
+    color: SKY600,
   },
   eduLine: { fontSize: 9, marginTop: 5 },
   eduSub: { fontSize: 8, color: "#52525b", marginTop: 1 },
-  skillsLine: { marginTop: 4, fontSize: 9, lineHeight: 1.45, color: "#27272a" },
+  skillsRow: { marginTop: 4, fontSize: 9, lineHeight: 1.45, color: "#27272a" },
+  skillsWord: { fontSize: 9, lineHeight: 1.45, color: "#27272a" },
+  skillsAccent: { fontSize: 9, lineHeight: 1.45, color: SKY600, fontWeight: "bold" },
+  accentText: { color: SKY600, fontWeight: "bold" },
+  inlineNoteLink: {
+    fontSize: 8,
+    lineHeight: 1.35,
+    color: SKY600,
+    fontWeight: "bold",
+    textDecoration: "underline",
+    textDecorationColor: SKY600,
+  },
   caseBlock: {
     marginTop: 10,
     paddingBottom: 8,
@@ -148,10 +191,11 @@ const styles = StyleSheet.create({
   caseTag: { fontSize: 7, color: "#71717a", marginTop: 2, textTransform: "uppercase" },
   caseLink: {
     fontSize: 7.5,
-    color: "#3f3f46",
+    color: SKY600,
     textDecoration: "underline",
-    textDecorationColor: "#3f3f46",
+    textDecorationColor: SKY600,
     marginTop: 2,
+    fontWeight: "bold",
   },
   caseLinkWrap: { flexShrink: 0, maxWidth: "28%" },
   label: {
@@ -160,9 +204,6 @@ const styles = StyleSheet.create({
     color: "#71717a",
     textTransform: "uppercase",
     marginTop: 5,
-  },
-  engineeringSection: {
-    marginTop: 12,
   },
   bgEduRow: {
     flexDirection: "row",
@@ -192,6 +233,7 @@ function CaseStudiesPdf({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl:
         const href = `${siteUrl}${item.linkPath}`
         const linkLabel = item.linkPath.startsWith("/notes") ? "Technical note" : "Case study"
         const isLast = i === items.length - 1
+        const impactParts = splitResumeAccent(item.impact, item.impactAccentPhrase)
         return (
           <View key={item.title} wrap={false} style={[styles.caseBlock, isLast ? { borderBottomWidth: 0 } : {}]}>
             <View style={styles.caseTitleRow}>
@@ -211,7 +253,11 @@ function CaseStudiesPdf({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl:
             <Text style={styles.label}>Solution</Text>
             <Text style={styles.body}>{item.solution}</Text>
             <Text style={styles.label}>Impact</Text>
-            <Text style={styles.body}>{item.impact}</Text>
+            <Text style={styles.body}>
+              {impactParts.before}
+              {impactParts.highlight ? <Text style={styles.accentText}>{impactParts.highlight}</Text> : null}
+              {impactParts.after}
+            </Text>
           </View>
         )
       })}
@@ -223,6 +269,7 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
   const mailto = `mailto:${PERSON.email}`
   const tel = `tel:${PERSON.phone.replace(/\s/g, "")}`
   const github = `https://github.com/${PERSON.githubUsername}`
+  const summaryParts = splitResumeAccent(RESUME_SUMMARY, RESUME_SUMMARY_ACCENT_PHRASE)
 
   return (
     <Document title="Resume" author={PERSON.legalName} subject={`${PERSON.role} — resume`}>
@@ -251,18 +298,22 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
               <Text style={styles.link}>{siteUrl.replace(/^https?:\/\//, "")}</Text>
             </Link>
           </View>
+          <View style={styles.contactItem}>
+            <Text style={styles.contactLocation}>{PERSON.location}</Text>
+          </View>
         </View>
 
         <Text style={styles.sectionTitle}>Summary</Text>
-        <Text style={styles.body}>{RESUME_SUMMARY}</Text>
-
-        <Text style={styles.sectionTitle}>Skills</Text>
-        <Text style={styles.skillsLine}>{TECH_STACK_LINE}</Text>
+        <Text style={styles.body}>
+          {summaryParts.before}
+          {summaryParts.highlight ? <Text style={styles.accentText}>{summaryParts.highlight}</Text> : null}
+          {summaryParts.after}
+        </Text>
 
         <View style={styles.bgEduRow}>
           <View style={styles.bgCol}>
             <Text style={[styles.sectionTitle, { marginTop: 0 }]}>Background</Text>
-            {EXPERIENCE_TIMELINE.map((entry) => {
+            {EXPERIENCE_TIMELINE.map((entry, entryIdx) => {
               const richEmployer = experienceUsesEmployerRichBlock(entry)
               const headlineSecond =
                 richEmployer && entry.employer ? (
@@ -273,18 +324,31 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
                   <Text style={styles.timelineHeadlineRole}>{entry.roleTitle}</Text>
                 ) : null
 
+              const datePill = (
+                <View style={styles.timelineDatePill} wrap={false}>
+                  <Text>
+                    <Text style={styles.timelineDatePillText}>{entry.period}</Text>
+                    {entry.durationLabel ? <Text style={styles.timelineDatePillDur}> · {entry.durationLabel}</Text> : null}
+                  </Text>
+                </View>
+              )
+
               return (
-                <View key={entry.period}>
+                <View
+                  key={entry.period}
+                  style={[styles.timelineEntryBlock, entryIdx === 0 ? styles.timelineEntryBlockFirst : {}]}
+                  wrap={false}
+                >
                   {headlineSecond ? (
-                    <Text style={styles.timelineEntryHeadline}>
-                      <Text style={styles.timelinePeriodLead}>{entry.period}</Text>
+                    <View style={styles.timelineHeadRow} wrap={false}>
+                      {datePill}
                       <Text style={styles.timelineHeadlineSep}> | </Text>
                       {headlineSecond}
-                    </Text>
+                    </View>
                   ) : (
-                    <Text style={styles.timelineEntryHeadline}>
-                      <Text style={styles.timelinePeriodLead}>{entry.period}</Text>
-                    </Text>
+                    <View style={styles.timelineHeadRow} wrap={false}>
+                      {datePill}
+                    </View>
                   )}
                   {entry.employer && !richEmployer ? (
                     <Text style={styles.timelineEmployerLine}>
@@ -298,11 +362,21 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
                   {entry.highlights?.length ? (
                     <>
                       {entry.summaryLead ? <Text style={styles.timelineSummaryLead}>{entry.summaryLead}</Text> : null}
-                      {entry.highlights.map((h, idx) => (
-                        <Text key={`${h.label}-${idx}`} style={styles.timelineBullet}>
-                          <Text style={styles.timelineBulletLabel}>• {h.label}</Text> {h.body}
-                        </Text>
-                      ))}
+                      {entry.highlights.map((h, idx) => {
+                        const bodyParts = splitResumeAccent(h.body, h.resumeAccentPhrase)
+                        return (
+                          <Text key={`${h.label}-${idx}`} style={styles.timelineBullet}>
+                            <Text style={styles.timelineBulletLabel}>• {h.label}</Text> {bodyParts.before}
+                            {bodyParts.highlight ? <Text style={styles.accentText}>{bodyParts.highlight}</Text> : null}
+                            {bodyParts.after}
+                            {h.technicalNotePath ? (
+                              <Link src={`${siteUrl}${h.technicalNotePath}`}>
+                                <Text style={styles.inlineNoteLink}> See full →</Text>
+                              </Link>
+                            ) : null}
+                          </Text>
+                        )
+                      })}
                     </>
                   ) : (
                     <Text style={[styles.body, { marginTop: 4 }]}>{resumeExperienceBody(entry)}</Text>
@@ -324,16 +398,20 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
                 </Text>
               </View>
             ))}
+            <Text style={[styles.sectionTitle, { marginTop: 10 }]}>Skills</Text>
+            <Text style={[styles.skillsRow, { marginTop: 0 }]}>
+              {TECH_STACK_ITEMS.map((s, i) => (
+                <Text key={s.id}>
+                  {i > 0 ? ", " : ""}
+                  <Text style={RESUME_SKILL_ACCENT_IDS.has(s.id) ? styles.skillsAccent : styles.skillsWord}>{s.label}</Text>
+                </Text>
+              ))}
+            </Text>
           </View>
         </View>
 
         <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Projects</Text>
         <CaseStudiesPdf items={RESUME_PROJECTS} siteUrl={siteUrl} />
-
-        <View style={styles.engineeringSection}>
-          <Text style={[styles.sectionTitle, { marginTop: 0 }]}>Engineering</Text>
-          <CaseStudiesPdf items={RESUME_ENGINEERING} siteUrl={siteUrl} />
-        </View>
       </Page>
     </Document>
   )
