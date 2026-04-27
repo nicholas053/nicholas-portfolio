@@ -145,6 +145,11 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
         technicalNotePath: "/notes/frontend-architecture-refactoring",
         resumeAccentPhrase: "fixes ship once across admin/agent views",
       },
+      {
+        label: "Tech Stack:",
+        body: "Laravel, Angular",
+        resumeAccentPhrase: "Laravel, Angular",
+      },
     ],
     body: "At Data Flows Sdn Bhd: led settlement-engine discovery and delivery, owned a KPI-linked 360° review module, and drove frontend architecture unification across enterprise apps.",
     resumeBody:
@@ -156,19 +161,20 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
 export const TECH_STACK_ITEMS = [
   { id: "next", label: "Next.js" },
   { id: "react", label: "React" },
-  { id: "tailwind", label: "Tailwind CSS" },
   { id: "prisma", label: "Prisma" },
   { id: "postgresql", label: "PostgreSQL" },
-  { id: "nodejs", label: "Node.js" },
-  { id: "dotnet", label: ".NET (C#)" },
-  { id: "vercel", label: "Vercel" },
-  { id: "cpp", label: "C++" },
-  { id: "java", label: "Java" },
-  { id: "github", label: "GitHub" },
   { id: "angular", label: "Angular" },
   { id: "laravel", label: "Laravel" },
-  { id: "php", label: "PHP" },
+  { id: "system-design", label: "System Design" },
   { id: "typescript", label: "TypeScript" },
+  { id: "php", label: "PHP" },
+  { id: "nodejs", label: "Node.js" },
+  { id: "dotnet", label: ".NET (C#)" },
+  { id: "tailwind", label: "Tailwind CSS" },
+  { id: "vercel", label: "Vercel" },
+  { id: "github", label: "GitHub" },
+  { id: "cpp", label: "C++" },
+  { id: "java", label: "Java" },
 ] as const
 
 /** Comma-separated for resume / ATS-friendly plain text (same order as `TECH_STACK_ITEMS`). */
@@ -177,7 +183,7 @@ export const TECH_STACK_LINE = TECH_STACK_ITEMS.map((s) => s.label).join(", ")
 export type TechStackId = (typeof TECH_STACK_ITEMS)[number]["id"]
 
 /** Emphasized on resume/PDF skills line (core stack). */
-export const RESUME_SKILL_ACCENT_IDS = new Set<TechStackId>(["next", "react", "typescript", "prisma", "postgresql"])
+export const RESUME_SKILL_ACCENT_IDS = new Set<TechStackId>(["next", "react", "typescript", "prisma", "postgresql", "angular", "laravel", "system-design"])
 
 export const LOKATECH = {
   label: "LokaTech",
@@ -209,7 +215,7 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
     challenge:
       "Job seekers lose context across tools, redo cover letters from scratch, and miss follow-ups; hiring ATS is not built for one candidate’s pipeline.",
     solution:
-      "Single profile and per-job JD storage; stage timeline; one server-side Gemini generation stored on the job; 7-day stale reminder with non-AI email template; PDF text-only bootstrap (file not stored).",
+      "Single profile and per-job JD storage; stage timeline; one server-side Gemini generation stored on the job; job search direction; 7-day stale reminder with non-AI email template; PDF text-only bootstrap (file not stored).",
     impact:
       "Schema-bound AI outputs + retries reduce bad saves; per-user Postgres isolation; free-tier UI caps successful regen per job for predictable API cost. Beta: ~15 users; most said the tool was helpful and easy to use.",
     impactAccentPhrase: "Beta: ~15 users; most said the tool was helpful and easy to use.",
