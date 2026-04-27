@@ -13,7 +13,7 @@ import {
   SiVercel,
 } from "react-icons/si"
 import { BiLogoTypescript } from "react-icons/bi"
-import { FaAngular, FaJava, FaPhp } from "react-icons/fa"
+import { FaAngular, FaJava, FaPhp, FaProjectDiagram, FaNode } from "react-icons/fa"
 import { TECH_STACK_ITEMS } from "./content"
 
 const cls = "w-12 h-12"
@@ -24,7 +24,7 @@ const ICONS: Record<(typeof TECH_STACK_ITEMS)[number]["id"], ReactNode> = {
   tailwind: <SiTailwindcss title="Tailwind CSS" className={cls} />,
   prisma: <SiPrisma title="Prisma" className={cls} />,
   postgresql: <SiPostgresql title="PostgreSQL" className={cls} />,
-  nodejs: <SiNodedotjs title="Node.js" className={cls} />,
+  nodejs: <FaNode title="Node.js" className={cls} />,
   dotnet: <SiDotnet title=".NET (C#)" className={cls} />,
   vercel: <SiVercel title="Vercel" className={cls} />,
   cpp: <SiCplusplus title="C++" className={cls} />,
@@ -32,6 +32,7 @@ const ICONS: Record<(typeof TECH_STACK_ITEMS)[number]["id"], ReactNode> = {
   github: <SiGithub title="GitHub" className={cls} />,
   angular: <FaAngular title="Angular" className={cls} />,
   laravel: <SiLaravel title="Laravel" className={cls} />,
+  "system-design": <FaProjectDiagram title="System Design" className={cls} />,
   php: <FaPhp title="PHP" className={cls} />,
   typescript: <BiLogoTypescript title="TypeScript" className={cls} />,
 }
