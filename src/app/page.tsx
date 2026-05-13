@@ -589,7 +589,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -613,7 +613,7 @@ export default function HomePage() {
             >
               Visit lokatech.co →
             </a>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Tech Stack Section */}
@@ -710,7 +710,7 @@ export default function HomePage() {
         </motion.h2>
         <p className="text-gray-600">Looking for a problem solver who understands both Code and Business Logic? Let&apos;s chat.</p>
 
-        <div className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 text-left shadow-sm dark:border-gray-700 dark:bg-gray-800/40">
+        {/* <div className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 text-left shadow-sm dark:border-gray-700 dark:bg-gray-800/40">
           <p className="text-sm font-semibold text-gray-900 dark:text-white">
             Hiring for a client or product?
           </p>
@@ -727,7 +727,7 @@ export default function HomePage() {
           >
             lokatech.co →
           </a>
-        </div>
+        </div> */}
 
         <div className="mt-6 grid grid-cols-2 gap-4 md:flex md:flex-row md:items-center md:justify-center md:gap-2">
           {/* 'grid grid-cols-2 gap-4' applies on mobile.
