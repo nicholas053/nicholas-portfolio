@@ -775,14 +775,14 @@ export default function HomePage() {
           >
             Resume
           </Link>
-          <a
+          {/* <a
             href="https://lokatech.co"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 rounded-xl border-2 border-sky-500 text-center font-medium text-sky-600 transition hover:bg-sky-50 dark:border-sky-400 dark:text-sky-400 dark:hover:bg-sky-950/30"
           >
             LokaTech — hire me for client work
-          </a>
+          </a> */}
           <button
             onClick={() => scrollTo("projects")}
             className="px-6 py-3 rounded-xl bg-sky-500 text-center text-white shadow hover:bg-sky-600 transition"
