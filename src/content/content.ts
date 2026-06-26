@@ -209,6 +209,19 @@ export type ResumeCaseStudy = {
 /** Personal / shipped product work (`/projects/...`). */
 export const RESUME_PROJECTS: ResumeCaseStudy[] = [
   {
+    title: "LokaTech — internal operations platform",
+    brief:
+      "Agency ops monorepo: pricing engine, scope review portal, billing, PDFs — Next.js, Prisma, PostgreSQL, Auth.js.",
+    challenge:
+      "Quoting, scope sign-off, invoicing, and docs lived in spreadsheets, email, and PDFs with no audit trail or single source of truth.",
+    solution:
+      "Catalog-driven pricing; magic-link client review with baseline lock; project-first billing and branded PDFs; admin/marketing/portal route groups in one app.",
+    impact:
+      "Replaced manual quote math and email scope loops with typed workflows, change-order history, and a dashboard attention feed. Powers my practice at lokatech.co.",
+    impactAccentPhrase: "Replaced manual quote math and email scope loops with typed workflows",
+    linkPath: "/projects/lokatech",
+  },
+  {
     title: "What I Applied — applicant tracking & career prep",
     brief:
       "Personal ATS: profile + applications + interview pipeline, Gemini JD-specific assets (Zod-validated JSON), follow-up nudges — Next.js, Prisma, PostgreSQL, NextAuth.",
@@ -218,7 +231,7 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
       "Single profile and per-job JD storage; stage timeline; one server-side Gemini generation stored on the job; job search direction; 7-day stale reminder with non-AI email template; PDF text-only bootstrap (file not stored).",
     impact:
       "Schema-bound AI outputs + retries reduce bad saves; per-user Postgres isolation; free-tier UI caps successful regen per job for predictable API cost. Beta: ~15 users; most said the tool was helpful and easy to use.",
-    impactAccentPhrase: "Beta: ~15 users; most said the tool was helpful and easy to use.",
+    impactAccentPhrase: "Beta: ~50 users; most said the tool was helpful and easy to use.",
     linkPath: "/projects/what-i-applied",
   },
   {
