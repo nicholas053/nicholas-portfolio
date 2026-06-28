@@ -119,7 +119,7 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
       "Independent full-stack (Apr 2022–Sept 2025): scaled from freelance maintenance to end-to-end systems (HR, booking, church, task, e-commerce, personal ATS/career prep); Next.js, .NET Core, Prisma, PostgreSQL.",
   },
   {
-    period: "Oct 2025 – Present",
+    period: "Oct 2025 – June 2026",
     jobTitle: "Web Developer / Product Engineer",
     summaryLead:
       "Lead delivery, refactors, and technical BA on enterprise apps; aligned schemas and UI with real finance/ops workflows.",
