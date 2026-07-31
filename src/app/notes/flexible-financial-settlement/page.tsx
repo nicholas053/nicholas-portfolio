@@ -3,19 +3,45 @@ import { FiArrowLeft } from "react-icons/fi"
 import { FaLock } from "react-icons/fa"
 import type { Metadata } from "next"
 import Link from "next/link"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import {
+  breadcrumbList,
+  pageSocialMeta,
+  techArticleJsonLd,
+} from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "Flexible Financial Settlement Engine",
-  description:
-    "Architecture notes: finance shopping cart model, consolidated payment vouchers, and enterprise CRM commission flow (NDA).",
-  alternates: {
-    canonical: "/notes/flexible-financial-settlement",
-  },
-}
+const PATH = "/notes/flexible-financial-settlement"
+const TITLE = "Flexible Financial Settlement Engine"
+const DESCRIPTION =
+  "Architecture notes: finance shopping cart model, consolidated payment vouchers, and enterprise CRM commission flow (NDA)."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function FlexibleFinancialSettlementPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="mx-auto max-w-6xl space-y-16 px-4 py-10 md:px-8 md:py-12 lg:space-y-20">
+      <PageJsonLd
+        data={[
+          techArticleJsonLd({
+            siteUrl,
+            headline: TITLE,
+            description: DESCRIPTION,
+            path: PATH,
+          }),
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "Technical notes", path: "/notes" },
+            { name: TITLE, path: PATH },
+          ]),
+        ]}
+      />
       <div>
         <Link
           href="/notes"

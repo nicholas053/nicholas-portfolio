@@ -4,17 +4,44 @@ import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
 import Link from 'next/link';
 import type { Metadata } from "next"
 import FeatureRow from '@/components/FeatureRow'
+import { PageJsonLd } from "@/components/PageJsonLd"
+import {
+  breadcrumbList,
+  creativeWorkJsonLd,
+  pageSocialMeta,
+} from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "Church management system",
-  description:
-    "Case study: Next.js community management — event registration, attendance, outing approvals, roles, and Cloudinary walkthroughs.",
-  alternates: { canonical: "/projects/church-system" },
-}
+const PATH = "/projects/church-system"
+const TITLE = "Church management system"
+const DESCRIPTION =
+  "Case study: Next.js community management — event registration, attendance, outing approvals, roles, and Cloudinary walkthroughs."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function ChurchSystemPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+      <PageJsonLd
+        data={[
+          creativeWorkJsonLd({
+            siteUrl,
+            name: TITLE,
+            description: DESCRIPTION,
+            path: PATH,
+          }),
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "Church system", path: PATH },
+          ]),
+        ]}
+      />
 
       <div>
         <Link

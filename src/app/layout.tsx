@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     description: SITE_TAGLINE,
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${SITE_NAME} — Full-Stack Developer & Product Engineer`,
     description: SITE_TAGLINE,
   },

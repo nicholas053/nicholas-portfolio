@@ -4,17 +4,44 @@ import FeatureRow from '@/components/FeatureRow'
 import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
 import Link from 'next/link';
 import type { Metadata } from "next"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import {
+  breadcrumbList,
+  creativeWorkJsonLd,
+  pageSocialMeta,
+} from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "Task management system",
-  description:
-    "Case study: collaborative Kanban, drag-and-drop, comments, voting, dashboards — Next.js, Prisma, PostgreSQL, self-hosted friendly.",
-  alternates: { canonical: "/projects/task-system" },
-}
+const PATH = "/projects/task-system"
+const TITLE = "Task management system"
+const DESCRIPTION =
+  "Case study: collaborative Kanban, drag-and-drop, comments, voting, dashboards — Next.js, Prisma, PostgreSQL, self-hosted friendly."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function ProjectTaskSystemPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+      <PageJsonLd
+        data={[
+          creativeWorkJsonLd({
+            siteUrl,
+            name: TITLE,
+            description: DESCRIPTION,
+            path: PATH,
+          }),
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "Task system", path: PATH },
+          ]),
+        ]}
+      />
 
       <div>
         <Link

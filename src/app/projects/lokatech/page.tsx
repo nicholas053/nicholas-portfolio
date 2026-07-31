@@ -4,17 +4,44 @@ import { FiExternalLink, FiArrowLeft } from "react-icons/fi"
 import Link from "next/link"
 import type { Metadata } from "next"
 import FeatureRow from "@/components/FeatureRow"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import {
+  breadcrumbList,
+  creativeWorkJsonLd,
+  pageSocialMeta,
+} from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "LokaTech — internal operations platform",
-  description:
-    "Case study: scoped pricing, collaborative scope review, billing, client portal magic links, PDF generation — Next.js, Prisma, PostgreSQL, Auth.js.",
-  alternates: { canonical: "/projects/lokatech" },
-}
+const PATH = "/projects/lokatech"
+const TITLE = "LokaTech — internal operations platform"
+const DESCRIPTION =
+  "Case study: scoped pricing, collaborative scope review, billing, client portal magic links, PDF generation — Next.js, Prisma, PostgreSQL, Auth.js."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function LokaTechPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+      <PageJsonLd
+        data={[
+          creativeWorkJsonLd({
+            siteUrl,
+            name: TITLE,
+            description: DESCRIPTION,
+            path: PATH,
+          }),
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "LokaTech", path: PATH },
+          ]),
+        ]}
+      />
       <div>
         <Link
           href="/"

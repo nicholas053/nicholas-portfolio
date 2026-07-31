@@ -2,19 +2,45 @@ import { AssessmentFlowDiagram } from "./AssessmentFlowDiagram"
 import { FiArrowLeft } from "react-icons/fi"
 import type { Metadata } from "next"
 import Link from "next/link"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import {
+  breadcrumbList,
+  pageSocialMeta,
+  techArticleJsonLd,
+} from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "Full-stack assessment — performance & live debugging",
-  description:
-    "Take-home reflection: Laravel Http pooling, Next.js + SWR infinite scroll, live-session bug, and a concise post-interview follow-up.",
-  alternates: {
-    canonical: "/notes/fullstack-assessment-debugging",
-  },
-}
+const PATH = "/notes/fullstack-assessment-debugging"
+const TITLE = "Full-stack assessment — performance & live debugging"
+const DESCRIPTION =
+  "Take-home reflection: Laravel Http pooling, Next.js + SWR infinite scroll, live-session bug, and a concise post-interview follow-up."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function FullstackAssessmentDebuggingPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="mx-auto max-w-6xl space-y-16 px-4 py-10 md:px-8 md:py-12 lg:space-y-20">
+      <PageJsonLd
+        data={[
+          techArticleJsonLd({
+            siteUrl,
+            headline: TITLE,
+            description: DESCRIPTION,
+            path: PATH,
+          }),
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "Technical notes", path: "/notes" },
+            { name: TITLE, path: PATH },
+          ]),
+        ]}
+      />
       <div>
         <Link
           href="/notes"

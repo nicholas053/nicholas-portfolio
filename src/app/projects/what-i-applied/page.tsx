@@ -3,17 +3,44 @@ import { DiNodejs } from "react-icons/di"
 import { FiArrowLeft, FiExternalLink } from "react-icons/fi"
 import Link from "next/link"
 import type { Metadata } from "next"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import {
+  breadcrumbList,
+  creativeWorkJsonLd,
+  pageSocialMeta,
+} from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "What I Applied — applicant tracking & career prep",
-  description:
-    "Case study: personal ATS with JD or no-JD flows, match score, pipeline overlap hints, job search direction (Gemini), PostgreSQL, NextAuth, Prisma, Zod. Live on Vercel.",
-  alternates: { canonical: "/projects/what-i-applied" },
-}
+const PATH = "/projects/what-i-applied"
+const TITLE = "What I Applied — applicant tracking & career prep"
+const DESCRIPTION =
+  "Case study: personal ATS with JD or no-JD flows, match score, pipeline overlap hints, job search direction (Gemini), PostgreSQL, NextAuth, Prisma, Zod. Live on Vercel."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function WhatIAppliedPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+      <PageJsonLd
+        data={[
+          creativeWorkJsonLd({
+            siteUrl,
+            name: TITLE,
+            description: DESCRIPTION,
+            path: PATH,
+          }),
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "What I Applied", path: PATH },
+          ]),
+        ]}
+      />
       <div>
         <Link
           href="/"

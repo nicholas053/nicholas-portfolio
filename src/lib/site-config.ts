@@ -1,7 +1,11 @@
 /**
  * Canonical site URL for metadata, sitemap, and JSON-LD.
- * Set `NEXT_PUBLIC_SITE_URL` in production (e.g. https://yourdomain.com).
- * On Vercel, `VERCEL_URL` is used as a fallback when the public URL is unset.
+ *
+ * Resolution order: `NEXT_PUBLIC_SITE_URL` → `VERCEL_URL` → localhost.
+ *
+ * - Bare `*.vercel.app` deploy: usually no env needed (Vercel sets `VERCEL_URL`).
+ * - Custom domain: set `NEXT_PUBLIC_SITE_URL=https://your-domain.com` in Vercel
+ *   so sitemap, canonicals, and OG absolute URLs use the custom host.
  */
 export function getSiteUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim()
@@ -19,3 +23,10 @@ export const SITE_TAGLINE =
 
 export const DEFAULT_DESCRIPTION =
   "Portfolio of Nicholas Chong: full-stack and product engineering across Next.js, React, TypeScript, Laravel, and PostgreSQL. Case studies, technical notes with architecture diagrams, and enterprise delivery."
+
+/** Public path for the About / Person schema headshot (never used on the OG card). */
+export const HEADSHOT_PATH = "/nicholas-chong.png"
+
+export function getHeadshotUrl(): string {
+  return `${getSiteUrl()}${HEADSHOT_PATH}`
+}

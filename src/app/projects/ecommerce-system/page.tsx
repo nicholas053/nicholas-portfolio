@@ -3,17 +3,44 @@ import FeatureRow from '@/components/FeatureRow';
 import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
 import Link from 'next/link';
 import type { Metadata } from "next"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import {
+  breadcrumbList,
+  creativeWorkJsonLd,
+  pageSocialMeta,
+} from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "E-commerce platform",
-  description:
-    "Case study: full-stack commerce with .NET Core, React, Next.js — JWT auth, cart, checkout, orders, and admin inventory.",
-  alternates: { canonical: "/projects/ecommerce-system" },
-}
+const PATH = "/projects/ecommerce-system"
+const TITLE = "E-commerce platform"
+const DESCRIPTION =
+  "Case study: full-stack commerce with .NET Core, React, Next.js — JWT auth, cart, checkout, orders, and admin inventory."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+})
 
 export default function EcommerceProjectPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+      <PageJsonLd
+        data={[
+          creativeWorkJsonLd({
+            siteUrl,
+            name: TITLE,
+            description: DESCRIPTION,
+            path: PATH,
+          }),
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "E-commerce", path: PATH },
+          ]),
+        ]}
+      />
 
       <div>
         <Link

@@ -2,15 +2,21 @@ import Link from "next/link"
 import { FiArrowLeft } from "react-icons/fi"
 import { FaLock } from "react-icons/fa"
 import type { Metadata } from "next"
+import { PageJsonLd } from "@/components/PageJsonLd"
+import { breadcrumbList, pageSocialMeta } from "@/lib/seo"
+import { getSiteUrl } from "@/lib/site-config"
 
-export const metadata: Metadata = {
-  title: "Technical notes",
-  description:
-    "Architecture and problem-solving write-ups — deeper than case-study cards, NDA-safe where noted.",
-  alternates: {
-    canonical: "/notes",
-  },
-}
+const PATH = "/notes"
+const TITLE = "Technical notes"
+const DESCRIPTION =
+  "Architecture and problem-solving write-ups — deeper than case-study cards, NDA-safe where noted."
+
+export const metadata: Metadata = pageSocialMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+  type: "website",
+})
 
 const notes = [
   {
@@ -48,8 +54,26 @@ const notes = [
 ] as const
 
 export default function NotesIndexPage() {
+  const siteUrl = getSiteUrl()
+
   return (
     <main className="mx-auto max-w-4xl space-y-12 px-4 py-10 md:px-8 md:py-14">
+      <PageJsonLd
+        data={[
+          {
+            "@type": "CollectionPage",
+            "@id": `${siteUrl}${PATH}/#collection`,
+            name: TITLE,
+            description: DESCRIPTION,
+            url: `${siteUrl}${PATH}`,
+            isPartOf: { "@id": `${siteUrl}/#website` },
+          },
+          breadcrumbList(siteUrl, [
+            { name: "Home", path: "/" },
+            { name: "Technical notes", path: PATH },
+          ]),
+        ]}
+      />
       <div>
         <Link
           href="/"
