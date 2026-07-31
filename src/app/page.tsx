@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion } from "framer-motion"
-import { AboutHeadshot } from "@/components/AboutHeadshot"
 import { ExperienceHighlightBody } from "@/components/ExperienceHighlightBody"
 import { EDUCATION, EXPERIENCE_TIMELINE, experienceUsesEmployerRichBlock, HERO, PERSON } from "@/content/content"
 import { marqueeTechIcons } from "@/content/tech-stack-marquee"
@@ -436,8 +435,6 @@ export default function HomePage() {
         className="py-24 px-4 bg-gray-50">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</motion.h2>
-
-        <AboutHeadshot />
 
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="relative border-l border-gray-300 pl-6">
