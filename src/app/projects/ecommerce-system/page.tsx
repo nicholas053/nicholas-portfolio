@@ -63,7 +63,7 @@ export default function EcommerceProjectPage() {
                 href="https://github.com/nicholas053/Ecommerce-Platform"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="px-5 py-2 rounded-xl bg-navy text-cream dark:bg-cream dark:text-navy inline-flex items-center gap-2 shadow"
+                className="btn-primary"
             >
                 Code on Github <FiExternalLink />
             </a>

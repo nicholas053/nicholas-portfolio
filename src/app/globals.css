@@ -150,6 +150,10 @@
   .portfolio-card {
     @apply rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:shadow-md;
   }
+  /** Primary CTA — light: navy fill; dark: cream fill (via token swap, do not use dark:bg-cream) */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-2 font-medium text-cream shadow transition hover:bg-navy-hover;
+  }
 }
 
 @layer base {
