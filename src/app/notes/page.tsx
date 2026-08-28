@@ -3,13 +3,13 @@ import { FiArrowLeft } from "react-icons/fi"
 import { FaLock } from "react-icons/fa"
 import type { Metadata } from "next"
 import { PageJsonLd } from "@/components/PageJsonLd"
+import { NOTES_PAGE } from "@/content/content"
 import { breadcrumbList, pageSocialMeta } from "@/lib/seo"
 import { getSiteUrl } from "@/lib/site-config"
 
 const PATH = "/notes"
-const TITLE = "Technical notes"
-const DESCRIPTION =
-  "Architecture and problem-solving write-ups — deeper than case-study cards, NDA-safe where noted."
+const TITLE = NOTES_PAGE.eyebrow
+const DESCRIPTION = NOTES_PAGE.metadataDescription
 
 export const metadata: Metadata = pageSocialMeta({
   title: TITLE,
@@ -77,7 +77,7 @@ export default function NotesIndexPage() {
       <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-navy dark:text-muted-foreground dark:hover:text-cream"
         >
           <FiArrowLeft className="h-4 w-4" aria-hidden />
           <span>Home</span>
@@ -85,17 +85,16 @@ export default function NotesIndexPage() {
       </div>
 
       <header className="space-y-3 text-center md:text-left">
-        <p className="text-xs font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">
-          Technical notes
+        <p className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">
+          {NOTES_PAGE.eyebrow}
         </p>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-          Architecture &amp; Problem Solving
+        <h1 className="text-3xl font-bold text-navy md:text-4xl">
+          {NOTES_PAGE.heading}
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 md:text-lg">
-        Real-world engineering bottlenecks I've encountered, the strategies I used to untangle them, and the scalable systems I designed in response. Product case studies with demos
-          stay under{" "}
-          <Link href="/#projects" className="font-medium text-sky-600 hover:underline dark:text-sky-400">
-            Projects
+        <p className="text-muted-foreground dark:text-muted-foreground md:text-lg">
+          {NOTES_PAGE.intro}{" "}
+          <Link href="/#projects" className="font-medium text-navy hover:underline dark:text-mist">
+            {NOTES_PAGE.projectsLinkLabel}
           </Link>
           .
         </p>
@@ -107,19 +106,19 @@ export default function NotesIndexPage() {
             {item.ready ? (
               <Link
                 href={item.href}
-                className="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-sky-200 hover:shadow-md dark:border-gray-700 dark:bg-gray-900/40 dark:hover:border-sky-800 md:p-8"
+                className="block rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:border-border hover:shadow-md md:p-8"
               >
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-2">
                       {item.badge === "NDA" && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-mist/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground dark:bg-surface dark:text-muted-foreground">
                           <FaLock className="h-3 w-3" aria-hidden />
                           Confidential
                         </span>
                       )}
                       {item.badge === "Team" && (
-                        <span className="inline-flex rounded-full bg-sky-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-sky-800 dark:bg-sky-900/50 dark:text-sky-200">
+                        <span className="inline-flex rounded-full bg-mist/40 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-navy dark:bg-surface/50 dark:text-mist">
                           Team practice
                         </span>
                       )}
@@ -128,25 +127,25 @@ export default function NotesIndexPage() {
                           Reflection
                         </span>
                       )}
-                      <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                      <h2 className="text-xl font-bold text-navy">
                         {item.title}
                       </h2>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 md:text-base">
+                    <p className="text-sm text-muted-foreground dark:text-muted-foreground md:text-base">
                       {item.blurb}
                     </p>
                   </div>
-                  <span className="shrink-0 text-sm font-medium text-sky-600 dark:text-sky-400 sm:pt-1">
+                  <span className="shrink-0 text-sm font-medium text-navy dark:text-mist sm:pt-1">
                     Read →
                   </span>
                 </div>
               </Link>
             ) : (
-              <div className="rounded-2xl border border-dashed border-gray-300 bg-gray-50/80 p-6 dark:border-gray-600 dark:bg-gray-800/30 md:p-8">
-                <h2 className="text-lg font-semibold text-gray-500 dark:text-gray-400">
+              <div className="rounded-2xl border border-dashed border-border bg-muted p-6 md:p-8">
+                <h2 className="text-lg font-semibold text-muted-foreground dark:text-muted-foreground">
                   {item.title}
                 </h2>
-                <p className="mt-2 text-sm text-gray-500 dark:text-gray-500">
+                <p className="mt-2 text-sm text-muted-foreground dark:text-muted-foreground">
                   {item.blurb}
                 </p>
               </div>

@@ -38,11 +38,11 @@ export function ResumeToolbar() {
   }, [])
 
   return (
-    <div className="no-print fixed left-0 right-0 top-0 z-50 border-b border-gray-200/80 bg-white/95 px-4 py-3 shadow-sm backdrop-blur-sm">
+    <div className="no-print fixed left-0 right-0 top-0 z-50 border-b border-mist/80 bg-surface/95 px-4 py-3 shadow-sm backdrop-blur-sm">
       <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-2 sm:justify-end sm:gap-3">
         <Link
           href="/"
-          className="text-sm font-medium text-gray-600 underline-offset-4 hover:text-gray-900 hover:underline"
+          className="text-sm font-medium text-muted-foreground underline-offset-4 hover:text-navy hover:underline"
         >
           ← Portfolio
         </Link>
@@ -50,19 +50,19 @@ export function ResumeToolbar() {
           type="button"
           onClick={downloadPdf}
           disabled={downloading}
-          className="rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-sky-700 disabled:opacity-60"
+          className="rounded-lg bg-navy px-4 py-2 text-sm font-medium text-cream shadow hover:bg-navy-hover disabled:opacity-60"
         >
           {downloading ? "Preparing PDF…" : "Download PDF"}
         </button>
         <button
           type="button"
           onClick={() => window.print()}
-          className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-50"
+          className="rounded-lg border border-mist bg-surface px-4 py-2 text-sm font-medium text-navy shadow-sm hover:bg-mist/30"
         >
           Print
         </button>
       </div>
-      <p className="mx-auto mt-2 max-w-3xl text-center text-[11px] leading-snug text-gray-600 sm:text-right">
+      <p className="mx-auto mt-2 max-w-3xl text-center text-[11px] leading-snug text-muted-foreground sm:text-right">
         <strong>Download PDF</strong> builds a real PDF on the server — email, GitHub, portfolio, and case-study links stay{" "}
         <strong>clickable</strong>. <strong>Print</strong> uses the browser (turn off headers/footers in print settings if
         you save that way).

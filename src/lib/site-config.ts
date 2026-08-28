@@ -7,6 +7,8 @@
  * - Custom domain: set `NEXT_PUBLIC_SITE_URL=https://your-domain.com` in Vercel
  *   so sitemap, canonicals, and OG absolute URLs use the custom host.
  */
+import { SITE_SEO } from "@/content/content"
+
 export function getSiteUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim()
   if (fromEnv) return fromEnv.replace(/\/$/, "")
@@ -18,11 +20,9 @@ export function getSiteUrl(): string {
 }
 
 export const SITE_NAME = "Nicholas Chong"
-export const SITE_TAGLINE =
-  "Full-stack developer and product engineer — scalable systems, clear requirements, and end-to-end delivery."
+export const SITE_TAGLINE = SITE_SEO.tagline
 
-export const DEFAULT_DESCRIPTION =
-  "Portfolio of Nicholas Chong: full-stack and product engineering across Next.js, React, TypeScript, Laravel, and PostgreSQL. Case studies, technical notes with architecture diagrams, and enterprise delivery."
+export const DEFAULT_DESCRIPTION = SITE_SEO.description
 
 /** Public path for the About / Person schema headshot (never used on the OG card). */
 export const HEADSHOT_PATH = "/nicholas-chong.png"

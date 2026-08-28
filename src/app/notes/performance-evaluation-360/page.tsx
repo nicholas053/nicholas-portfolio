@@ -44,7 +44,7 @@ export default function PerformanceEvaluation360Page() {
       <div>
         <Link
           href="/notes"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-navy dark:text-muted-foreground dark:hover:text-cream"
         >
           <FiArrowLeft className="h-4 w-4" aria-hidden />
           <span>Technical notes</span>
@@ -53,14 +53,14 @@ export default function PerformanceEvaluation360Page() {
 
       <header className="space-y-6 text-center">
         <div className="flex justify-center">
-          <span className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-sky-800 dark:bg-sky-900/50 dark:text-sky-200">
+          <span className="inline-flex rounded-full bg-mist/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy dark:bg-surface/50 dark:text-mist">
             Team / feature ownership
           </span>
         </div>
-        <h1 className="text-3xl font-bold leading-tight text-gray-900 dark:text-white md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl font-bold leading-tight text-navy md:text-4xl lg:text-5xl">
           End-to-End 360° Performance Evaluation Module
         </h1>
-        <p className="mx-auto max-w-2xl text-base text-gray-600 dark:text-gray-300 md:text-lg">
+        <p className="mx-auto max-w-2xl text-base text-muted-foreground dark:text-muted-foreground md:text-lg">
           Full-stack developer &amp; feature owner — annual KPI-linked 360°
           reviews across peers, managers, and external partners. I owned both
           the assignment engine / public API and the Angular experience for
@@ -69,30 +69,30 @@ export default function PerformanceEvaluation360Page() {
       </header>
 
       <section className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
-        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-gray-100 bg-gray-50 p-6 md:p-8 dark:border-gray-700 dark:bg-gray-800/50">
-          <div className="mb-2 inline-flex self-start rounded-lg bg-red-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-red-700 dark:bg-red-900/40 dark:text-red-200">
+        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-border bg-muted p-6 md:p-8">
+          <div className="label-problem self-start">
             Challenge
           </div>
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl">
+          <h2 className="text-xl font-bold text-navy md:text-2xl">
             Engine, security model, and evaluator UX
           </h2>
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+          <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
             The enterprise needed a comprehensive{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
+            <strong className="text-navy">
               360° performance review
             </strong>{" "}
             tied to annual KPIs. The work split naturally in two directions: a
             backend that could resolve{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
+            <strong className="text-navy">
               dynamic hierarchies
             </strong>
             , mint secure access for{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
+            <strong className="text-navy">
               external partner feedback without logins
             </strong>
             , and persist audit-friendly payloads; and a frontend that could
             render{" "}
-            <strong className="text-gray-800 dark:text-gray-200">
+            <strong className="text-navy">
               schema-driven evaluation forms
             </strong>{" "}
             (many question types, dense matrices) with a smooth experience on
@@ -100,63 +100,63 @@ export default function PerformanceEvaluation360Page() {
           </p>
         </div>
 
-        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-sky-100 bg-sky-50 p-6 md:p-8 dark:border-sky-800 dark:bg-sky-900/20">
-          <div className="mb-2 inline-flex self-start rounded-lg bg-sky-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-sky-800 dark:bg-sky-900/60 dark:text-sky-100">
+        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8">
+          <div className="label-solution self-start">
             Solution
           </div>
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl">
+          <h2 className="text-xl font-bold text-navy md:text-2xl">
             Backend engine, Angular forms, responsive matrices
           </h2>
-          <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+          <p className="mb-4 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
             Owned the feature end-to-end—from persistence and APIs through the
             evaluator UI.
           </p>
-          <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
+          <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
             <li>
-              <span className="font-semibold text-gray-800 dark:text-gray-200">
+              <span className="font-semibold text-navy">
                 Backend architecture:
               </span>{" "}
               Built a generation engine that{" "}
-              <strong className="text-gray-800 dark:text-gray-200">
+              <strong className="text-navy">
                 auto-matches department members
               </strong>{" "}
               and assigns form types from rank and relationship; stored answers
               in{" "}
-              <strong className="text-gray-800 dark:text-gray-200">
+              <strong className="text-navy">
                 JSONB
               </strong>
               ; exposed a{" "}
-              <strong className="text-gray-800 dark:text-gray-200">
+              <strong className="text-navy">
                 stateless, token-based public API
               </strong>{" "}
               so partners submit securely without accounts.
             </li>
             <li>
-              <span className="font-semibold text-gray-800 dark:text-gray-200">
+              <span className="font-semibold text-navy">
                 Frontend (Angular):
               </span>{" "}
               Modular app with{" "}
-              <strong className="text-gray-800 dark:text-gray-200">
+              <strong className="text-navy">
                 shared UI components
               </strong>
               . A dynamic{" "}
-              <strong className="text-gray-800 dark:text-gray-200">
+              <strong className="text-navy">
                 EvaluationFormComponent
               </strong>{" "}
               reads varying JSON schemas (flat vs. sectioned) and renders the
               right controls for each question type.
             </li>
             <li>
-              <span className="font-semibold text-gray-800 dark:text-gray-200">
+              <span className="font-semibold text-navy">
                 Responsive UX:
               </span>{" "}
               Used programmatic viewport checks (
-              <code className="rounded bg-white/80 px-1 py-0.5 text-xs dark:bg-gray-900/80">
+              <code className="rounded bg-surface/80 px-1 py-0.5 text-xs dark:bg-surface/80">
                 matchMedia
               </code>
               ) so large Likert matrices reflow into a mobile-friendly layout
               without breaking{" "}
-              <strong className="text-gray-800 dark:text-gray-200">
+              <strong className="text-navy">
                 reactive form groupings
               </strong>
               .
@@ -165,19 +165,19 @@ export default function PerformanceEvaluation360Page() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/40 md:p-10">
-        <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400">
+      <section className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-10">
+        <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">
           Impact
         </h2>
-        <p className="text-base leading-relaxed text-gray-700 dark:text-gray-300 md:text-lg">
+        <p className="text-base leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-lg">
           Delivered a{" "}
-          <strong className="text-gray-900 dark:text-gray-100">
+          <strong className="text-navy">
             fully automated, scalable HR evaluation path
           </strong>{" "}
           from cycle activation through completion. The schema-driven Angular
           surface decoupled the UI from hardcoded questionnaires, so the
           business could introduce{" "}
-          <strong className="text-gray-900 dark:text-gray-100">
+          <strong className="text-navy">
             new evaluation types through configuration
           </strong>{" "}
           instead of shipping new form screens for every change—while keeping
@@ -187,10 +187,10 @@ export default function PerformanceEvaluation360Page() {
 
       <section className="space-y-6">
         <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-navy md:text-3xl">
             Technical architecture
           </h2>
-          <p className="mx-auto mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-300 md:mx-0 md:text-base">
+          <p className="mx-auto mt-2 max-w-3xl text-sm text-muted-foreground dark:text-muted-foreground md:mx-0 md:text-base">
             Data model, admin and staff flows (including schema-driven form
             steps), then a sequence view contrasting authenticated staff calls
             with token-based partner submissions.
@@ -200,10 +200,10 @@ export default function PerformanceEvaluation360Page() {
         <PerformanceEvaluationDiagrams />
       </section>
 
-      <footer className="border-t border-gray-200 pt-10 text-center dark:border-gray-700">
+      <footer className="border-t border-mist pt-10 text-center dark:border-mist/50">
         <Link
           href="/"
-          className="text-sm font-medium text-sky-600 hover:underline dark:text-sky-400"
+          className="text-sm font-medium text-navy hover:underline dark:text-mist"
         >
           ← Back to portfolio home
         </Link>

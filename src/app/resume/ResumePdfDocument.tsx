@@ -20,8 +20,7 @@ import {
 } from "@/content/content"
 import { splitResumeAccent } from "@/lib/resume-accent"
 
-/** Tailwind sky-600 — matches portfolio accent for recruiter highlights. */
-const SKY600 = "#0284c7"
+import { THEME } from "@/lib/theme-colors"
 
 const styles = StyleSheet.create({
   page: {
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     fontSize: 9,
     fontFamily: "Helvetica",
-    color: "#18181b",
+    color: THEME.navy,
     lineHeight: 1.38,
   },
   /** Name ↔ role breathing room */
@@ -55,13 +54,13 @@ const styles = StyleSheet.create({
     fontSize: 8,
     fontWeight: "bold",
     letterSpacing: 1.2,
-    color: SKY600,
+    color: THEME.navy,
     textTransform: "uppercase",
     marginTop: 10,
     marginBottom: 5,
     paddingBottom: 3,
     borderBottomWidth: 0.5,
-    borderBottomColor: "#bae6fd",
+    borderBottomColor: THEME.mist,
   },
   body: { fontSize: 9, lineHeight: 1.4 },
   muted: { fontSize: 8, color: "#52525b", marginBottom: 4 },
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 9,
     paddingLeft: 8,
     borderLeftWidth: 2,
-    borderLeftColor: "#38bdf8",
+    borderLeftColor: THEME.navy,
     paddingTop: 1,
   },
   timelineEntryBlockFirst: {
@@ -83,9 +82,9 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   timelineDatePill: {
-    backgroundColor: "#f0f9ff",
+    backgroundColor: THEME.cream,
     borderWidth: 1,
-    borderColor: "#bae6fd",
+    borderColor: THEME.mist,
     borderRadius: 3,
     paddingVertical: 2,
     paddingHorizontal: 5,
@@ -94,12 +93,12 @@ const styles = StyleSheet.create({
   timelineDatePillText: {
     fontSize: 8.5,
     fontWeight: "bold",
-    color: "#0c4a6e",
+    color: THEME.navy,
   },
   timelineDatePillDur: {
     fontSize: 8,
     fontWeight: "normal",
-    color: "#0369a1",
+    color: THEME.navyHover,
   },
   timelineHeadlineSep: {
     fontSize: 9,
@@ -109,13 +108,13 @@ const styles = StyleSheet.create({
   timelineHeadlineRole: {
     fontSize: 9,
     fontWeight: "bold",
-    color: "#18181b",
+    color: THEME.navy,
   },
   /** Single line: keeps “Web Developer ·” and employer link on one baseline (row View misaligns Link vs Text). */
   timelineEmployerLine: {
     fontSize: 8,
     lineHeight: 1.35,
-    color: "#52525b",
+    color: THEME.mutedLight,
     marginTop: 2,
   },
   timelineEmployerLink: {
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
   timelineSummaryLead: {
     fontSize: 8.5,
     fontStyle: "italic",
-    color: "#52525b",
+    color: THEME.mutedLight,
     marginTop: 4,
     lineHeight: 1.4,
   },
@@ -142,13 +141,13 @@ const styles = StyleSheet.create({
     fontSize: 9,
     lineHeight: 1.4,
     fontWeight: "bold",
-    color: "#18181b",
+    color: THEME.navy,
   },
   /** Company name after period (rich employer row) */
   employerHeadlineName: {
     fontSize: 9,
     fontWeight: "bold",
-    color: "#18181b",
+    color: THEME.navy,
     textDecoration: "underline",
     textDecorationColor: "#18181b",
   },
@@ -156,21 +155,21 @@ const styles = StyleSheet.create({
     fontSize: 9,
     fontWeight: "bold",
     marginTop: 4,
-    color: SKY600,
+    color: THEME.navy,
   },
   eduLine: { fontSize: 9, marginTop: 5 },
   eduSub: { fontSize: 8, color: "#52525b", marginTop: 1 },
   skillsRow: { marginTop: 4, fontSize: 9, lineHeight: 1.45, color: "#27272a" },
   skillsWord: { fontSize: 9, lineHeight: 1.45, color: "#27272a" },
-  skillsAccent: { fontSize: 9, lineHeight: 1.45, color: SKY600, fontWeight: "bold" },
-  accentText: { color: SKY600, fontWeight: "bold" },
+  skillsAccent: { fontSize: 9, lineHeight: 1.45, color: THEME.navy, fontWeight: "bold" },
+  accentText: { color: THEME.navy, fontWeight: "bold" },
   inlineNoteLink: {
     fontSize: 8,
     lineHeight: 1.35,
-    color: SKY600,
+    color: THEME.navy,
     fontWeight: "bold",
     textDecoration: "underline",
-    textDecorationColor: SKY600,
+    textDecorationColor: THEME.navy,
   },
   caseBlock: {
     marginTop: 10,
@@ -191,9 +190,9 @@ const styles = StyleSheet.create({
   caseTag: { fontSize: 7, color: "#71717a", marginTop: 2, textTransform: "uppercase" },
   caseLink: {
     fontSize: 7.5,
-    color: SKY600,
+    color: THEME.navy,
     textDecoration: "underline",
-    textDecorationColor: SKY600,
+    textDecorationColor: THEME.navy,
     marginTop: 2,
     fontWeight: "bold",
   },

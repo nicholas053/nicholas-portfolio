@@ -46,7 +46,7 @@ export default function ProjectTaskSystemPage() {
       <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy transition-colors"
         >
           <FiArrowLeft className="w-4 h-4" />
           <span>Back</span>
@@ -55,7 +55,7 @@ export default function ProjectTaskSystemPage() {
       {/* Page Title */}
       <section className="text-center space-y-6">
         <h1 className="text-4xl md:text-5xl font-bold ">Project & Task Management System</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           A collaborative project management system designed for teams to track progress, make decisions, and for individuals to clearly monitor their own contributions.
         </p>
         <div className="flex items-center justify-center gap-4">
@@ -63,7 +63,7 @@ export default function ProjectTaskSystemPage() {
                 href="https://github.com/nicholas053/Wish-We-Don-t-Resign"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="px-5 py-2 rounded-xl bg-black text-white dark:bg-white dark:text-black inline-flex items-center gap-2 shadow"
+                className="px-5 py-2 rounded-xl bg-navy text-cream dark:bg-cream dark:text-navy inline-flex items-center gap-2 shadow"
             >
                 Code on Github <FiExternalLink />
             </a>
@@ -72,22 +72,18 @@ export default function ProjectTaskSystemPage() {
 
       {/* Overview */}
       <section className="grid md:grid-cols-2 gap-8 md:gap-12 pb-10">
-        <div className="space-y-4 p-8 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700">
-          <div className="w-12 h-12 bg-red-100 text-red-600 rounded-lg flex items-center justify-center text-xl mb-6">
-            <span className="font-bold">The Problem</span>
-          </div>
+        <div className="space-y-4 p-8 bg-muted rounded-2xl border border-border">
+          <div className="label-problem">The Problem</div>
           <h3 className="text-2xl font-bold">The Startup Dilemma</h3>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed">
             A friend's interior design startup needed a reliable task management system to coordinate projects. However, enterprise tools like ClickUp were too expensive for a small team. More importantly, dealing with sensitive client floor plans and design assets required strict data privacy, making them hesitant to rely on third-party public cloud SaaS.
           </p>
         </div>
 
-        <div className="space-y-4 p-8 bg-sky-50 dark:bg-sky-900/20 rounded-2xl border border-sky-100 dark:border-sky-800">
-          <div className="w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl mb-6">
-            <span className="font-bold">The Solution</span>
-          </div>
+        <div className="space-y-4 p-8 bg-card rounded-2xl border border-border">
+          <div className="label-solution">The Solution</div>
           <h3 className="text-2xl font-bold">A Self-Hosted Ecosystem</h3>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed">
             I built a lightweight, performant project management platform designed specifically for self-hosting on a custom homelab. It delivers core enterprise features—like Kanban boards, project-level voting, and granular task assignments—without the bloat, ensuring 100% data sovereignty and zero recurring SaaS costs for the startup.
           </p>
         </div>
@@ -126,20 +122,20 @@ export default function ProjectTaskSystemPage() {
       {/* Dark Mode */}
       <section className="space-y-6">
         <h2 className="text-3xl font-semibold text-center">Dark Mode</h2>
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
           The interface supports dark mode for a modern and user-friendly experience, ensuring accessibility and comfort across environments.
         </p>
       </section>
 
-      <section className="py-12 border-y border-gray-200 dark:border-gray-800 my-16">
+      <section className="py-12 border-y border-mist dark:border-mist/50 my-16">
         <h2 className="text-3xl font-semibold text-center mb-10">Engineering Spotlight</h2>
         <div className="grid md:grid-cols-2 gap-10">
           
           <div className="space-y-3">
             <h3 className="text-xl font-bold flex items-center gap-2">
-              <span className="text-sky-500">01.</span> Advanced Drag & Drop (DnD) Architecture
+              <span className="text-navy">01.</span> Advanced Drag & Drop (DnD) Architecture
             </h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Implementing the Kanban board wasn't just about UI; it required precise event handling across devices. I utilized <code>@dnd-kit/core</code> with custom sensor orchestration: <i>MouseSensors</i> for desktop precision, and <i>TouchSensors</i> with delay/tolerance constraints to allow native page scrolling on mobile without triggering accidental drags. 
               UI updates are handled optimistically on the client to ensure zero-latency feedback before syncing the new state to the PostgreSQL database.
             </p>
@@ -148,9 +144,9 @@ export default function ProjectTaskSystemPage() {
 
           <div className="space-y-3">
             <h3 className="text-xl font-bold flex items-center gap-2">
-              <span className="text-sky-500">02.</span> Complex State Lifting & Component Decoupling
+              <span className="text-navy">02.</span> Complex State Lifting & Component Decoupling
             </h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               To keep the architecture clean, I heavily decoupled the UI components. For example, when a task is moved or marked 'COMPLETE', the <code>ProjectBoard</code> computes real-time statistics (completion rates and priority distributions) and lifts this state via an <code>onStatsChange</code> callback to the parent <code>ClientProjectPage</code>. This ensures the dashboard header reflects live data without prop-drilling or relying on heavy state management libraries.
             </p>
           </div>
@@ -161,19 +157,19 @@ export default function ProjectTaskSystemPage() {
       {/* Tech Stack */}
       <section className="space-y-10">
         <h2 className="text-3xl font-semibold text-center">Tech Stack</h2>
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
           This project is powered by a modern full-stack JavaScript ecosystem, leveraging both frontend and backend technologies for performance, scalability, and developer efficiency.
         </p>
-        <div className="flex flex-wrap justify-center gap-8 text-6xl mt-8 text-gray-800 dark:text-gray-200">
-          <SiNextdotjs title="Next.js" />
-          <SiReact title="React" className="text-sky-500" />
-          <SiTailwindcss title="TailwindCSS" className="text-sky-400" />
-          <SiPrisma title="Prisma" />
-          <SiPostgresql title="PostgreSQL" className="text-blue-600" />
-          <DiNodejs title="Node.js" className="text-green-600" />
-          <SiVercel title="Vercel" />
+        <div className="flex flex-wrap justify-center gap-8 text-6xl mt-8 text-navy">
+          <SiNextdotjs title="Next.js" className="text-navy" />
+          <SiReact title="React" className="text-navy" />
+          <SiTailwindcss title="TailwindCSS" className="text-navy" />
+          <SiPrisma title="Prisma" className="text-navy" />
+          <SiPostgresql title="PostgreSQL" className="text-navy" />
+          <DiNodejs title="Node.js" className="text-navy" />
+          <SiVercel title="Vercel" className="text-navy" />
         </div>
-        <div className="max-w-3xl mx-auto text-gray-700 dark:text-gray-300 space-y-2 text-center">
+        <div className="max-w-3xl mx-auto text-muted-foreground space-y-2 text-center">
           <p><strong>Frontend:</strong> React, Next.js, Tailwind CSS</p>
           <p><strong>Backend:</strong> Node.js, Next.js API Routes, Prisma</p>
           <p><strong>Database:</strong> PostgreSQL</p>
@@ -185,22 +181,22 @@ export default function ProjectTaskSystemPage() {
       {/* Roadmap */}
       <section className="space-y-8">
         <h2 className="text-3xl font-semibold text-center">Future Roadmap</h2>
-        <div className="relative border-l border-gray-300 dark:border-gray-600 ml-4 space-y-12">
+        <div className="relative border-l border-mist dark:border-mist/50 ml-4 space-y-12">
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Gantt Chart</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Visualize task dependencies, ensuring sequential workflows are respected.
             </p>
           </div>
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Audit Trail</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               When admins remove members, the system will generate a timestamped PDF report of their contributions and comments, safeguarding transparency and fairness.
             </p>
           </div>
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Custom Categories</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Members will be able to group their projects into personal categories for easier management.
             </p>
           </div>

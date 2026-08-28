@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 import { SiteJsonLd } from "@/components/SiteJsonLd"
+import { ThemeProvider } from "@/components/ThemeProvider"
+import { ThemeToggle } from "@/components/ThemeToggle"
 import {
   DEFAULT_DESCRIPTION,
   getSiteUrl,
@@ -9,22 +11,24 @@ import {
 } from "@/lib/site-config"
 import "./globals.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
 })
 
 const siteUrl = getSiteUrl()
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f9fafb" },
-    { media: "(prefers-color-scheme: dark)", color: "#030712" },
+    { media: "(prefers-color-scheme: light)", color: "#F2F4F6" },
+    { media: "(prefers-color-scheme: dark)", color: "#313851" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -102,12 +106,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <SiteJsonLd />
-        {children}
+    <html lang="en" suppressHydrationWarning className={`${plexSans.variable} ${plexMono.variable}`}>
+      <body className="font-sans antialiased">
+        <ThemeProvider>
+          <SiteJsonLd />
+          {children}
+          <ThemeToggle />
+        </ThemeProvider>
       </body>
     </html>
   )

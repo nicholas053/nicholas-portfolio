@@ -9,7 +9,7 @@ type Props = {
   siteUrl?: string
 }
 
-const resumeAccentClass = "font-medium text-sky-600 print:text-[9pt]"
+const resumeAccentClass = "font-medium text-navy print:text-[9pt]"
 
 /** Body copy plus optional inline link to a technical note (e.g. Data Flows bullets). */
 export function ExperienceHighlightBody({ highlight: h, variant, siteUrl = "" }: Props) {
@@ -31,8 +31,8 @@ export function ExperienceHighlightBody({ highlight: h, variant, siteUrl = "" }:
   const href = variant === "resume" ? `${siteUrl}${h.technicalNotePath}` : h.technicalNotePath
   const linkClass =
     variant === "resume"
-      ? "whitespace-nowrap font-medium text-sky-600 underline decoration-sky-200 underline-offset-2 print:text-[8.75pt]"
-      : "whitespace-nowrap font-medium text-sky-600 underline-offset-2 hover:underline dark:text-sky-400"
+      ? "whitespace-nowrap font-medium text-navy underline decoration-mist underline-offset-2 print:text-[8.75pt]"
+      : "whitespace-nowrap font-medium text-navy underline-offset-2 hover:underline"
 
   return (
     <>

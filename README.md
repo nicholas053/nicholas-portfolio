@@ -20,6 +20,20 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Site URL (SEO / Open Graph)
+
+Canonical URLs, sitemap, and JSON-LD need an absolute origin via `getSiteUrl()`:
+
+1. Prefer `NEXT_PUBLIC_SITE_URL` (e.g. `https://your-domain.com`) — **set this in Vercel if you use a custom domain**.
+2. Else `VERCEL_URL` (automatic on Vercel for `*.vercel.app`).
+3. Else `http://localhost:3000`.
+
+Bare Vercel previews usually need no env. Custom domains should set `NEXT_PUBLIC_SITE_URL` so share cards and sitemap do not advertise the `*.vercel.app` host.
+
+## Headshot (Google Person / About)
+
+Drop a professional photo at `public/nicholas-chong.png`. It appears in the About section and in Person / ProfilePage JSON-LD only — **not** on the branded Open Graph share card (`/opengraph-image`).
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

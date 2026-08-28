@@ -1,4 +1,4 @@
-/** First occurrence of `highlight` in `source`, for resume/PDF recruiter accents (Tailwind sky-600 in UI). */
+/** First occurrence of `highlight` in `source`, for resume/PDF recruiter accents (navy in UI). */
 export type ResumeAccentParts = {
   before: string
   highlight: string | undefined

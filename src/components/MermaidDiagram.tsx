@@ -1,6 +1,7 @@
 "use client"
 
-import { ensureMermaidInitialized } from "@/lib/mermaid-init"
+import { adaptMermaidChart, patchMermaidSvgForTheme } from "@/lib/mermaid-chart-adapt"
+import { initMermaidForMode, useMermaidTheme } from "@/lib/use-mermaid-theme"
 import mermaid from "mermaid"
 import { useEffect, useId, useRef } from "react"
 
@@ -23,10 +24,11 @@ export function MermaidDiagram({ chart, "aria-label": ariaLabel, className }: Pr
   const panelRef = useRef<HTMLDivElement>(null)
   const baseId = useId().replace(/:/g, "")
   const renderNonce = useRef(0)
+  const themeMode = useMermaidTheme()
 
   useEffect(() => {
-    ensureMermaidInitialized()
-  }, [])
+    initMermaidForMode(themeMode)
+  }, [themeMode])
 
   useEffect(() => {
     const el = panelRef.current
@@ -37,12 +39,17 @@ export function MermaidDiagram({ chart, "aria-label": ariaLabel, className }: Pr
     const renderId = `${baseId}-mmd-single-${renderNonce.current}`
 
     el.innerHTML =
-      '<p class="py-8 text-center text-sm text-gray-500 dark:text-gray-400">Rendering diagram…</p>'
+      '<p class="py-8 text-center text-sm text-muted-foreground">Rendering diagram…</p>'
 
     void (async () => {
       try {
-        const { svg } = await mermaid.render(renderId, chart)
-        if (!cancelled) el.innerHTML = svg
+        initMermaidForMode(themeMode)
+        const chartSource = adaptMermaidChart(chart, themeMode)
+        const { svg } = await mermaid.render(renderId, chartSource)
+        if (!cancelled) {
+          el.innerHTML = svg
+          patchMermaidSvgForTheme(el, themeMode)
+        }
       } catch (err) {
         if (!cancelled) {
           const msg = err instanceof Error ? err.message : String(err)
@@ -54,7 +61,7 @@ export function MermaidDiagram({ chart, "aria-label": ariaLabel, className }: Pr
     return () => {
       cancelled = true
     }
-  }, [chart, baseId])
+  }, [chart, baseId, themeMode])
 
   return (
     <div
@@ -63,7 +70,7 @@ export function MermaidDiagram({ chart, "aria-label": ariaLabel, className }: Pr
       aria-label={ariaLabel ?? "Mermaid diagram"}
       className={
         className ??
-        "min-h-[220px] overflow-x-auto rounded-xl border border-gray-200 bg-white p-3 shadow-sm sm:p-4 dark:border-gray-700 dark:bg-gray-900 [&_svg]:max-w-none [&_svg]:min-w-0"
+        "min-h-[220px] overflow-x-auto rounded-xl border border-border bg-card p-3 shadow-sm sm:p-4 [&_svg]:max-w-none [&_svg]:min-w-0"
       }
     />
   )

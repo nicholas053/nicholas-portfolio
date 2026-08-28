@@ -30,8 +30,7 @@ async function loadGoogleFont(family: string, weight: number) {
 }
 
 /**
- * Modern personal-portfolio OG: dark canvas, type hierarchy, muted neutrals.
- * Font: Plus Jakarta Sans — contemporary professional sans (not default system).
+ * Portfolio OG: navy canvas with cream type hierarchy.
  */
 export default async function Image() {
   const [fontMedium, fontBold] = await Promise.all([
@@ -50,7 +49,7 @@ export default async function Image() {
           overflow: "hidden",
           fontFamily: '"Plus Jakarta Sans"',
           background:
-            "linear-gradient(145deg, #09090b 0%, #18181b 55%, #0c0c0e 100%)",
+            "linear-gradient(145deg, #313851 0%, #252B3F 55%, #313851 100%)",
         }}
       >
         <div
@@ -62,7 +61,7 @@ export default async function Image() {
             height: "520px",
             borderRadius: "9999px",
             background:
-              "radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%)",
+              "radial-gradient(circle, rgba(194,203,211,0.15) 0%, rgba(194,203,211,0) 70%)",
           }}
         />
 
@@ -84,7 +83,7 @@ export default async function Image() {
               fontWeight: 500,
               letterSpacing: "0.28em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(246,243,237,0.55)",
             }}
           >
             Portfolio
@@ -105,7 +104,7 @@ export default async function Image() {
                 fontWeight: 700,
                 letterSpacing: "-0.045em",
                 lineHeight: 1.05,
-                color: "#fafafa",
+                color: "#F6F3ED",
               }}
             >
               Nicholas Chong
@@ -117,7 +116,7 @@ export default async function Image() {
                 fontSize: "30px",
                 fontWeight: 500,
                 letterSpacing: "-0.01em",
-                color: "#a1a1aa",
+                color: "#C2CBD3",
                 lineHeight: 1.35,
               }}
             >
@@ -130,7 +129,7 @@ export default async function Image() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              borderTop: "1px solid rgba(255,255,255,0.1)",
+              borderTop: "1px solid rgba(194,203,211,0.35)",
               paddingTop: "28px",
             }}
           >
@@ -139,7 +138,7 @@ export default async function Image() {
                 display: "flex",
                 fontSize: "20px",
                 fontWeight: 500,
-                color: "#71717a",
+                color: "#C2CBD3",
               }}
             >
               Systems · Requirements · Delivery
@@ -149,7 +148,7 @@ export default async function Image() {
                 display: "flex",
                 fontSize: "20px",
                 fontWeight: 500,
-                color: "#a1a1aa",
+                color: "#C2CBD3",
               }}
             >
               Nic

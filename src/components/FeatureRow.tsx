@@ -21,7 +21,7 @@ export default function FeatureRow({
       {/* Always text first on mobile */}
       <div className="space-y-4 order-1 md:order-none">
         <h2 className="text-3xl font-semibold">{title}</h2>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{description}</p>
+        <p className="text-muted-foreground leading-relaxed">{description}</p>
       </div>
 
       {videoSrc ? (
@@ -36,7 +36,7 @@ export default function FeatureRow({
           aria-label={`${title} demo video`}
         />
       ) : (
-        <div className="rounded-2xl border border-dashed border-gray-300 dark:border-gray-700 p-8 text-center text-gray-500 order-2 md:order-none">
+        <div className="rounded-2xl border border-dashed border-mist p-8 text-center text-muted-foreground order-2 md:order-none">
           Demo coming soon
         </div>
       )}

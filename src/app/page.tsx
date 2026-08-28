@@ -4,12 +4,36 @@ import Link from "next/link"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { ExperienceHighlightBody } from "@/components/ExperienceHighlightBody"
-import { EDUCATION, EXPERIENCE_TIMELINE, experienceUsesEmployerRichBlock, HERO, PERSON } from "@/content/content"
+import {
+  EDUCATION,
+  EXPERIENCE_TIMELINE,
+  experienceUsesEmployerRichBlock,
+  HERO,
+  HOME_CONTACT,
+  HOME_CTA,
+  HOME_LOKATECH,
+  HOME_NDA_FEATURE,
+  HOME_PHILOSOPHY,
+  HOME_PHILOSOPHY_INSTAGRAM_LABEL,
+  HOME_PROJECTS,
+  HOME_PROJECTS_SECTION_TITLE,
+  HOME_TECH_NOTES_INTRO,
+  HOME_WORKFLOW,
+  LOKATECH,
+  PERSON,
+  TECH_STACK_MARQUEE_CAPTION,
+} from "@/content/content"
 import { marqueeTechIcons } from "@/content/tech-stack-marquee"
-import { FaProjectDiagram, FaWhatsapp, FaInstagram, FaLock, FaUsers, FaCode } from "react-icons/fa"
+import { FaProjectDiagram, FaWhatsapp, FaLock, FaUsers, FaCode } from "react-icons/fa"
 import { BiLogoGmail } from "react-icons/bi"
 import { SiGithub } from "react-icons/si"
 // import HeroLines from "@/components/HeroLines"
+
+const WORKFLOW_ICONS = {
+  users: FaUsers,
+  diagram: FaProjectDiagram,
+  code: FaCode,
+} as const
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState("home")
@@ -185,10 +209,10 @@ export default function HomePage() {
   return (
     <main className="relative">
       {/* Sticky Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-white shadow z-50">
+      <nav className="fixed top-0 left-0 w-full z-50 border-b border-border bg-card/95 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
-          <button onClick={() => scrollTo("home")} className="font-bold text-lg">Nic</button>
-          <div className="flex gap-6">
+          <button onClick={() => scrollTo("home")} className="font-bold text-lg text-navy">Nic</button>
+          <div className="flex items-center gap-4 sm:gap-6">
             {[
               { id: "home", label: "Home" },
               { id: "projects", label: "Projects" },
@@ -198,7 +222,11 @@ export default function HomePage() {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`hover:text-sky-500 ${activeSection === link.id ? "text-sky-500 font-semibold" : ""}`}
+                className={`transition-colors hover:text-navy ${
+                  activeSection === link.id
+                    ? "text-navy font-semibold underline decoration-mist underline-offset-4"
+                    : "text-muted-foreground"
+                }`}
               >
                 {link.label}
               </button>
@@ -211,22 +239,23 @@ export default function HomePage() {
       <motion.section id="home"
         // onViewportEnter={() => setActiveSection("home")}
         // viewport={{ margin: "-40% 0px -40% 0px" }}
-        className="bg-gray-50 min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
+        className="bg-background min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
         {/* <HeroLines /> */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold"
+          className="text-4xl md:text-6xl font-bold text-navy"
         >
-          {HERO.title}
+          <span className="block">{HERO.greeting}</span>
+          <span className="mt-2 block text-2xl font-semibold md:text-4xl">{HERO.roleLine}</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-xl md:text-2xl font-medium text-gray-800 max-w-3xl"
+          className="text-xl md:text-2xl font-medium text-navy max-w-3xl"
         >
           {HERO.lead}
         </motion.p>
@@ -235,7 +264,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-lg text-gray-600 max-w-2xl"
+          className="text-lg text-muted-foreground max-w-2xl"
         >
           My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
         </motion.p> */}
@@ -250,75 +279,51 @@ export default function HomePage() {
             <button
               type="button"
               onClick={() => scrollTo("projects")}
-              className="order-1 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-transparent bg-sky-500 px-3 py-2.5 text-center text-xs font-medium leading-tight text-white shadow transition hover:bg-sky-600 sm:order-1 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+              className="order-1 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-transparent bg-navy px-3 py-2.5 text-center text-xs font-medium leading-tight text-cream shadow transition hover:bg-navy-hover sm:order-1 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
             >
-              View My Work
+              {HOME_CTA.seeProjects}
             </button>
             <button
               type="button"
               onClick={() => scrollTo("contact")}
-              className="order-2 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-gray-300 px-3 py-2.5 text-center text-xs font-medium leading-tight transition hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800/50 sm:order-3 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+              className="order-2 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-border bg-card px-3 py-2.5 text-center text-xs font-medium leading-tight text-navy transition hover:bg-muted sm:order-3 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
             >
-              Contact Me
+              {HOME_CTA.contact}
             </button>
             <Link
               href="/notes"
-              className="order-3 col-span-2 inline-flex min-h-[2.75rem] w-full items-center justify-center whitespace-nowrap rounded-xl border border-gray-300 px-3 py-2.5 text-center text-xs font-medium leading-tight text-gray-800 transition hover:bg-gray-100 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800/50 sm:order-2 sm:col-span-1 sm:min-h-[3rem] sm:w-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+              className="order-3 col-span-2 inline-flex min-h-[2.75rem] w-full items-center justify-center whitespace-nowrap rounded-xl border border-border bg-card px-3 py-2.5 text-center text-xs font-medium leading-tight text-navy transition hover:bg-muted sm:order-2 sm:col-span-1 sm:min-h-[3rem] sm:w-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
             >
-              How I Solve Problems
+              {HOME_CTA.technicalNotes}
             </Link>
           </div>
-          <p className="max-w-md text-center text-xs text-gray-500 dark:text-gray-400">
-            Technical notes: architecture write-ups, refactors, and assessments — with diagrams.
+          <p className="max-w-md text-center text-xs text-muted-foreground dark:text-muted-foreground">
+            {HERO.notesHint}
           </p>
         </motion.div>
       </motion.section>
 
-      <motion.section className="py-20 bg-white px-4">
+      <motion.section className="py-20 bg-muted px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
-            <h2 className="text-xs md:text-sm font-bold tracking-widest text-sky-500 uppercase">My Workflow</h2>
-            <h3 className="text-2xl md:text-3xl font-bold mt-2">More than just writing code.</h3>
+            <h2 className="text-2xl md:text-3xl font-bold text-navy">{HOME_WORKFLOW.title}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 relative">
-
-            <div className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
-              <div className="flex-shrink-0 w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0">
-                <FaUsers />
-              </div>
-              <div>
-                <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-gray-900">Requirement Engineering</h4>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  Before writing a single line of code, I proactively clarify ambiguous client requirements, ensuring the team builds the <i>right</i> product, not just <i>any</i> product.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
-              <div className="flex-shrink-0 w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0">
-                <FaProjectDiagram />
-              </div>
-              <div>
-                <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-gray-900">Architecture & Logic</h4>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  Proficient in translating complex business logic into clear Workflow and Sequence Diagrams, aligning stakeholders and developers on technical feasibility.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
-              <div className="flex-shrink-0 w-12 h-12 bg-sky-100 text-sky-600 rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0">
-                <FaCode />
-              </div>
-              <div>
-                <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-gray-900">Execution & Delivery</h4>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                  Delivering pixel-perfect, maintainable code while simultaneously overseeing cross-functional communication to prevent project bottlenecks.
-                </p>
-              </div>
-            </div>
-
+            {HOME_WORKFLOW.steps.map((step) => {
+              const Icon = WORKFLOW_ICONS[step.icon]
+              return (
+                <div key={step.title} className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
+                  <div className="flex-shrink-0 w-12 h-12 bg-mist/40 text-navy rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0 dark:bg-mist/25">
+                    <Icon />
+                  </div>
+                  <div>
+                    <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-navy">{step.title}</h4>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{step.body}</p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </motion.section>
@@ -327,47 +332,35 @@ export default function HomePage() {
       <motion.section id="projects"
         // onViewportEnter={() => setActiveSection("projects")}
         // viewport={{ margin: "-40% 0px -40% 0px" }}
-        className="py-24 max-w-6xl mx-auto px-4 space-y-12">
+        className="py-24 max-w-6xl mx-auto px-4 space-y-12 bg-background">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center">Selected Works & Impacts</motion.h2>
+          className="text-3xl md:text-4xl font-bold text-center">{HOME_PROJECTS_SECTION_TITLE}</motion.h2>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="w-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md dark:border-gray-700 dark:bg-gray-900/30">
+          className="w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:shadow-md">
           <div className="flex flex-col items-start gap-5 p-5 md:flex-row md:gap-8 md:p-6">
             <div className="shrink-0 space-y-2 md:max-w-[220px]">
-              <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-700 dark:bg-gray-800 dark:text-gray-200">
-                <FaLock className="text-gray-500" aria-hidden /> Confidential / NDA
+              <div className="inline-flex items-center gap-2 rounded-full bg-mist/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground dark:bg-surface">
+                <FaLock className="text-muted-foreground" aria-hidden /> {HOME_NDA_FEATURE.badge}
               </div>
-              <h3 className="text-lg font-bold leading-snug text-gray-900 dark:text-white md:text-xl">
-                Enterprise system turnaround
+              <h3 className="text-lg font-bold leading-snug text-navy md:text-xl">
+                {HOME_NDA_FEATURE.title}
               </h3>
-              <p className="text-xs font-medium text-gray-600 dark:text-gray-300 md:text-sm">
-                Role: Tech BA &amp; front-end dev
+              <p className="text-xs font-medium text-muted-foreground dark:text-muted-foreground md:text-sm">
+                {HOME_NDA_FEATURE.role}
               </p>
             </div>
 
-            <div className="min-w-0 flex-1 space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-              <p>
-                Joined mid-flight on a confidential enterprise CRM where logic and
-                expectations had diverged. I stopped build-on-bad-assumptions,
-                led realignment on scope, translated ambiguity into{" "}
-                <strong className="text-gray-800 dark:text-gray-200">
-                  sequence diagrams and actionable work
-                </strong>
-                , and kept{" "}
-                <strong className="text-gray-800 dark:text-gray-200">
-                  front-end architecture
-                </strong>{" "}
-                moving while advising client syncs on feasibility.
-              </p>
-              <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-gray-100 pt-3 text-sm dark:border-gray-700">
+            <div className="min-w-0 flex-1 space-y-3 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
+              <p>{HOME_NDA_FEATURE.body}</p>
+              <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-mist pt-3 text-sm dark:border-mist/50">
                 <Link
-                  href="/notes/flexible-financial-settlement"
-                  className="font-semibold text-sky-600 hover:underline dark:text-sky-400"
+                  href={HOME_NDA_FEATURE.financeNoteHref}
+                  className="font-semibold text-navy hover:underline dark:text-mist"
                 >
-                  Finance architecture note →
+                  {HOME_NDA_FEATURE.financeNoteLabel}
                 </Link>
-                <Link href="/notes" className="font-medium text-gray-700 hover:underline dark:text-gray-200">
+                <Link href="/notes" className="font-medium text-muted-foreground hover:underline">
                   All technical notes →
                 </Link>
               </div>
@@ -382,115 +375,88 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-8 hide-scrollbar -mx-4 px-4 md:mx-0 md:flex-wrap md:justify-center md:gap-8 md:overflow-visible md:px-0"
         >
-          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
-            <div className="flex-grow space-y-4">
-              <h3 className="text-xl font-bold">LokaTech — Internal Operations Platform</h3>
-              <p className="text-gray-600">Agency ops monorepo: rules-based pricing, collaborative scope review portal, project-first billing, and branded PDF generation.</p>
+          {HOME_PROJECTS.map((project) => (
+            <div
+              key={project.linkPath}
+              className="flex w-[85%] shrink-0 snap-center flex-col portfolio-card sm:w-[60%] md:w-[45%] lg:w-[30%]"
+            >
+              <div className="flex-grow space-y-4">
+                <h3 className="text-xl font-bold">{project.title}</h3>
+                <p className="text-muted-foreground">{project.description}</p>
+              </div>
+              <Link href={project.linkPath} className="text-navy font-medium mt-6 inline-block hover:underline dark:text-mist">
+                {project.linkLabel}
+              </Link>
             </div>
-            <a href="/projects/lokatech" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </div>
-
-          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
-            <div className="flex-grow space-y-4">
-              <h3 className="text-xl font-bold">What I Applied</h3>
-              <p className="text-gray-600">Personal ATS and career prep: applications, interview pipeline, JD-grounded Gemini assets, and follow-up nudges. Live on Vercel.</p>
-            </div>
-            <a href="/projects/what-i-applied" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </div>
-
-          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
-            <div className="flex-grow space-y-4">
-              <h3 className="text-xl font-bold">Church Management System</h3>
-              <p className="text-gray-600">Event registration, attendance tracking, outing requests, and role-based administration.</p>
-            </div>
-            <a href="/projects/church-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </div>
-
-          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
-            <div className="flex-grow space-y-4">
-              <h3 className="text-xl font-bold">Task Management System</h3>
-              <p className="text-gray-600">A collaborative platform with task assignment, drag-and-drop stages, comments, votes, and dashboards.</p>
-            </div>
-            <a href="/projects/task-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </div>
-
-          <div className="flex w-[85%] shrink-0 snap-center flex-col rounded-2xl border bg-white p-6 transition hover:shadow-lg sm:w-[60%] md:w-[45%] lg:w-[30%]">
-            <div className="flex-grow space-y-4">
-              <h3 className="text-xl font-bold">E-commerce Platform</h3>
-              <p className="text-gray-600">Full-stack platform featuring JWT auth, cart checkout, order management, and admin inventory dashboard.</p>
-            </div>
-            <a href="/projects/ecommerce-system" className="text-sky-500 font-medium mt-6 inline-block hover:underline">Read Case Study →</a>
-          </div>
+          ))}
         </motion.div>
-
-        <div className="text-center">
-          <button onClick={() => scrollTo("about")} className="px-5 py-3 rounded-xl bg-sky-500 text-white shadow">Learn More About Me</button>
-        </div>
       </motion.section>
 
       {/* About Section */}
       <motion.section id="about"
         // onViewportEnter={() => setActiveSection("about")}
         // viewport={{ margin: "-40% 0px -40% 0px" }}
-        className="py-24 px-4 bg-gray-50">
+        className="py-24 px-4 bg-muted">
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</motion.h2>
 
         <div className="max-w-4xl mx-auto space-y-12">
-          <div className="relative border-l border-gray-300 pl-6">
+          <div className="relative border-l border-mist pl-6">
             {EXPERIENCE_TIMELINE.map((item, i) => (
               <motion.div key={item.period} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }}
                 className="mb-8">
                 {!experienceUsesEmployerRichBlock(item) ? (
-                  <div className="font-bold text-gray-900 dark:text-gray-100">
+                  <div className="font-bold text-navy">
                     {item.roleTitle ? (
                       <>
                         {item.period}
                         {item.durationLabel ? (
-                          <span className="font-normal text-gray-500 dark:text-gray-400"> · {item.durationLabel}</span>
+                          <span className="font-normal text-muted-foreground dark:text-muted-foreground"> · {item.durationLabel}</span>
                         ) : null}{" "}
-                        <span className="font-normal text-gray-500 dark:text-gray-400">|</span> {item.roleTitle}
+                        <span className="font-normal text-muted-foreground dark:text-muted-foreground">|</span> {item.roleTitle}
                       </>
                     ) : (
                       <>
                         {item.period}
                         {item.durationLabel ? (
-                          <span className="font-normal text-gray-500 dark:text-gray-400"> · {item.durationLabel}</span>
+                          <span className="font-normal text-muted-foreground dark:text-muted-foreground"> · {item.durationLabel}</span>
                         ) : null}
                       </>
                     )}
                   </div>
                 ) : null}
                 {item.employer && experienceUsesEmployerRichBlock(item) ? (
-                  <div className="space-y-3 text-gray-600 dark:text-gray-300">
-                    <p className="flex flex-wrap items-baseline gap-x-1.5 text-base text-gray-900 dark:text-gray-100">
-                      <span className="font-bold text-gray-900 dark:text-gray-100">
+                  <div className="space-y-3 text-muted-foreground dark:text-muted-foreground">
+                    <p className="flex flex-wrap items-baseline gap-x-1.5 text-base text-navy">
+                      <span className="font-bold text-navy">
                         {item.period}
                         {item.durationLabel ? (
-                          <span className="font-normal text-gray-500 dark:text-gray-400"> · {item.durationLabel}</span>
+                          <span className="font-normal text-muted-foreground dark:text-muted-foreground"> · {item.durationLabel}</span>
                         ) : null}
                       </span>
-                      <span className="select-none font-normal text-gray-500 dark:text-gray-400" aria-hidden>
+                      <span className="select-none font-normal text-muted-foreground dark:text-muted-foreground" aria-hidden>
                         |
                       </span>
                       <a
                         href={item.employer.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-bold text-sky-600 hover:text-sky-700 dark:text-white dark:hover:text-sky-300"
+                        className="font-bold text-navy hover:text-navy-hover"
                       >
                         {item.employer.name}
                       </a>
                     </p>
                     {item.jobTitle ? (
-                      <p className="text-sm font-bold leading-snug text-gray-900 dark:text-gray-100">{item.jobTitle}</p>
+                      <p className="text-sm font-bold leading-snug text-navy">{item.jobTitle}</p>
                     ) : null}
                     {item.summaryLead ? <p className="italic leading-relaxed">{item.summaryLead}</p> : null}
                     {item.highlights?.length ? (
                       <ul className="list-disc space-y-3 pl-5 leading-relaxed">
-                        {item.highlights.map((h) => (
+                        {item.highlights
+                          .filter((h) => h.label !== "Tech Stack:")
+                          .map((h) => (
                           <li key={h.label}>
-                            <span className="text-gray-800 dark:text-gray-200">{h.label}</span>{" "}
+                            <span className="text-navy">{h.label}</span>{" "}
                             <ExperienceHighlightBody highlight={h} variant="home" />
                           </li>
                         ))}
@@ -498,44 +464,46 @@ export default function HomePage() {
                     ) : null}
                   </div>
                 ) : item.employer ? (
-                  <p className="mt-1 text-gray-600 dark:text-gray-300">
+                  <p className="mt-1 text-muted-foreground dark:text-muted-foreground">
                     Web Developer at{" "}
                     <a
                       href={item.employer.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-sky-600 dark:text-sky-400"
+                      className="font-medium text-navy dark:text-mist"
                     >
                       {item.employer.name}
                     </a>
                     . {item.body}
                   </p>
                 ) : item.highlights?.length ? (
-                  <div className="mt-2 space-y-3 text-gray-600 dark:text-gray-300">
+                  <div className="mt-2 space-y-3 text-muted-foreground dark:text-muted-foreground">
                     {item.summaryLead ? <p className="italic leading-relaxed">{item.summaryLead}</p> : null}
                     <ul className="list-disc space-y-3 pl-5">
-                      {item.highlights.map((h) => (
+                      {item.highlights
+                        .filter((h) => h.label !== "Tech Stack:")
+                        .map((h) => (
                         <li key={h.label} className="leading-relaxed">
-                          <span className="font-semibold text-gray-800 dark:text-gray-200">{h.label}</span>{" "}
+                          <span className="font-semibold text-navy">{h.label}</span>{" "}
                           <ExperienceHighlightBody highlight={h} variant="home" />
                         </li>
                       ))}
                     </ul>
                   </div>
                 ) : (
-                  <p className="mt-1 text-gray-600 dark:text-gray-300">{item.body}</p>
+                  <p className="mt-1 text-muted-foreground dark:text-muted-foreground">{item.body}</p>
                 )}
               </motion.div>
             ))}
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white md:text-xl">Education</h3>
-            <ul className="mt-4 space-y-3 border-l border-gray-300 pl-6">
+            <h3 className="text-lg font-bold text-navy md:text-xl">Education</h3>
+            <ul className="mt-4 space-y-3 border-l border-mist pl-6">
               {EDUCATION.map((e) => (
-                <li key={e.institution} className="text-gray-600">
-                  <span className="font-semibold text-gray-800">{e.credential}</span>
-                  {e.note ? <span className="text-gray-500"> — {e.note}</span> : null}
+                <li key={e.institution} className="text-muted-foreground">
+                  <span className="font-semibold text-navy">{e.credential}</span>
+                  {e.note ? <span className="text-muted-foreground"> — {e.note}</span> : null}
                   <div className="text-sm">
                     {e.institution} · {e.years}
                   </div>
@@ -548,50 +516,50 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900/40 md:p-8"
+            className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8"
           >
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white md:text-xl">Technical notes</h3>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
-              Same corporate stories as above, with more depth than resume bullets—each links to a full write-up when you want the architecture narrative.
+            <h3 className="text-lg font-bold text-navy md:text-xl">Technical notes</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
+              {HOME_TECH_NOTES_INTRO}
             </p>
-            <ul className="mt-4 space-y-3 border-l border-gray-200 pl-4 text-sm leading-relaxed text-gray-700 dark:border-gray-600 dark:text-gray-300 md:text-base">
+            <ul className="mt-4 space-y-3 border-l border-mist pl-4 text-sm leading-relaxed text-muted-foreground dark:border-mist/50 dark:text-muted-foreground md:text-base">
               <li>
                 <Link
                   href="/notes/flexible-financial-settlement"
-                  className="font-semibold text-sky-600 hover:underline dark:text-sky-400"
+                  className="font-semibold text-navy hover:underline dark:text-mist"
                 >
                   Flexible financial settlement
                 </Link>
-                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
                 Finance “shopping cart” batches, consolidated payment vouchers, commission states (NDA).
               </li>
               <li>
-                <Link href="/notes/performance-evaluation-360" className="font-semibold text-sky-600 hover:underline dark:text-sky-400">
+                <Link href="/notes/performance-evaluation-360" className="font-semibold text-navy hover:underline dark:text-mist">
                   360° performance evaluation
                 </Link>
-                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
                 Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.
               </li>
               <li>
                 <Link
                   href="/notes/frontend-architecture-refactoring"
-                  className="font-semibold text-sky-600 hover:underline dark:text-sky-400"
+                  className="font-semibold text-navy hover:underline dark:text-mist"
                 >
                   Frontend architecture refactoring
                 </Link>
-                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
                 Unified dynamic forms, shared library, RBAC across admin and agent portals.
               </li>
               <li>
-                <Link href="/notes/fullstack-assessment-debugging" className="font-semibold text-sky-600 hover:underline dark:text-sky-400">
+                <Link href="/notes/fullstack-assessment-debugging" className="font-semibold text-navy hover:underline dark:text-mist">
                   Full-stack assessment reflection
                 </Link>
-                <span className="text-gray-500 dark:text-gray-400"> — </span>
+                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
                 Pooling, infinite scroll stability, a live merge-order bug, and a transparent post-interview follow-up.
               </li>
             </ul>
             <p className="mt-5 text-sm">
-              <Link href="/notes" className="font-semibold text-sky-600 hover:underline dark:text-sky-400">
+              <Link href="/notes" className="font-semibold text-navy hover:underline dark:text-mist">
                 All technical notes →
               </Link>
             </p>
@@ -601,35 +569,29 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-sky-100 bg-white p-6 shadow-sm dark:border-sky-900/40 dark:bg-gray-900/30 md:p-8"
+            className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8"
           >
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white md:text-xl">
-              Client &amp; Project Work — LokaTech
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300 md:text-base">
-              Alongside my portfolio here, I run{" "}
-              <span className="text-sky-600 dark:text-sky-200 font-medium">LokaTech</span>
-              , my own practice for freelance and scoped product engagements — from
-              discovery and builds to ongoing support. If you are looking to hire
-              for a client project, that is the best place to start.
+            <h3 className="text-lg font-bold text-navy md:text-xl">{HOME_LOKATECH.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
+              {HOME_LOKATECH.body}
             </p>
             <a
-              href="https://lokatech.co"
+              href={LOKATECH.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:underline md:text-base dark:text-sky-400"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline md:text-base dark:text-mist"
             >
-              Visit lokatech.co →
+              {HOME_LOKATECH.linkLabel}
             </a>
           </motion.div> */}
         </div>
 
         {/* Tech Stack Section */}
-        <motion.div className="mt-20 max-w-6xl mx-auto bg-gray-50">
+        <motion.div className="mt-20 max-w-6xl mx-auto">
           <h3 className="text-2xl font-semibold text-center mb-6">Tech Stack</h3>
 
-          <div className="relative overflow-hidden p-6 bg-transparent">
-            <div className="marquee-wrapper">
+          <div className="overflow-hidden p-6">
+            <div className="marquee-wrapper mx-auto max-w-2xl md:max-w-3xl">
               <div
                 ref={trackRef}
                 className="marquee-track flex items-center gap-8 will-change-transform"
@@ -653,14 +615,45 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32" style={{ background: "linear-gradient(to right, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0))" }} />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32" style={{ background: "linear-gradient(to left, rgba(249, 250, 251, 1), rgba(249, 250, 251, 0))" }} />
-
-            <p className="mt-4 text-center text-sm text-gray-600">Core tools I use for building reliable, maintainable web apps.</p>
+            <p className="mt-4 text-center text-sm text-muted-foreground">{TECH_STACK_MARQUEE_CAPTION}</p>
           </div>
 
           <style>{`
-            .marquee-wrapper { overflow: hidden; }
+            .marquee-wrapper {
+              overflow: hidden;
+              -webkit-mask-image: linear-gradient(
+                to right,
+                transparent,
+                black 1.25rem,
+                black calc(100% - 1.25rem),
+                transparent
+              );
+              mask-image: linear-gradient(
+                to right,
+                transparent,
+                black 1.25rem,
+                black calc(100% - 1.25rem),
+                transparent
+              );
+            }
+            @media (min-width: 768px) {
+              .marquee-wrapper {
+                -webkit-mask-image: linear-gradient(
+                  to right,
+                  transparent,
+                  black 2.5rem,
+                  black calc(100% - 2.5rem),
+                  transparent
+                );
+                mask-image: linear-gradient(
+                  to right,
+                  transparent,
+                  black 2.5rem,
+                  black calc(100% - 2.5rem),
+                  transparent
+                );
+              }
+            }
             .marquee-track { display:flex; align-items:center; gap:2rem; 
                              /* GPU/compose hints to reduce flicker/jank */
                              backface-visibility: hidden;
@@ -678,26 +671,18 @@ export default function HomePage() {
 
         {/* Personal philosophy */}
         <div className="mt-20 max-w-3xl mx-auto text-center">
-          <motion.p className="italic text-gray-700">
-            “I enjoy solving problems with technology and creating tools that help communities work more effectively.
-            Outside of coding, I also explore philosophy writing and photography — both of which influence my design thinking and creativity.”
-          </motion.p>
-        </div>
-
-        <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-          <button
-            type="button"
-            onClick={() => scrollTo("projects")}
-            className="inline-flex min-h-[2.75rem] w-full max-w-xs items-center justify-center rounded-xl border border-transparent bg-sky-500 px-5 py-3 text-sm font-medium text-white shadow transition hover:bg-sky-600 sm:w-auto sm:min-h-[3rem] sm:text-base"
-          >
-            View My Work
-          </button>
-          <Link
-            href="/notes"
-            className="inline-flex min-h-[2.75rem] w-full max-w-xs items-center justify-center whitespace-nowrap rounded-xl border border-gray-300 px-5 py-3 text-sm font-medium text-gray-800 transition hover:bg-gray-100 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800/50 sm:w-auto sm:min-h-[3rem] sm:text-base"
-          >
-            How I Solve Problems
-          </Link>
+          <motion.p className="italic text-muted-foreground">{HOME_PHILOSOPHY}</motion.p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            <a
+              href={`https://www.instagram.com/${PERSON.instagramHandle}`}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-navy hover:underline dark:text-mist"
+            >
+              {HOME_PHILOSOPHY_INSTAGRAM_LABEL}
+            </a>
+            {" "}(@{PERSON.instagramHandle})
+          </p>
         </div>
       </motion.section>
 
@@ -706,7 +691,7 @@ export default function HomePage() {
         id="contact"
         // onViewportEnter={() => setActiveSection("contact")}
         // viewport={{ margin: "-30% 0px -30% 0px" }}
-        className="py-24 px-4 max-w-3xl mx-auto text-center space-y-6"
+        className="py-24 px-4 max-w-3xl mx-auto text-center space-y-6 bg-background"
       >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -716,86 +701,65 @@ export default function HomePage() {
         >
           Let’s Connect
         </motion.h2>
-        <p className="text-gray-600">Looking for a problem solver who understands both Code and Business Logic? Let&apos;s chat.</p>
+        <p className="text-muted-foreground">{HOME_CONTACT.lead}</p>
 
-        {/* <div className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 text-left shadow-sm dark:border-gray-700 dark:bg-gray-800/40">
-          <p className="text-sm font-semibold text-gray-900 dark:text-white">
+        {/* <div className="mx-auto max-w-xl rounded-2xl border border-mist bg-cream px-5 py-4 text-left shadow-sm dark:border-mist/50 dark:bg-surface/40">
+          <p className="text-sm font-semibold text-navy">
             Hiring for a client or product?
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
             I operate my independent business through{" "}
-            <span className="text-sky-600 dark:text-sky-200 font-medium">LokaTech</span>
+            <span className="text-navy dark:text-mist font-medium">LokaTech</span>
             . For services, scope, and how we can work together, open the site below.
           </p>
           <a
             href="https://lokatech.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:underline dark:text-sky-400"
+            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline dark:text-mist"
           >
             lokatech.co →
           </a>
         </div> */}
 
-        <div className="mt-6 grid grid-cols-2 gap-4 md:flex md:flex-row md:items-center md:justify-center md:gap-2">
-          {/* 'grid grid-cols-2 gap-4' applies on mobile.
-            'md:flex md:flex-row ...' overrides it on medium screens and up.
-          */}
-
-          <a href={`mailto:${PERSON.email}`} className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <BiLogoGmail className="w-8 h-8 text-sky-500 flex-shrink-0" />
+        <div className="mt-6 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+          <a href={`mailto:${PERSON.email}`} className="w-full sm:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
+            <BiLogoGmail className="w-8 h-8 text-navy flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">Gmail</div>
-              <div className="text-xs text-gray-600">{PERSON.email.split("@")[0]}</div>
+              <div className="text-xs text-muted-foreground">{PERSON.email.split("@")[0]}</div>
             </div>
           </a>
 
-          <a href={`https://github.com/${PERSON.githubUsername}`} target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <SiGithub className="w-8 h-8 text-sky-500 flex-shrink-0" />
+          <a href={`https://github.com/${PERSON.githubUsername}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
+            <SiGithub className="w-8 h-8 text-navy flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">GitHub</div>
-              <div className="text-xs text-gray-600">{PERSON.githubUsername}</div>
+              <div className="text-xs text-muted-foreground">{PERSON.githubUsername}</div>
             </div>
           </a>
 
-          <a href={`https://wa.me/${PERSON.phone.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <FaWhatsapp className="w-8 h-8 text-sky-500 flex-shrink-0" />
+          <a href={`https://wa.me/${PERSON.phone.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
+            <FaWhatsapp className="w-8 h-8 text-navy flex-shrink-0" />
             <div className="text-left">
               <div className="text-sm font-semibold">WhatsApp</div>
-              <div className="text-xs text-gray-600">{PERSON.phone}</div>
-            </div>
-          </a>
-
-          <a href={`https://www.instagram.com/${PERSON.instagramHandle}`} target="_blank" rel="noreferrer" className="w-full md:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <FaInstagram className="w-8 h-8 text-sky-500 flex-shrink-0" />
-            <div className="text-left">
-              <div className="text-sm font-semibold">Instagram</div>
-              <div className="text-xs text-gray-600">{PERSON.instagramHandle}</div>
+              <div className="text-xs text-muted-foreground">{PERSON.phone}</div>
             </div>
           </a>
         </div>
 
-        {/* This button section is unchanged */}
         <div className="mt-8 flex flex-col items-stretch justify-center gap-4 px-6 sm:flex-row sm:flex-wrap sm:items-center sm:px-10">
           <Link
             href="/resume"
-            className="px-6 py-3 rounded-xl bg-gray-200 text-center hover:bg-gray-300 transition shadow-sm"
+            className="px-6 py-3 rounded-xl bg-mist/50 text-center hover:bg-mist transition shadow-sm text-navy"
           >
-            Resume
+            {HOME_CTA.resume}
           </Link>
-          {/* <a
-            href="https://lokatech.co"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl border-2 border-sky-500 text-center font-medium text-sky-600 transition hover:bg-sky-50 dark:border-sky-400 dark:text-sky-400 dark:hover:bg-sky-950/30"
-          >
-            LokaTech — hire me for client work
-          </a> */}
           <button
             onClick={() => scrollTo("projects")}
-            className="px-6 py-3 rounded-xl bg-sky-500 text-center text-white shadow hover:bg-sky-600 transition"
+            className="px-6 py-3 rounded-xl bg-navy text-center text-cream shadow hover:bg-navy-hover transition"
           >
-            View My Work
+            {HOME_CTA.seeProjects}
           </button>
         </div>
       </motion.section>

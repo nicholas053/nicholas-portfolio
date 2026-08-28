@@ -16,18 +16,144 @@ export const PERSON = {
 } as const
 
 export const HERO = {
-  title: `Hi, I'm ${PERSON.preferredName} — ${PERSON.role}`,
+  greeting: `Hi, I'm ${PERSON.preferredName}`,
+  roleLine: PERSON.role,
   lead:
-    "Focusing on building scalable end-to-end systems and bridging the gap between ambiguous business requirements and technical execution.",
+    "I clarify messy requirements, sketch the architecture, and ship full-stack web apps — from client builds to products I run myself.",
+  notesHint:
+    "Technical notes with sequence diagrams — for the full story behind the bullets.",
+} as const
+
+export const SITE_SEO = {
+  tagline:
+    "Full-stack developer and product engineer — clarify requirements, ship pragmatic architecture.",
+  description:
+    "Portfolio of Nicholas Chong: full-stack apps in Next.js, React, and PostgreSQL; technical notes with sequence diagrams; case studies from independent products to enterprise delivery.",
+} as const
+
+export const HOME_CTA = {
+  seeProjects: "See projects",
+  contact: "Contact",
+  technicalNotes: "Technical notes",
+  resume: "Resume",
+} as const
+
+export const NOTES_PAGE = {
+  metadataDescription:
+    "Architecture write-ups with diagrams — deeper than project cards, NDA-safe where noted.",
+  eyebrow: "Technical notes",
+  heading: "Write-ups with diagrams",
+  intro:
+    "Architecture write-ups with diagrams — when you want the how, not just the bullet. Project demos and case studies live under",
+  projectsLinkLabel: "Projects",
+} as const
+
+export const HOME_LOKATECH = {
+  title: "Client work — LokaTech",
+  body: "Alongside this portfolio I run LokaTech for scoped freelance and product engagements — discovery, build, and ongoing support.",
+  linkLabel: "Visit lokatech.co →",
+} as const
+
+export const HOME_WORKFLOW = {
+  title: "How I work",
+  steps: [
+    {
+      icon: "users" as const,
+      title: "Understand the rule",
+      body:
+        "Clarify requirements with stakeholders before coding. When specs and reality diverge, confirm scope early — don't build on wrong assumptions.",
+    },
+    {
+      icon: "diagram" as const,
+      title: "Make it legible",
+      body:
+        "Workflow and sequence diagrams, state models, and scoped tasks that everyone can review before the big build.",
+    },
+    {
+      icon: "code" as const,
+      title: "Ship and maintain",
+      body:
+        "Pragmatic stack choices, clean API and UI boundaries, and refactors that fix once across roles and surfaces.",
+    },
+  ],
+} as const
+
+export const HOME_PROJECTS_SECTION_TITLE = "Selected work"
+
+export const HOME_NDA_FEATURE = {
+  badge: "Confidential / NDA",
+  title: "Enterprise system turnaround",
+  role: "Role: Tech BA & front-end dev",
+  body:
+    "Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged. I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.",
+  financeNoteHref: "/notes/flexible-financial-settlement",
+  financeNoteLabel: "Finance architecture note →",
+} as const
+
+export type HomeProjectCard = {
+  title: string
+  description: string
+  linkPath: string
+  linkLabel: string
+}
+
+export const HOME_PROJECTS: HomeProjectCard[] = [
+  {
+    title: "LokaTech — Internal Operations Platform",
+    description:
+      "Agency ops monorepo: pricing, scope sign-off, and project-first billing — replaced spreadsheet quote loops and email scope churn.",
+    linkPath: "/projects/lokatech",
+    linkLabel: "Read case study →",
+  },
+  {
+    title: "What I Applied",
+    description:
+      "Personal ATS and career prep with JD-grounded Gemini assets and follow-up nudges. Beta: ~50 users; live on Vercel.",
+    linkPath: "/projects/what-i-applied",
+    linkLabel: "Read case study →",
+  },
+  {
+    title: "Church Management System",
+    description:
+      "Events, attendance, outings, and role-based admin — replaced scattered Forms/Sheets for 100+ users.",
+    linkPath: "/projects/church-system",
+    linkLabel: "Read case study →",
+  },
+  {
+    title: "Task Management System",
+    description:
+      "Self-hosted Kanban with voting, comments, and dashboards — used by two startup teams (~5–10 people each).",
+    linkPath: "/projects/task-system",
+    linkLabel: "Read case study →",
+  },
+  {
+    title: "E-commerce Platform",
+    description:
+      "Full-stack shop with JWT auth, cart checkout, order management, and admin inventory — an early shipped project across API and UI.",
+    linkPath: "/projects/ecommerce-system",
+    linkLabel: "Early project →",
+  },
+]
+
+export const HOME_TECH_NOTES_INTRO =
+  "Architecture write-ups with diagrams — when you want the how, not just the bullet."
+
+export const HOME_PHILOSOPHY =
+  "Outside of work I write on philosophy and shoot photography — both push me to notice what people assume and what they overlook, which carries into how I gather requirements and design interfaces."
+
+export const HOME_PHILOSOPHY_INSTAGRAM_LABEL = "Photography on Instagram"
+
+export const HOME_CONTACT = {
+  lead: "Open to full-stack and product engineer roles. Easiest reach: email or WhatsApp.",
 } as const
 
 /** Opening paragraph on the resume (keep short for print density). */
 export const RESUME_SUMMARY =
-  "Full-stack developer and product engineer: clarify scope, design pragmatic architecture, ship maintainable web apps end-to-end."
+  "Full-stack developer and product engineer: clarify requirements, sketch pragmatic architecture, ship maintainable web apps."
 
-/** Substring of `RESUME_SUMMARY` emphasized in sky on resume/PDF. */
+/** Substring of `RESUME_SUMMARY` emphasized on resume/PDF. */
 export const RESUME_SUMMARY_ACCENT_PHRASE =
-  "clarify scope, design pragmatic architecture, ship maintainable web apps end-to-end."
+  "clarify requirements, sketch pragmatic architecture, ship maintainable web apps."
 
 export type EducationEntry = {
   institution: string
@@ -86,41 +212,9 @@ export function experienceUsesEmployerRichBlock(entry: ExperienceTimelineEntry):
 
 export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
   {
-    period: "Oct 2020 – Mar 2024",
-    body: "Pursued Software Engineering at University Malaysia Sabah. Self-funded studies while taking on freelance maintenance projects to support tuition.",
-    resumeBody: "UMS Software Engineering (self-funded); freelance maintenance alongside studies.",
-  },
-  {
-    roleTitle: "Independent Full-Stack Developer",
-    period: "Apr 2022 – Sept 2025",
-    durationLabel: "3.5 years",
-    summaryLead:
-      "Freelance during university → independent consultancy: shipped end-to-end web apps with strong workflows and client support.",
-    highlights: [
-      {
-        label: "Web Development & Maintenance (Apr 2022 – Mar 2024):",
-        body: "Landing pages, product catalogs, ongoing maintenance and feature work while completing the degree.",
-        resumeAccentPhrase: "Landing pages, product catalogs, ongoing maintenance and feature work",
-      },
-      {
-        label: "End-to-End System Architecture (Mar 2024 – Sept 2025):",
-        body:
-          "HR and badminton booking systems; church, task, and e-commerce platforms; personal applicant-tracking / AI-assisted career prep (What I Applied). Workflows, RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET).",
-        resumeAccentPhrase: "RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET)",
-      },
-      {
-        label: "Tech Stack:",
-        body: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
-        resumeAccentPhrase: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
-      },
-    ],
-    body: "Independent Full-Stack Developer (Apr 2022 – Sept 2025). Part-time freelance work grew into full-time independent delivery: HR and badminton booking systems, then church, task, and e-commerce platforms with strong workflows, RBAC, and auditability, plus a personal applicant-tracking / AI-assisted career prep app. Earlier phase focused on landing pages, catalogs, and client maintenance.",
-    resumeBody:
-      "Independent full-stack (Apr 2022–Sept 2025): scaled from freelance maintenance to end-to-end systems (HR, booking, church, task, e-commerce, personal ATS/career prep); Next.js, .NET Core, Prisma, PostgreSQL.",
-  },
-  {
     period: "Oct 2025 – June 2026",
     jobTitle: "Web Developer / Product Engineer",
+    durationLabel: "8 months",
     summaryLead:
       "Lead delivery, refactors, and technical BA on enterprise apps; aligned schemas and UI with real finance/ops workflows.",
     highlights: [
@@ -156,6 +250,39 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
       "Data Flows: lead dev/technical BA on commission settlement redesign; owned 360° performance module (Angular, JSONB); led shared FE architecture and RBAC-gated component library.",
     employer: { name: "Data Flows Sdn Bhd", url: "https://www.dataflows.co/" },
   },
+  {
+    roleTitle: "Independent Full-Stack Developer",
+    period: "Apr 2022 – Sept 2025",
+    durationLabel: "3.5 years",
+    summaryLead:
+      "Part-time freelance during university grew into full-time independent delivery — church, task, and booking systems, plus products I still run.",
+    highlights: [
+      {
+        label: "Web Development & Maintenance (Apr 2022 – Mar 2024):",
+        body: "Landing pages, product catalogs, ongoing maintenance and feature work while completing the degree.",
+        resumeAccentPhrase: "Landing pages, product catalogs, ongoing maintenance and feature work",
+      },
+      {
+        label: "Systems & products (Mar 2024 – Sept 2025):",
+        body:
+          "HR and badminton booking systems; church, task, and e-commerce platforms; personal applicant-tracking / AI-assisted career prep (What I Applied). Workflows, RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET).",
+        resumeAccentPhrase: "RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET)",
+      },
+      {
+        label: "Tech Stack:",
+        body: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
+        resumeAccentPhrase: "Next.js, React, .NET Core, Prisma, PostgreSQL.",
+      },
+    ],
+    body: "Independent Full-Stack Developer (Apr 2022 – Sept 2025). Part-time freelance work grew into full-time independent delivery: HR and badminton booking systems, then church, task, and e-commerce platforms with workflows, RBAC, and auditability, plus a personal applicant-tracking / AI-assisted career prep app. Earlier phase focused on landing pages, catalogs, and client maintenance.",
+    resumeBody:
+      "Independent full-stack (Apr 2022–Sept 2025): scaled from freelance maintenance to multi-app systems (HR, booking, church, task, e-commerce, personal ATS/career prep); Next.js, .NET Core, Prisma, PostgreSQL.",
+  },
+  {
+    period: "Oct 2020 – Mar 2024",
+    body: "Pursued Software Engineering at University Malaysia Sabah. Self-funded studies while taking on freelance maintenance projects to support tuition.",
+    resumeBody: "UMS Software Engineering (self-funded); freelance maintenance alongside studies.",
+  },
 ]
 
 export const TECH_STACK_ITEMS = [
@@ -165,6 +292,7 @@ export const TECH_STACK_ITEMS = [
   { id: "postgresql", label: "PostgreSQL" },
   { id: "angular", label: "Angular" },
   { id: "laravel", label: "Laravel" },
+  { id: "golang", label: "Golang" },
   { id: "system-design", label: "System Design" },
   { id: "typescript", label: "TypeScript" },
   { id: "php", label: "PHP" },
@@ -181,6 +309,20 @@ export const TECH_STACK_ITEMS = [
 export const TECH_STACK_LINE = TECH_STACK_ITEMS.map((s) => s.label).join(", ")
 
 export type TechStackId = (typeof TECH_STACK_ITEMS)[number]["id"]
+
+export const TECH_STACK_MARQUEE_IDS = [
+  "next",
+  "react",
+  "postgresql",
+  "laravel",
+  "golang",
+  "angular",
+  "nodejs",
+  "system-design",
+] as const satisfies readonly TechStackId[]
+
+export const TECH_STACK_MARQUEE_CAPTION =
+  "Mostly Next.js, React, and PostgreSQL; also Laravel, Angular, Node.js, and Go."
 
 /** Emphasized on resume/PDF skills line (core stack). */
 export const RESUME_SKILL_ACCENT_IDS = new Set<TechStackId>(["next", "react", "typescript", "prisma", "postgresql", "angular", "laravel", "system-design"])
@@ -230,7 +372,7 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
     solution:
       "Single profile and per-job JD storage; stage timeline; one server-side Gemini generation stored on the job; job search direction; 7-day stale reminder with non-AI email template; PDF text-only bootstrap (file not stored).",
     impact:
-      "Schema-bound AI outputs + retries reduce bad saves; per-user Postgres isolation; free-tier UI caps successful regen per job for predictable API cost. Beta: ~15 users; most said the tool was helpful and easy to use.",
+      "Schema-bound AI outputs + retries reduce bad saves; per-user Postgres isolation; free-tier UI caps successful regen per job for predictable API cost. Beta: ~50 users; most said the tool was helpful and easy to use.",
     impactAccentPhrase: "Beta: ~50 users; most said the tool was helpful and easy to use.",
     linkPath: "/projects/what-i-applied",
   },

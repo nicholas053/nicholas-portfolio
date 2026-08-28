@@ -37,7 +37,7 @@ function CaseStudyBlocks({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl
               </div>
               <a
                 href={href}
-                className="shrink-0 text-[10px] font-medium text-sky-600 underline decoration-sky-200 underline-offset-2 hover:text-sky-700 print:text-[8pt]"
+                className="shrink-0 text-[10px] font-medium text-navy underline decoration-mist underline-offset-2 hover:text-navy-hover print:text-[8pt]"
               >
                 {linkLabel} →
               </a>
@@ -57,7 +57,7 @@ function CaseStudyBlocks({ items, siteUrl }: { items: ResumeCaseStudy[]; siteUrl
                 <dd className="resume-case-p mt-0.5 text-sm leading-snug text-zinc-800 sm:text-[15px] print:text-[9.5pt]">
                   {impactParts.before}
                   {impactParts.highlight ? (
-                    <span className="font-medium text-sky-600 print:text-[9.5pt]">{impactParts.highlight}</span>
+                    <span className="font-medium text-navy print:text-[9.5pt]">{impactParts.highlight}</span>
                   ) : null}
                   {impactParts.after}
                 </dd>
@@ -77,7 +77,7 @@ export default function ResumePage() {
   return (
     <>
       <ResumeToolbar />
-      <div className="resume-root min-h-screen bg-zinc-100 pb-16 pt-44 text-zinc-900 print:bg-white print:pb-0 print:pt-0 md:pt-40">
+      <div className="resume-root min-h-screen bg-zinc-100 pb-16 pt-44 text-zinc-900 dark:bg-background print:bg-white print:pb-0 print:pt-0 md:pt-40">
         <article className="resume-sheet mx-auto max-w-[210mm] bg-white px-6 py-8 shadow-sm print:mx-0 print:max-w-none print:px-0 print:py-0 print:shadow-none md:px-10 md:py-10">
           <header className="pb-2 print:border-zinc-300 print:pb-2">
             <h1 className="text-2xl font-bold tracking-tight text-zinc-950 md:text-3xl">{PERSON.legalName}</h1>
@@ -117,7 +117,7 @@ export default function ResumePage() {
             <p className="resume-case-p mt-1.5 text-sm leading-snug text-zinc-800 md:text-[15px] print:text-[9.5pt]">
               {summaryParts.before}
               {summaryParts.highlight ? (
-                <span className="font-medium text-sky-600 print:text-[9.5pt]">{summaryParts.highlight}</span>
+                <span className="font-medium text-navy print:text-[9.5pt]">{summaryParts.highlight}</span>
               ) : null}
               {summaryParts.after}
             </p>
@@ -129,7 +129,7 @@ export default function ResumePage() {
               {TECH_STACK_ITEMS.map((s, i) => (
                 <span key={s.id}>
                   {i > 0 ? ", " : null}
-                  <span className={RESUME_SKILL_ACCENT_IDS.has(s.id) ? "font-medium text-sky-600" : undefined}>{s.label}</span>
+                  <span className={RESUME_SKILL_ACCENT_IDS.has(s.id) ? "font-medium text-navy" : undefined}>{s.label}</span>
                 </span>
               ))}
             </p>
@@ -161,7 +161,7 @@ export default function ResumePage() {
                           </a>
                         </p>
                         {entry.jobTitle ? (
-                          <p className="text-sm font-bold leading-snug text-sky-600 print:text-[9.5pt]">{entry.jobTitle}</p>
+                          <p className="text-sm font-bold leading-snug text-navy print:text-[9.5pt]">{entry.jobTitle}</p>
                         ) : null}
                         {entry.summaryLead ? (
                           <p className="resume-case-p text-sm italic leading-snug text-zinc-600 print:text-[8.75pt]">{entry.summaryLead}</p>

@@ -14,7 +14,8 @@ import {
 } from "react-icons/si"
 import { BiLogoTypescript } from "react-icons/bi"
 import { FaAngular, FaJava, FaPhp, FaProjectDiagram, FaNode } from "react-icons/fa"
-import { TECH_STACK_ITEMS } from "./content"
+import { FaGolang } from "react-icons/fa6"
+import { TECH_STACK_ITEMS, TECH_STACK_MARQUEE_IDS } from "./content"
 
 const cls = "w-12 h-12"
 
@@ -32,13 +33,15 @@ const ICONS: Record<(typeof TECH_STACK_ITEMS)[number]["id"], ReactNode> = {
   github: <SiGithub title="GitHub" className={cls} />,
   angular: <FaAngular title="Angular" className={cls} />,
   laravel: <SiLaravel title="Laravel" className={cls} />,
+  golang: <FaGolang title="Golang" className={cls} />,
   "system-design": <FaProjectDiagram title="System Design" className={cls} />,
   php: <FaPhp title="PHP" className={cls} />,
   typescript: <BiLogoTypescript title="TypeScript" className={cls} />,
 }
 
 export function marqueeTechIcons() {
-  return TECH_STACK_ITEMS.map((item) => (
+  const ids = new Set<string>(TECH_STACK_MARQUEE_IDS)
+  return TECH_STACK_ITEMS.filter((item) => ids.has(item.id)).map((item) => (
     <div key={item.id} className="flex-shrink-0 flex h-20 w-20 items-center justify-center" title={item.label}>
       {ICONS[item.id]}
     </div>

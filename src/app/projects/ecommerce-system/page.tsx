@@ -45,7 +45,7 @@ export default function EcommerceProjectPage() {
       <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy transition-colors"
         >
           <FiArrowLeft className="w-4 h-4" />
           <span>Back</span>
@@ -54,7 +54,7 @@ export default function EcommerceProjectPage() {
       {/* Page Title */}
       <section className="text-center space-y-6">
         <h1 className="text-4xl md:text-5xl font-bold">E-commerce Platform</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           A full-stack e-commerce application with customer & admin roles, secure JWT authentication,
           product management, cart & checkout, inventory tracking and reporting — built for production-readiness.
         </p>
@@ -63,7 +63,7 @@ export default function EcommerceProjectPage() {
                 href="https://github.com/nicholas053/Ecommerce-Platform"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="px-5 py-2 rounded-xl bg-black text-white dark:bg-white dark:text-black inline-flex items-center gap-2 shadow"
+                className="px-5 py-2 rounded-xl bg-navy text-cream dark:bg-cream dark:text-navy inline-flex items-center gap-2 shadow"
             >
                 Code on Github <FiExternalLink />
             </a>
@@ -73,7 +73,7 @@ export default function EcommerceProjectPage() {
       {/* Overview */}
       <section className="space-y-6">
         <h2 className="text-3xl font-semibold text-center">Overview</h2>
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
           This platform supports a complete merchant and customer workflow: product browsing, category filters,
           secure authentication, a persistent client cart, checkout with simulated payment confirmation (dev),
           and an admin area for inventory and order management. The backend issues JWTs and stores refresh tokens safely.
@@ -115,7 +115,7 @@ export default function EcommerceProjectPage() {
       {/* Responsive & Accessibility */}
       <section className="space-y-6">
         <h2 className="text-3xl font-semibold text-center">Responsive & Accessible</h2>
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
           The UI is responsive with a mobile-first layout and a desktop mode. Accessibility considerations include
           semantic HTML, keyboard-navigable forms, and sensible focus states.
         </p>
@@ -124,20 +124,20 @@ export default function EcommerceProjectPage() {
       {/* Tech Stack */}
       <section className="space-y-10">
         <h2 className="text-3xl font-semibold text-center">Tech Stack</h2>
-        <p className="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
           A modern full-stack architecture emphasizing security, performance, and developer productivity.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-8 text-6xl mt-8 text-gray-800 dark:text-gray-200">
-          <SiNextdotjs title="Next.js" />
-          <SiReact title="React" className="text-sky-500" />
-          <SiTailwindcss title="TailwindCSS" className="text-sky-400" />
-          <SiPostgresql title="PostgreSQL" className="text-blue-600" />
-          <SiDotnet title=".NET (C#)" className="text-slate-600" />
-          <SiVercel title="Vercel" />
+        <div className="flex flex-wrap justify-center gap-8 text-6xl mt-8 text-navy">
+          <SiNextdotjs title="Next.js" className="text-navy" />
+          <SiReact title="React" className="text-navy" />
+          <SiTailwindcss title="TailwindCSS" className="text-navy" />
+          <SiPostgresql title="PostgreSQL" className="text-navy" />
+          <SiDotnet title=".NET (C#)" className="text-navy" />
+          <SiVercel title="Vercel" className="text-navy" />
         </div>
 
-        <div className="max-w-3xl mx-auto text-gray-700 dark:text-gray-300 space-y-2 text-center mt-6">
+        <div className="max-w-3xl mx-auto text-muted-foreground space-y-2 text-center mt-6">
           <p><strong>Frontend:</strong> Next.js (App Router), React, TypeScript, Tailwind CSS</p>
           <p><strong>State:</strong> Zustand for cart & client state with localStorage persistence</p>
           <p><strong>Backend:</strong> ASP.NET Core (C#), Entity Framework Core, JWT authentication</p>
@@ -150,38 +150,38 @@ export default function EcommerceProjectPage() {
       {/* Roadmap */}
       <section className="space-y-8">
         <h2 className="text-3xl font-semibold text-center">Future Roadmap</h2>
-        <div className="relative border-l border-gray-300 dark:border-gray-600 ml-4 space-y-12">
+        <div className="relative border-l border-mist dark:border-mist/50 ml-4 space-y-12">
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Payment Gateway Integration</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Integrate Stripe (or another PCI-compliant provider) for production payments, with webhook validation and reconciliation.
             </p>
           </div>
 
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Advanced Admin Analytics</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Add time-based analytics, cohort reports, sales funnels, and downloadable PDFs/CSV for finance teams.
             </p>
           </div>
 
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Internationalization & Multi-Currency</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Expand locale support, currency conversion, tax handling, and localized product content for regional markets.
             </p>
           </div>
 
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Mobile & PWA</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Provide a Progressive Web App for offline browsing & quick reordering; later extend to native mobile apps if needed.
             </p>
           </div>
 
           <div className="ml-6">
             <h3 className="text-xl font-semibold">Performance & SEO</h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-muted-foreground">
               Optimize images, add server-side caching for product lists, enhance schema markup for product pages, and implement a CDN for asset delivery.
             </p>
           </div>

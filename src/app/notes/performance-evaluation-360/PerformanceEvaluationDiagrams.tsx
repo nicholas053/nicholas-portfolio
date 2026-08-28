@@ -9,7 +9,7 @@ const MermaidTabs = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex min-h-[280px] items-center justify-center rounded-xl border border-gray-200 bg-gray-50 text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-800/50 dark:text-gray-400">
+      <div className="flex min-h-[280px] items-center justify-center rounded-xl border border-border bg-card text-sm text-muted-foreground">
         Loading diagrams…
       </div>
     ),

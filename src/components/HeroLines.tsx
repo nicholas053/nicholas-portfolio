@@ -10,7 +10,7 @@ interface HeroLinesProps {
 }
 
 export default function HeroLines({
-  color = "#0ea5e9",
+  color = "#313851",
   opacity = 0.12,
   animate = true,
 }: HeroLinesProps) {

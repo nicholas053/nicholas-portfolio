@@ -6,8 +6,16 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+  /* Theme-aware palette tokens — values swap in .dark via CSS vars below */
+  --color-cream: var(--cream-token);
+  --color-mist: var(--mist-token);
+  --color-navy: var(--navy-token);
+  --color-navy-hover: var(--navy-hover-token);
+  --color-muted-text: var(--muted-foreground);
+  --color-surface: var(--surface-token);
+  --color-section: var(--section-token);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -44,72 +52,104 @@
 }
 
 :root {
+  --cream-token: #F6F3ED;
+  --mist-token: #C2CBD3;
+  --navy-token: #313851;
+  --navy-hover-token: #252B3F;
+  /* Light: page = cool mist wash; elevated surfaces / cards = cream accent */
+  --surface-token: #F6F3ED;
+  --section-token: color-mix(in srgb, #C2CBD3 22%, #ffffff);
+  --cream: #F6F3ED;
+  --mist: #C2CBD3;
+  --navy: #313851;
+  --navy-hover: #252B3F;
+  --surface: #F6F3ED;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.028 261.692);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.21 0.034 264.665);
-  --primary-foreground: oklch(0.985 0.002 247.839);
-  --secondary: oklch(0.967 0.003 264.542);
-  --secondary-foreground: oklch(0.21 0.034 264.665);
-  --muted: oklch(0.967 0.003 264.542);
-  --muted-foreground: oklch(0.551 0.027 264.364);
-  --accent: oklch(0.967 0.003 264.542);
-  --accent-foreground: oklch(0.21 0.034 264.665);
+  --background: color-mix(in srgb, #C2CBD3 14%, #ffffff);
+  --foreground: var(--navy);
+  --card: var(--cream);
+  --card-foreground: var(--navy);
+  --popover: var(--cream);
+  --popover-foreground: var(--navy);
+  --primary: var(--navy);
+  --primary-foreground: var(--cream);
+  --secondary: color-mix(in srgb, var(--mist) 35%, #ffffff);
+  --secondary-foreground: var(--navy);
+  --muted: var(--section-token);
+  --muted-foreground: #5C6378;
+  --accent: color-mix(in srgb, var(--mist) 30%, var(--cream));
+  --accent-foreground: var(--navy);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.928 0.006 264.531);
-  --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0.707 0.022 261.325);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.002 247.839);
-  --sidebar-foreground: oklch(0.13 0.028 261.692);
-  --sidebar-primary: oklch(0.21 0.034 264.665);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.967 0.003 264.542);
-  --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-border: oklch(0.928 0.006 264.531);
-  --sidebar-ring: oklch(0.707 0.022 261.325);
+  --border: var(--mist);
+  --input: var(--mist);
+  --ring: color-mix(in srgb, var(--navy) 40%, var(--mist));
+  --chart-1: var(--navy);
+  --chart-2: var(--mist);
+  --chart-3: #5C6378;
+  --chart-4: var(--navy-hover);
+  --chart-5: #8A919E;
+  --sidebar: var(--cream);
+  --sidebar-foreground: var(--navy);
+  --sidebar-primary: var(--navy);
+  --sidebar-primary-foreground: var(--cream);
+  --sidebar-accent: color-mix(in srgb, var(--mist) 40%, var(--cream));
+  --sidebar-accent-foreground: var(--navy);
+  --sidebar-border: var(--mist);
+  --sidebar-ring: color-mix(in srgb, var(--navy) 40%, var(--mist));
 }
 
 .dark {
-  --background: oklch(0.13 0.028 261.692);
-  --foreground: oklch(0.985 0.002 247.839);
-  --card: oklch(0.21 0.034 264.665);
-  --card-foreground: oklch(0.985 0.002 247.839);
-  --popover: oklch(0.21 0.034 264.665);
-  --popover-foreground: oklch(0.985 0.002 247.839);
-  --primary: oklch(0.928 0.006 264.531);
-  --primary-foreground: oklch(0.21 0.034 264.665);
-  --secondary: oklch(0.278 0.033 256.848);
-  --secondary-foreground: oklch(0.985 0.002 247.839);
-  --muted: oklch(0.278 0.033 256.848);
-  --muted-foreground: oklch(0.707 0.022 261.325);
-  --accent: oklch(0.278 0.033 256.848);
-  --accent-foreground: oklch(0.985 0.002 247.839);
+  /* Accent utilities: text-navy → cream, bg-navy buttons invert */
+  --cream-token: #313851;
+  --navy-token: #F6F3ED;
+  --navy-hover-token: #D4D9DE;
+  --surface-token: #252B3F;
+  --section-token: color-mix(in srgb, #252B3F 70%, #313851);
+  --surface: #252B3F;
+  --background: var(--navy);
+  --foreground: var(--cream);
+  --card: var(--surface);
+  --card-foreground: var(--cream);
+  --popover: var(--surface);
+  --popover-foreground: var(--cream);
+  --primary: var(--cream);
+  --primary-foreground: var(--navy);
+  --secondary: color-mix(in srgb, var(--navy) 70%, var(--navy-hover));
+  --secondary-foreground: var(--cream);
+  --muted: var(--section-token);
+  --muted-foreground: #D4D9DE;
+  --accent: color-mix(in srgb, var(--navy) 60%, var(--navy-hover));
+  --accent-foreground: var(--cream);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.034 264.665);
-  --sidebar-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.278 0.033 256.848);
-  --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --border: color-mix(in srgb, var(--mist) 35%, var(--navy));
+  --input: color-mix(in srgb, var(--mist) 25%, var(--navy));
+  --ring: var(--mist);
+  --chart-1: var(--cream);
+  --chart-2: var(--mist);
+  --chart-3: #D4D9DE;
+  --chart-4: var(--navy-hover);
+  --chart-5: #8A919E;
+  --sidebar: var(--navy);
+  --sidebar-foreground: var(--cream);
+  --sidebar-primary: var(--cream);
+  --sidebar-primary-foreground: var(--navy);
+  --sidebar-accent: var(--surface);
+  --sidebar-accent-foreground: var(--cream);
+  --sidebar-border: color-mix(in srgb, var(--mist) 35%, var(--navy));
+  --sidebar-ring: var(--mist);
+}
+
+@layer components {
+  .label-problem {
+    @apply mb-2 inline-flex rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-foreground;
+  }
+  .label-solution {
+    @apply mb-2 inline-flex rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-foreground;
+  }
+  /** Standard elevated card on mist-wash page background */
+  .portfolio-card {
+    @apply rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:shadow-md;
+  }
 }
 
 @layer base {
@@ -117,7 +157,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 }
 
@@ -136,12 +176,10 @@
   .resume-root {
     background: white !important;
   }
-  /* Keep each case study block on one page when it fits (shorten copy if a block exceeds a page). */
   .resume-case {
     break-inside: avoid-page;
     page-break-inside: avoid;
   }
-  /* Keep section heading with at least the start of its content */
   .resume-section {
     break-inside: auto;
   }
@@ -181,7 +219,7 @@
 .resume-timeline-block {
   border-left-width: 2px;
   border-left-style: solid;
-  border-color: rgb(56 189 248); /* sky-400 */
+  border-color: var(--navy);
   padding-left: 0.875rem;
   padding-top: 0.125rem;
   padding-bottom: 0.25rem;
@@ -194,20 +232,20 @@
   column-gap: 0.25rem;
   row-gap: 0.125rem;
   border-radius: 0.375rem;
-  background-color: rgb(240 249 255 / 0.95); /* sky-50 */
-  box-shadow: inset 0 0 0 1px rgb(186 230 253); /* sky-200 */
+  background-color: color-mix(in srgb, var(--cream) 95%, var(--mist));
+  box-shadow: inset 0 0 0 1px var(--mist);
   padding: 0.2rem 0.45rem;
   font-size: 0.6875rem;
   line-height: 1.35;
   letter-spacing: 0.03em;
   font-weight: 600;
-  color: rgb(12 74 110); /* sky-950 */
+  color: var(--navy);
 }
 
 .resume-timeline-date-muted {
   font-weight: 500;
   letter-spacing: 0;
-  color: rgb(3 105 161); /* sky-700 */
+  color: var(--navy-hover);
 }
 
 .resume-h2 {
@@ -215,7 +253,17 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #0284c7; /* sky-600 — portfolio accent */
-  border-bottom: 1px solid rgb(186 230 253 / 0.9); /* sky-200 */
+  color: var(--navy-token);
+  border-bottom: 1px solid var(--mist-token);
   padding-bottom: 0.35rem;
+}
+
+/* Resume paper is always a light document — undo site-wide dark token swap inside the sheet */
+.dark .resume-sheet {
+  --navy-token: #313851;
+  --navy-hover-token: #252B3F;
+  --cream-token: #F6F3ED;
+  --mist-token: #C2CBD3;
+  --surface-token: #F6F3ED;
+  color-scheme: light;
 }
