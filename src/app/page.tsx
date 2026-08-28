@@ -722,25 +722,38 @@ export default function HomePage() {
           </a>
         </div> */}
 
-        <div className="mt-6 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
-          <a href={`mailto:${PERSON.email}`} className="w-full sm:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <BiLogoGmail className="w-8 h-8 text-navy flex-shrink-0" />
+        <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
+          <a
+            href={`mailto:${PERSON.email}`}
+            className="flex w-full max-w-xs items-center justify-center gap-4 rounded-2xl px-5 py-3 transition hover:shadow-md sm:w-auto sm:max-w-none sm:justify-start sm:px-6 sm:py-4"
+          >
+            <BiLogoGmail className="h-8 w-8 shrink-0 text-navy" />
             <div className="text-left">
               <div className="text-sm font-semibold">Gmail</div>
               <div className="text-xs text-muted-foreground">{PERSON.email.split("@")[0]}</div>
             </div>
           </a>
 
-          <a href={`https://github.com/${PERSON.githubUsername}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <SiGithub className="w-8 h-8 text-navy flex-shrink-0" />
+          <a
+            href={`https://github.com/${PERSON.githubUsername}`}
+            target="_blank"
+            rel="noreferrer"
+            className="flex w-full max-w-xs items-center justify-center gap-4 rounded-2xl px-5 py-3 transition hover:shadow-md sm:w-auto sm:max-w-none sm:justify-start sm:px-6 sm:py-4"
+          >
+            <SiGithub className="h-8 w-8 shrink-0 text-navy" />
             <div className="text-left">
               <div className="text-sm font-semibold">GitHub</div>
               <div className="text-xs text-muted-foreground">{PERSON.githubUsername}</div>
             </div>
           </a>
 
-          <a href={`https://wa.me/${PERSON.phone.replace(/\D/g, "")}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto flex items-center gap-4 px-6 py-4 rounded-2xl hover:shadow-md transition">
-            <FaWhatsapp className="w-8 h-8 text-navy flex-shrink-0" />
+          <a
+            href={`https://wa.me/${PERSON.phone.replace(/\D/g, "")}`}
+            target="_blank"
+            rel="noreferrer"
+            className="flex w-full max-w-xs items-center justify-center gap-4 rounded-2xl px-5 py-3 transition hover:shadow-md sm:w-auto sm:max-w-none sm:justify-start sm:px-6 sm:py-4"
+          >
+            <FaWhatsapp className="h-8 w-8 shrink-0 text-navy" />
             <div className="text-left">
               <div className="text-sm font-semibold">WhatsApp</div>
               <div className="text-xs text-muted-foreground">{PERSON.phone}</div>
@@ -748,16 +761,16 @@ export default function HomePage() {
           </a>
         </div>
 
-        <div className="mt-8 flex flex-col items-stretch justify-center gap-4 px-6 sm:flex-row sm:flex-wrap sm:items-center sm:px-10">
+        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
           <Link
             href="/resume"
-            className="px-6 py-3 rounded-xl bg-mist/50 text-center hover:bg-mist transition shadow-sm text-navy"
+            className="w-full max-w-xs rounded-xl bg-mist/50 px-6 py-3 text-center text-navy shadow-sm transition hover:bg-mist sm:w-auto"
           >
             {HOME_CTA.resume}
           </Link>
           <button
             onClick={() => scrollTo("projects")}
-            className="px-6 py-3 rounded-xl bg-navy text-center text-cream shadow hover:bg-navy-hover transition"
+            className="w-full max-w-xs rounded-xl bg-navy px-6 py-3 text-center text-cream shadow transition hover:bg-navy-hover sm:w-auto"
           >
             {HOME_CTA.seeProjects}
           </button>
