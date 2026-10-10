@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og"
+import { HERO } from "@/content/content"
+import { THEME } from "@/lib/theme-colors"
 
 export const runtime = "edge"
 
@@ -29,13 +31,12 @@ async function loadGoogleFont(family: string, weight: number) {
   return fetch(fontUrl).then((res) => res.arrayBuffer())
 }
 
-/**
- * Portfolio OG: navy canvas with cream type hierarchy.
- */
+/** Share card in the same dark palette and type as the home hero. */
 export default async function Image() {
-  const [fontMedium, fontBold] = await Promise.all([
-    loadGoogleFont("Plus Jakarta Sans", 500),
-    loadGoogleFont("Plus Jakarta Sans", 700),
+  const [sansRegular, sansSemibold, mono] = await Promise.all([
+    loadGoogleFont("IBM Plex Sans", 400),
+    loadGoogleFont("IBM Plex Sans", 600),
+    loadGoogleFont("IBM Plex Mono", 400),
   ])
 
   return new ImageResponse(
@@ -45,114 +46,56 @@ export default async function Image() {
           width: "1200px",
           height: "630px",
           display: "flex",
-          position: "relative",
-          overflow: "hidden",
-          fontFamily: '"Plus Jakarta Sans"',
-          background:
-            "linear-gradient(145deg, #313851 0%, #252B3F 55%, #313851 100%)",
+          alignItems: "center",
+          background: THEME.pageDark,
+          fontFamily: '"IBM Plex Sans"',
+          padding: "80px 96px",
         }}
       >
         <div
           style={{
-            position: "absolute",
-            right: "-120px",
-            top: "-160px",
-            width: "520px",
-            height: "520px",
-            borderRadius: "9999px",
-            background:
-              "radial-gradient(circle, rgba(194,203,211,0.15) 0%, rgba(194,203,211,0) 70%)",
-          }}
-        />
-
-        <div
-          style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
-            width: "100%",
-            height: "100%",
-            padding: "72px 80px",
-            position: "relative",
+            maxWidth: "860px",
           }}
         >
           <div
             style={{
               display: "flex",
-              fontSize: "20px",
-              fontWeight: 500,
-              letterSpacing: "0.28em",
-              textTransform: "uppercase",
-              color: "rgba(246,243,237,0.55)",
+              fontFamily: '"IBM Plex Mono"',
+              fontSize: "22px",
+              fontWeight: 400,
+              letterSpacing: "0.04em",
+              color: THEME.accentDark,
             }}
           >
-            Portfolio
+            {HERO.roleLine}
           </div>
-
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-              maxWidth: "920px",
+              marginTop: "20px",
+              fontSize: "84px",
+              fontWeight: 600,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              color: THEME.inkDark,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                fontSize: "84px",
-                fontWeight: 700,
-                letterSpacing: "-0.045em",
-                lineHeight: 1.05,
-                color: "#F6F3ED",
-              }}
-            >
-              Nicholas Chong
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                fontSize: "30px",
-                fontWeight: 500,
-                letterSpacing: "-0.01em",
-                color: "#C2CBD3",
-                lineHeight: 1.35,
-              }}
-            >
-              Full-Stack Developer & Product Engineer
-            </div>
+            {HERO.greeting}
           </div>
-
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              borderTop: "1px solid rgba(194,203,211,0.35)",
-              paddingTop: "28px",
+              marginTop: "28px",
+              maxWidth: "760px",
+              fontSize: "28px",
+              fontWeight: 400,
+              lineHeight: 1.45,
+              color: THEME.mutedDark,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                fontSize: "20px",
-                fontWeight: 500,
-                color: "#C2CBD3",
-              }}
-            >
-              Systems · Requirements · Delivery
-            </div>
-            <div
-              style={{
-                display: "flex",
-                fontSize: "20px",
-                fontWeight: 500,
-                color: "#C2CBD3",
-              }}
-            >
-              Nic
-            </div>
+            {HERO.lead}
           </div>
         </div>
       </div>
@@ -161,16 +104,22 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: "Plus Jakarta Sans",
-          data: fontMedium,
+          name: "IBM Plex Sans",
+          data: sansRegular,
           style: "normal",
-          weight: 500,
+          weight: 400,
         },
         {
-          name: "Plus Jakarta Sans",
-          data: fontBold,
+          name: "IBM Plex Sans",
+          data: sansSemibold,
           style: "normal",
-          weight: 700,
+          weight: 600,
+        },
+        {
+          name: "IBM Plex Mono",
+          data: mono,
+          style: "normal",
+          weight: 400,
         },
       ],
     },
