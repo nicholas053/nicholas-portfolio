@@ -1,20 +1,21 @@
-/** Single source of truth for the cream / mist / navy portfolio palette. */
+/** Light and dark palettes. `navy` is the readable ink in each mode. */
 
 export const THEME = {
   cream: "#F6F3ED",
-  mist: "#C2CBD3",
-  navy: "#313851",
-  navyHover: "#252B3F",
-  surface: "#FFFFFF",
-  surfaceDark: "#252B3F",
-  /** Light page wash — mist tint on white (not warm cream). */
-  pageWash: "#F2F4F6",
-  /** Light alternate section — slightly stronger mist wash. */
-  sectionWash: "#E8ECF0",
-  /** Secondary copy on light backgrounds (~65% navy). */
-  mutedLight: "#5C6378",
-  /** Secondary copy on dark backgrounds (~80% mist). */
-  mutedDark: "#D4D9DE",
+  mist: "#C5CED6",
+  navy: "#2C3348",
+  navyHover: "#1E2436",
+  accent: "#9A4E32",
+  surface: "#FBF9F4",
+  surfaceDark: "#1C2230",
+  pageWash: "#F3F0EA",
+  pageDark: "#12151C",
+  sectionWash: "#E8E4DC",
+  mutedLight: "#5E6578",
+  mutedDark: "#A8B1BE",
+  /** Readable text on the dark page. */
+  inkDark: "#E7E2D6",
+  accentDark: "#E0B089",
 } as const
 
 export type ThemeMode = "light" | "dark"

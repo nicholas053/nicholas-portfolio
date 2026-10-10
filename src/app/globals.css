@@ -8,12 +8,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-plex-sans);
   --font-mono: var(--font-plex-mono);
-  /* Theme-aware palette tokens — values swap in .dark via CSS vars below */
   --color-cream: var(--cream-token);
   --color-mist: var(--mist-token);
   --color-navy: var(--navy-token);
   --color-navy-hover: var(--navy-hover-token);
-  --color-muted-text: var(--muted-foreground);
   --color-surface: var(--surface-token);
   --color-section: var(--section-token);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -52,107 +50,117 @@
 }
 
 :root {
-  --cream-token: #F6F3ED;
-  --mist-token: #C2CBD3;
-  --navy-token: #313851;
-  --navy-hover-token: #252B3F;
-  /* Light: page = cool mist wash; elevated surfaces / cards = cream accent */
-  --surface-token: #F6F3ED;
-  --section-token: color-mix(in srgb, #C2CBD3 22%, #ffffff);
-  --cream: #F6F3ED;
-  --mist: #C2CBD3;
-  --navy: #313851;
-  --navy-hover: #252B3F;
-  --surface: #F6F3ED;
-  --radius: 0.625rem;
-  --background: color-mix(in srgb, #C2CBD3 14%, #ffffff);
-  --foreground: var(--navy);
-  --card: var(--cream);
-  --card-foreground: var(--navy);
-  --popover: var(--cream);
-  --popover-foreground: var(--navy);
-  --primary: var(--navy);
-  --primary-foreground: var(--cream);
-  --secondary: color-mix(in srgb, var(--mist) 35%, #ffffff);
-  --secondary-foreground: var(--navy);
-  --muted: var(--section-token);
-  --muted-foreground: #5C6378;
-  --accent: color-mix(in srgb, var(--mist) 30%, var(--cream));
-  --accent-foreground: var(--navy);
+  /* Light: warm paper, navy ink. Mist is only a rule color. */
+  --cream-token: #f6f3ed;
+  --mist-token: #c5ced6;
+  --navy-token: #2c3348;
+  --navy-hover-token: #1e2436;
+  --surface-token: #fbf9f4;
+  --accent-token: #9a4e32;
+  --button-bg: #2c3348;
+  --button-fg: #f6f3ed;
+  --button-hover: #1e2436;
+  --section-token: #e8e4dc;
+  --cream: #f6f3ed;
+  --mist: #c5ced6;
+  --navy: #2c3348;
+  --navy-hover: #1e2436;
+  --surface: #fbf9f4;
+  --radius: 0.375rem;
+  --background: #f3f0ea;
+  --foreground: var(--navy-token);
+  --card: var(--surface-token);
+  --card-foreground: var(--navy-token);
+  --popover: var(--surface-token);
+  --popover-foreground: var(--navy-token);
+  --primary: var(--button-bg);
+  --primary-foreground: var(--button-fg);
+  --secondary: #e8e4dc;
+  --secondary-foreground: var(--navy-token);
+  --muted: #e8e4dc;
+  --muted-foreground: #5e6578;
+  --accent: color-mix(in srgb, var(--accent-token) 12%, var(--surface-token));
+  --accent-foreground: var(--accent-token);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: var(--mist);
-  --input: var(--mist);
-  --ring: color-mix(in srgb, var(--navy) 40%, var(--mist));
-  --chart-1: var(--navy);
-  --chart-2: var(--mist);
-  --chart-3: #5C6378;
-  --chart-4: var(--navy-hover);
-  --chart-5: #8A919E;
-  --sidebar: var(--cream);
-  --sidebar-foreground: var(--navy);
-  --sidebar-primary: var(--navy);
-  --sidebar-primary-foreground: var(--cream);
-  --sidebar-accent: color-mix(in srgb, var(--mist) 40%, var(--cream));
-  --sidebar-accent-foreground: var(--navy);
-  --sidebar-border: var(--mist);
-  --sidebar-ring: color-mix(in srgb, var(--navy) 40%, var(--mist));
+  --border: #d7dee4;
+  --input: #d7dee4;
+  --ring: color-mix(in srgb, var(--navy-token) 35%, var(--mist-token));
+  --chart-1: var(--navy-token);
+  --chart-2: var(--mist-token);
+  --chart-3: #5e6578;
+  --chart-4: var(--accent-token);
+  --chart-5: #8a919e;
+  --sidebar: var(--surface-token);
+  --sidebar-foreground: var(--navy-token);
+  --sidebar-primary: var(--navy-token);
+  --sidebar-primary-foreground: var(--cream-token);
+  --sidebar-accent: #e8e4dc;
+  --sidebar-accent-foreground: var(--navy-token);
+  --sidebar-border: #d7dee4;
+  --sidebar-ring: color-mix(in srgb, var(--navy-token) 35%, var(--mist-token));
 }
 
 .dark {
-  /* Accent utilities: text-navy → cream, bg-navy buttons invert */
-  --cream-token: #313851;
-  --navy-token: #F6F3ED;
-  --navy-hover-token: #D4D9DE;
-  --surface-token: #252B3F;
-  --section-token: color-mix(in srgb, #252B3F 70%, #313851);
-  --surface: #252B3F;
-  --background: var(--navy);
-  --foreground: var(--cream);
-  --card: var(--surface);
-  --card-foreground: var(--cream);
-  --popover: var(--surface);
-  --popover-foreground: var(--cream);
-  --primary: var(--cream);
-  --primary-foreground: var(--navy);
-  --secondary: color-mix(in srgb, var(--navy) 70%, var(--navy-hover));
-  --secondary-foreground: var(--cream);
-  --muted: var(--section-token);
-  --muted-foreground: #D4D9DE;
-  --accent: color-mix(in srgb, var(--navy) 60%, var(--navy-hover));
-  --accent-foreground: var(--cream);
+  /* Dark is its own ink and paper, not an inversion of the light hexes. */
+  --cream-token: #e7e2d6;
+  --mist-token: #8e99a8;
+  --navy-token: #e7e2d6;
+  --navy-hover-token: #f4f0e8;
+  --surface-token: #1c2230;
+  --accent-token: #e0b089;
+  --button-bg: #e7e2d6;
+  --button-fg: #12151c;
+  --button-hover: #f4f0e8;
+  --section-token: #181d28;
+  --surface: #1c2230;
+  --background: #12151c;
+  --foreground: #e7e2d6;
+  --card: #1c2230;
+  --card-foreground: #e7e2d6;
+  --popover: #1c2230;
+  --popover-foreground: #e7e2d6;
+  --primary: var(--button-bg);
+  --primary-foreground: var(--button-fg);
+  --secondary: #181d28;
+  --secondary-foreground: #e7e2d6;
+  --muted: #181d28;
+  --muted-foreground: #a8b1be;
+  --accent: color-mix(in srgb, var(--accent-token) 16%, #1c2230);
+  --accent-foreground: var(--accent-token);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: color-mix(in srgb, var(--mist) 35%, var(--navy));
-  --input: color-mix(in srgb, var(--mist) 25%, var(--navy));
-  --ring: var(--mist);
-  --chart-1: var(--cream);
-  --chart-2: var(--mist);
-  --chart-3: #D4D9DE;
-  --chart-4: var(--navy-hover);
-  --chart-5: #8A919E;
-  --sidebar: var(--navy);
-  --sidebar-foreground: var(--cream);
-  --sidebar-primary: var(--cream);
-  --sidebar-primary-foreground: var(--navy);
-  --sidebar-accent: var(--surface);
-  --sidebar-accent-foreground: var(--cream);
-  --sidebar-border: color-mix(in srgb, var(--mist) 35%, var(--navy));
-  --sidebar-ring: var(--mist);
+  --border: color-mix(in srgb, #8e99a8 28%, #12151c);
+  --input: color-mix(in srgb, #8e99a8 22%, #12151c);
+  --ring: #8e99a8;
+  --chart-1: #e7e2d6;
+  --chart-2: #8e99a8;
+  --chart-3: #a8b1be;
+  --chart-4: #e0b089;
+  --chart-5: #6d7786;
+  --sidebar: #12151c;
+  --sidebar-foreground: #e7e2d6;
+  --sidebar-primary: #e7e2d6;
+  --sidebar-primary-foreground: #12151c;
+  --sidebar-accent: #1c2230;
+  --sidebar-accent-foreground: #e7e2d6;
+  --sidebar-border: color-mix(in srgb, #8e99a8 28%, #12151c);
+  --sidebar-ring: #8e99a8;
 }
 
 @layer components {
-  .label-problem {
-    @apply mb-2 inline-flex rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-foreground;
-  }
+  .label-problem,
   .label-solution {
-    @apply mb-2 inline-flex rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-foreground;
+    @apply font-mono text-[11px] uppercase tracking-wide text-muted-foreground;
   }
-  /** Standard elevated card on mist-wash page background */
   .portfolio-card {
-    @apply rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:shadow-md;
+    @apply rounded-md border border-border bg-card p-6;
   }
-  /** Primary CTA — light: navy fill; dark: cream fill (via token swap, do not use dark:bg-cream) */
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-2 font-medium text-cream shadow transition hover:bg-navy-hover;
+    @apply inline-flex items-center gap-2 rounded-md px-5 py-2 font-medium transition;
+    background: var(--button-bg);
+    color: var(--button-fg);
+  }
+  .btn-primary:hover {
+    background: var(--button-hover);
   }
 }
 
@@ -270,4 +278,10 @@
   --mist-token: #C2CBD3;
   --surface-token: #F6F3ED;
   color-scheme: light;
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 1.25rem, black calc(100% - 1.25rem), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 1.25rem, black calc(100% - 1.25rem), transparent);
 }

@@ -81,8 +81,8 @@ export function MermaidTabs({ tabs }: { tabs: MermaidTabItem[] }) {
               onClick={() => setActive(i)}
               className={`shrink-0 whitespace-nowrap rounded-md px-2 py-1 text-left text-[11px] font-medium leading-tight transition sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-sm md:px-4 md:py-2 md:text-base ${
                 selected
-                  ? "bg-navy text-cream shadow-sm ring-1 ring-mist/60"
-                  : "bg-mist/30 text-navy hover:bg-mist/50"
+                  ? "bg-[var(--button-bg)] text-[var(--button-fg)]"
+                  : "bg-muted text-navy hover:bg-muted"
               }`}
             >
               {t.label}
@@ -96,7 +96,7 @@ export function MermaidTabs({ tabs }: { tabs: MermaidTabItem[] }) {
         id={`mermaid-panel-${tabs[active]?.id ?? "active"}`}
         role="tabpanel"
         aria-labelledby={`mermaid-tab-${tabs[active]?.id ?? "active"}`}
-        className="min-h-[280px] overflow-x-auto rounded-xl border border-border bg-card p-3 shadow-sm sm:p-4 md:p-6 [&_svg]:max-w-none [&_svg]:min-w-0"
+        className="min-h-[280px] overflow-x-auto rounded-md border border-border bg-card p-3 sm:p-4 md:p-6 [&_svg]:max-w-none [&_svg]:min-w-0"
       />
 
       <p className="text-xs text-muted-foreground">

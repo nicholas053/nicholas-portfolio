@@ -32,7 +32,7 @@ export function ExperienceHighlightBody({ highlight: h, variant, siteUrl = "" }:
   const linkClass =
     variant === "resume"
       ? "whitespace-nowrap font-medium text-navy underline decoration-mist underline-offset-2 print:text-[8.75pt]"
-      : "whitespace-nowrap font-medium text-navy underline-offset-2 hover:underline"
+      : "whitespace-nowrap font-medium text-[var(--accent-token)] underline-offset-2 hover:underline"
 
   return (
     <>

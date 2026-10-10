@@ -4,8 +4,8 @@ import { THEME, type ThemeMode } from "@/lib/theme-colors"
 let configuredMode: ThemeMode | null = null
 
 /** Elevated node fill — must read clearly against diagram canvas in dark mode. */
-const DARK_NODE = "#3D4660"
-const DARK_SECTION = "#353D52"
+const DARK_NODE = "#2A3346"
+const DARK_SECTION = "#222838"
 
 export function getMermaidThemeVariables(mode: ThemeMode) {
   if (mode === "dark") {
@@ -16,13 +16,13 @@ export function getMermaidThemeVariables(mode: ThemeMode) {
       secondBkg: THEME.surfaceDark,
       tertiaryBkg: DARK_NODE,
       primaryColor: DARK_NODE,
-      primaryTextColor: THEME.cream,
+      primaryTextColor: THEME.inkDark,
       primaryBorderColor: THEME.mist,
-      secondaryColor: "#4A5568",
-      secondaryTextColor: THEME.cream,
+      secondaryColor: "#3A455C",
+      secondaryTextColor: THEME.inkDark,
       secondaryBorderColor: THEME.mist,
       tertiaryColor: DARK_NODE,
-      tertiaryTextColor: THEME.cream,
+      tertiaryTextColor: THEME.inkDark,
       tertiaryBorderColor: THEME.mist,
       lineColor: THEME.mist,
       textColor: THEME.cream,

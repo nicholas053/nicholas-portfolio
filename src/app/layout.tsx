@@ -27,8 +27,8 @@ const siteUrl = getSiteUrl()
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F2F4F6" },
-    { media: "(prefers-color-scheme: dark)", color: "#313851" },
+    { media: "(prefers-color-scheme: light)", color: "#F3F0EA" },
+    { media: "(prefers-color-scheme: dark)", color: "#12151C" },
   ],
   width: "device-width",
   initialScale: 1,

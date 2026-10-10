@@ -50,7 +50,7 @@ export function ResumeToolbar() {
           type="button"
           onClick={downloadPdf}
           disabled={downloading}
-          className="rounded-lg bg-navy px-4 py-2 text-sm font-medium text-cream shadow hover:bg-navy-hover disabled:opacity-60"
+          className="rounded-md bg-[var(--button-bg)] px-4 py-2 text-sm font-medium text-[var(--button-fg)] transition hover:bg-[var(--button-hover)] disabled:opacity-60"
         >
           {downloading ? "Preparing PDF…" : "Download PDF"}
         </button>

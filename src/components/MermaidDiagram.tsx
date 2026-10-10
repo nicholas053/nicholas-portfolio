@@ -70,7 +70,7 @@ export function MermaidDiagram({ chart, "aria-label": ariaLabel, className }: Pr
       aria-label={ariaLabel ?? "Mermaid diagram"}
       className={
         className ??
-        "min-h-[220px] overflow-x-auto rounded-xl border border-border bg-card p-3 shadow-sm sm:p-4 [&_svg]:max-w-none [&_svg]:min-w-0"
+        "min-h-[220px] overflow-x-auto rounded-md border border-border bg-card p-3 sm:p-4 [&_svg]:max-w-none [&_svg]:min-w-0"
       }
     />
   )
