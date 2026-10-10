@@ -153,12 +153,16 @@ export default function ResumePage() {
                           <span className="font-bold text-zinc-400 print:text-[9pt]" aria-hidden>
                             |
                           </span>
-                          <a
-                            href={entry.employer.url}
-                            className="font-bold text-zinc-950 underline decoration-zinc-300 underline-offset-2 print:text-[9.5pt]"
-                          >
-                            {entry.employer.name}
-                          </a>
+                          {entry.employer.url ? (
+                            <a
+                              href={entry.employer.url}
+                              className="font-bold text-zinc-950 underline decoration-zinc-300 underline-offset-2 print:text-[9.5pt]"
+                            >
+                              {entry.employer.name}
+                            </a>
+                          ) : (
+                            <span className="font-bold text-zinc-950 print:text-[9.5pt]">{entry.employer.name}</span>
+                          )}
                         </p>
                         {entry.jobTitle ? (
                           <p className="text-sm font-bold leading-snug text-navy print:text-[9.5pt]">{entry.jobTitle}</p>
@@ -196,9 +200,13 @@ export default function ResumePage() {
                           {entry.employer ? (
                             <span className="text-[11px] font-medium text-zinc-600 sm:text-xs print:text-[8.5pt]">
                               Web Developer ·{" "}
-                              <a href={entry.employer.url} className="text-zinc-800 underline decoration-zinc-300 underline-offset-2">
-                                {entry.employer.name}
-                              </a>
+                              {entry.employer.url ? (
+                                <a href={entry.employer.url} className="text-zinc-800 underline decoration-zinc-300 underline-offset-2">
+                                  {entry.employer.name}
+                                </a>
+                              ) : (
+                                <span className="text-zinc-800">{entry.employer.name}</span>
+                              )}
                             </span>
                           ) : null}
                         </div>

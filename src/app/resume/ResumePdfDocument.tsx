@@ -316,9 +316,13 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
               const richEmployer = experienceUsesEmployerRichBlock(entry)
               const headlineSecond =
                 richEmployer && entry.employer ? (
-                  <Link src={entry.employer.url}>
+                  entry.employer.url ? (
+                    <Link src={entry.employer.url}>
+                      <Text style={styles.employerHeadlineName}>{entry.employer.name}</Text>
+                    </Link>
+                  ) : (
                     <Text style={styles.employerHeadlineName}>{entry.employer.name}</Text>
-                  </Link>
+                  )
                 ) : entry.roleTitle ? (
                   <Text style={styles.timelineHeadlineRole}>{entry.roleTitle}</Text>
                 ) : null
@@ -352,9 +356,13 @@ export function ResumePdfDocument({ siteUrl }: { siteUrl: string }) {
                   {entry.employer && !richEmployer ? (
                     <Text style={styles.timelineEmployerLine}>
                       Web Developer ·{" "}
-                      <Link src={entry.employer.url}>
+                      {entry.employer.url ? (
+                        <Link src={entry.employer.url}>
+                          <Text style={styles.timelineEmployerLink}>{entry.employer.name}</Text>
+                        </Link>
+                      ) : (
                         <Text style={styles.timelineEmployerLink}>{entry.employer.name}</Text>
-                      </Link>
+                      )}
                     </Text>
                   ) : null}
                   {entry.jobTitle && richEmployer ? <Text style={styles.timelineJobTitle}>{entry.jobTitle}</Text> : null}

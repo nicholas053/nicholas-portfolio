@@ -4,15 +4,22 @@ import { getSiteUrl } from "@/lib/site-config"
 const PATHS = [
   "",
   "/notes",
+  "/notes/seller-onboarding-variants",
+  "/notes/cart-stock-reservation",
+  "/notes/cancel-vs-late-payment",
+  "/notes/order-lifecycle-refunds",
+  "/notes/multi-level-revenue-splits",
+  "/notes/third-party-api-adapters",
+  "/notes/background-job-failures",
   "/notes/flexible-financial-settlement",
   "/notes/frontend-architecture-refactoring",
   "/notes/performance-evaluation-360",
   "/notes/fullstack-assessment-debugging",
+  "/projects/multi-seller-marketplace",
   "/projects/lokatech",
   "/projects/what-i-applied",
   "/projects/church-system",
   "/projects/task-system",
-  "/projects/ecommerce-system",
 ] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {

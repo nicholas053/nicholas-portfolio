@@ -20,6 +20,62 @@ export const metadata: Metadata = pageSocialMeta({
 
 const notes = [
   {
+    href: "/notes/seller-onboarding-variants",
+    title: "Seller onboarding and product variants",
+    blurb:
+      "Shop applications on existing accounts, category attributes, and up to two variant axes with per-variant price and stock.",
+    badge: "NDA" as const,
+    ready: true,
+  },
+  {
+    href: "/notes/cart-stock-reservation",
+    title: "Cart and stock reservation",
+    blurb:
+      "A shared cart that checks availability on add, and holds stock only when the buyer opens the checkout summary.",
+    badge: "NDA" as const,
+    ready: true,
+  },
+  {
+    href: "/notes/cancel-vs-late-payment",
+    title: "Cancel vs a late or duplicate payment confirmation",
+    blurb:
+      "One locked mark-paid path so cancel, a late confirmation, and a background check end in one state.",
+    badge: "NDA" as const,
+    ready: true,
+  },
+  {
+    href: "/notes/order-lifecycle-refunds",
+    title: "Order lifecycle and refunds",
+    blurb:
+      "One child order per seller under a shared payment, with idempotent refunds and a buffer before seller income.",
+    badge: "NDA" as const,
+    ready: true,
+  },
+  {
+    href: "/notes/multi-level-revenue-splits",
+    title: "Multi-level revenue splits with a dry-run preview",
+    blurb:
+      "Percent-plus-fixed splits down a partner chain. Preview and settle call the same function.",
+    badge: "Pattern" as const,
+    ready: true,
+  },
+  {
+    href: "/notes/third-party-api-adapters",
+    title: "One interface for many third-party APIs",
+    blurb:
+      "A registry of adapters for different auth, payloads, and status names, including an explicit pending flag.",
+    badge: "Pattern" as const,
+    ready: true,
+  },
+  {
+    href: "/notes/background-job-failures",
+    title: "Making background job failures visible and safe to retry",
+    blurb:
+      "Claim a row before calling out, record the stage and last error, and retry without sending twice.",
+    badge: "Pattern" as const,
+    ready: true,
+  },
+  {
     href: "/notes/flexible-financial-settlement",
     title: "Flexible Financial Settlement Engine",
     blurb:
@@ -125,6 +181,11 @@ export default function NotesIndexPage() {
                       {item.badge === "Reflection" && (
                         <span className="inline-flex rounded-full bg-violet-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-violet-900 dark:bg-violet-950/60 dark:text-violet-200">
                           Reflection
+                        </span>
+                      )}
+                      {item.badge === "Pattern" && (
+                        <span className="inline-flex rounded-full bg-mist/40 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-navy dark:bg-surface/50 dark:text-mist">
+                          Illustrative
                         </span>
                       )}
                       <h2 className="text-xl font-bold text-navy">

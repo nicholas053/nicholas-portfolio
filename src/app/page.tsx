@@ -12,11 +12,12 @@ import {
   HOME_CONTACT,
   HOME_CTA,
   HOME_LOKATECH,
-  HOME_NDA_FEATURE,
+  HOME_NDA_BANNERS,
   HOME_PHILOSOPHY,
   HOME_PHILOSOPHY_INSTAGRAM_LABEL,
   HOME_PROJECTS,
   HOME_PROJECTS_SECTION_TITLE,
+  HOME_TECH_NOTE_LINKS,
   HOME_TECH_NOTES_INTRO,
   HOME_WORKFLOW,
   LOKATECH,
@@ -53,6 +54,21 @@ export default function HomePage() {
   //   window.addEventListener("scroll", handleScroll)
   //   return () => window.removeEventListener("scroll", handleScroll)
   // }, [])
+
+  useEffect(() => {
+    if (window.location.hash !== "#projects") return
+    const el = document.getElementById("projects")
+    el?.scrollIntoView()
+    setActiveSection("projects")
+    const frame = window.requestAnimationFrame(() => {
+      window.history.replaceState(
+        window.history.state,
+        "",
+        window.location.pathname + window.location.search,
+      )
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
 
   useEffect(() => {
     const sections = ["home", "projects", "about", "contact"]
@@ -336,37 +352,52 @@ export default function HomePage() {
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center">{HOME_PROJECTS_SECTION_TITLE}</motion.h2>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:shadow-md">
-          <div className="flex flex-col items-start gap-5 p-5 md:flex-row md:gap-8 md:p-6">
-            <div className="shrink-0 space-y-2 md:max-w-[220px]">
-              <div className="inline-flex items-center gap-2 rounded-full bg-mist/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground dark:bg-surface">
-                <FaLock className="text-muted-foreground" aria-hidden /> {HOME_NDA_FEATURE.badge}
-              </div>
-              <h3 className="text-lg font-bold leading-snug text-navy md:text-xl">
-                {HOME_NDA_FEATURE.title}
-              </h3>
-              <p className="text-xs font-medium text-muted-foreground dark:text-muted-foreground md:text-sm">
-                {HOME_NDA_FEATURE.role}
-              </p>
-            </div>
+        {/* <div className="space-y-6">
+          {HOME_NDA_BANNERS.map((banner) => (
+            <motion.div
+              key={banner.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:shadow-md"
+            >
+              <div className="flex flex-col items-start gap-5 p-5 md:flex-row md:gap-8 md:p-6">
+                <div className="shrink-0 space-y-2 md:max-w-[220px]">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-mist/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground dark:bg-surface">
+                    <FaLock className="text-muted-foreground" aria-hidden /> {banner.badge}
+                  </div>
+                  <h3 className="text-lg font-bold leading-snug text-navy md:text-xl">
+                    {banner.title}
+                  </h3>
+                  <p className="text-xs font-medium text-muted-foreground dark:text-muted-foreground md:text-sm">
+                    {banner.role}
+                  </p>
+                </div>
 
-            <div className="min-w-0 flex-1 space-y-3 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
-              <p>{HOME_NDA_FEATURE.body}</p>
-              <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-mist pt-3 text-sm dark:border-mist/50">
-                <Link
-                  href={HOME_NDA_FEATURE.financeNoteHref}
-                  className="font-semibold text-navy hover:underline dark:text-mist"
-                >
-                  {HOME_NDA_FEATURE.financeNoteLabel}
-                </Link>
-                <Link href="/notes" className="font-medium text-muted-foreground hover:underline">
-                  All technical notes →
-                </Link>
+                <div className="min-w-0 flex-1 space-y-3 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
+                  <p>{banner.body}</p>
+                  {banner.links?.length ? (
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-mist pt-3 text-sm dark:border-mist/50">
+                      {banner.links.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className={
+                            link.tone === "muted"
+                              ? "font-medium text-muted-foreground hover:underline"
+                              : "font-semibold text-navy hover:underline dark:text-mist"
+                          }
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
               </div>
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -389,6 +420,36 @@ export default function HomePage() {
               </Link>
             </div>
           ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-2xl border border-border bg-card p-5 shadow-sm md:p-8"
+        >
+          <h3 className="text-lg font-bold text-navy md:text-xl">Technical notes</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">
+            {HOME_TECH_NOTES_INTRO}
+          </p>
+          <ul className="mt-4 space-y-2 border-l border-mist pl-4 text-sm leading-snug text-muted-foreground md:space-y-3 md:text-base md:leading-relaxed dark:border-mist/50">
+            {HOME_TECH_NOTE_LINKS.map((note) => (
+              <li key={note.href} className={note.featureOnMobile ? undefined : "hidden md:list-item"}>
+                <Link href={note.href} className="font-semibold text-navy hover:underline dark:text-mist">
+                  {note.title}
+                </Link>
+                <span className="hidden md:inline">
+                  {" — "}
+                  {note.blurb}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm md:mt-5">
+            <Link href="/notes" className="font-semibold text-navy hover:underline dark:text-mist">
+              All technical notes →
+            </Link>
+          </p>
         </motion.div>
       </motion.section>
 
@@ -437,14 +498,18 @@ export default function HomePage() {
                       <span className="select-none font-normal text-muted-foreground dark:text-muted-foreground" aria-hidden>
                         |
                       </span>
-                      <a
-                        href={item.employer.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-bold text-navy hover:text-navy-hover"
-                      >
-                        {item.employer.name}
-                      </a>
+                      {item.employer.url ? (
+                        <a
+                          href={item.employer.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-bold text-navy hover:text-navy-hover"
+                        >
+                          {item.employer.name}
+                        </a>
+                      ) : (
+                        <span className="font-bold text-navy">{item.employer.name}</span>
+                      )}
                     </p>
                     {item.jobTitle ? (
                       <p className="text-sm font-bold leading-snug text-navy">{item.jobTitle}</p>
@@ -466,14 +531,18 @@ export default function HomePage() {
                 ) : item.employer ? (
                   <p className="mt-1 text-muted-foreground dark:text-muted-foreground">
                     Web Developer at{" "}
-                    <a
-                      href={item.employer.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-navy dark:text-mist"
-                    >
-                      {item.employer.name}
-                    </a>
+                    {item.employer.url ? (
+                      <a
+                        href={item.employer.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-navy dark:text-mist"
+                      >
+                        {item.employer.name}
+                      </a>
+                    ) : (
+                      <span className="font-medium text-navy dark:text-mist">{item.employer.name}</span>
+                    )}
                     . {item.body}
                   </p>
                 ) : item.highlights?.length ? (
@@ -511,59 +580,6 @@ export default function HomePage() {
               ))}
             </ul>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8"
-          >
-            <h3 className="text-lg font-bold text-navy md:text-xl">Technical notes</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
-              {HOME_TECH_NOTES_INTRO}
-            </p>
-            <ul className="mt-4 space-y-3 border-l border-mist pl-4 text-sm leading-relaxed text-muted-foreground dark:border-mist/50 dark:text-muted-foreground md:text-base">
-              <li>
-                <Link
-                  href="/notes/flexible-financial-settlement"
-                  className="font-semibold text-navy hover:underline dark:text-mist"
-                >
-                  Flexible financial settlement
-                </Link>
-                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
-                Finance “shopping cart” batches, consolidated payment vouchers, commission states (NDA).
-              </li>
-              <li>
-                <Link href="/notes/performance-evaluation-360" className="font-semibold text-navy hover:underline dark:text-mist">
-                  360° performance evaluation
-                </Link>
-                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
-                Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.
-              </li>
-              <li>
-                <Link
-                  href="/notes/frontend-architecture-refactoring"
-                  className="font-semibold text-navy hover:underline dark:text-mist"
-                >
-                  Frontend architecture refactoring
-                </Link>
-                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
-                Unified dynamic forms, shared library, RBAC across admin and agent portals.
-              </li>
-              <li>
-                <Link href="/notes/fullstack-assessment-debugging" className="font-semibold text-navy hover:underline dark:text-mist">
-                  Full-stack assessment reflection
-                </Link>
-                <span className="text-muted-foreground dark:text-muted-foreground"> — </span>
-                Pooling, infinite scroll stability, a live merge-order bug, and a transparent post-interview follow-up.
-              </li>
-            </ul>
-            <p className="mt-5 text-sm">
-              <Link href="/notes" className="font-semibold text-navy hover:underline dark:text-mist">
-                All technical notes →
-              </Link>
-            </p>
-          </motion.div>
 
           {/* <motion.div
             initial={{ opacity: 0, y: 16 }}

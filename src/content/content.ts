@@ -80,15 +80,40 @@ export const HOME_WORKFLOW = {
 
 export const HOME_PROJECTS_SECTION_TITLE = "Selected work"
 
-export const HOME_NDA_FEATURE = {
-  badge: "Confidential / NDA",
-  title: "Enterprise system turnaround",
-  role: "Role: Tech BA & front-end dev",
-  body:
-    "Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged. I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.",
-  financeNoteHref: "/notes/flexible-financial-settlement",
-  financeNoteLabel: "Finance architecture note →",
-} as const
+export type HomeNdaBannerLink = {
+  href: string
+  label: string
+  tone?: "primary" | "muted"
+}
+
+export type HomeNdaBanner = {
+  badge: string
+  title: string
+  role: string
+  body: string
+  links?: readonly HomeNdaBannerLink[]
+}
+
+export const HOME_NDA_BANNERS: readonly HomeNdaBanner[] = [
+  {
+    badge: "Confidential / NDA",
+    title: "Tiered Fee Engine",
+    role: "Role: Backend developer · Go, PostgreSQL",
+    body:
+      "Percent-plus-fixed fees split across multiple levels of partners, with a read-only preview that shows every level's share before a rate change is saved. Migrated the fee model from a single rate to percent-plus-fixed without recalculating historical records. Also built third-party integrations and failure tracking and recovery for background jobs.",
+  },
+  {
+    badge: "Confidential / NDA",
+    title: "Enterprise system turnaround",
+    role: "Role: Tech BA & front-end dev",
+    body:
+      "Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged. I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.",
+    links: [
+      { href: "/notes/flexible-financial-settlement", label: "Finance architecture note →" },
+      { href: "/notes", label: "All technical notes →", tone: "muted" },
+    ],
+  },
+]
 
 export type HomeProjectCard = {
   title: string
@@ -98,6 +123,13 @@ export type HomeProjectCard = {
 }
 
 export const HOME_PROJECTS: HomeProjectCard[] = [
+  {
+    title: "Multi-Seller Marketplace Channel",
+    description:
+      "Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and money kept correct under concurrency and late payment events.",
+    linkPath: "/projects/multi-seller-marketplace",
+    linkLabel: "Read case study →",
+  },
   {
     title: "LokaTech — Internal Operations Platform",
     description:
@@ -126,17 +158,80 @@ export const HOME_PROJECTS: HomeProjectCard[] = [
     linkPath: "/projects/task-system",
     linkLabel: "Read case study →",
   },
-  {
-    title: "E-commerce Platform",
-    description:
-      "Full-stack shop with JWT auth, cart checkout, order management, and admin inventory — an early shipped project across API and UI.",
-    linkPath: "/projects/ecommerce-system",
-    linkLabel: "Early project →",
-  },
 ]
 
 export const HOME_TECH_NOTES_INTRO =
   "Architecture write-ups with diagrams — when you want the how, not just the bullet."
+
+/** Home selected-work list. `featureOnMobile` is the short set shown on a phone. */
+export const HOME_TECH_NOTE_LINKS = [
+  {
+    href: "/notes/seller-onboarding-variants",
+    title: "Seller onboarding and product variants",
+    blurb: "Shops on existing accounts, two variant axes, per-variant price and stock (NDA).",
+    featureOnMobile: false,
+  },
+  {
+    href: "/notes/cart-stock-reservation",
+    title: "Cart and stock reservation",
+    blurb: "Holds at checkout summary so idle carts do not lock stock (NDA).",
+    featureOnMobile: true,
+  },
+  {
+    href: "/notes/cancel-vs-late-payment",
+    title: "Cancel vs a late payment",
+    blurb: "One locked path for cancel, a late confirmation, and a background check (NDA).",
+    featureOnMobile: true,
+  },
+  {
+    href: "/notes/order-lifecycle-refunds",
+    title: "Order lifecycle and refunds",
+    blurb: "Per-seller orders, returns, and idempotent refunds on a shared payment (NDA).",
+    featureOnMobile: false,
+  },
+  {
+    href: "/notes/multi-level-revenue-splits",
+    title: "Multi-level revenue splits",
+    blurb: "Percent-plus-fixed splits with a read-only preview before settle.",
+    featureOnMobile: false,
+  },
+  {
+    href: "/notes/third-party-api-adapters",
+    title: "One interface for many third-party APIs",
+    blurb: "Adapters, signature checks, and pending versus final callbacks.",
+    featureOnMobile: false,
+  },
+  {
+    href: "/notes/background-job-failures",
+    title: "Background job failures",
+    blurb: "Claim before calling out, and record why a row is stuck so retries stay safe.",
+    featureOnMobile: false,
+  },
+  {
+    href: "/notes/flexible-financial-settlement",
+    title: "Flexible financial settlement",
+    blurb: "Finance “shopping cart” batches, consolidated payment vouchers, commission states (NDA).",
+    featureOnMobile: true,
+  },
+  {
+    href: "/notes/performance-evaluation-360",
+    title: "360° performance evaluation",
+    blurb: "Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.",
+    featureOnMobile: false,
+  },
+  {
+    href: "/notes/frontend-architecture-refactoring",
+    title: "Frontend architecture refactoring",
+    blurb: "Unified dynamic forms, shared library, RBAC across admin and agent portals.",
+    featureOnMobile: false,
+  },
+  {
+    href: "/notes/fullstack-assessment-debugging",
+    title: "Full-stack assessment reflection",
+    blurb: "Pooling, infinite scroll stability, a live merge-order bug, and a transparent post-interview follow-up.",
+    featureOnMobile: false,
+  },
+] as const
 
 export const HOME_PHILOSOPHY =
   "Outside of work I write on philosophy and shoot photography — both push me to notice what people assume and what they overlook, which carries into how I gather requirements and design interfaces."
@@ -144,7 +239,7 @@ export const HOME_PHILOSOPHY =
 export const HOME_PHILOSOPHY_INSTAGRAM_LABEL = "Photography on Instagram"
 
 export const HOME_CONTACT = {
-  lead: "Open to full-stack and product engineer roles. Easiest reach: email or WhatsApp.",
+  lead: "Happy to chat about backend and product engineering. Easiest reach: email or WhatsApp.",
 } as const
 
 /** Opening paragraph on the resume (keep short for print density). */
@@ -194,7 +289,7 @@ export type ExperienceTimelineEntry = {
   body: string
   /** Shorter line for the resume; falls back to `body` if omitted */
   resumeBody?: string
-  employer?: { name: string; url: string }
+  employer?: { name: string; url?: string }
   /** One-line headline with `period`, e.g. "Independent Full-Stack Developer | Apr 2022 – Sept 2025" */
   roleTitle?: string
   /** Italic-style intro when `highlights` is used */
@@ -211,6 +306,38 @@ export function experienceUsesEmployerRichBlock(entry: ExperienceTimelineEntry):
 }
 
 export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
+  {
+    period: "July 2026 – Present",
+    jobTitle: "Backend Developer",
+    summaryLead:
+      "Own backend features from design to production on commerce and transaction systems. Passed probation early.",
+    highlights: [
+      {
+        label: "Multi-seller marketplace channel (NDA):",
+        body:
+          "designed (lead-approved) and built a second sales channel on an existing marketplace app: seller onboarding, product variants, cart with stock reservation, one checkout across multiple sellers that stays correct when payment confirmations arrive late or twice, and the full order and refund lifecycle.",
+        technicalNotePath: "/projects/multi-seller-marketplace",
+      },
+      {
+        label: "Tiered fee engine (NDA):",
+        body:
+          "percent-plus-fixed fees split across multiple levels, with a read-only preview before any rate change; third-party integrations; failure tracking and recovery for background jobs.",
+      },
+      {
+        label: "Internal operations and reconciliation tools.",
+        body: "",
+      },
+      {
+        label: "Tech Stack:",
+        body: "Laravel, MySQL, Go, PostgreSQL",
+        resumeAccentPhrase: "Laravel, MySQL, Go, PostgreSQL",
+      },
+    ],
+    body: "At Ocean Hub Management Sdn Bhd: backend features from design to production on commerce and transaction systems, including a multi-seller marketplace channel and a tiered fee engine.",
+    resumeBody:
+      "Ocean Hub: backend on commerce and transaction systems — multi-seller marketplace channel (Laravel, MySQL) and a tiered fee engine (Go, PostgreSQL).",
+    employer: { name: "Ocean Hub Management Sdn Bhd" },
+  },
   {
     period: "Oct 2025 – June 2026",
     jobTitle: "Web Developer / Product Engineer",
@@ -398,15 +525,6 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
     impactAccentPhrase: "Used by two startup teams (about 5–10 people each).",
     linkPath: "/projects/task-system",
   },
-  // {
-  //   title: "E-commerce platform",
-  //   brief: "Full-stack shop: catalog, cart/checkout, orders, admin inventory & reports (.NET Core + React/Next).",
-  //   challenge: "Split stack needed safe JWT handling, persistent cart, and usable admin for inventory and exports.",
-  //   solution:
-  //     "API routes set HttpOnly JWT cookies; Zustand + localStorage cart; admin CRUD, stock adjustments, sales/order exports.",
-  //   impact: "Traceable orders/stock, finance-friendly exports, credentials kept out of client JS.",
-  //   linkPath: "/projects/ecommerce-system",
-  // },
 ]
 
 export const RESUME_PHILOSOPHY =
