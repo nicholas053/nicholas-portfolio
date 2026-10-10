@@ -88,58 +88,28 @@ export const SETTLEMENT_FLOW = `flowchart TD
 
     Insert --> AgentView`
 
-export const SETTLEMENT_SEQUENCE = `sequenceDiagram
-    participant Calc as Calculation Engine
-    participant DB as Database
-    participant AP as Agent Portal
-    participant FP as Finance Portal
-
-    rect rgb(255, 248, 220)
-    Note over Calc, FP: Step 1-3 Automatic Calculation
-    end
-
-    Calc->>DB: Fetch New Closed Cases
-    loop For Each Agent in Case
-        Calc->>DB: Check Agent YTD_Earning
-        alt YTD plus current reaches policy threshold
-            Calc->>Calc: Set WHT_Flag = TRUE
-            Calc->>Calc: Calculate withholding using configured rate
-        else Below policy threshold
-            Calc->>Calc: Set WHT_Flag = FALSE
-            Calc->>Calc: Calculate Tax = 0
-        end
-        Calc->>DB: Insert Record (Status: NEW, wht_amount)
-    end
-
-    rect rgb(255, 248, 220)
-    Note over DB, AP: Step 4 Visibility and Submission
-    end
-
-    DB-->>AP: Agent views My Commission
-    AP->>DB: Submit Record (Status to PENDING_APPROVAL)
-
-    rect rgb(255, 248, 220)
-    Note over DB, FP: Step 6 Shopping Cart Selection
-    end
-
-    DB-->>FP: Query Approved Commissions Pool
-
-    rect rgb(240, 248, 255)
-    Note right of FP: Finance Selection Session
-    FP->>DB: Select Item A Base and Item B Bonus
-    DB->>DB: Lock Items (Status IN_DRAFT_BATCH)
-    DB-->>FP: Save as Draft Payment Batch
-    end
-
-    rect rgb(255, 248, 220)
-    Note over DB, FP: Step 7 Finalizing Payment
-    end
-
-    FP->>DB: Confirm Batch and Generate PV
-    DB->>DB: Assign PV Number and Date
-    DB->>DB: Update Items (Status PAID)
-    DB->>DB: Update Case Status (Partially or Fully Paid)
-    DB-->>AP: Update Agent My Payment View`
+export const SETTLEMENT_SEQUENCE = `flowchart TD
+    A["Steps 1–3: automatic calculation"] --> B["Calculation engine → Database<br/>fetch new closed cases"]
+    B --> C["For each agent in the case<br/>check year-to-date earning"]
+    C --> D{"Year-to-date plus current<br/>reaches the policy threshold?"}
+    D -- yes --> E["Set withholding flag true<br/>calculate withholding at the configured rate"]
+    D -- no --> F["Set withholding flag false<br/>tax = 0"]
+    E --> G["Insert record<br/>status NEW, withholding amount"]
+    F --> G
+    G --> H["Step 4: visibility and submission"]
+    H --> I["Database → Agent portal<br/>agent views My Commission"]
+    I --> J["Agent portal → Database<br/>submit record, status PENDING_APPROVAL"]
+    J --> K["Step 6: shopping cart selection"]
+    K --> L["Database → Finance portal<br/>query the approved commissions pool"]
+    L --> M["Finance selection session<br/>select item A base and item B bonus"]
+    M --> N["Lock items<br/>status IN_DRAFT_BATCH"]
+    N --> O["Save as draft payment batch"]
+    O --> P["Step 7: finalizing payment"]
+    P --> Q["Finance portal → Database<br/>confirm batch and generate payment voucher"]
+    Q --> R["Assign voucher number and date"]
+    R --> S["Update items to PAID"]
+    S --> T["Update case status<br/>partially or fully paid"]
+    T --> U["Update agent My Payment view"]`
 
 /** Flattened composite state for reliable Mermaid 11 parsing. */
 export const SETTLEMENT_STATE = `stateDiagram-v2

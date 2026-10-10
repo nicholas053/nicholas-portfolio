@@ -4,7 +4,7 @@ export const multiSellerMarketplaceDiagrams: readonly MermaidBlock[] = [
   {
     id: "overall-flow",
     label: "Overall flow",
-    chart: `flowchart LR
+    chart: `flowchart TD
     A[Seller applies] --> B[Admin approves]
     B --> C[Seller lists products and variants]
     C --> D[Buyer adds to shared cart]
@@ -38,19 +38,13 @@ export const multiSellerMarketplaceDiagrams: readonly MermaidBlock[] = [
   {
     id: "checkout-payment",
     label: "Checkout to payment",
-    chart: `sequenceDiagram
-    participant Buyer
-    participant API
-    participant Session as Checkout session
-    participant Stock as Stock holds
-    participant PSP as Payment provider
-    Buyer->>API: open checkout summary
-    API->>Stock: hold each variant (row lock)
-    Buyer->>API: place order
-    API->>Session: create session + one order per seller
-    API->>PSP: create payment
-    PSP-->>API: payment confirmed (async)
-    API->>Session: lock session, mark paid
-    API->>Stock: consume holds`,
+    chart: `flowchart TD
+    A["Buyer → API<br/>open checkout summary"] --> B["API → Stock holds<br/>hold each variant, row lock"]
+    B --> C["Buyer → API<br/>place order"]
+    C --> D["API → Checkout session<br/>create session and one order per seller"]
+    D --> E["API → Payment provider<br/>create payment"]
+    E --> F["Payment provider → API<br/>payment confirmed, async"]
+    F --> G["API → Checkout session<br/>lock session, mark paid"]
+    G --> H["API → Stock holds<br/>consume holds"]`,
   },
 ]

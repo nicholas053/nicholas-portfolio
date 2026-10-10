@@ -89,28 +89,18 @@ export const PERF_EVAL_FLOW = `flowchart TD
 
     A6 -.-> E1`
 
-export const PERF_EVAL_SEQUENCE = `sequenceDiagram
-    autonumber
-    participant Admin
-    participant API as Application API
-    participant DB as Database
-    participant Staff as Staff portal
-    participant Partner as Partner browser
-
-    Admin->>API: Activate evaluation cycle
-    API->>DB: Resolve org hierarchy and roles
-    API->>DB: Bulk insert pending evaluations
-
-    Staff->>API: Authenticated session
-    API->>DB: Fetch assigned evaluations
-    Staff->>API: Submit evaluation JSON
-    API->>DB: Update JSONB payload and status
-
-    Admin->>API: Mint signed public token URL
-    Partner->>API: GET form via token (no login)
-    API->>DB: Validate token scope and expiry
-    Partner->>API: POST external rating JSON
-    API->>DB: Insert evaluation with partner_id`
+export const PERF_EVAL_SEQUENCE = `flowchart TD
+    A["Admin → API<br/>activate evaluation cycle"] --> B["API → Database<br/>resolve org hierarchy and roles"]
+    B --> C["API → Database<br/>bulk insert pending evaluations"]
+    C --> D["Staff → API<br/>authenticated session"]
+    D --> E["API → Database<br/>fetch assigned evaluations"]
+    E --> F["Staff → API<br/>submit evaluation JSON"]
+    F --> G["API → Database<br/>update JSON payload and status"]
+    G --> H["Admin → API<br/>mint signed public token URL"]
+    H --> I["Partner → API<br/>GET form via token, no login"]
+    I --> J["API → Database<br/>validate token scope and expiry"]
+    J --> K["Partner → API<br/>POST external rating JSON"]
+    K --> L["API → Database<br/>insert evaluation with partner id"]`
 
 export const performanceEvaluationDiagramTabs: MermaidTabItem[] = [
   { id: "erd", label: "Database ERD", chart: PERF_EVAL_ERD },

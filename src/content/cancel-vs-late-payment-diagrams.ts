@@ -21,20 +21,15 @@ export const cancelVsLatePaymentDiagrams: readonly MermaidBlock[] = [
   {
     id: "cancel-race",
     label: "Cancel races a late confirmation",
-    chart: `sequenceDiagram
-    participant Buyer
-    participant API
-    participant PSP as Payment provider
-    participant DB as Checkout session
-    Buyer->>API: cancel unpaid checkout
-    API->>PSP: was this paid?
-    PSP-->>API: not paid
-    API->>DB: lock, re-check, cancel, release holds
-    PSP->>API: late confirmation (paid)
-    API->>DB: lock session
-    API->>DB: was cancelled, so revive: mark paid, restore orders, settle stock
-    PSP->>API: duplicate confirmation
-    API->>DB: already paid, so no-op`,
+    chart: `flowchart TD
+    A["Buyer → API<br/>cancel unpaid checkout"] --> B["API → Payment provider<br/>was this paid?"]
+    B --> C["Payment provider → API<br/>not paid"]
+    C --> D["API → Checkout session<br/>lock, re-check, cancel, release holds"]
+    D --> E["Payment provider → API<br/>late confirmation, paid"]
+    E --> F["API → Checkout session<br/>lock session"]
+    F --> G["API → Checkout session<br/>was cancelled, so revive: mark paid, restore orders, settle stock"]
+    G --> H["Payment provider → API<br/>duplicate confirmation"]
+    H --> I["API → Checkout session<br/>already paid, so no-op"]`,
   },
   {
     id: "session-states",

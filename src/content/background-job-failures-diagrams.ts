@@ -16,22 +16,17 @@ export const backgroundJobFailuresDiagrams: readonly MermaidBlock[] = [
   {
     id: "retry",
     label: "Failed call, then retry",
-    chart: `sequenceDiagram
-    participant Q as Queue
-    participant W as Worker
-    participant DB
-    participant Ext as External API
-    Q->>W: job
-    W->>DB: claim (conditional update)
-    W->>Ext: send
-    Ext-->>W: error
-    W->>DB: clear claim if marker matches
-    W->>DB: last_error = stage + message
-    W-->>Q: return error (retry later)
-    Q->>W: retry
-    W->>DB: claim
-    W->>Ext: send
-    Ext-->>W: ok + external_ref
-    W->>DB: save ref, clear last_error`,
+    chart: `flowchart TD
+    A["Queue → Worker<br/>job"] --> B["Worker → DB<br/>claim, conditional update"]
+    B --> C["Worker → External API<br/>send"]
+    C --> D["External API → Worker<br/>error"]
+    D --> E["Worker → DB<br/>clear claim if marker matches"]
+    E --> F["Worker → DB<br/>last error = stage + message"]
+    F --> G["Worker → Queue<br/>return error, retry later"]
+    G --> H["Queue → Worker<br/>retry"]
+    H --> I["Worker → DB<br/>claim"]
+    I --> J["Worker → External API<br/>send"]
+    J --> K["External API → Worker<br/>ok + external ref"]
+    K --> L["Worker → DB<br/>save ref, clear last error"]`,
   },
 ]

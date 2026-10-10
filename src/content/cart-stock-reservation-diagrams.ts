@@ -23,18 +23,12 @@ export const cartStockReservationDiagrams: readonly MermaidBlock[] = [
   {
     id: "open-summary",
     label: "Opening checkout summary",
-    chart: `sequenceDiagram
-    participant Buyer
-    participant API as Summary API
-    participant Session as Checkout session
-    participant Variant
-    participant Hold as Stock hold
-    Buyer->>API: open summary(cart lines)
-    API->>Session: lock existing or create session
-    API->>Variant: lock row, check on_hand - held
-    API->>Hold: create hold (active)
-    API->>Variant: held = held + qty
-    API-->>Buyer: totals and expiry`,
+    chart: `flowchart TD
+    A["Buyer → Summary API<br/>open summary of cart lines"] --> B["API → Checkout session<br/>lock existing or create session"]
+    B --> C["API → Variant<br/>lock row, check on hand minus held"]
+    C --> D["API → Stock hold<br/>create hold, active"]
+    D --> E["API → Variant<br/>held = held + quantity"]
+    E --> F["API → Buyer<br/>totals and expiry"]`,
   },
   {
     id: "hold-states",

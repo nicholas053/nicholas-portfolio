@@ -1,27 +1,16 @@
 /** Mermaid source for /notes/fullstack-assessment-debugging — generic labels, no employer names. */
 
-export const ASSESSMENT_FULL_STACK_SEQUENCE = `sequenceDiagram
-    participant UI as Next.js UI
-    participant SWR as SWR cache
-    participant API as Laravel API
-    participant Ext as External REST API
-
-    UI->>SWR: Request paginated list (page N)
-
-    alt Cache hit
-        SWR-->>UI: Return cached JSON immediately
-    else Cache miss
-        SWR->>API: GET /api/items with page and limit
-        Note over API: Risk: sequential detail calls inflate latency
-        API->>Ext: List endpoint returns batch identifiers
-        Ext-->>API: Identifier rows for current page
-        Note over API,Ext: Laravel HTTP client concurrent pool
-        API->>Ext: Parallel detail requests for each row
-        Ext-->>API: Detail payloads in completion order
-        Note over API: Post-session fix: deterministic merge and cache keys
-        API->>API: Map responses to stable indices then merge
-        API-->>SWR: Single stable aggregate JSON
-        SWR-->>UI: Hydrate list and images
-    end
-
-    Note over UI: Skeletons then Intersection Observer for next page with deduped SWR keys`
+export const ASSESSMENT_FULL_STACK_SEQUENCE = `flowchart TD
+    A["Next.js UI → SWR<br/>request paginated list, page N"] --> B{"Cache?"}
+    B -- hit --> C["SWR → UI<br/>return cached JSON immediately"]
+    B -- miss --> D["SWR → Laravel API<br/>GET /api/items with page and limit"]
+    D --> E["Risk: sequential detail calls inflate latency"]
+    E --> F["API → External REST<br/>list endpoint returns batch identifiers"]
+    F --> G["External REST → API<br/>identifier rows for the current page"]
+    G --> H["Laravel HTTP client concurrent pool<br/>parallel detail requests for each row"]
+    H --> I["External REST → API<br/>detail payloads in completion order"]
+    I --> J["Post-session fix<br/>map responses to stable indices, then merge"]
+    J --> K["API → SWR<br/>single stable aggregate JSON"]
+    K --> L["SWR → UI<br/>hydrate list and images"]
+    C --> M["Skeletons, then Intersection Observer<br/>next page uses deduped SWR keys"]
+    L --> M`

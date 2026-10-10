@@ -20,15 +20,10 @@ export const thirdPartyApiAdaptersDiagrams: readonly MermaidBlock[] = [
   {
     id: "callback",
     label: "Inbound callback through an adapter",
-    chart: `sequenceDiagram
-    participant Ext as Third-party API
-    participant H as Callback handler
-    participant A as Adapter
-    participant S as Core service
-    Ext->>H: POST /callbacks/:account
-    H->>A: parse + verify signature
-    A-->>H: normalised event (final or pending)
-    H->>S: ingest (pending = no state change)
-    H-->>Ext: provider-specific ack`,
+    chart: `flowchart TD
+    A["Third-party API → Callback handler<br/>POST /callbacks/:account"] --> B["Handler → Adapter<br/>parse and verify signature"]
+    B --> C["Adapter → Handler<br/>normalised event, final or pending"]
+    C --> D["Handler → Core service<br/>ingest; pending means no state change"]
+    D --> E["Handler → Third-party API<br/>provider-specific ack"]`,
   },
 ]

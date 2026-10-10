@@ -17,19 +17,12 @@ export const orderLifecycleRefundsDiagrams: readonly MermaidBlock[] = [
   {
     id: "return-refund",
     label: "Return received and refund",
-    chart: `sequenceDiagram
-    participant Seller
-    participant API
-    participant Order as Child order
-    participant Case as Return case
-    participant Stock
-    participant Pay as Payment
-    Seller->>API: mark return received
-    API->>Order: lock row
-    API->>Case: state = received
-    API->>Order: cancelled, settlement held
-    API->>Stock: restore on-hand (once per order)
-    API->>Pay: refund, partial if sibling orders still paid`,
+    chart: `flowchart TD
+    A["Seller → API<br/>mark return received"] --> B["API → Child order<br/>lock row"]
+    B --> C["API → Return case<br/>state = received"]
+    C --> D["API → Child order<br/>cancelled, settlement held"]
+    D --> E["API → Stock<br/>restore on hand, once per order"]
+    E --> F["API → Payment<br/>refund, partial if sibling orders are still paid"]`,
   },
   {
     id: "order-states",

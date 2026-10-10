@@ -23,17 +23,11 @@ export const multiLevelRevenueSplitsDiagrams: readonly MermaidBlock[] = [
   {
     id: "preview-settle",
     label: "Preview vs settle",
-    chart: `sequenceDiagram
-    participant Ops
-    participant Preview
-    participant Split as Split function
-    participant Settle
-    participant DB
-    Ops->>Preview: draft rates
-    Preview->>Split: compute levels
-    Preview-->>Ops: share per level + leftover (no write)
-    Settle->>DB: UPDATE sale SET settled WHERE state in (settle-able)
-    Settle->>Split: compute with live rates
-    Settle->>DB: INSERT split lines (unique per sale + partner)`,
+    chart: `flowchart TD
+    A["Ops → Preview<br/>draft rates"] --> B["Preview → Split function<br/>compute levels"]
+    B --> C["Preview → Ops<br/>share per level and leftover, no write"]
+    C --> D["Settle → DB<br/>mark sale settled when the state allows it"]
+    D --> E["Settle → Split function<br/>compute with live rates"]
+    E --> F["Settle → DB<br/>insert split lines, unique per sale and partner"]`,
   },
 ]

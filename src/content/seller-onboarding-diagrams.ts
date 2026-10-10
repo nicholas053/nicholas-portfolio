@@ -20,17 +20,11 @@ export const sellerOnboardingDiagrams: readonly MermaidBlock[] = [
   {
     id: "application-flow",
     label: "Application flow",
-    chart: `sequenceDiagram
-    participant Seller
-    participant API as Apply API
-    participant Store as Seller store
-    participant Loc as Store location
-    participant Pay as Payout detail
-    Seller->>API: apply(profile, address id, payout id, documents)
-    API->>Store: insert or update-if-rejected, status = pending
-    API->>Loc: create default location from address
-    API->>Pay: create default payout from account
-    API-->>Seller: application submitted`,
+    chart: `flowchart TD
+    A["Seller → Apply API<br/>apply with profile, address, payout, documents"] --> B["Apply API → Seller store<br/>insert or update if rejected, status pending"]
+    B --> C["Apply API → Store location<br/>create default location from address"]
+    C --> D["Apply API → Payout detail<br/>create default payout from account"]
+    D --> E["Apply API → Seller<br/>application submitted"]`,
   },
   {
     id: "shop-status",
