@@ -1,6 +1,6 @@
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiVercel } from "react-icons/si"
 import { DiNodejs } from "react-icons/di"
-import { FiExternalLink, FiArrowLeft } from "react-icons/fi"
+import { FiExternalLink } from "react-icons/fi"
 import Link from "next/link"
 import type { Metadata } from "next"
 import FeatureRow from "@/components/FeatureRow"
@@ -27,7 +27,7 @@ export default function LokaTechPage() {
   const siteUrl = getSiteUrl()
 
   return (
-    <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-16 md:py-24">
       <PageJsonLd
         data={[
           creativeWorkJsonLd({
@@ -45,20 +45,19 @@ export default function LokaTechPage() {
       <div>
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy transition-colors"
+          className="text-sm text-muted-foreground hover:text-navy"
         >
-          <FiArrowLeft className="w-4 h-4" />
-          <span>Back</span>
+          ← Back
         </Link>
       </div>
 
-      <section className="text-center space-y-6">
-        <h1 className="text-4xl md:text-5xl font-bold">LokaTech — Internal Operations Platform</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <section className="space-y-4">
+        <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">LokaTech — Internal Operations Platform</h1>
+        <p className="text-lg leading-relaxed text-muted-foreground">
           A full-stack operations platform for professional digital services teams — unifying scoped pricing,
           collaborative client sign-off, billing, and technical documentation in a single Next.js monorepo.
         </p>
-        <div className="flex flex-col items-center justify-center gap-3">
+        <div className="flex flex-col items-start gap-3">
           <a
             href="https://lokatech.co"
             target="_blank"
@@ -67,7 +66,7 @@ export default function LokaTechPage() {
           >
             Visit lokatech.co <FiExternalLink />
           </a>
-          <p className="text-sm text-muted-foreground max-w-md">
+          <p className="text-sm text-muted-foreground">
             The internal admin and ops platform is private. This case study documents the system I built; the public
             site is the marketing front.
           </p>
@@ -75,9 +74,9 @@ export default function LokaTechPage() {
       </section>
 
       <section className="grid md:grid-cols-2 gap-8 md:gap-12">
-        <div className="space-y-4 p-8 bg-muted rounded-2xl border border-border">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-problem">The Problem</div>
-          <h3 className="text-2xl font-bold">Fragmented agency operations</h3>
+          <h3 className="text-lg font-semibold text-navy">Fragmented agency operations</h3>
           <ul className="space-y-3 text-muted-foreground leading-relaxed list-disc list-inside">
             <li>
               <strong className="text-navy">Inconsistent quoting:</strong> Every project type
@@ -98,9 +97,9 @@ export default function LokaTechPage() {
           </ul>
         </div>
 
-        <div className="space-y-4 p-8 bg-card rounded-2xl border border-border">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-solution">The Solution</div>
-          <h3 className="text-2xl font-bold">One system for pre-sale → billing</h3>
+          <h3 className="text-lg font-semibold text-navy">One system for pre-sale → billing</h3>
           <ul className="space-y-3 text-muted-foreground leading-relaxed list-disc list-inside">
             <li>
               <strong className="text-navy">Catalog + pricing engine:</strong> Master scope
@@ -123,31 +122,31 @@ export default function LokaTechPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-3xl font-semibold text-center">Impact</h2>
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Quoting</h3>
+        <h2 className="text-lg font-semibold text-navy">Impact</h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Quoting</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Manual per-type math and hand-copied catalog prices → transparent calculators and catalog-driven custom
               scope with floors and modifiers.
             </p>
           </div>
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Scope & change control</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Scope & change control</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Email and PDF loops with unclear diffs → review rounds with NEW/MODIFIED flags, client ticks, comments,
               and change-order audit history after baseline lock.
             </p>
           </div>
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Billing</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Billing</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Ad-hoc line items and weak overdue visibility → project-first billing hub with status badges, filters, and
               branded invoice PDFs.
             </p>
           </div>
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Client access & ops visibility</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Client access & ops visibility</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Screenshots or full account creation → typed magic links for scope review vs read-only docs; dashboard
               feed links directly to what needs action.
@@ -178,31 +177,31 @@ export default function LokaTechPage() {
         reverse
       />
 
-      <section className="py-12 border-y border-mist dark:border-mist/50 my-16">
-        <h2 className="text-3xl font-semibold text-center mb-10">Engineering Spotlight</h2>
+      <section className="space-y-6 border-y border-border py-10">
+        <h2 className="mb-6 text-lg font-semibold text-navy">Engineering Spotlight</h2>
         <div className="grid md:grid-cols-2 gap-10">
           <div className="space-y-3">
-            <h3 className="text-xl font-bold flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-navy flex items-center gap-2">
               <span className="text-navy">01.</span> Server action architecture
             </h3>
             <p className="text-muted-foreground">
               Every mutation follows the same contract: Zod validation before Prisma,{" "}
-              <code className="text-xs bg-mist/30 dark:bg-surface px-1 rounded">requireSession()</code> on admin
+              <code className="rounded bg-muted px-1 font-mono text-xs">requireSession()</code> on admin
               actions, standardized{" "}
-              <code className="text-xs bg-mist/30 dark:bg-surface px-1 rounded">{`{ success, data } | { success, error }`}</code>{" "}
-              returns, and <code className="text-xs bg-mist/30 dark:bg-surface px-1 rounded">revalidatePath()</code>{" "}
+              <code className="rounded bg-muted px-1 font-mono text-xs">{`{ success, data } | { success, error }`}</code>{" "}
+              returns, and <code className="rounded bg-muted px-1 font-mono text-xs">revalidatePath()</code>{" "}
               for immediate UI consistency — scaling across 8+ action modules without ad-hoc error handling.
             </p>
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-xl font-bold flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-navy flex items-center gap-2">
               <span className="text-navy">02.</span> Client portal security + PDF strategy
             </h3>
             <p className="text-muted-foreground">
               32-byte random tokens with SHA-256 hash at rest, separate link types and expiry per route, scoped to a
               single project. PDF generation runs client-side via{" "}
-              <code className="text-xs bg-mist/30 dark:bg-surface px-1 rounded">@react-pdf/renderer</code> to stay
+              <code className="rounded bg-muted px-1 font-mono text-xs">@react-pdf/renderer</code> to stay
               within Vercel serverless limits; Prisma Decimals serialize to plain numbers before crossing the RSC
               boundary.
             </p>
@@ -211,22 +210,22 @@ export default function LokaTechPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-3xl font-semibold text-center">Audience snapshot</h2>
+        <h2 className="text-lg font-semibold text-navy">Audience snapshot</h2>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Admin</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Admin</h3>
             <p className="text-muted-foreground text-sm">
               Session-gated staff hubs — clients, scopes, projects, billing, and the command dashboard.
             </p>
           </div>
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Marketing</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Marketing</h3>
             <p className="text-muted-foreground text-sm">
               Public lokatech.co site in the same monorepo, with its own theme — unchanged URLs, no admin pollution.
             </p>
           </div>
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Client portal</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Client portal</h3>
             <p className="text-muted-foreground text-sm">
               Token-based magic links, no account — separate URLs for interactive scope review vs read-only project docs.
             </p>
@@ -235,12 +234,12 @@ export default function LokaTechPage() {
       </section>
 
       <section className="space-y-10">
-        <h2 className="text-3xl font-semibold text-center">Tech Stack</h2>
-        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
+        <h2 className="text-lg font-semibold text-navy">Tech Stack</h2>
+        <p className="text-muted-foreground">
           Full-stack TypeScript on Next.js App Router — PostgreSQL as the source of truth, validation at every mutation
           boundary.
         </p>
-        <div className="flex flex-wrap justify-center gap-8 text-6xl mt-8 text-navy">
+        <div className="flex flex-wrap gap-6 text-3xl text-navy">
           <SiNextdotjs title="Next.js" className="text-navy" />
           <SiReact title="React" className="text-navy" />
           <SiTailwindcss title="Tailwind CSS" className="text-navy" />
@@ -249,7 +248,7 @@ export default function LokaTechPage() {
           <DiNodejs title="Node.js" className="text-navy" />
           <SiVercel title="Vercel" className="text-navy" />
         </div>
-        <div className="max-w-3xl mx-auto text-muted-foreground space-y-2 text-center text-sm">
+        <div className="space-y-2 text-sm text-muted-foreground">
           <p>
             <strong>Framework:</strong> Next.js (App Router), React, TypeScript · <strong>UI:</strong> Tailwind CSS v4,
             Shadcn UI
@@ -266,17 +265,17 @@ export default function LokaTechPage() {
       </section>
 
       <section className="space-y-8">
-        <h2 className="text-3xl font-semibold text-center">Future Roadmap</h2>
-        <div className="relative border-l border-mist dark:border-mist/50 ml-4 space-y-12">
+        <h2 className="text-lg font-semibold text-navy">Future Roadmap</h2>
+        <div className="relative border-l border-border ml-4 space-y-12">
           <div className="ml-6">
-            <h3 className="text-xl font-semibold">Project status pipeline</h3>
+            <h3 className="text-lg font-semibold text-navy">Project status pipeline</h3>
             <p className="text-muted-foreground">
               Lead → scoping → proposal sent → won → in progress → completed → archived, with gates for billing and
               scope edits.
             </p>
           </div>
           <div className="ml-6">
-            <h3 className="text-xl font-semibold">Email notifications</h3>
+            <h3 className="text-lg font-semibold text-navy">Email notifications</h3>
             <p className="text-muted-foreground">
               Resend integration for scope review published, invoice sent, payment received, and scheduled overdue
               reminders.

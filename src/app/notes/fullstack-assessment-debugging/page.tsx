@@ -1,5 +1,4 @@
 import { AssessmentFlowDiagram } from "./AssessmentFlowDiagram"
-import { FiArrowLeft } from "react-icons/fi"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageJsonLd } from "@/components/PageJsonLd"
@@ -25,7 +24,7 @@ export default function FullstackAssessmentDebuggingPage() {
   const siteUrl = getSiteUrl()
 
   return (
-    <main className="mx-auto max-w-6xl space-y-16 px-4 py-10 md:px-8 md:py-12 lg:space-y-20">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-16 md:py-24">
       <PageJsonLd
         data={[
           techArticleJsonLd({
@@ -41,33 +40,32 @@ export default function FullstackAssessmentDebuggingPage() {
           ]),
         ]}
       />
-      <div>
+      <div className="pb-4 md:pb-8">
         <Link
           href="/notes"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-navy dark:text-muted-foreground dark:hover:text-cream"
+          className="text-sm text-muted-foreground hover:text-navy"
         >
-          <FiArrowLeft className="h-4 w-4" aria-hidden />
-          <span>Technical notes</span>
+          ← Technical notes
         </Link>
       </div>
 
-      <header className="space-y-6 text-center">
-        <div className="flex justify-center">
-          <span className="inline-flex rounded-full bg-violet-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-violet-900 dark:bg-violet-950/60 dark:text-violet-200">
+      <header className="space-y-4">
+        <div>
+          <span className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
             Assessment reflection
           </span>
         </div>
-        <h1 className="text-3xl font-bold leading-tight text-navy md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">
           Full-Stack Assessment: Performance Optimization &amp; Live Debugging
         </h1>
-        <p className="mx-auto max-w-2xl text-base text-muted-foreground dark:text-muted-foreground md:text-lg">
+        <p className="leading-relaxed text-muted-foreground">
           Product engineer (candidate) — a timed take-home using Laravel and
           Next.js, a live technical session where a subtle bug surfaced, and the
           work I did afterward to reproduce, fix, and explain it clearly.
         </p>
       </header>
 
-      <section className="mx-auto max-w-3xl rounded-2xl border border-border bg-muted p-6 text-left text-sm leading-relaxed text-muted-foreground md:p-8 md:text-base">
+      <section className="space-y-3 text-sm leading-relaxed text-muted-foreground md:text-base">
         <p>
           I am keeping this{" "}
           <strong className="text-navy">
@@ -85,11 +83,11 @@ export default function FullstackAssessmentDebuggingPage() {
       </section>
 
       <section className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
-        <div className="space-y-4 rounded-2xl border border-border bg-muted p-6 md:p-8">
+        <div className="space-y-3">
           <div className="label-problem">
             Challenge
           </div>
-          <h2 className="text-xl font-bold text-navy md:text-2xl">
+          <h2 className="text-lg font-semibold text-navy">
             Aggregation cost, UI churn, and a live race
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
@@ -120,11 +118,11 @@ export default function FullstackAssessmentDebuggingPage() {
           </p>
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8">
+        <div className="space-y-3">
           <div className="label-solution">
             Solution
           </div>
-          <h2 className="text-xl font-bold text-navy md:text-2xl">
+          <h2 className="text-lg font-semibold text-navy">
             Pooling, skeleton-first UI, then a precise merge fix
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
@@ -156,8 +154,8 @@ export default function FullstackAssessmentDebuggingPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-10">
-        <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">
+      <section className="space-y-3 border-t border-border pt-8">
+        <h2 className="mb-2 text-xs font-mono uppercase tracking-wide text-muted-foreground">
           Impact
         </h2>
         <p className="text-base leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-lg">
@@ -179,8 +177,8 @@ export default function FullstackAssessmentDebuggingPage() {
         </p>
       </section>
 
-      <figure className="relative overflow-hidden rounded-2xl border-l-4 border-violet-500 bg-violet-50/90 p-6 shadow-sm dark:border-violet-400 dark:bg-violet-950/30 md:p-8">
-        <figcaption className="mb-3 text-xs font-bold uppercase tracking-widest text-violet-800 dark:text-violet-200">
+      <figure className="space-y-3 border-l border-border pl-5">
+        <figcaption className="mb-3 font-mono text-xs uppercase tracking-wide text-muted-foreground">
           Communication — follow-up after the session
         </figcaption>
         <blockquote className="text-base italic leading-relaxed text-navy md:text-lg">
@@ -194,8 +192,8 @@ export default function FullstackAssessmentDebuggingPage() {
         </blockquote>
       </figure>
 
-      <section className="rounded-xl border border-border bg-card p-5 md:p-6">
-        <h2 className="text-sm font-bold uppercase tracking-wide text-navy">
+      <section className="space-y-3 border-t border-border pt-8">
+        <h2 className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
           Tools (used transparently)
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
@@ -210,11 +208,11 @@ export default function FullstackAssessmentDebuggingPage() {
       </section>
 
       <section className="space-y-6">
-        <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold text-navy md:text-3xl">
+        <div>
+          <h2 className="text-lg font-semibold text-navy">
             Technical architecture
           </h2>
-          <p className="mx-auto mt-2 max-w-3xl text-sm text-muted-foreground dark:text-muted-foreground md:mx-0 md:text-base">
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             One sequence view: cache-first reads, pooled backend aggregation, the
             ordering bug class I hit live, and how the UI stays stable while
             paginating.
@@ -224,12 +222,12 @@ export default function FullstackAssessmentDebuggingPage() {
         <AssessmentFlowDiagram />
       </section>
 
-      <footer className="border-t border-mist pt-10 text-center dark:border-mist/50">
+      <footer className="border-t border-border pt-8">
         <Link
-          href="/"
-          className="text-sm font-medium text-navy hover:underline dark:text-mist"
+          href="/#technical-notes"
+          className="text-sm text-[var(--accent-token)] hover:underline"
         >
-          ← Back to portfolio home
+          ← Technical notes on the home page
         </Link>
       </footer>
     </main>

@@ -1,5 +1,4 @@
 import { ArchitectureBeforeAfter } from "./ArchitectureBeforeAfter"
-import { FiArrowLeft } from "react-icons/fi"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageJsonLd } from "@/components/PageJsonLd"
@@ -25,7 +24,7 @@ export default function FrontendArchitectureRefactoringPage() {
   const siteUrl = getSiteUrl()
 
   return (
-    <main className="mx-auto max-w-6xl space-y-16 px-4 py-10 md:px-8 md:py-12 lg:space-y-20">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-16 md:py-24">
       <PageJsonLd
         data={[
           techArticleJsonLd({
@@ -41,26 +40,25 @@ export default function FrontendArchitectureRefactoringPage() {
           ]),
         ]}
       />
-      <div>
+      <div className="pb-4 md:pb-8">
         <Link
           href="/notes"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-navy dark:text-muted-foreground dark:hover:text-cream"
+          className="text-sm text-muted-foreground hover:text-navy"
         >
-          <FiArrowLeft className="h-4 w-4" aria-hidden />
-          <span>Technical notes</span>
+          ← Technical notes
         </Link>
       </div>
 
-      <header className="space-y-6 text-center">
-        <div className="flex justify-center">
-          <span className="inline-flex rounded-full bg-mist/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy dark:bg-surface/50 dark:text-mist">
+      <header className="space-y-4">
+        <div>
+          <span className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
             Team / engineering practice
           </span>
         </div>
-        <h1 className="text-3xl font-bold leading-tight text-navy md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">
           Frontend Architecture Refactoring &amp; Component Standardization
         </h1>
-        <p className="mx-auto max-w-2xl text-base text-muted-foreground dark:text-muted-foreground md:text-lg">
+        <p className="leading-relaxed text-muted-foreground">
           Lead Frontend Engineer — reducing duplication across admin and agent
           experiences by moving toward a single source of truth for forms,
           lists, and shared UI.
@@ -68,11 +66,11 @@ export default function FrontendArchitectureRefactoringPage() {
       </header>
 
       <section className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
-        <div className="space-y-4 rounded-2xl border border-border bg-muted p-6 md:p-8">
+        <div className="space-y-3">
           <div className="label-problem">
             Challenge
           </div>
-          <h2 className="text-xl font-bold text-navy md:text-2xl">
+          <h2 className="text-lg font-semibold text-navy">
             DRY violations and heavy maintenance
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
@@ -90,11 +88,11 @@ export default function FrontendArchitectureRefactoringPage() {
           </p>
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8">
+        <div className="space-y-3">
           <div className="label-solution">
             Solution
           </div>
-          <h2 className="text-xl font-bold text-navy md:text-2xl">
+          <h2 className="text-lg font-semibold text-navy">
             Component-driven, unified surfaces
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
@@ -107,7 +105,7 @@ export default function FrontendArchitectureRefactoringPage() {
               one dynamic form
             </strong>{" "}
             keyed by route params (e.g.{" "}
-            <code className="rounded bg-surface/80 px-1 py-0.5 text-xs dark:bg-surface/80">
+            <code className="rounded bg-muted px-1 font-mono text-xs">
               /:id
             </code>
             ), collapsed duplicated portal pages into{" "}
@@ -123,8 +121,8 @@ export default function FrontendArchitectureRefactoringPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-10">
-        <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">
+      <section className="space-y-3 border-t border-border pt-8">
+        <h2 className="mb-2 text-xs font-mono uppercase tracking-wide text-muted-foreground">
           Impact
         </h2>
         <p className="text-base leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-lg">
@@ -139,11 +137,11 @@ export default function FrontendArchitectureRefactoringPage() {
       </section>
 
       <section className="space-y-8">
-        <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold text-navy md:text-3xl">
+        <div>
+          <h2 className="text-lg font-semibold text-navy">
             Architecture transformation
           </h2>
-          <p className="mx-auto mt-2 max-w-3xl text-sm text-muted-foreground dark:text-muted-foreground md:mx-0 md:text-base">
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             High-level view of structure before vs after. Diagrams are
             illustrative of the pattern, not a literal repo map.
           </p>
@@ -152,12 +150,12 @@ export default function FrontendArchitectureRefactoringPage() {
         <ArchitectureBeforeAfter />
       </section>
 
-      <footer className="border-t border-mist pt-10 text-center dark:border-mist/50">
+      <footer className="border-t border-border pt-8">
         <Link
-          href="/"
-          className="text-sm font-medium text-navy hover:underline dark:text-mist"
+          href="/#technical-notes"
+          className="text-sm text-[var(--accent-token)] hover:underline"
         >
-          ← Back to portfolio home
+          ← Technical notes on the home page
         </Link>
       </footer>
     </main>

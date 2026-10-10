@@ -37,16 +37,16 @@ export default function MultiLevelRevenueSplitsPage() {
         ]}
       />
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">The problem</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">The problem</h2>
         <p>
           Fee rules changed from one flat rate to <em>percent + fixed</em>, split down a chain of levels. Ops needed
           to change rates safely, without surprises in real payouts.
         </p>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">How it works</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">How it works</h2>
         <ol className="list-decimal space-y-3 pl-5">
           <li>
             Walk the chain from the top rate downward. Each level&apos;s own rate is clamped between 0 and the level
@@ -70,8 +70,8 @@ export default function MultiLevelRevenueSplitsPage() {
         </ol>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Migration approach</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Migration approach</h2>
         <p>
           Added percent and fixed columns beside the legacy rate columns, backfilled old rows into one part,
           dual-wrote both during transition, and never recalculated already-settled records.

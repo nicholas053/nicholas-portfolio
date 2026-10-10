@@ -37,16 +37,16 @@ export default function ThirdPartyApiAdaptersPage() {
         ]}
       />
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">The problem</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">The problem</h2>
         <p>
           Every provider signs requests differently, names statuses differently, and some report an intermediate
           processing state before the final result.
         </p>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">How it works</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">How it works</h2>
         <ol className="list-decimal space-y-3 pl-5">
           <li>
             A single internal interface (create, query, parse callback) and a registry. Adding a provider means one

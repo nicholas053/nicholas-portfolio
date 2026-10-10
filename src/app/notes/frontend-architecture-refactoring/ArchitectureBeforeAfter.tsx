@@ -8,7 +8,7 @@ export function ArchitectureBeforeAfter() {
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-8">
       <div className="flex min-w-0 flex-col space-y-3">
         <div>
-          <h3 className="text-lg font-bold text-navy md:text-xl">
+          <h3 className="text-lg font-semibold text-navy">
             Before — legacy duplication
           </h3>
           <p className="mt-1 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
@@ -25,7 +25,7 @@ export function ArchitectureBeforeAfter() {
 
       <div className="flex min-w-0 flex-col space-y-3">
         <div>
-          <h3 className="text-lg font-bold text-navy md:text-xl">
+          <h3 className="text-lg font-semibold text-navy">
             After — unified, component-driven
           </h3>
           <p className="mt-1 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">

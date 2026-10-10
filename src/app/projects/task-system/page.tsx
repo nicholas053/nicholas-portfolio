@@ -1,7 +1,7 @@
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel, SiDotnet } from 'react-icons/si'
 import { DiNodejs } from "react-icons/di";
 import FeatureRow from '@/components/FeatureRow'
-import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
+import { FiExternalLink } from 'react-icons/fi'
 import Link from 'next/link';
 import type { Metadata } from "next"
 import { PageJsonLd } from "@/components/PageJsonLd"
@@ -27,7 +27,7 @@ export default function ProjectTaskSystemPage() {
   const siteUrl = getSiteUrl()
 
   return (
-    <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-16 md:py-24">
       <PageJsonLd
         data={[
           creativeWorkJsonLd({
@@ -46,19 +46,18 @@ export default function ProjectTaskSystemPage() {
       <div>
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy transition-colors"
+          className="text-sm text-muted-foreground hover:text-navy"
         >
-          <FiArrowLeft className="w-4 h-4" />
-          <span>Back</span>
+          ← Back
         </Link>
       </div>
       {/* Page Title */}
-      <section className="text-center space-y-6">
-        <h1 className="text-4xl md:text-5xl font-bold ">Project & Task Management System</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <section className="space-y-4">
+        <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">Project & Task Management System</h1>
+        <p className="text-lg leading-relaxed text-muted-foreground">
           A collaborative project management system designed for teams to track progress, make decisions, and for individuals to clearly monitor their own contributions.
         </p>
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-wrap gap-3">
             <a
                 href="https://github.com/nicholas053/Wish-We-Don-t-Resign"
                 target="_blank"
@@ -72,17 +71,17 @@ export default function ProjectTaskSystemPage() {
 
       {/* Overview */}
       <section className="grid md:grid-cols-2 gap-8 md:gap-12 pb-10">
-        <div className="space-y-4 p-8 bg-muted rounded-2xl border border-border">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-problem">The Problem</div>
-          <h3 className="text-2xl font-bold">The Startup Dilemma</h3>
+          <h3 className="text-lg font-semibold text-navy">The Startup Dilemma</h3>
           <p className="text-muted-foreground leading-relaxed">
             A friend's interior design startup needed a reliable task management system to coordinate projects. However, enterprise tools like ClickUp were too expensive for a small team. More importantly, dealing with sensitive client floor plans and design assets required strict data privacy, making them hesitant to rely on third-party public cloud SaaS.
           </p>
         </div>
 
-        <div className="space-y-4 p-8 bg-card rounded-2xl border border-border">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-solution">The Solution</div>
-          <h3 className="text-2xl font-bold">A Self-Hosted Ecosystem</h3>
+          <h3 className="text-lg font-semibold text-navy">A Self-Hosted Ecosystem</h3>
           <p className="text-muted-foreground leading-relaxed">
             I built a lightweight, performant project management platform designed specifically for self-hosting on a custom homelab. It delivers core enterprise features—like Kanban boards, project-level voting, and granular task assignments—without the bloat, ensuring 100% data sovereignty and zero recurring SaaS costs for the startup.
           </p>
@@ -121,18 +120,18 @@ export default function ProjectTaskSystemPage() {
 
       {/* Dark Mode */}
       <section className="space-y-6">
-        <h2 className="text-3xl font-semibold text-center">Dark Mode</h2>
-        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
+        <h2 className="text-lg font-semibold text-navy">Dark Mode</h2>
+        <p className="text-muted-foreground">
           The interface supports dark mode for a modern and user-friendly experience, ensuring accessibility and comfort across environments.
         </p>
       </section>
 
-      <section className="py-12 border-y border-mist dark:border-mist/50 my-16">
-        <h2 className="text-3xl font-semibold text-center mb-10">Engineering Spotlight</h2>
+      <section className="space-y-6 border-y border-border py-10">
+        <h2 className="mb-6 text-lg font-semibold text-navy">Engineering Spotlight</h2>
         <div className="grid md:grid-cols-2 gap-10">
           
           <div className="space-y-3">
-            <h3 className="text-xl font-bold flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-navy flex items-center gap-2">
               <span className="text-navy">01.</span> Advanced Drag & Drop (DnD) Architecture
             </h3>
             <p className="text-muted-foreground">
@@ -143,7 +142,7 @@ export default function ProjectTaskSystemPage() {
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-xl font-bold flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-navy flex items-center gap-2">
               <span className="text-navy">02.</span> Complex State Lifting & Component Decoupling
             </h3>
             <p className="text-muted-foreground">
@@ -156,11 +155,11 @@ export default function ProjectTaskSystemPage() {
 
       {/* Tech Stack */}
       <section className="space-y-10">
-        <h2 className="text-3xl font-semibold text-center">Tech Stack</h2>
-        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
+        <h2 className="text-lg font-semibold text-navy">Tech Stack</h2>
+        <p className="text-muted-foreground">
           This project is powered by a modern full-stack JavaScript ecosystem, leveraging both frontend and backend technologies for performance, scalability, and developer efficiency.
         </p>
-        <div className="flex flex-wrap justify-center gap-8 text-6xl mt-8 text-navy">
+        <div className="flex flex-wrap gap-6 text-3xl text-navy">
           <SiNextdotjs title="Next.js" className="text-navy" />
           <SiReact title="React" className="text-navy" />
           <SiTailwindcss title="TailwindCSS" className="text-navy" />
@@ -169,7 +168,7 @@ export default function ProjectTaskSystemPage() {
           <DiNodejs title="Node.js" className="text-navy" />
           <SiVercel title="Vercel" className="text-navy" />
         </div>
-        <div className="max-w-3xl mx-auto text-muted-foreground space-y-2 text-center">
+        <div className="space-y-2 text-muted-foreground">
           <p><strong>Frontend:</strong> React, Next.js, Tailwind CSS</p>
           <p><strong>Backend:</strong> Node.js, Next.js API Routes, Prisma</p>
           <p><strong>Database:</strong> PostgreSQL</p>
@@ -180,22 +179,22 @@ export default function ProjectTaskSystemPage() {
 
       {/* Roadmap */}
       <section className="space-y-8">
-        <h2 className="text-3xl font-semibold text-center">Future Roadmap</h2>
-        <div className="relative border-l border-mist dark:border-mist/50 ml-4 space-y-12">
+        <h2 className="text-lg font-semibold text-navy">Future Roadmap</h2>
+        <div className="relative border-l border-border ml-4 space-y-12">
           <div className="ml-6">
-            <h3 className="text-xl font-semibold">Gantt Chart</h3>
+            <h3 className="text-lg font-semibold text-navy">Gantt Chart</h3>
             <p className="text-muted-foreground">
               Visualize task dependencies, ensuring sequential workflows are respected.
             </p>
           </div>
           <div className="ml-6">
-            <h3 className="text-xl font-semibold">Audit Trail</h3>
+            <h3 className="text-lg font-semibold text-navy">Audit Trail</h3>
             <p className="text-muted-foreground">
               When admins remove members, the system will generate a timestamped PDF report of their contributions and comments, safeguarding transparency and fairness.
             </p>
           </div>
           <div className="ml-6">
-            <h3 className="text-xl font-semibold">Custom Categories</h3>
+            <h3 className="text-lg font-semibold text-navy">Custom Categories</h3>
             <p className="text-muted-foreground">
               Members will be able to group their projects into personal categories for easier management.
             </p>

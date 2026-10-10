@@ -37,16 +37,16 @@ export default function CancelVsLatePaymentPage() {
         ]}
       />
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Background</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Background</h2>
         <p>
           Payment confirmation arrives asynchronously. A buyer can cancel an unpaid checkout at the same moment the
           payment confirmation is on its way, the confirmation can arrive twice, or it can never arrive.
         </p>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">How it works</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">How it works</h2>
         <ul className="list-disc space-y-3 pl-5">
           <li>
             <strong className="text-navy">Buyer cancels:</strong> before cancelling, the system asks the payment
@@ -66,8 +66,8 @@ export default function CancelVsLatePaymentPage() {
         </ul>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Design decisions</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Design decisions</h2>
         <ul className="list-disc space-y-3 pl-5">
           <li>
             <strong className="text-navy">One locked mark-paid path</strong> shared by the callback and the

@@ -1,6 +1,6 @@
 import { SiNextdotjs, SiReact, SiTailwindcss, SiPrisma, SiPostgresql, SiNodedotjs, SiVercel } from 'react-icons/si'
 import { DiNodejs } from "react-icons/di";
-import { FiExternalLink, FiArrowLeft } from 'react-icons/fi'
+import { FiExternalLink } from 'react-icons/fi'
 import Link from 'next/link';
 import type { Metadata } from "next"
 import FeatureRow from '@/components/FeatureRow'
@@ -27,7 +27,7 @@ export default function ChurchSystemPage() {
   const siteUrl = getSiteUrl()
 
   return (
-    <main className="px-4 md:px-12 py-12 space-y-24 max-w-6xl mx-auto">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-16 md:py-24">
       <PageJsonLd
         data={[
           creativeWorkJsonLd({
@@ -46,19 +46,18 @@ export default function ChurchSystemPage() {
       <div>
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-navy transition-colors"
+          className="text-sm text-muted-foreground hover:text-navy"
         >
-          <FiArrowLeft className="w-4 h-4" />
-          <span>Back</span>
+          ← Back
         </Link>
       </div>
       {/* Hero */}
-      <section className="text-center space-y-6">
-        <h1 className="text-4xl md:text-5xl font-bold">Church / Community Management System</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <section className="space-y-4">
+        <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">Church / Community Management System</h1>
+        <p className="text-lg leading-relaxed text-muted-foreground">
           An internal system for event registration, attendance tracking, outing requests, and role-based administration — optimized for busy ministry teams and student fellowships.
         </p>
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-wrap gap-3">
           <a
             href="https://zhuendazhuan.vercel.app"
             target="_blank"
@@ -72,9 +71,9 @@ export default function ChurchSystemPage() {
 
       {/* Overview */}
       <section className="grid md:grid-cols-2 gap-8 md:gap-12">
-        <div className="space-y-4 p-8 bg-muted rounded-2xl border border-border">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-problem">The Problem</div>
-          <h3 className="text-2xl font-bold">Administrative Nightmare</h3>
+          <h3 className="text-lg font-semibold text-navy">Administrative Nightmare</h3>
           <ul className="space-y-3 text-muted-foreground leading-relaxed list-disc list-inside">
             <li><strong className="text-navy">Data Fragmentation:</strong> Relied on duplicating Google Forms for every event, causing scattered data.</li>
             <li><strong className="text-navy">Manual Logistics:</strong> Admins had to manually count participants by region to arrange transportation.</li>
@@ -83,9 +82,9 @@ export default function ChurchSystemPage() {
           </ul>
         </div>
 
-        <div className="space-y-4 p-8 bg-card rounded-2xl border border-border">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-solution">The Solution</div>
-          <h3 className="text-2xl font-bold">Centralized Automation</h3>
+          <h3 className="text-lg font-semibold text-navy">Centralized Automation</h3>
           <ul className="space-y-3 text-muted-foreground leading-relaxed list-disc list-inside">
             <li><strong className="text-navy">Self-Service Portal:</strong> Members can track, update, or cancel their own registrations via internal accounts.</li>
             <li><strong className="text-navy">Automated Logistics:</strong> Dashboards auto-filter and aggregate transportation needs by area.</li>
@@ -135,12 +134,12 @@ export default function ChurchSystemPage() {
         reverse
       />
 
-      <section className="py-12 border-y border-mist dark:border-mist/50 my-16">
-        <h2 className="text-3xl font-semibold text-center mb-10">Engineering Spotlight</h2>
+      <section className="space-y-6 border-y border-border py-10">
+        <h2 className="mb-6 text-lg font-semibold text-navy">Engineering Spotlight</h2>
         <div className="grid md:grid-cols-2 gap-10">
           
           <div className="space-y-3">
-            <h3 className="text-xl font-bold flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-navy flex items-center gap-2">
               <span className="text-navy">01.</span> Granular RBAC & Security
             </h3>
             <p className="text-muted-foreground">
@@ -152,7 +151,7 @@ export default function ChurchSystemPage() {
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-xl font-bold flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-navy flex items-center gap-2">
               <span className="text-navy">02.</span> Prisma Aggregation & Data Integrity
             </h3>
             <p className="text-muted-foreground">
@@ -166,11 +165,11 @@ export default function ChurchSystemPage() {
 
       {/* Tech Stack */}
       <section className="space-y-10">
-        <h2 className="text-3xl font-semibold text-center">Tech Stack</h2>
-        <p className="text-center text-muted-foreground max-w-3xl mx-auto">
+        <h2 className="text-lg font-semibold text-navy">Tech Stack</h2>
+        <p className="text-muted-foreground">
           Built with a modern TypeScript/JavaScript stack for speed, maintainability, and low operational overhead.
         </p>
-        <div className="flex flex-wrap justify-center gap-8 text-6xl mt-8 text-navy">
+        <div className="flex flex-wrap gap-6 text-3xl text-navy">
           <SiNextdotjs title="Next.js" className="text-navy" />
           <SiReact title="React" className="text-navy" />
           <SiTailwindcss title="TailwindCSS" className="text-navy" />
@@ -179,7 +178,7 @@ export default function ChurchSystemPage() {
           <DiNodejs title="Node.js" className="text-navy" />
           <SiVercel title="Vercel" className="text-navy" />
         </div>
-        <div className="max-w-3xl mx-auto text-muted-foreground space-y-2 text-center">
+        <div className="space-y-2 text-muted-foreground">
           <p><strong>Frontend:</strong> React, Next.js, Tailwind CSS</p>
           <p><strong>Backend:</strong> Node.js, Next.js API Routes, Prisma</p>
           <p><strong>Database:</strong> PostgreSQL</p>
@@ -190,18 +189,18 @@ export default function ChurchSystemPage() {
 
       {/* Access Control Snapshot */}
       <section className="space-y-6">
-        <h2 className="text-3xl font-semibold text-center">Access Control Snapshot</h2>
+        <h2 className="text-lg font-semibold text-navy">Access Control Snapshot</h2>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Visitors</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Visitors</h3>
             <p className="text-muted-foreground">Register for open events without an account</p>
           </div>
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Members</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Members</h3>
             <p className="text-muted-foreground">Manage their registrations, update profiles, view relevant lists</p>
           </div>
-          <div className="rounded-2xl p-6 border border-mist dark:border-mist/50">
-            <h3 className="font-semibold mb-2">Leaders & Admins</h3>
+          <div className="space-y-2 border-t border-border pt-4">
+            <h3 className="font-semibold text-navy">Leaders & Admins</h3>
             <p className="text-muted-foreground">Create events, take attendance, request/approve outings, administer roles & groups</p>
           </div>
         </div>
@@ -209,14 +208,14 @@ export default function ChurchSystemPage() {
 
       {/* Roadmap */}
       <section className="space-y-8">
-        <h2 className="text-3xl font-semibold text-center">Future Roadmap</h2>
-        <div className="relative border-l border-mist dark:border-mist/50 ml-4 space-y-12">
+        <h2 className="text-lg font-semibold text-navy">Future Roadmap</h2>
+        <div className="relative border-l border-border ml-4 space-y-12">
           <div className="ml-6">
-            <h3 className="text-xl font-semibold">Attendance Insights</h3>
+            <h3 className="text-lg font-semibold text-navy">Attendance Insights</h3>
             <p className="text-muted-foreground">Advanced analytics for cohort trends and pastoral follow-up</p>
           </div>
           <div className="ml-6">
-            <h3 className="text-xl font-semibold">Automated Notifications</h3>
+            <h3 className="text-lg font-semibold text-navy">Automated Notifications</h3>
             <p className="text-muted-foreground">Email/WhatsApp reminders for registrations, approvals, and absences</p>
           </div>
         </div>

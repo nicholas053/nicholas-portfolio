@@ -1,6 +1,4 @@
 import Link from "next/link"
-import { FiArrowLeft } from "react-icons/fi"
-import { FaLock } from "react-icons/fa"
 import type { ReactNode } from "react"
 
 const DISCLAIMER =
@@ -18,46 +16,31 @@ export function TechNoteFrame({
   children: ReactNode
 }) {
   return (
-    <main className="mx-auto max-w-6xl space-y-16 px-4 py-10 md:px-8 md:py-12 lg:space-y-20">
-      <div>
-        <Link
-          href="/notes"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-navy dark:text-muted-foreground dark:hover:text-cream"
-        >
-          <FiArrowLeft className="h-4 w-4" aria-hidden />
-          <span>Technical notes</span>
-        </Link>
-      </div>
+    <main className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+      <Link href="/notes" className="block text-sm text-muted-foreground hover:text-navy">
+        ← Technical notes
+      </Link>
 
-      <header className="space-y-6 text-center">
-        <div className="flex justify-center">
-          {badge === "nda" ? (
-            <span className="inline-flex items-center gap-2 rounded-full bg-mist/30 px-3 py-1 text-xs font-bold uppercase tracking-wide text-muted-foreground dark:bg-surface">
-              <FaLock className="text-muted-foreground" aria-hidden />
-              Confidential / NDA
-            </span>
-          ) : (
-            <span className="inline-flex rounded-full bg-mist/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy dark:bg-surface/50 dark:text-mist">
-              Illustrative
-            </span>
-          )}
-        </div>
-        {badge === "pattern" ? (
-          <p className="mx-auto max-w-3xl text-sm italic leading-relaxed text-muted-foreground md:text-base">
-            {DISCLAIMER}
+      <div className="mt-16 space-y-12 md:mt-20">
+        <header className="space-y-4">
+          <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+            {badge === "nda" ? "Confidential / NDA" : "Illustrative"}
           </p>
-        ) : null}
-        <h1 className="text-3xl font-bold leading-tight text-navy md:text-4xl lg:text-5xl">{title}</h1>
-        <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">{lede}</p>
-      </header>
+          {badge === "pattern" ? (
+            <p className="text-sm italic leading-relaxed text-muted-foreground">{DISCLAIMER}</p>
+          ) : null}
+          <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">{title}</h1>
+          <p className="leading-relaxed text-muted-foreground">{lede}</p>
+        </header>
 
-      {children}
+        {children}
 
-      <footer className="border-t border-mist pt-10 text-center dark:border-mist/50">
-        <Link href="/" className="text-sm font-medium text-navy hover:underline dark:text-mist">
-          ← Back to portfolio home
-        </Link>
-      </footer>
+        <footer className="border-t border-border pt-8">
+          <Link href="/#technical-notes" className="text-sm text-[var(--accent-token)] hover:underline">
+            ← Technical notes on the home page
+          </Link>
+        </footer>
+      </div>
     </main>
   )
 }

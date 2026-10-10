@@ -1,4 +1,3 @@
-// components/FeatureRow.tsx
 interface FeatureRowProps {
   title: string
   description: string
@@ -6,40 +5,31 @@ interface FeatureRowProps {
   reverse?: boolean
 }
 
-export default function FeatureRow({
-  title,
-  description,
-  videoSrc,
-  reverse = false
-}: FeatureRowProps) {
-  return (
-    <section
-      className={`grid md:grid-cols-2 gap-12 items-center ${
-        reverse ? 'md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1' : ''
-      }`}
-    >
-      {/* Always text first on mobile */}
-      <div className="space-y-4 order-1 md:order-none">
-        <h2 className="text-3xl font-semibold">{title}</h2>
-        <p className="text-muted-foreground leading-relaxed">{description}</p>
-      </div>
+export default function FeatureRow({ title, description, videoSrc, reverse }: FeatureRowProps) {
+  const copy = (
+    <div className="space-y-3">
+      <h2 className="text-lg font-semibold tracking-tight text-navy">{title}</h2>
+      <p className="leading-relaxed text-muted-foreground">{description}</p>
+    </div>
+  )
 
-      {videoSrc ? (
-        <video
-          className="rounded-2xl shadow-xl w-full order-2 md:order-none"
-          src={videoSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls
-          aria-label={`${title} demo video`}
-        />
-      ) : (
-        <div className="rounded-2xl border border-dashed border-mist p-8 text-center text-muted-foreground order-2 md:order-none">
-          Demo coming soon
-        </div>
-      )}
+  if (!videoSrc) {
+    return <section>{copy}</section>
+  }
+
+  return (
+    <section className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
+      <div className={reverse ? "lg:order-2" : undefined}>{copy}</div>
+      <video
+        className={`w-full rounded-md border border-border ${reverse ? "lg:order-1" : ""}`}
+        src={videoSrc}
+        autoPlay
+        muted
+        loop
+        playsInline
+        controls
+        aria-label={`${title} demo video`}
+      />
     </section>
   )
 }

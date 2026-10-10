@@ -37,16 +37,16 @@ export default function SellerOnboardingVariantsPage() {
         ]}
       />
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Background</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Background</h2>
         <p>
           Independent sellers needed to open shops inside an app whose accounts, addresses and categories already
           existed. Products needed variants (for example size and colour) with their own price and stock.
         </p>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">How it works</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">How it works</h2>
         <ol className="list-decimal space-y-3 pl-5">
           <li>
             The seller applies using an existing account address and payout detail; the application copies them into
@@ -68,8 +68,8 @@ export default function SellerOnboardingVariantsPage() {
         </ol>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Design decisions</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Design decisions</h2>
         <ul className="list-disc space-y-3 pl-5">
           <li>
             Snapshot address and payout details onto the shop at apply time, so later edits to the buyer profile do

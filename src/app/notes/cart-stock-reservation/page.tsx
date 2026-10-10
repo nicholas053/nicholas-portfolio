@@ -37,16 +37,16 @@ export default function CartStockReservationPage() {
         ]}
       />
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Background</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Background</h2>
         <p>
           Both channels share one cart. Stock is per variant and limited. The goal: no overselling, but no stock
           locked by idle carts.
         </p>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">How it works</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">How it works</h2>
         <ol className="list-decimal space-y-3 pl-5">
           <li>
             Add to cart checks live availability but does <strong className="text-navy">not</strong> reserve stock.
@@ -69,8 +69,8 @@ export default function CartStockReservationPage() {
         </ol>
       </section>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Design decisions</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Design decisions</h2>
         <ul className="list-disc space-y-3 pl-5">
           <li>
             <strong className="text-navy">Hold at checkout summary, not at add-to-cart or place-order.</strong>{" "}

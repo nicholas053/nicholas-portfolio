@@ -1,5 +1,3 @@
-import { FiArrowLeft } from "react-icons/fi"
-import { FaLock } from "react-icons/fa"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageJsonLd } from "@/components/PageJsonLd"
@@ -46,7 +44,7 @@ export default function MultiSellerMarketplacePage() {
   const siteUrl = getSiteUrl()
 
   return (
-    <main className="mx-auto max-w-6xl space-y-16 px-4 py-10 md:px-8 md:py-12 lg:space-y-20">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-16 md:py-24">
       <PageJsonLd
         data={[
           creativeWorkJsonLd({
@@ -64,31 +62,27 @@ export default function MultiSellerMarketplacePage() {
       <div>
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-navy dark:text-muted-foreground dark:hover:text-cream"
+          className="text-sm text-muted-foreground hover:text-navy"
         >
-          <FiArrowLeft className="h-4 w-4" aria-hidden />
-          <span>Back</span>
+          ← Back
         </Link>
       </div>
 
-      <header className="space-y-6 text-center">
-        <div className="flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-mist/30 px-3 py-1 text-xs font-bold uppercase tracking-wide text-muted-foreground dark:bg-surface">
-            <FaLock className="text-muted-foreground" aria-hidden />
-            Confidential / NDA
-          </span>
+      <header className="space-y-4">
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">Confidential / NDA</p>
         </div>
-        <h1 className="text-3xl font-bold leading-tight text-navy md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">
           Multi-Seller Marketplace Channel
         </h1>
-        <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-lg">
+        <p className="leading-relaxed text-muted-foreground">
           Client, brand and business rules are white-labelled. Lead backend developer and designer
           (lead-approved) — Laravel, MySQL.
         </p>
       </header>
 
-      <section className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-        <h2 className="text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Overview</h2>
+      <section className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+        <h2 className="text-xs font-mono uppercase tracking-wide text-muted-foreground">Overview</h2>
         <p>
           The client already ran a marketplace app with its own catalog, accounts and cart. They wanted a
           second channel where independent sellers open shops and sell their own products, inside the same
@@ -104,7 +98,7 @@ export default function MultiSellerMarketplacePage() {
       </section>
 
       <section className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
-        <div className="space-y-4 rounded-2xl border border-border bg-muted p-6 md:p-8">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-problem">The Problem</div>
           <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-muted-foreground md:text-base">
             <li>
@@ -125,7 +119,7 @@ export default function MultiSellerMarketplacePage() {
             </li>
           </ul>
         </div>
-        <div className="space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8">
+        <div className="space-y-3 border-l border-border pl-5">
           <div className="label-solution">The Solution</div>
           <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-muted-foreground md:text-base">
             <li>
@@ -154,8 +148,8 @@ export default function MultiSellerMarketplacePage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-navy md:text-3xl">Features</h2>
-        <ul className="grid gap-3 text-sm leading-relaxed text-muted-foreground md:grid-cols-2 md:text-base">
+        <h2 className="text-lg font-semibold text-navy">Features</h2>
+        <ul className="divide-y divide-border text-sm leading-relaxed text-muted-foreground">
           {[
             "Seller apply, re-apply after rejection, admin approve or reject",
             "Shop locations with operating hours, payout details, vacation mode",
@@ -168,7 +162,7 @@ export default function MultiSellerMarketplacePage() {
             "Admin attention queue: disputes, forced cancels, manual refund confirmation",
             "Scheduled jobs: hold expiry, seller reminders, overdue cancellation, auto-complete, seller income release",
           ].map((item) => (
-            <li key={item} className="rounded-xl border border-border bg-card px-4 py-3">
+            <li key={item} className="py-3">
               {item}
             </li>
           ))}
@@ -176,7 +170,7 @@ export default function MultiSellerMarketplacePage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-bold text-navy md:text-3xl">Engineering highlights</h2>
+        <h2 className="text-lg font-semibold text-navy">Engineering highlights</h2>
         <div className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
           <p>
             <strong className="text-navy">Stock correctness under concurrency:</strong> row locks on the variant
@@ -205,8 +199,8 @@ export default function MultiSellerMarketplacePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-10">
-        <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">Result</h2>
+      <section className="space-y-3 border-t border-border pt-8">
+        <h2 className="mb-2 text-xs font-mono uppercase tracking-wide text-muted-foreground">Result</h2>
         <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
           The full flow from seller onboarding to checkout, fulfilment and refunds went live. I handed it over
           after delivery and the team continues to run and extend it.
@@ -214,16 +208,16 @@ export default function MultiSellerMarketplacePage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-bold text-navy md:text-3xl">Diagrams</h2>
+        <h2 className="text-lg font-semibold text-navy">Diagrams</h2>
         <MermaidStack blocks={multiSellerMarketplaceDiagrams} />
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-navy md:text-3xl">Technical notes</h2>
+        <h2 className="text-lg font-semibold text-navy">Technical notes</h2>
         <ul className="space-y-3">
           {CHILD_NOTES.map((note) => (
             <li key={note.href}>
-              <Link href={note.href} className="font-semibold text-navy hover:underline dark:text-mist">
+              <Link href={note.href} className="text-navy hover:text-[var(--accent-token)]">
                 {note.title} →
               </Link>
             </li>

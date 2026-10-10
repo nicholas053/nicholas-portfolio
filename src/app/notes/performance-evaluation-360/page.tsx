@@ -1,5 +1,4 @@
 import { PerformanceEvaluationDiagrams } from "./PerformanceEvaluationDiagrams"
-import { FiArrowLeft } from "react-icons/fi"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { PageJsonLd } from "@/components/PageJsonLd"
@@ -25,7 +24,7 @@ export default function PerformanceEvaluation360Page() {
   const siteUrl = getSiteUrl()
 
   return (
-    <main className="mx-auto max-w-6xl space-y-16 px-4 py-10 md:px-8 md:py-12 lg:space-y-20">
+    <main className="mx-auto max-w-6xl space-y-12 px-6 py-16 md:py-24">
       <PageJsonLd
         data={[
           techArticleJsonLd({
@@ -41,26 +40,25 @@ export default function PerformanceEvaluation360Page() {
           ]),
         ]}
       />
-      <div>
+      <div className="pb-4 md:pb-8">
         <Link
           href="/notes"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-navy dark:text-muted-foreground dark:hover:text-cream"
+          className="text-sm text-muted-foreground hover:text-navy"
         >
-          <FiArrowLeft className="h-4 w-4" aria-hidden />
-          <span>Technical notes</span>
+          ← Technical notes
         </Link>
       </div>
 
-      <header className="space-y-6 text-center">
-        <div className="flex justify-center">
-          <span className="inline-flex rounded-full bg-mist/40 px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy dark:bg-surface/50 dark:text-mist">
+      <header className="space-y-4">
+        <div>
+          <span className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
             Team / feature ownership
           </span>
         </div>
-        <h1 className="text-3xl font-bold leading-tight text-navy md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-navy md:text-4xl">
           End-to-End 360° Performance Evaluation Module
         </h1>
-        <p className="mx-auto max-w-2xl text-base text-muted-foreground dark:text-muted-foreground md:text-lg">
+        <p className="leading-relaxed text-muted-foreground">
           Full-stack developer &amp; feature owner — annual KPI-linked 360°
           reviews across peers, managers, and external partners. I owned both
           the assignment engine / public API and the Angular experience for
@@ -69,11 +67,11 @@ export default function PerformanceEvaluation360Page() {
       </header>
 
       <section className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
-        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-border bg-muted p-6 md:p-8">
+        <div className="space-y-3">
           <div className="label-problem self-start">
             Challenge
           </div>
-          <h2 className="text-xl font-bold text-navy md:text-2xl">
+          <h2 className="text-lg font-semibold text-navy">
             Engine, security model, and evaluator UX
           </h2>
           <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
@@ -100,11 +98,11 @@ export default function PerformanceEvaluation360Page() {
           </p>
         </div>
 
-        <div className="flex h-full min-h-0 flex-col space-y-4 rounded-2xl border border-border bg-card p-6 md:p-8">
+        <div className="space-y-3">
           <div className="label-solution self-start">
             Solution
           </div>
-          <h2 className="text-xl font-bold text-navy md:text-2xl">
+          <h2 className="text-lg font-semibold text-navy">
             Backend engine, Angular forms, responsive matrices
           </h2>
           <p className="mb-4 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
@@ -151,7 +149,7 @@ export default function PerformanceEvaluation360Page() {
                 Responsive UX:
               </span>{" "}
               Used programmatic viewport checks (
-              <code className="rounded bg-surface/80 px-1 py-0.5 text-xs dark:bg-surface/80">
+              <code className="rounded bg-muted px-1 font-mono text-xs">
                 matchMedia
               </code>
               ) so large Likert matrices reflow into a mobile-friendly layout
@@ -165,8 +163,8 @@ export default function PerformanceEvaluation360Page() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-10">
-        <h2 className="mb-2 text-xs font-bold uppercase tracking-widest text-navy dark:text-mist">
+      <section className="space-y-3 border-t border-border pt-8">
+        <h2 className="mb-2 text-xs font-mono uppercase tracking-wide text-muted-foreground">
           Impact
         </h2>
         <p className="text-base leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-lg">
@@ -186,11 +184,11 @@ export default function PerformanceEvaluation360Page() {
       </section>
 
       <section className="space-y-6">
-        <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold text-navy md:text-3xl">
+        <div>
+          <h2 className="text-lg font-semibold text-navy">
             Technical architecture
           </h2>
-          <p className="mx-auto mt-2 max-w-3xl text-sm text-muted-foreground dark:text-muted-foreground md:mx-0 md:text-base">
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             Data model, admin and staff flows (including schema-driven form
             steps), then a sequence view contrasting authenticated staff calls
             with token-based partner submissions.
@@ -200,12 +198,12 @@ export default function PerformanceEvaluation360Page() {
         <PerformanceEvaluationDiagrams />
       </section>
 
-      <footer className="border-t border-mist pt-10 text-center dark:border-mist/50">
+      <footer className="border-t border-border pt-8">
         <Link
-          href="/"
-          className="text-sm font-medium text-navy hover:underline dark:text-mist"
+          href="/#technical-notes"
+          className="text-sm text-[var(--accent-token)] hover:underline"
         >
-          ← Back to portfolio home
+          ← Technical notes on the home page
         </Link>
       </footer>
     </main>
