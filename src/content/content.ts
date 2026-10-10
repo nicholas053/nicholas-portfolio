@@ -91,21 +91,29 @@ export type HomeNdaBanner = {
   title: string
   role: string
   body: string
+  stack: string
   links?: readonly HomeNdaBannerLink[]
 }
 
 export const HOME_NDA_BANNERS: readonly HomeNdaBanner[] = [
   {
     badge: "Confidential / NDA",
-    title: "Tiered Fee Engine",
+    title: "Fee splits, providers, and job recovery",
     role: "Role: Backend developer · Go, PostgreSQL",
+    stack: "Go, PostgreSQL",
     body:
-      "Percent-plus-fixed fees split across multiple levels of partners, with a read-only preview that shows every level's share before a rate change is saved. Migrated the fee model from a single rate to percent-plus-fixed without recalculating historical records. Also built third-party integrations and failure tracking and recovery for background jobs.",
+      "Percent-plus-fixed fees walk down a partner chain, and a read-only preview shows every level's share before a rate is saved. Already-settled records stay as they were. Each outside provider is one adapter behind a single interface: a pending callback is acknowledged, and only a final status changes state. A background job claims its row before calling out and records the stage and last error, so a retry cannot send twice and a stuck row shows why.",
+    links: [
+      { href: "/notes/multi-level-revenue-splits", label: "Revenue splits note →" },
+      { href: "/notes/third-party-api-adapters", label: "Third-party APIs note →" },
+      { href: "/notes/background-job-failures", label: "Background jobs note →" },
+    ],
   },
   {
     badge: "Confidential / NDA",
     title: "Enterprise system turnaround",
     role: "Role: Tech BA & front-end dev",
+    stack: "Laravel, Angular",
     body:
       "Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged. I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.",
     links: [
@@ -120,6 +128,8 @@ export type HomeProjectCard = {
   description: string
   linkPath: string
   linkLabel: string
+  stack: string
+  badge?: string
 }
 
 export const HOME_PROJECTS: HomeProjectCard[] = [
@@ -129,6 +139,7 @@ export const HOME_PROJECTS: HomeProjectCard[] = [
       "Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and money kept correct under concurrency and late payment events.",
     linkPath: "/projects/multi-seller-marketplace",
     linkLabel: "Read case study →",
+    stack: "Laravel, MySQL",
   },
   {
     title: "LokaTech — Internal Operations Platform",
@@ -136,6 +147,7 @@ export const HOME_PROJECTS: HomeProjectCard[] = [
       "Agency ops monorepo: pricing, scope sign-off, and project-first billing — replaced spreadsheet quote loops and email scope churn.",
     linkPath: "/projects/lokatech",
     linkLabel: "Read case study →",
+    stack: "Next.js, Prisma, PostgreSQL",
   },
   {
     title: "What I Applied",
@@ -143,6 +155,7 @@ export const HOME_PROJECTS: HomeProjectCard[] = [
       "Personal ATS and career prep with JD-grounded Gemini assets and follow-up nudges. Beta: ~50 users; live on Vercel.",
     linkPath: "/projects/what-i-applied",
     linkLabel: "Read case study →",
+    stack: "Next.js, Prisma, PostgreSQL",
   },
   {
     title: "Church Management System",
@@ -150,6 +163,7 @@ export const HOME_PROJECTS: HomeProjectCard[] = [
       "Events, attendance, outings, and role-based admin — replaced scattered Forms/Sheets for 100+ users.",
     linkPath: "/projects/church-system",
     linkLabel: "Read case study →",
+    stack: "Next.js, Prisma, PostgreSQL",
   },
   {
     title: "Task Management System",
@@ -157,6 +171,7 @@ export const HOME_PROJECTS: HomeProjectCard[] = [
       "Self-hosted Kanban with voting, comments, and dashboards — used by two startup teams (~5–10 people each).",
     linkPath: "/projects/task-system",
     linkLabel: "Read case study →",
+    stack: "Next.js, Prisma, PostgreSQL",
   },
 ]
 
@@ -319,9 +334,9 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
         technicalNotePath: "/projects/multi-seller-marketplace",
       },
       {
-        label: "Tiered fee engine (NDA):",
+        label: "Fee splits, providers, and job recovery (NDA):",
         body:
-          "percent-plus-fixed fees split across multiple levels, with a read-only preview before any rate change; third-party integrations; failure tracking and recovery for background jobs.",
+          "percent-plus-fixed fees walked down a partner chain, with a read-only preview of every level's share before a rate is saved and already-settled records left unchanged; each outside provider as one adapter behind a single interface, so a pending callback does not change state; background jobs claim a row before calling out and record the stage and last error, so a retry cannot send twice.",
       },
       {
         label: "Internal operations and reconciliation tools.",
@@ -333,9 +348,9 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
         resumeAccentPhrase: "Laravel, MySQL, Go, PostgreSQL",
       },
     ],
-    body: "At Ocean Hub Management Sdn Bhd: backend features from design to production on commerce and transaction systems, including a multi-seller marketplace channel and a tiered fee engine.",
+    body: "At Ocean Hub Management Sdn Bhd: backend features from design to production on commerce and transaction systems, including a multi-seller marketplace channel, partner fee splits, provider adapters, and job recovery.",
     resumeBody:
-      "Ocean Hub: backend on commerce and transaction systems — multi-seller marketplace channel (Laravel, MySQL) and a tiered fee engine (Go, PostgreSQL).",
+      "Ocean Hub: backend on commerce and transaction systems — multi-seller marketplace channel (Laravel, MySQL); fee splits, provider adapters, and job recovery (Go, PostgreSQL).",
     employer: { name: "Ocean Hub Management Sdn Bhd" },
   },
   {

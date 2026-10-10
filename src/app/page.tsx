@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ExperienceHighlightBody } from "@/components/ExperienceHighlightBody"
+import { TechStackMarquee } from "@/components/TechStackMarquee"
 import {
   EDUCATION,
   EXPERIENCE_TIMELINE,
@@ -11,7 +12,6 @@ import {
   HERO,
   HOME_CONTACT,
   HOME_CTA,
-  HOME_LOKATECH,
   HOME_NDA_BANNERS,
   HOME_PHILOSOPHY,
   HOME_PHILOSOPHY_INSTAGRAM_LABEL,
@@ -20,45 +20,52 @@ import {
   HOME_TECH_NOTE_LINKS,
   HOME_TECH_NOTES_INTRO,
   HOME_WORKFLOW,
-  LOKATECH,
   PERSON,
-  TECH_STACK_MARQUEE_CAPTION,
 } from "@/content/content"
-import { marqueeTechIcons } from "@/content/tech-stack-marquee"
-import { FaProjectDiagram, FaWhatsapp, FaLock, FaUsers, FaCode } from "react-icons/fa"
 import { BiLogoGmail } from "react-icons/bi"
+import { FaWhatsapp } from "react-icons/fa"
 import { SiGithub } from "react-icons/si"
-// import HeroLines from "@/components/HeroLines"
 
-const WORKFLOW_ICONS = {
-  users: FaUsers,
-  diagram: FaProjectDiagram,
-  code: FaCode,
-} as const
+const sectionClass = "px-6 py-16 md:py-24"
+const columnClass = "mx-auto max-w-3xl"
+const headingClass = "text-2xl font-semibold tracking-tight text-navy md:text-3xl"
+
+type WorkLink = { href: string; label: string; tone?: "primary" | "muted" }
+
+const workRows: {
+  key: string
+  title: string
+  description: string
+  stack: string
+  badge?: string
+  links: readonly WorkLink[]
+}[] = [
+  ...HOME_PROJECTS.map((project) => ({
+    key: project.linkPath,
+    title: project.title,
+    description: project.description,
+    stack: project.stack,
+    badge: project.badge,
+    links: [{ href: project.linkPath, label: project.linkLabel }],
+  })),
+  ...HOME_NDA_BANNERS.map((banner) => ({
+    key: banner.title,
+    title: banner.title,
+    description: banner.body,
+    stack: banner.stack,
+    badge: banner.badge,
+    links: banner.links ?? [],
+  })),
+]
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState("home")
 
-  // Scroll listener to update navbar highlight
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const sections = ["home", "projects", "about", "contact"]
-  //     const scrollY = window.scrollY + 200
-  //     for (const id of sections) {
-  //       const el = document.getElementById(id)
-  //       if (el && el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
-  //         setActiveSection(id)
-  //       }
-  //     }
-  //   }
-  //   window.addEventListener("scroll", handleScroll)
-  //   return () => window.removeEventListener("scroll", handleScroll)
-  // }, [])
-
   useEffect(() => {
-    if (window.location.hash !== "#projects") return
-    const el = document.getElementById("projects")
-    el?.scrollIntoView()
+    const hash = window.location.hash
+    const targetId = hash === "#projects" || hash === "#technical-notes" ? hash.slice(1) : null
+    if (!targetId) return
+    document.getElementById(targetId)?.scrollIntoView()
     setActiveSection("projects")
     const frame = window.requestAnimationFrame(() => {
       window.history.replaceState(
@@ -74,174 +81,54 @@ export default function HomePage() {
     const sections = ["home", "projects", "about", "contact"]
 
     const handleScroll = () => {
-      // Check if it is at the bottom of the page
-      // (window.innerHeight + window.scrollY) is the position of the bottom of the viewport
-      // document.body.offsetHeight is the total height of the page
-      // We use a 50px buffer just to be safe
-      const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50
-
+      const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50
       if (atBottom) {
         setActiveSection("contact")
         return
       }
 
-      // If not at the bottom, find the section in the middle of the screen
-      // window.scrollY + (window.innerHeight / 2) is the exact middle of the viewport
       const triggerPoint = window.scrollY + window.innerHeight / 2
-
       for (const id of sections) {
         const el = document.getElementById(id)
-        if (el) {
-          const { offsetTop, offsetHeight } = el
-          // Check if the middle of the viewport is *within* this section's boundaries
-          if (triggerPoint >= offsetTop && triggerPoint < (offsetTop + offsetHeight)) {
-            setActiveSection(id)
-            return // Found the correct section, no need to check others
-          }
+        if (!el) continue
+        const { offsetTop, offsetHeight } = el
+        if (triggerPoint >= offsetTop && triggerPoint < offsetTop + offsetHeight) {
+          setActiveSection(id)
+          return
         }
       }
     }
 
     window.addEventListener("scroll", handleScroll)
-    // Run it once on load to set the initial state
     handleScroll()
-
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: "smooth" })
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
   }
 
-  const techIcons = useMemo(() => marqueeTechIcons(), [])
-
-  // Refs for marquee
-  const trackRef = useRef<HTMLDivElement | null>(null)
-  const groupRef = useRef<HTMLDivElement | null>(null)
-  const rafRef = useRef<number | null>(null)
-  const posRef = useRef(0) // positive position in px (float)
-  const groupWidthRef = useRef(0)
-  const lastTimeRef = useRef<number | null>(null)
-  const measuringRetryRef = useRef<number | null>(null)
-
-  useEffect(() => {
-    const track = trackRef.current
-    const group = groupRef.current
-    if (!track || !group) return
-
-    const measure = () => {
-      // Try to measure the distance from the left edge of the first group
-      // to the left edge of the second group. This includes any gap between groups
-      // and ensures wrapping doesn't jump by the gap amount.
-      const next = group.nextElementSibling as HTMLElement | null
-      if (next) {
-        const rect1 = group.getBoundingClientRect()
-        const rect2 = next.getBoundingClientRect()
-        // distance between left edges (includes gap)
-        const w = Math.max(0, rect2.left - rect1.left);
-        groupWidthRef.current = w
-      } else {
-        const groupWidth = group.getBoundingClientRect().width;
-        const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
-
-        groupWidthRef.current = groupWidth + gap;
-      }
-
-      // ensure pos inside [0, w)
-      const w = groupWidthRef.current
-      if (w > 0) {
-        // keep pos within range to avoid huge numbers over time
-        posRef.current = posRef.current % w
-        if (posRef.current < 0) posRef.current += w
-      }
-    }
-
-    // If icons/fonts/SVG still rendering, measurement may be zero;
-    // try a few times with small delay.
-    const tryMeasure = (attempt = 0) => {
-      measure()
-      // increase attempts a bit to handle font/SVG late load
-      if (groupWidthRef.current === 0 && attempt < 8) {
-        measuringRetryRef.current = window.setTimeout(() => tryMeasure(attempt + 1), 140)
-      }
-    }
-
-    tryMeasure()
-
-    const isMobile = () => window.innerWidth <= 767
-    // speed in pixels per second
-    const pxPerSecond = () => (isMobile() ? 45 : 30)
-
-    const tick = (now: number) => {
-      if (lastTimeRef.current == null) lastTimeRef.current = now
-      const dt = Math.max(0, now - lastTimeRef.current) / 1000
-      lastTimeRef.current = now
-
-      const w = groupWidthRef.current
-      // if width unknown, skip moving (keeps elements visible)
-      if (w > 0) {
-        // increase pos, wrap with modulo
-        posRef.current = (posRef.current + pxPerSecond() * dt)
-        // keep pos in [0, w)
-        if (posRef.current >= w) posRef.current = posRef.current % w
-
-        // IMPORTANT: do not round to integer pixels -> use sub-pixel translate for smoothness
-        const x = -posRef.current
-        if (track) {
-          // ensure we let the browser composite this on its own (GPU-accelerated)
-          track.style.transform = `translate3d(${x}px, 0, 0)`
-        }
-      }
-
-      rafRef.current = requestAnimationFrame(tick)
-    }
-
-    rafRef.current = requestAnimationFrame(tick)
-
-    // recompute on resize/orientation changes
-    const onResize = () => {
-      // re-measure
-      tryMeasure()
-      lastTimeRef.current = null
-    }
-    window.addEventListener("resize", onResize)
-    window.addEventListener("orientationchange", onResize)
-
-    const ro = new ResizeObserver(() => {
-      tryMeasure()
-    })
-    ro.observe(group)
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-      if (measuringRetryRef.current) clearTimeout(measuringRetryRef.current)
-      ro.disconnect()
-      window.removeEventListener("resize", onResize)
-      window.removeEventListener("orientationchange", onResize)
-    }
-  }, [techIcons.length])
-
   return (
-    <main className="relative">
-      {/* Sticky Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 border-b border-border bg-card/95 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
-          <button onClick={() => scrollTo("home")} className="font-bold text-lg text-navy">Nic</button>
+    <main>
+      <nav className="fixed top-0 left-0 z-50 w-full border-b border-border bg-background/90 px-6 backdrop-blur-sm">
+        <div className={`${columnClass} flex items-center justify-between px-0 py-3`}>
+          <button onClick={() => scrollTo("home")} className="font-medium text-navy">
+            Nic
+          </button>
           <div className="flex items-center gap-4 sm:gap-6">
             {[
               { id: "home", label: "Home" },
               { id: "projects", label: "Projects" },
               { id: "about", label: "About" },
-              { id: "contact", label: "Contact" }
-            ].map(link => (
+              { id: "contact", label: "Contact" },
+            ].map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`transition-colors hover:text-navy ${
+                className={`text-sm transition-colors ${
                   activeSection === link.id
-                    ? "text-navy font-semibold underline decoration-mist underline-offset-4"
-                    : "text-muted-foreground"
+                    ? "text-[var(--accent-token)] underline decoration-[var(--accent-token)] underline-offset-4"
+                    : "text-muted-foreground hover:text-navy"
                 }`}
               >
                 {link.label}
@@ -251,329 +138,215 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <motion.section id="home"
-        // onViewportEnter={() => setActiveSection("home")}
-        // viewport={{ margin: "-40% 0px -40% 0px" }}
-        className="bg-background min-h-screen flex flex-col justify-center items-center text-center space-y-6 px-4">
-        {/* <HeroLines /> */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold text-navy"
-        >
-          <span className="block">{HERO.greeting}</span>
-          <span className="mt-2 block text-2xl font-semibold md:text-4xl">{HERO.roleLine}</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-xl md:text-2xl font-medium text-navy max-w-3xl"
-        >
-          {HERO.lead}
-        </motion.p>
-
-        {/* <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-lg text-muted-foreground max-w-2xl"
-        >
-          My work covers a wide range of systems across different domains, always built with a focus on scalability, usability, and real-world impact.
-        </motion.p> */}
-
+      <section id="home" className="flex min-h-dvh items-center px-6 pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.72, duration: 0.55 }}
-          className="flex flex-col items-center gap-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.45 }}
+          className={columnClass}
         >
-          <div className="mx-auto grid w-max max-w-[min(100%-1.5rem,19rem)] grid-cols-2 gap-2 sm:max-w-none sm:w-auto sm:flex sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3">
-            <button
-              type="button"
-              onClick={() => scrollTo("projects")}
-              className="order-1 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-transparent bg-navy px-3 py-2.5 text-center text-xs font-medium leading-tight text-cream shadow transition hover:bg-navy-hover sm:order-1 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
-            >
+          <p className="font-mono text-xs tracking-wide text-[var(--accent-token)]">{HERO.roleLine}</p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-navy md:text-6xl">
+            {HERO.greeting}
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{HERO.lead}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button type="button" onClick={() => scrollTo("projects")} className="btn-primary">
               {HOME_CTA.seeProjects}
             </button>
             <button
               type="button"
               onClick={() => scrollTo("contact")}
-              className="order-2 inline-flex min-h-[2.75rem] w-full min-w-0 items-center justify-center self-stretch rounded-xl border border-border bg-card px-3 py-2.5 text-center text-xs font-medium leading-tight text-navy transition hover:bg-muted sm:order-3 sm:min-h-[3rem] sm:w-auto sm:justify-self-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+              className="rounded-md border border-border px-5 py-2 text-sm font-medium text-navy transition hover:bg-muted"
             >
               {HOME_CTA.contact}
             </button>
             <Link
               href="/notes"
-              className="order-3 col-span-2 inline-flex min-h-[2.75rem] w-full items-center justify-center whitespace-nowrap rounded-xl border border-border bg-card px-3 py-2.5 text-center text-xs font-medium leading-tight text-navy transition hover:bg-muted sm:order-2 sm:col-span-1 sm:min-h-[3rem] sm:w-auto sm:px-5 sm:py-3 sm:text-base sm:leading-normal"
+              className="rounded-md border border-border px-5 py-2 text-sm font-medium text-navy transition hover:bg-muted"
             >
               {HOME_CTA.technicalNotes}
             </Link>
           </div>
-          <p className="max-w-md text-center text-xs text-muted-foreground dark:text-muted-foreground">
-            {HERO.notesHint}
-          </p>
+          <p className="mt-4 max-w-md text-sm text-muted-foreground">{HERO.notesHint}</p>
         </motion.div>
-      </motion.section>
+      </section>
 
-      <motion.section className="py-20 bg-muted px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10 md:mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-navy">{HOME_WORKFLOW.title}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 relative">
-            {HOME_WORKFLOW.steps.map((step) => {
-              const Icon = WORKFLOW_ICONS[step.icon]
-              return (
-                <div key={step.title} className="flex flex-row md:flex-col items-start gap-4 md:gap-0 md:p-6">
-                  <div className="flex-shrink-0 w-12 h-12 bg-mist/40 text-navy rounded-lg flex items-center justify-center text-xl md:text-2xl md:mb-4 mt-1 md:mt-0 dark:bg-mist/25">
-                    <Icon />
-                  </div>
-                  <div>
-                    <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-navy">{step.title}</h4>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{step.body}</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Projects Section */}
-      <motion.section id="projects"
-        // onViewportEnter={() => setActiveSection("projects")}
-        // viewport={{ margin: "-40% 0px -40% 0px" }}
-        className="py-24 max-w-6xl mx-auto px-4 space-y-12 bg-background">
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center">{HOME_PROJECTS_SECTION_TITLE}</motion.h2>
-
-        {/* <div className="space-y-6">
-          {HOME_NDA_BANNERS.map((banner) => (
-            <motion.div
-              key={banner.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:shadow-md"
-            >
-              <div className="flex flex-col items-start gap-5 p-5 md:flex-row md:gap-8 md:p-6">
-                <div className="shrink-0 space-y-2 md:max-w-[220px]">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-mist/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground dark:bg-surface">
-                    <FaLock className="text-muted-foreground" aria-hidden /> {banner.badge}
-                  </div>
-                  <h3 className="text-lg font-bold leading-snug text-navy md:text-xl">
-                    {banner.title}
-                  </h3>
-                  <p className="text-xs font-medium text-muted-foreground dark:text-muted-foreground md:text-sm">
-                    {banner.role}
+      <section className={sectionClass}>
+        <div className={columnClass}>
+          <h2 className={headingClass}>{HOME_WORKFLOW.title}</h2>
+          <ol className="mt-8 space-y-8">
+            {HOME_WORKFLOW.steps.map((step, index) => (
+              <li key={step.title} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3">
+                <span className="font-mono text-xs text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="font-semibold text-navy">{step.title}</h3>
+                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                    {step.body}
                   </p>
                 </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-                <div className="min-w-0 flex-1 space-y-3 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
-                  <p>{banner.body}</p>
-                  {banner.links?.length ? (
-                    <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-mist pt-3 text-sm dark:border-mist/50">
-                      {banner.links.map((link) => (
+      <section id="projects" className={sectionClass}>
+        <div className={columnClass}>
+          <h2 className={headingClass}>{HOME_PROJECTS_SECTION_TITLE}</h2>
+          <ul className="mt-8 divide-y divide-border border-y border-border">
+            {workRows.map((row) => (
+              <li key={row.key} className="grid gap-3 py-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-10">
+                <div>
+                  {row.badge ? (
+                    <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+                      {row.badge}
+                    </p>
+                  ) : null}
+                  <h3 className="text-lg font-semibold text-navy">{row.title}</h3>
+                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">{row.description}</p>
+                  {row.links.length ? (
+                    <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                      {row.links.map((link) => (
                         <Link
                           key={link.href}
                           href={link.href}
                           className={
                             link.tone === "muted"
-                              ? "font-medium text-muted-foreground hover:underline"
-                              : "font-semibold text-navy hover:underline dark:text-mist"
+                              ? "text-muted-foreground hover:underline"
+                              : "text-[var(--accent-token)] hover:underline"
                           }
                         >
                           {link.label}
                         </Link>
                       ))}
-                    </div>
+                    </p>
                   ) : null}
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div> */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-8 hide-scrollbar -mx-4 px-4 md:mx-0 md:flex-wrap md:justify-center md:gap-8 md:overflow-visible md:px-0"
-        >
-          {HOME_PROJECTS.map((project) => (
-            <div
-              key={project.linkPath}
-              className="flex w-[85%] shrink-0 snap-center flex-col portfolio-card sm:w-[60%] md:w-[45%] lg:w-[30%]"
-            >
-              <div className="flex-grow space-y-4">
-                <h3 className="text-xl font-bold">{project.title}</h3>
-                <p className="text-muted-foreground">{project.description}</p>
-              </div>
-              <Link href={project.linkPath} className="text-navy font-medium mt-6 inline-block hover:underline dark:text-mist">
-                {project.linkLabel}
-              </Link>
-            </div>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-2xl border border-border bg-card p-5 shadow-sm md:p-8"
-        >
-          <h3 className="text-lg font-bold text-navy md:text-xl">Technical notes</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">
-            {HOME_TECH_NOTES_INTRO}
-          </p>
-          <ul className="mt-4 space-y-2 border-l border-mist pl-4 text-sm leading-snug text-muted-foreground md:space-y-3 md:text-base md:leading-relaxed dark:border-mist/50">
-            {HOME_TECH_NOTE_LINKS.map((note) => (
-              <li key={note.href} className={note.featureOnMobile ? undefined : "hidden md:list-item"}>
-                <Link href={note.href} className="font-semibold text-navy hover:underline dark:text-mist">
-                  {note.title}
-                </Link>
-                <span className="hidden md:inline">
-                  {" — "}
-                  {note.blurb}
-                </span>
+                <p className="font-mono text-xs leading-relaxed text-muted-foreground md:pt-1 md:text-right md:whitespace-nowrap">
+                  {row.stack}
+                </p>
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-sm md:mt-5">
-            <Link href="/notes" className="font-semibold text-navy hover:underline dark:text-mist">
-              All technical notes →
-            </Link>
-          </p>
-        </motion.div>
-      </motion.section>
 
-      {/* About Section */}
-      <motion.section id="about"
-        // onViewportEnter={() => setActiveSection("about")}
-        // viewport={{ margin: "-40% 0px -40% 0px" }}
-        className="py-24 px-4 bg-muted">
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</motion.h2>
+          <div id="technical-notes" className="mt-12 scroll-mt-24">
+            <h3 className="text-lg font-semibold text-navy">Technical notes</h3>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">{HOME_TECH_NOTES_INTRO}</p>
+            <ul className="mt-4 space-y-2 border-l border-border pl-4 text-sm">
+              {HOME_TECH_NOTE_LINKS.map((note) => (
+                <li key={note.href} className={note.featureOnMobile ? undefined : "hidden md:list-item"}>
+                  <Link href={note.href} className="text-navy hover:text-[var(--accent-token)]">
+                    {note.title}
+                  </Link>
+                  <span className="hidden text-muted-foreground md:inline"> — {note.blurb}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm">
+              <Link href="/notes" className="text-[var(--accent-token)] hover:underline">
+                All technical notes →
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="relative border-l border-mist pl-6">
-            {EXPERIENCE_TIMELINE.map((item, i) => (
-              <motion.div key={item.period} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.2 }}
-                className="mb-8">
+      <section id="about" className={sectionClass}>
+        <div className={`${columnClass} space-y-12`}>
+          <h2 className={headingClass}>About</h2>
+
+          <div className="space-y-10 border-l border-border pl-5">
+            {EXPERIENCE_TIMELINE.map((item) => (
+              <div key={item.period}>
                 {!experienceUsesEmployerRichBlock(item) ? (
-                  <div className="font-bold text-navy">
-                    {item.roleTitle ? (
-                      <>
-                        {item.period}
-                        {item.durationLabel ? (
-                          <span className="font-normal text-muted-foreground dark:text-muted-foreground"> · {item.durationLabel}</span>
-                        ) : null}{" "}
-                        <span className="font-normal text-muted-foreground dark:text-muted-foreground">|</span> {item.roleTitle}
-                      </>
-                    ) : (
-                      <>
-                        {item.period}
-                        {item.durationLabel ? (
-                          <span className="font-normal text-muted-foreground dark:text-muted-foreground"> · {item.durationLabel}</span>
-                        ) : null}
-                      </>
-                    )}
+                  <div className="text-navy">
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {item.period}
+                      {item.durationLabel ? ` · ${item.durationLabel}` : ""}
+                    </span>
+                    {item.roleTitle ? <span className="mt-1 block font-medium">{item.roleTitle}</span> : null}
                   </div>
                 ) : null}
+
                 {item.employer && experienceUsesEmployerRichBlock(item) ? (
-                  <div className="space-y-3 text-muted-foreground dark:text-muted-foreground">
-                    <p className="flex flex-wrap items-baseline gap-x-1.5 text-base text-navy">
-                      <span className="font-bold text-navy">
-                        {item.period}
-                        {item.durationLabel ? (
-                          <span className="font-normal text-muted-foreground dark:text-muted-foreground"> · {item.durationLabel}</span>
-                        ) : null}
-                      </span>
-                      <span className="select-none font-normal text-muted-foreground dark:text-muted-foreground" aria-hidden>
-                        |
-                      </span>
+                  <div className="space-y-2 text-muted-foreground">
+                    <p className="font-mono text-xs text-muted-foreground">
+                      {item.period}
+                      {item.durationLabel ? ` · ${item.durationLabel}` : ""}
+                    </p>
+                    <p className="font-medium text-navy">
                       {item.employer.url ? (
                         <a
                           href={item.employer.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-bold text-navy hover:text-navy-hover"
+                          className="hover:text-[var(--accent-token)]"
                         >
                           {item.employer.name}
                         </a>
                       ) : (
-                        <span className="font-bold text-navy">{item.employer.name}</span>
+                        item.employer.name
                       )}
                     </p>
-                    {item.jobTitle ? (
-                      <p className="text-sm font-bold leading-snug text-navy">{item.jobTitle}</p>
-                    ) : null}
-                    {item.summaryLead ? <p className="italic leading-relaxed">{item.summaryLead}</p> : null}
+                    {item.jobTitle ? <p className="text-sm text-[var(--accent-token)]">{item.jobTitle}</p> : null}
+                    {item.summaryLead ? <p className="max-w-xl leading-relaxed">{item.summaryLead}</p> : null}
                     {item.highlights?.length ? (
-                      <ul className="list-disc space-y-3 pl-5 leading-relaxed">
+                      <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed">
                         {item.highlights
                           .filter((h) => h.label !== "Tech Stack:")
                           .map((h) => (
-                          <li key={h.label}>
-                            <span className="text-navy">{h.label}</span>{" "}
-                            <ExperienceHighlightBody highlight={h} variant="home" />
-                          </li>
-                        ))}
+                            <li key={h.label}>
+                              <span className="text-navy">{h.label}</span>{" "}
+                              <ExperienceHighlightBody highlight={h} variant="home" />
+                            </li>
+                          ))}
                       </ul>
                     ) : null}
                   </div>
                 ) : item.employer ? (
-                  <p className="mt-1 text-muted-foreground dark:text-muted-foreground">
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     Web Developer at{" "}
                     {item.employer.url ? (
-                      <a
-                        href={item.employer.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-medium text-navy dark:text-mist"
-                      >
+                      <a href={item.employer.url} target="_blank" rel="noopener noreferrer" className="text-navy hover:text-[var(--accent-token)]">
                         {item.employer.name}
                       </a>
                     ) : (
-                      <span className="font-medium text-navy dark:text-mist">{item.employer.name}</span>
+                      <span className="text-navy">{item.employer.name}</span>
                     )}
                     . {item.body}
                   </p>
                 ) : item.highlights?.length ? (
-                  <div className="mt-2 space-y-3 text-muted-foreground dark:text-muted-foreground">
-                    {item.summaryLead ? <p className="italic leading-relaxed">{item.summaryLead}</p> : null}
-                    <ul className="list-disc space-y-3 pl-5">
+                  <div className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                    {item.summaryLead ? <p className="max-w-xl">{item.summaryLead}</p> : null}
+                    <ul className="list-disc space-y-2 pl-5">
                       {item.highlights
                         .filter((h) => h.label !== "Tech Stack:")
                         .map((h) => (
-                        <li key={h.label} className="leading-relaxed">
-                          <span className="font-semibold text-navy">{h.label}</span>{" "}
-                          <ExperienceHighlightBody highlight={h} variant="home" />
-                        </li>
-                      ))}
+                          <li key={h.label}>
+                            <span className="font-medium text-navy">{h.label}</span>{" "}
+                            <ExperienceHighlightBody highlight={h} variant="home" />
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 ) : (
-                  <p className="mt-1 text-muted-foreground dark:text-muted-foreground">{item.body}</p>
+                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-lg font-bold text-navy md:text-xl">Education</h3>
-            <ul className="mt-4 space-y-3 border-l border-mist pl-6">
+          <div>
+            <h3 className="font-semibold text-navy">Education</h3>
+            <ul className="mt-4 space-y-3 border-l border-border pl-5 text-sm text-muted-foreground">
               {EDUCATION.map((e) => (
-                <li key={e.institution} className="text-muted-foreground">
-                  <span className="font-semibold text-navy">{e.credential}</span>
-                  {e.note ? <span className="text-muted-foreground"> — {e.note}</span> : null}
-                  <div className="text-sm">
+                <li key={e.institution}>
+                  <span className="font-medium text-navy">{e.credential}</span>
+                  {e.note ? <span> — {e.note}</span> : null}
+                  <div className="font-mono text-xs">
                     {e.institution} · {e.years}
                   </div>
                 </li>
@@ -581,217 +354,69 @@ export default function HomePage() {
             </ul>
           </div>
 
-          {/* <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8"
-          >
-            <h3 className="text-lg font-bold text-navy md:text-xl">{HOME_LOKATECH.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground md:text-base">
-              {HOME_LOKATECH.body}
-            </p>
-            <a
-              href={LOKATECH.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline md:text-base dark:text-mist"
-            >
-              {HOME_LOKATECH.linkLabel}
-            </a>
-          </motion.div> */}
-        </div>
+          <TechStackMarquee />
 
-        {/* Tech Stack Section */}
-        <motion.div className="mt-20 max-w-6xl mx-auto">
-          <h3 className="text-2xl font-semibold text-center mb-6">Tech Stack</h3>
-
-          <div className="overflow-hidden p-6">
-            <div className="marquee-wrapper mx-auto max-w-2xl md:max-w-3xl">
-              <div
-                ref={trackRef}
-                className="marquee-track flex items-center gap-8 will-change-transform"
-                style={{ transform: "translate3d(0,0,0)" } as any}
+          <div className="max-w-xl">
+            <p className="leading-relaxed text-muted-foreground">{HOME_PHILOSOPHY}</p>
+            <p className="mt-3 text-sm">
+              <a
+                href={`https://www.instagram.com/${PERSON.instagramHandle}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[var(--accent-token)] hover:underline"
               >
-                <div ref={groupRef} className="marquee-group flex items-center gap-8">
-                  {techIcons.map((icon, idx) => (
-                    <div key={`g1-${idx}`} className="flex-shrink-0 w-20 h-20 flex items-center justify-center">
-                      {icon}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="marquee-group flex items-center gap-8">
-                  {techIcons.map((icon, idx) => (
-                    <div key={`g2-${idx}`} className="flex-shrink-0 w-20 h-20 flex items-center justify-center">
-                      {icon}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <p className="mt-4 text-center text-sm text-muted-foreground">{TECH_STACK_MARQUEE_CAPTION}</p>
+                {HOME_PHILOSOPHY_INSTAGRAM_LABEL}
+              </a>
+              <span className="text-muted-foreground"> (@{PERSON.instagramHandle})</span>
+            </p>
           </div>
-
-          <style>{`
-            .marquee-wrapper {
-              overflow: hidden;
-              -webkit-mask-image: linear-gradient(
-                to right,
-                transparent,
-                black 1.25rem,
-                black calc(100% - 1.25rem),
-                transparent
-              );
-              mask-image: linear-gradient(
-                to right,
-                transparent,
-                black 1.25rem,
-                black calc(100% - 1.25rem),
-                transparent
-              );
-            }
-            @media (min-width: 768px) {
-              .marquee-wrapper {
-                -webkit-mask-image: linear-gradient(
-                  to right,
-                  transparent,
-                  black 2.5rem,
-                  black calc(100% - 2.5rem),
-                  transparent
-                );
-                mask-image: linear-gradient(
-                  to right,
-                  transparent,
-                  black 2.5rem,
-                  black calc(100% - 2.5rem),
-                  transparent
-                );
-              }
-            }
-            .marquee-track { display:flex; align-items:center; gap:2rem; 
-                             /* GPU/compose hints to reduce flicker/jank */
-                             backface-visibility: hidden;
-                             transform-style: preserve-3d;
-                             will-change: transform;
-                           }
-            .marquee-track > .marquee-group > div { background: transparent; display:flex; align-items:center; justify-content:center; }
-            @media (max-width: 420px) {
-              .marquee-track > .marquee-group > div { width:56px; height:56px; }
-            }
-            .hide-scrollbar::-webkit-scrollbar { display: none; }
-            .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          `}</style>
-        </motion.div>
-
-        {/* Personal philosophy */}
-        <div className="mt-20 max-w-3xl mx-auto text-center">
-          <motion.p className="italic text-muted-foreground">{HOME_PHILOSOPHY}</motion.p>
-          <p className="mt-3 text-sm text-muted-foreground">
-            <a
-              href={`https://www.instagram.com/${PERSON.instagramHandle}`}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium text-navy hover:underline dark:text-mist"
-            >
-              {HOME_PHILOSOPHY_INSTAGRAM_LABEL}
-            </a>
-            {" "}(@{PERSON.instagramHandle})
-          </p>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Contact Section */}
-      <motion.section
-        id="contact"
-        // onViewportEnter={() => setActiveSection("contact")}
-        // viewport={{ margin: "-30% 0px -30% 0px" }}
-        className="py-24 px-4 max-w-3xl mx-auto text-center space-y-6 bg-background"
-      >
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold"
-        >
-          Let’s Connect
-        </motion.h2>
-        <p className="text-muted-foreground">{HOME_CONTACT.lead}</p>
-
-        {/* <div className="mx-auto max-w-xl rounded-2xl border border-mist bg-cream px-5 py-4 text-left shadow-sm dark:border-mist/50 dark:bg-surface/40">
-          <p className="text-sm font-semibold text-navy">
-            Hiring for a client or product?
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground dark:text-muted-foreground">
-            I operate my independent business through{" "}
-            <span className="text-navy dark:text-mist font-medium">LokaTech</span>
-            . For services, scope, and how we can work together, open the site below.
-          </p>
-          <a
-            href="https://lokatech.co"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline dark:text-mist"
-          >
-            lokatech.co →
-          </a>
-        </div> */}
-
-        <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
-          <a
-            href={`mailto:${PERSON.email}`}
-            className="flex w-full max-w-xs items-center justify-center gap-4 rounded-2xl px-5 py-3 transition hover:shadow-md sm:w-auto sm:max-w-none sm:justify-start sm:px-6 sm:py-4"
-          >
-            <BiLogoGmail className="h-8 w-8 shrink-0 text-navy" />
-            <div className="text-left">
-              <div className="text-sm font-semibold">Gmail</div>
-              <div className="text-xs text-muted-foreground">{PERSON.email.split("@")[0]}</div>
-            </div>
-          </a>
-
-          <a
-            href={`https://github.com/${PERSON.githubUsername}`}
-            target="_blank"
-            rel="noreferrer"
-            className="flex w-full max-w-xs items-center justify-center gap-4 rounded-2xl px-5 py-3 transition hover:shadow-md sm:w-auto sm:max-w-none sm:justify-start sm:px-6 sm:py-4"
-          >
-            <SiGithub className="h-8 w-8 shrink-0 text-navy" />
-            <div className="text-left">
-              <div className="text-sm font-semibold">GitHub</div>
-              <div className="text-xs text-muted-foreground">{PERSON.githubUsername}</div>
-            </div>
-          </a>
-
-          <a
-            href={`https://wa.me/${PERSON.phone.replace(/\D/g, "")}`}
-            target="_blank"
-            rel="noreferrer"
-            className="flex w-full max-w-xs items-center justify-center gap-4 rounded-2xl px-5 py-3 transition hover:shadow-md sm:w-auto sm:max-w-none sm:justify-start sm:px-6 sm:py-4"
-          >
-            <FaWhatsapp className="h-8 w-8 shrink-0 text-navy" />
-            <div className="text-left">
-              <div className="text-sm font-semibold">WhatsApp</div>
-              <div className="text-xs text-muted-foreground">{PERSON.phone}</div>
-            </div>
-          </a>
+      <section id="contact" className="px-6 py-16 md:py-24">
+        <div className={columnClass}>
+          <h2 className={headingClass}>Contact</h2>
+          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">{HOME_CONTACT.lead}</p>
+          <ul className="mt-8 space-y-3 text-sm">
+            <li>
+              <a href={`mailto:${PERSON.email}`} className="inline-flex items-center gap-3 text-navy hover:text-[var(--accent-token)]">
+                <BiLogoGmail className="h-4 w-4" aria-hidden />
+                {PERSON.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`https://github.com/${PERSON.githubUsername}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 text-navy hover:text-[var(--accent-token)]"
+              >
+                <SiGithub className="h-4 w-4" aria-hidden />
+                github.com/{PERSON.githubUsername}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`https://wa.me/${PERSON.phone.replace(/\D/g, "")}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 text-navy hover:text-[var(--accent-token)]"
+              >
+                <FaWhatsapp className="h-4 w-4" aria-hidden />
+                {PERSON.phone}
+              </a>
+            </li>
+          </ul>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/resume" className="rounded-md border border-border px-5 py-2 text-sm font-medium text-navy hover:bg-muted">
+              {HOME_CTA.resume}
+            </Link>
+            <button type="button" onClick={() => scrollTo("projects")} className="btn-primary text-sm">
+              {HOME_CTA.seeProjects}
+            </button>
+          </div>
         </div>
-
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
-          <Link
-            href="/resume"
-            className="w-full max-w-xs rounded-xl bg-mist/50 px-6 py-3 text-center text-navy shadow-sm transition hover:bg-mist sm:w-auto"
-          >
-            {HOME_CTA.resume}
-          </Link>
-          <button
-            onClick={() => scrollTo("projects")}
-            className="w-full max-w-xs rounded-xl bg-navy px-6 py-3 text-center text-cream shadow transition hover:bg-navy-hover sm:w-auto"
-          >
-            {HOME_CTA.seeProjects}
-          </button>
-        </div>
-      </motion.section>
+      </section>
     </main>
   )
 }
