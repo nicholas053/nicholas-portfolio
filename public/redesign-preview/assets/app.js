@@ -289,14 +289,23 @@ $$('.mcar').forEach(car => {
   paint(); addEventListener('resize', paint);
 });
 
-// 18. Mobile "show more" (shared pattern: [data-mclamp="<px>"]). <=640px the block is clamped to that height with a fade and a 44px toggle.
+// 18. Mobile "show more" (shared pattern: [data-mclamp="<px>"]). <=640px whole children that end past <px> are hidden
+//     (no half-cut lines, nothing under the button); a 44px toggle with its own spacing reveals them.
 const mq640 = matchMedia('(max-width: 640px)');
 $$('[data-mclamp]').forEach(el => {
-  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'mclamp-btn'; btn.setAttribute('aria-expanded', 'false'); btn.textContent = 'Show more ↓'; el.after(btn);
-  const apply = () => { const on = mq640.matches && el.scrollHeight > (+el.dataset.mclamp) + 60; el.classList.toggle('mclamp', on && !el.classList.contains('open')); btn.hidden = !on;
-    if (on) el.style.setProperty('--mclamp', el.dataset.mclamp + 'px'); };
-  btn.addEventListener('click', () => { const o = el.classList.toggle('open'); el.classList.toggle('mclamp', !o); btn.setAttribute('aria-expanded', o); btn.textContent = o ? 'Show less ↑' : 'Show more ↓'; });
-  apply(); mq640.addEventListener('change', apply);
+  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'mclamp-btn'; btn.setAttribute('aria-expanded', 'false'); el.after(btn);
+  let open = false;
+  const apply = () => {
+    const kids = [...el.children]; kids.forEach(k => k.classList.remove('mc-off')); el.classList.remove('mclamp');
+    const lim = +el.dataset.mclamp; const top = el.getBoundingClientRect().top;
+    const over = mq640.matches ? kids.filter((k, n) => n > 0 && k.getBoundingClientRect().bottom - top > lim) : [];
+    btn.hidden = over.length === 0;
+    if (!over.length) return;
+    if (!open) { over.forEach(k => k.classList.add('mc-off')); el.classList.add('mclamp'); }
+    btn.textContent = open ? 'Show less ↑' : `Show ${over.length} more ↓`; btn.setAttribute('aria-expanded', open);
+  };
+  btn.addEventListener('click', () => { open = !open; apply(); });
+  apply(); mq640.addEventListener('change', apply); addEventListener('load', apply);
 });
 if (mq640.matches) $$('.xp details[open]').forEach(d => d.removeAttribute('open'));
 

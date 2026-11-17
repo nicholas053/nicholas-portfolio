@@ -155,11 +155,294 @@
     return s;
   }
 
+  function containNodes(svg) {
+    // Keep every g.node / g.actor label fully visible inside its rect, with
+    // at least 6 CSS pixels of padding. Wrap long titles; widen the box when
+    // wrapping would collide. Idempotent across layoutSvg / Full-view clones.
+    const vb = viewBoxOf(svg);
+    const css = svg.getBoundingClientRect();
+    if (!css.width || !vb.width) return;
+    const scale = css.width / vb.width;
+    const pad = 6 / scale + 1.5; // slack so a later viewBox grow still clears 6px
+    const lineGap = 18;
+
+    const remember = (el, names) => {
+      names.forEach(n => {
+        const key = 'base' + n;
+        if (el.dataset[key] === undefined) {
+          el.dataset[key] = el.hasAttribute(n) ? el.getAttribute(n) : '';
+        } else if (el.dataset[key] === '') {
+          el.removeAttribute(n);
+        } else {
+          el.setAttribute(n, el.dataset[key]);
+        }
+      });
+    };
+
+    const flatten = text => {
+      if (text.dataset.orig === undefined) {
+        text.dataset.orig = (text.textContent || '').replace(/\s+/g, ' ').trim();
+      }
+      while (text.firstChild) text.removeChild(text.firstChild);
+      text.textContent = text.dataset.orig;
+    };
+
+    const measure = text => {
+      try { return text.getComputedTextLength(); } catch (e) {
+        const b = boxOf(text); return b ? b.width : 0;
+      }
+    };
+
+    const tokenize = raw => {
+      const out = [];
+      raw.split(/\s+/).forEach(w => {
+        if (!w) return;
+        if (measureTemp(textProbe, w) <= maxWRef.v || !/[-:/]/.test(w)) out.push(w);
+        else w.split(/(?=[-\/:])/).forEach(p => { if (p) out.push(p); });
+      });
+      return out;
+    };
+
+    // Probe used by wrap; set per call.
+    let textProbe = null;
+    const maxWRef = { v: 0 };
+    const measureTemp = (text, s) => {
+      const prev = text.textContent;
+      text.textContent = s;
+      const w = measure(text);
+      text.textContent = prev;
+      return w;
+    };
+
+    const wrapToWidth = (text, maxW) => {
+      flatten(text);
+      const raw = text.dataset.orig;
+      if (!raw) return 0;
+      if (measure(text) <= maxW + 0.01) return 0;
+      textProbe = text;
+      maxWRef.v = maxW;
+      const words = [];
+      raw.split(/\s+/).forEach(w => {
+        if (!w) return;
+        const trySplit = measureTemp(text, w) > maxW && /[-:/]/.test(w);
+        if (!trySplit) words.push(w);
+        else {
+          // keep hyphen with the left part: "COMPONENT-" "DRIVEN"
+          w.split(/(-|[:/])/).forEach((p, i, arr) => {
+            if (!p) return;
+            if (p === '-' || p === ':' || p === '/') {
+              if (words.length) words[words.length - 1] += p;
+            } else words.push(p);
+          });
+        }
+      });
+      const lines = [];
+      let cur = '';
+      const fits = s => measureTemp(text, s) <= maxW + 0.01;
+      const pushHard = token => {
+        // character wrap as last resort, no ellipsis
+        let chunk = '';
+        for (const ch of token) {
+          if (chunk && !fits(chunk + ch)) { lines.push(chunk); chunk = ch; }
+          else chunk += ch;
+        }
+        if (chunk) cur = chunk;
+      };
+      words.forEach(w => {
+        const trial = cur ? cur + (cur.endsWith('-') || cur.endsWith(':') || cur.endsWith('/') ? '' : ' ') + w : w;
+        if (!cur) {
+          if (fits(w)) cur = w;
+          else { pushHard(w); }
+        } else if (fits(trial)) {
+          cur = trial;
+        } else {
+          lines.push(cur);
+          if (fits(w)) cur = w;
+          else { cur = ''; pushHard(w); }
+        }
+      });
+      if (cur) lines.push(cur);
+      // Avoid an orphan last word ("DRY") if the previous line can spare one.
+      if (lines.length >= 2 && lines[lines.length - 1].length <= 4) {
+        const prev = lines[lines.length - 2];
+        const m = prev.match(/^(.*[-\s])(\S+)$/);
+        if (m) {
+          const trialPrev = m[1].replace(/[\s]+$/, '');
+          const glue = /[-:\/]$/.test(m[2]) ? '' : ' ';
+          const trialLast = m[2] + glue + lines[lines.length - 1];
+          if (trialPrev && fits(trialPrev) && fits(trialLast)) {
+            lines[lines.length - 2] = trialPrev;
+            lines[lines.length - 1] = trialLast;
+          }
+        }
+      }
+      if (lines.length < 2) { text.textContent = raw; return 0; }
+      const x = text.getAttribute('x') || '0';
+      text.textContent = '';
+      lines.forEach((ln, i) => {
+        const ts = document.createElementNS(NS, 'tspan');
+        ts.setAttribute('x', x);
+        ts.setAttribute('dy', i === 0 ? '0' : String(lineGap));
+        ts.textContent = ln;
+        text.appendChild(ts);
+      });
+      return lines.length - 1;
+    };
+
+    const groups = $$('g.node, g.actor', svg);
+    const nodeRects = () => groups.map(g => {
+      const r = $('rect', g);
+      if (!r) return null;
+      return {
+        g,
+        r,
+        x: parseFloat(r.getAttribute('x')) || 0,
+        y: parseFloat(r.getAttribute('y')) || 0,
+        w: parseFloat(r.getAttribute('width')) || 0,
+        h: parseFloat(r.getAttribute('height')) || 0
+      };
+    }).filter(Boolean);
+
+    groups.forEach(g => {
+      const rect = $('rect', g);
+      if (!rect) return;
+      remember(rect, ['x', 'y', 'width', 'height']);
+      const texts = $$('text', g);
+      texts.forEach(t => {
+        remember(t, ['x', 'y']);
+        flatten(t);
+      });
+    });
+
+    groups.forEach(g => {
+      const rect = $('rect', g);
+      if (!rect) return;
+      const rx = parseFloat(rect.getAttribute('x')) || 0;
+      const ry = parseFloat(rect.getAttribute('y')) || 0;
+      let rw = parseFloat(rect.getAttribute('width')) || 0;
+      let rh = parseFloat(rect.getAttribute('height')) || 0;
+      const maxW = Math.max(24, rw - pad * 2);
+      const texts = $$('text', g);
+      let extra = 0;
+      texts.forEach((t, i) => {
+        if (t.getAttribute('y')) {
+          t.setAttribute('y', String((parseFloat(t.dataset.basey || t.getAttribute('y')) || 0) + extra));
+        }
+        const added = wrapToWidth(t, maxW);
+        if (added) {
+          extra += added * lineGap;
+          // shift following siblings
+          for (let j = i + 1; j < texts.length; j++) {
+            const s = texts[j];
+            const y0 = parseFloat(s.dataset.basey || s.getAttribute('y')) || 0;
+            s.setAttribute('y', String(y0 + extra));
+          }
+        }
+      });
+      if (extra) {
+        rh += extra;
+        rect.setAttribute('height', String(rh));
+        // If the taller box would collide with a node below, prefer widening
+        // the original (unwrapped) layout instead — handled in the pad pass
+        // after we check gaps. If a collision exists, undo wrap and widen.
+        const others = nodeRects().filter(o => o.g !== g);
+        // Touching or a tight 4-unit gap still counts as a collision so
+        // a wrapped box cannot sit on the next row's node.
+        const hit = others.some(o =>
+          !(o.x + o.w <= rx + 2 || o.x >= rx + rw - 2 || o.y + o.h <= ry + 4 || o.y >= ry + rh + 4)
+        );
+        if (hit) {
+          // restore flattened single lines and original size; widen later
+          texts.forEach(t => {
+            flatten(t);
+            if (t.dataset.basey) t.setAttribute('y', t.dataset.basey);
+          });
+          rect.setAttribute('height', rect.dataset.baseheight || String(rh - extra));
+        }
+      }
+    });
+
+    // Widen / grow so every text ink box sits inset by `pad` user units.
+    const growBox = (rect, texts, others) => {
+      const rx0 = parseFloat(rect.getAttribute('x')) || 0;
+      let ry = parseFloat(rect.getAttribute('y')) || 0;
+      let rw = parseFloat(rect.getAttribute('width')) || 0;
+      let rh = parseFloat(rect.getAttribute('height')) || 0;
+      let rx = rx0;
+      texts.forEach(t => {
+        const b = boxOf(t);
+        if (!b) return;
+        if (b.x < rx + pad) {
+          const d = rx + pad - b.x;
+          rx -= d; rw += d;
+        }
+        if (b.x + b.width > rx + rw - pad) {
+          rw = b.x + b.width + pad - rx;
+        }
+        if (b.y < ry + pad) {
+          const d = ry + pad - b.y;
+          ry -= d; rh += d;
+        }
+        if (b.y + b.height > ry + rh - pad) {
+          rh = b.y + b.height + pad - ry;
+        }
+      });
+      // Don't collide with other nodes: shrink the growth that causes overlap
+      // by trying width-only first (typical case is a right overflow).
+      const overlaps = (x, y, w, h) => others.some(o =>
+        !(o.x + o.w <= x + 2 || o.x >= x + w - 2 || o.y + o.h <= y + 4 || o.y >= y + h + 4)
+      );
+      if (overlaps(rx, ry, rw, rh)) {
+        // try widening to the right only, keep original y/h
+        const oy = parseFloat(rect.getAttribute('y')) || 0;
+        const oh = parseFloat(rect.getAttribute('height')) || 0;
+        const ox = parseFloat(rect.getAttribute('x')) || 0;
+        let ww = rw;
+        if (!overlaps(ox, oy, ww, oh)) { rx = ox; ry = oy; rh = oh; }
+        else {
+          // keep the grown box anyway and we'll grow the viewBox; overlap
+          // is still worse, so fall back to original width + wrap already done
+          rx = ox; ry = oy; rw = Math.max(parseFloat(rect.getAttribute('width')) || 0, ww);
+          rh = Math.max(oh, rh);
+          if (overlaps(rx, ry, rw, rh)) { /* still apply; gap was insufficient */ }
+        }
+      }
+      rect.setAttribute('x', String(rx));
+      rect.setAttribute('y', String(ry));
+      rect.setAttribute('width', String(rw));
+      rect.setAttribute('height', String(rh));
+    };
+
+    groups.forEach(g => {
+      const rect = $('rect', g);
+      if (!rect) return;
+      const others = nodeRects().filter(o => o.g !== g);
+      growBox(rect, $$('text', g), others);
+    });
+
+    // Grow the viewBox so widened/taller nodes stay inside.
+    const vb1 = viewBoxOf(svg);
+    let x = vb1.x, y = vb1.y, w = vb1.width, h = vb1.height, changed = false;
+    const margin = 8;
+    nodeRects().forEach(o => {
+      if (o.x < x + margin) { const d = x + margin - o.x; x -= d; w += d; changed = true; }
+      if (o.y < y + margin) { const d = y + margin - o.y; y -= d; h += d; changed = true; }
+      if (o.x + o.w > x + w - margin) { w = o.x + o.w + margin - x; changed = true; }
+      if (o.y + o.h > y + h - margin) { h = o.y + o.h + margin - y; changed = true; }
+    });
+    if (changed) {
+      svg.setAttribute('viewBox', x.toFixed(1) + ' ' + y.toFixed(1) + ' ' + w.toFixed(1) + ' ' + h.toFixed(1));
+    }
+  }
+
   function layoutSvg(svg) {
+
     if (!svg || svg.dataset.laidout === 'busy') return;
     // Use user-unit type so labels scale with the viewBox.
     svg.setAttribute('font-size', '13');
     $$('text', svg).forEach(t => { t.style.fontSize = ''; });
+
+    containNodes(svg);
 
     const elabs = $$('g.elab', svg);
     if (!elabs.length) return;
@@ -556,6 +839,12 @@
     if (c) c.focus();
   }
 
+  window.__notesFullView = {
+    open: openFullView,
+    layout: layoutSvg,
+    close: () => { const ov = $('.diag-overlay'); if (ov && ov._close) ov._close(); }
+  };
+
   function armStepper(ol) {
     const lis = $$('li', ol);
     if (!lis.length) return;
@@ -654,18 +943,8 @@
     if (!matchMedia('(max-width:640px)').matches) return;
     $$('details.blk[open]').forEach(d => { d.open = false; });
     $$('.ents').forEach(el => armCarousel(el, '.ent-c'));
-    $$('.rels').forEach(ul => {
-      if (ul.closest('details.note-rels')) return;
-      const n = $$('li', ul).length;
-      if (n < 3) return;
-      const wrap = document.createElement('details');
-      wrap.className = 'note-rels blk';
-      const sum = document.createElement('summary');
-      sum.innerHTML = '<span class="n">··</span><div><h3>Relationships</h3><span class="one">' + n + ' links — open to read</span></div><span class="pm">+</span>';
-      ul.parentNode.insertBefore(wrap, ul);
-      wrap.appendChild(sum);
-      wrap.appendChild(ul);
-    });
+    // .rels use shared [data-mclamp] (app.js §18 / batch5): whole leftover
+    // items hide, "Show N more ↓" / "Show less ↑", no height clip.
   }
 
   const start = () => {

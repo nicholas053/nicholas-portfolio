@@ -375,7 +375,7 @@
   flex:0 0 auto;
   background:var(--ink);
 }
-.diag-overlay-bar span{font:14px var(--f-mono);color:var(--mute-ink)}
+.diag-overlay-bar span{font:14px var(--f-mono);color:var(--mute-ink);flex:1;min-width:0;overflow-wrap:anywhere}
 .diag-overlay-close{
   min-height:44px;min-width:44px;padding:8px 14px;
   border:1px solid var(--ink-line);background:var(--ink);color:var(--paper);

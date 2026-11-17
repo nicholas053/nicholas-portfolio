@@ -694,7 +694,7 @@ footer .row2{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 /* full-view overlay */
 .fv{position:fixed;inset:0;z-index:200;background:var(--ink);display:flex;flex-direction:column}
 .fv-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1px solid var(--ink-line);font:14px var(--f-mono);color:var(--mute-ink);background:var(--ink)}
-.fv-bar>span:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fv-bar>span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
 .fv-bar .fv-x{min-width:44px;min-height:44px;padding:8px 14px;border:1px solid var(--ink-line);background:var(--ink);color:var(--paper);font:14px var(--f-mono);border-radius:5px;cursor:pointer}
 .fv-z{display:flex;gap:6px}
 .fv-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom;padding:16px;background:var(--ink-2)}
@@ -719,8 +719,8 @@ body.fv-open .accent-sw{display:none}
 /* show more ([data-mclamp]) */
 .mclamp-btn{display:none}
 @media (max-width:640px){
-  .mclamp{max-height:var(--mclamp,300px);overflow:hidden;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
-  .mclamp-btn:not([hidden]){display:inline-flex;align-items:center;min-height:44px;padding:0 16px;margin-top:8px;border:1px solid var(--ink-line);background:none;color:var(--trace);font:500 13px var(--f-mono);border-radius:4px;cursor:pointer}
+  .mclamp>.mc-off{display:none!important}
+  .mclamp-btn:not([hidden]){display:inline-flex;align-items:center;min-height:44px;padding:0 16px;margin-top:16px;position:relative;border:1px solid var(--ink-line);background:none;color:var(--trace);font:500 13px var(--f-mono);border-radius:4px;cursor:pointer}
 }
 /* phone rhythm + type scale */
 @media (max-width:640px){
@@ -741,3 +741,14 @@ body.fv-open .accent-sw{display:none}
 .accent-sw{transition:opacity .25s,transform .25s}
 .accent-sw.away{opacity:0;transform:translateY(12px);pointer-events:none}
 @media (prefers-reduced-motion:reduce){.accent-sw{transition:none}}
+
+/* batch5: shorter phone homepage (structure only) */
+@media (max-width:640px){
+  .sec{padding:48px 0}
+  .sec-head{margin-bottom:24px}
+  .log:not(.all) a:nth-child(n+4){display:none}
+  .xp.mcar>details{border:1px solid var(--ink-line);border-radius:6px;padding:14px;background:var(--ink-2)}
+  .about.mcar{margin-top:32px!important}
+  .about.mcar>*{border:1px solid var(--ink-line);border-radius:6px;padding:16px;background:var(--ink-2)}
+}
+@media (max-width:640px) and (prefers-reduced-motion:reduce){.marquee{gap:10px 18px;padding:14px 0}.marquee span{font-size:1.1rem;gap:18px}.marquee span:nth-child(n+9){display:none}}
