@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html data-accent="cyan" lang="en">
+<head>
+<meta charset="utf-8"/><link href="data:," rel="icon"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Project &amp; Task Management System — Nicholas Chong (redesign prototype)</title>
+<meta content="A collaborative project management system designed for teams to track progress, make decisions, and for individuals to clearly monitor their own contributions." name="description"/>
+<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'cyan'}catch(e){document.documentElement.dataset.accent='cyan'}</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs><marker id="ah" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10z"></path></marker></defs></svg>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="../index.html"><i></i>Nic Chong</a>
+<button aria-controls="navlist" aria-expanded="false" class="menu-btn" type="button">Menu</button>
+<ul id="navlist"><li><a aria-current="page" class="on" href="../index.html#work">Work</a></li><li><a href="../notes/index.html">Notes</a></li><li><a href="../index.html#about">About</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+<a class="btn btn-trace" href="../resume.html">Resume</a>
+</div></nav>
+<main id="main">
+<header class="pg-hero proj-hero"><div aria-hidden="true" class="hero-grid-bg"></div><div class="wrap" style="position:relative">
+<a class="crumb" href="../index.html#work">← Selected work</a>
+<h1 class="display">Project &amp; Task Management <em class="acc">System</em></h1>
+<p class="lede">A collaborative project management system designed for teams to track progress, make decisions, and for individuals to clearly monitor their own contributions.</p>
+<dl class="facts4"><div><dt>Role</dt><dd>Full-stack build</dd></div><div><dt>Stack</dt><dd>Next.js, Prisma, PostgreSQL</dd></div><div><dt>Scope</dt><dd>Self-hosted Kanban with voting, comments, and dashboards</dd></div><div><dt>Result</dt><dd>Used by two startup teams (~5–10 people each)</dd></div></dl>
+<div class="ctas"><a class="btn btn-ghost" href="https://github.com/nicholas053/Wish-We-Don-t-Resign" rel="noopener">
+                Code on Github  ↗
+            </a></div>
+</div></header>
+<section class="sec" style="padding-top:28px"><div class="wrap">
+<div class="psec rv"><div class="psec-h"><span class="kicker">01 — Flow</span><h2 class="sub-h">Moving a task</h2><span class="src">source: code · nicholas053/Wish-We-Don-t-Resign · tasks/[taskId]/move/route.ts + ProjectBoard</span></div>
+<figure aria-label="Flow: Moving a task" class="diag-hero pfig pfig-flow"><header><span>live trace · Moving a task</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Flow diagram" class="mm graph" data-anim="graph" data-traces='[[[null, "n8_A", "Member drags a card on the Kanban board"], ["e8_0", "n8_B", "Optimistic UI: card moves at once"], ["e8_1", "n8_C", "POST tasks/:taskId/move"], ["e8_2", "n8_D", "Signed in and in the team?"], ["e8_3", "n8_X", "401 or 403"]], [[null, "n8_A", "Member drags a card on the Kanban board"], ["e8_0", "n8_B", "Optimistic UI: card moves at once"], ["e8_1", "n8_C", "POST tasks/:taskId/move"], ["e8_2", "n8_D", "Signed in and in the team?"], ["e8_4", "n8_E", "Assigned to someone else?"], ["e8_5", "n8_Y", "403: not allowed to move"]], [[null, "n8_A", "Member drags a card on the Kanban board"], ["e8_0", "n8_B", "Optimistic UI: card moves at once"], ["e8_1", "n8_C", "POST tasks/:taskId/move"], ["e8_2", "n8_D", "Signed in and in the team?"], ["e8_4", "n8_E", "Assigned to someone else?"], ["e8_6", "n8_F", "Update progressStage"], ["e8_7", "n8_G", "Stage is COMPLETE?"], ["e8_8", "n8_H", "Set completedAt and completedBy"], ["e8_10", "n8_J", "Board recomputes stats via onStatsChange"]], [[null, "n8_A", "Member drags a card on the Kanban board"], ["e8_0", "n8_B", "Optimistic UI: card moves at once"], ["e8_1", "n8_C", "POST tasks/:taskId/move"], ["e8_2", "n8_D", "Signed in and in the team?"], ["e8_4", "n8_E", "Assigned to someone else?"], ["e8_6", "n8_F", "Update progressStage"], ["e8_7", "n8_G", "Stage is COMPLETE?"], ["e8_9", "n8_I", "Clear completion fields"], ["e8_11", "n8_J", "Board recomputes stats via onStatsChange"]]]' role="img" style="--w:992px" viewbox="0 0 992 354">
+<path class="wire" d="M216 47 C244 47 244 47 272 47" id="e8_0" marker-end="url(#ah)"></path>
+<path class="wire" d="M468 47 C496 47 496 47 524 47" id="e8_1" marker-end="url(#ah)"></path>
+<path class="wire" d="M720 47 C748 47 748 47 776 47" id="e8_2" marker-end="url(#ah)"></path>
+<path class="wire" d="M874 74 C874 98 118 98 118 122" id="e8_3" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="25" x="484" y="87"></rect><text text-anchor="middle" x="496" y="102">no</text></g>
+<path class="wire" d="M874 74 C874 126 118 126 118 178" id="e8_4" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="32" x="480" y="115"></rect><text text-anchor="middle" x="496" y="130">yes</text></g>
+<path class="wire" d="M216 205 C244 205 244 149 272 149" id="e8_5" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="114" x="187" y="166"></rect><text text-anchor="middle" x="244" y="181">yes, not admin</text></g>
+<path class="wire" d="M216 205 C244 205 244 205 272 205" id="e8_6" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="99" x="195" y="194"></rect><text text-anchor="middle" x="244" y="209">no, or admin</text></g>
+<path class="wire" d="M468 205 C496 205 496 177 524 177" id="e8_7" marker-end="url(#ah)"></path>
+<path class="wire" d="M720 177 C748 177 748 149 776 149" id="e8_8" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="32" x="732" y="152"></rect><text text-anchor="middle" x="748" y="167">yes</text></g>
+<path class="wire" d="M720 177 C748 177 748 213 776 213" id="e8_9" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="25" x="736" y="184"></rect><text text-anchor="middle" x="748" y="199">no</text></g>
+<path class="wire" d="M874 176 C874 228 118 228 118 280" id="e8_10" marker-end="url(#ah)"></path>
+<path class="wire" d="M874 232 C874 256 118 256 118 280" id="e8_11" marker-end="url(#ah)"></path>
+<g class="node" id="n8_A"><rect height="54" rx="4" width="196" x="20" y="20"></rect><text x="32" y="44">Member drags a card on</text><text x="32" y="60">the Kanban board</text></g>
+<g class="node" id="n8_B"><rect height="54" rx="4" width="196" x="272" y="20"></rect><text x="284" y="44">Optimistic UI: card</text><text x="284" y="60">moves at once</text></g>
+<g class="node" id="n8_C"><rect height="38" rx="4" width="196" x="524" y="28"></rect><text x="536" y="52">POST tasks/:taskId/move</text></g>
+<g class="node dec" id="n8_D"><rect height="54" rx="14" width="196" x="776" y="20"></rect><text x="788" y="44">◆ Signed in and in the</text><text x="788" y="60">team?</text></g>
+<g class="node" id="n8_X"><rect height="38" rx="4" width="196" x="20" y="122"></rect><text x="32" y="146">401 or 403</text></g>
+<g class="node dec" id="n8_E"><rect height="54" rx="14" width="196" x="20" y="178"></rect><text x="32" y="202">◆ Assigned to someone</text><text x="32" y="218">else?</text></g>
+<g class="node" id="n8_Y"><rect height="38" rx="4" width="196" x="272" y="130"></rect><text x="284" y="154">403: not allowed to move</text></g>
+<g class="node" id="n8_F"><rect height="38" rx="4" width="196" x="272" y="186"></rect><text x="284" y="210">Update progressStage</text></g>
+<g class="node dec" id="n8_G"><rect height="38" rx="14" width="196" x="524" y="158"></rect><text x="536" y="182">◆ Stage is COMPLETE?</text></g>
+<g class="node" id="n8_H"><rect height="54" rx="4" width="196" x="776" y="122"></rect><text x="788" y="146">Set completedAt and</text><text x="788" y="162">completedBy</text></g>
+<g class="node" id="n8_I"><rect height="38" rx="4" width="196" x="776" y="194"></rect><text x="788" y="218">Clear completion fields</text></g>
+<g class="node" id="n8_J"><rect height="54" rx="4" width="196" x="20" y="280"></rect><text x="32" y="304">Board recomputes stats</text><text x="32" y="320">via onStatsChange</text></g>
+<circle class="pkt" cx="-20" cy="-20" r="5.5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><b>Member drags a card on the Kanban board</b><span class="nx">→ Optimistic UI: card moves at once</span></div></li><li><span class="i">02</span><div><b>Optimistic UI: card moves at once</b><span class="nx">→ POST tasks/:taskId/move</span></div></li><li><span class="i">03</span><div><b>POST tasks/:taskId/move</b><span class="nx">→ Signed in and in the team?</span></div></li><li><span class="i">04</span><div><b>◆ Signed in and in the team?</b><span class="nx">→ 401 or 403 <em>[no]</em></span><span class="nx">→ Assigned to someone else? <em>[yes]</em></span></div></li><li><span class="i">05</span><div><b>401 or 403</b></div></li><li><span class="i">06</span><div><b>◆ Assigned to someone else?</b><span class="nx">→ 403: not allowed to move <em>[yes, not admin]</em></span><span class="nx">→ Update progressStage <em>[no, or admin]</em></span></div></li><li><span class="i">07</span><div><b>403: not allowed to move</b></div></li><li><span class="i">08</span><div><b>Update progressStage</b><span class="nx">→ Stage is COMPLETE?</span></div></li><li><span class="i">09</span><div><b>◆ Stage is COMPLETE?</b><span class="nx">→ Set completedAt and completedBy <em>[yes]</em></span><span class="nx">→ Clear completion fields <em>[no]</em></span></div></li><li><span class="i">10</span><div><b>Set completedAt and completedBy</b><span class="nx">→ Board recomputes stats via onStatsChange</span></div></li><li><span class="i">11</span><div><b>Clear completion fields</b><span class="nx">→ Board recomputes stats via onStatsChange</span></div></li><li><span class="i">12</span><div><b>Board recomputes stats via onStatsChange</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">02 — Sequence</span><h2 class="sub-h">Live task comments</h2><span class="src">source: code · nicholas053/Wish-We-Don-t-Resign · api/comments/by-target/route.ts + CommentBox</span></div>
+<figure aria-label="Sequence: Live task comments" class="diag-hero pfig pfig-seq"><header><span>live trace · Live task comments</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Sequence diagram" class="mm lanes" data-anim="lanes" role="img" style="--w:1060px" viewbox="0 0 1060 390">
+<line class="lane" x1="105.0" x2="105.0" y1="44" y2="380"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="28.0" y="6"></rect><text text-anchor="middle" x="105.0" y="27">Member</text></g>
+<line class="lane" x1="275.0" x2="275.0" y1="44" y2="380"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="198.0" y="6"></rect><text text-anchor="middle" x="275.0" y="27">API</text></g>
+<line class="lane" x1="445.0" x2="445.0" y1="44" y2="380"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="368.0" y="6"></rect><text text-anchor="middle" x="445.0" y="27">Auth</text></g>
+<line class="lane" x1="615.0" x2="615.0" y1="44" y2="380"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="538.0" y="6"></rect><text text-anchor="middle" x="615.0" y="27">Database</text></g>
+<line class="lane" x1="785.0" x2="785.0" y1="44" y2="380"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="708.0" y="6"></rect><text text-anchor="middle" x="785.0" y="27">Pusher</text></g>
+<line class="lane" x1="955.0" x2="955.0" y1="44" y2="380"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="878.0" y="6"></rect><text text-anchor="middle" x="955.0" y="27">Teammates</text></g>
+<g class="msg" data-i="0"><path class="mline" d="M105.0 88 H275.0"></path><path class="head" d="M275.0 88 l-8 -5 v10z"></path><text class="num" x="115.0" y="80">01</text><text x="139.0" y="80">POST comments/by-target/task/:id</text></g>
+<g class="msg" data-i="1"><path class="mline" d="M275.0 140 H445.0"></path><path class="head" d="M445.0 140 l-8 -5 v10z"></path><text class="num" x="285.0" y="132">02</text><text x="309.0" y="132">verify JWT cookie; none → 401</text></g>
+<g class="msg" data-i="2"><path class="mline" d="M275.0 192 H615.0"></path><path class="head" d="M615.0 192 l-8 -5 v10z"></path><text class="num" x="285.0" y="184">03</text><text x="309.0" y="184">create Comment on the task</text></g>
+<g class="msg" data-i="3"><path class="mline" d="M275.0 244 H615.0"></path><path class="head" d="M615.0 244 l-8 -5 v10z"></path><text class="num" x="285.0" y="236">04</text><text x="309.0" y="236">save CommentMention rows</text></g>
+<g class="msg" data-i="4"><path class="mline" d="M275.0 296 H785.0"></path><path class="head" d="M785.0 296 l-8 -5 v10z"></path><text class="num" x="285.0" y="288">05</text><text x="309.0" y="288">trigger task-:id-comments, new-comment</text></g>
+<g class="msg" data-i="5"><path class="mline" d="M785.0 348 H955.0"></path><path class="head" d="M955.0 348 l-8 -5 v10z"></path><text class="num" x="795.0" y="325">06</text><text x="819.0" y="325">comment appears live in the</text><text x="819.0" y="340">chatbox</text></g>
+<circle class="pkt" cx="-20" cy="-20" r="5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><span class="who">Member → API</span><b>POST comments/by-target/task/:id</b></div></li><li><span class="i">02</span><div><span class="who">API → Auth</span><b>verify JWT cookie; none → 401</b></div></li><li><span class="i">03</span><div><span class="who">API → Database</span><b>create Comment on the task</b></div></li><li><span class="i">04</span><div><span class="who">API → Database</span><b>save CommentMention rows</b></div></li><li><span class="i">05</span><div><span class="who">API → Pusher</span><b>trigger task-:id-comments, new-comment</b></div></li><li><span class="i">06</span><div><span class="who">Pusher → Teammates</span><b>comment appears live in the chatbox</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">03 — Data model</span><h2 class="sub-h">Data model (simplified)</h2><span class="src">source: code · nicholas053/Wish-We-Don-t-Resign · prisma/schema.prisma</span></div>
+<figure aria-label="Data model: Data model (simplified)" class="diag-hero pfig pfig-er"><header><span>explorer · Data model (simplified)</span><span>click a table</span></header><div class="erc"><p class="er-hint">Tap a table to see what it links to.</p><div class="ents"><div class="ent-c" data-e="TEAM" role="button" tabindex="0"><b>TEAM</b></div><div class="ent-c" data-e="TEAM_MEMBER" role="button" tabindex="0"><b>TEAM_MEMBER</b><span>enum role</span><span>unique userId_teamId</span></div><div class="ent-c" data-e="USER" role="button" tabindex="0"><b>USER</b></div><div class="ent-c" data-e="PROJECT" role="button" tabindex="0"><b>PROJECT</b><span>enum priority</span><span>datetime endDate</span></div><div class="ent-c" data-e="TASK" role="button" tabindex="0"><b>TASK</b><span>enum progressStage</span><span>enum priority</span><span>datetime completedAt</span><span>string completedById</span></div><div class="ent-c" data-e="TASK_ASSIGNEE" role="button" tabindex="0"><b>TASK_ASSIGNEE</b></div><div class="ent-c" data-e="COMMENT" role="button" tabindex="0"><b>COMMENT</b></div><div class="ent-c" data-e="COMMENT_MENTION" role="button" tabindex="0"><b>COMMENT_MENTION</b></div><div class="ent-c" data-e="COMMENT_READ" role="button" tabindex="0"><b>COMMENT_READ</b></div><div class="ent-c" data-e="VOTE" role="button" tabindex="0"><b>VOTE</b></div><div class="ent-c" data-e="VOTE_OPTION" role="button" tabindex="0"><b>VOTE_OPTION</b><span>string text</span><span>string imageUrl</span></div><div class="ent-c" data-e="VOTE_RESPONSE" role="button" tabindex="0"><b>VOTE_RESPONSE</b><span>unique userId_optionId</span></div></div><ul class="rels"><li data-a="TEAM" data-b="TEAM_MEMBER"><b>TEAM</b> <em>has</em> <b>TEAM_MEMBER</b> <small>1 → many</small></li><li data-a="USER" data-b="TEAM_MEMBER"><b>USER</b> <em>joins</em> <b>TEAM_MEMBER</b> <small>1 → many</small></li><li data-a="TEAM" data-b="PROJECT"><b>TEAM</b> <em>owns</em> <b>PROJECT</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="TASK"><b>PROJECT</b> <em>contains</em> <b>TASK</b> <small>1 → many</small></li><li data-a="TASK" data-b="TASK_ASSIGNEE"><b>TASK</b> <em>assigned to</em> <b>TASK_ASSIGNEE</b> <small>1 → many</small></li><li data-a="USER" data-b="TASK_ASSIGNEE"><b>USER</b> <em>works</em> <b>TASK_ASSIGNEE</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="COMMENT"><b>PROJECT</b> <em>project chat</em> <b>COMMENT</b> <small>1 → many</small></li><li data-a="TASK" data-b="COMMENT"><b>TASK</b> <em>task chat</em> <b>COMMENT</b> <small>1 → many</small></li><li data-a="COMMENT" data-b="COMMENT_MENTION"><b>COMMENT</b> <em>mentions</em> <b>COMMENT_MENTION</b> <small>1 → many</small></li><li data-a="COMMENT" data-b="COMMENT_READ"><b>COMMENT</b> <em>read by</em> <b>COMMENT_READ</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="VOTE"><b>PROJECT</b> <em>runs</em> <b>VOTE</b> <small>1 → many</small></li><li data-a="VOTE" data-b="VOTE_OPTION"><b>VOTE</b> <em>offers</em> <b>VOTE_OPTION</b> <small>1 → 1+</small></li><li data-a="VOTE_OPTION" data-b="VOTE_RESPONSE"><b>VOTE_OPTION</b> <em>receives</em> <b>VOTE_RESPONSE</b> <small>1 → many</small></li><li data-a="USER" data-b="VOTE_RESPONSE"><b>USER</b> <em>casts</em> <b>VOTE_RESPONSE</b> <small>1 → many</small></li></ul></div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">04 — Details</span><h2 class="sub-h">Details</h2><span class="src">open a row to read more</span></div>
+<div class="blocks"><div class="rv" style="padding:26px 0;border-bottom:1px solid var(--ink-line)"><span class="kicker">01 — The Problem / The Solution</span><div class="ps"><div class="rv"><span class="lab">The Problem</span><h3>The Startup Dilemma</h3>
+<p>
+            A friend's interior design startup needed a reliable task management system to coordinate projects. However, enterprise tools like ClickUp were too expensive for a small team. More importantly, dealing with sensitive client floor plans and design assets required strict data privacy, making them hesitant to rely on third-party public cloud SaaS.
+          </p>
+</div><div class="rv"><span class="lab">The Solution</span><h3>A Self-Hosted Ecosystem</h3>
+<p>
+            I built a lightweight, performant project management platform designed specifically for self-hosting on a custom homelab. It delivers core enterprise features—like Kanban boards, project-level voting, and granular task assignments—without the bloat, ensuring 100% data sovereignty and zero recurring SaaS costs for the startup.
+          </p>
+</div></div></div></div>
+<div style="margin:44px 0 10px"><span class="kicker">Features</span><h2 class="sub-h" style="margin-top:8px">Features</h2><div class="blocks"><details class="blk rv"><summary><span class="n">01</span><div><h3>Task Progress &amp; Assignment</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Tasks move through multiple progress stages with an intuitive drag-and-drop interface. Admins can assign tasks to team members, with workload scores displayed for balanced distribution. If a task is unassigned, all members can update its progress. Once assigned, only the assignee and admins have control.</p></div></details><details class="blk rv"><summary><span class="n">02</span><div><h3>Project &amp; Task Comments</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Communication is streamlined through dedicated chatboxes: one at the project level and another for each task. This allows teams to hold both broad and focused discussions. The system also supports user mentions for direct attention.</p></div></details><details class="blk rv"><summary><span class="n">03</span><div><h3>Voting</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Decision-making within teams is supported by an integrated voting system. Members can create votes with options in text, image, or a combination of both. Each member can cast only one vote, ensuring fairness in the process.</p></div></details><details class="blk rv"><summary><span class="n">04</span><div><h3>Personal Dashboard</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Each member has a personalized dashboard that highlights tasks they are involved in, the teams they have joined, and their individual completion rate. This provides clarity on personal contributions and responsibilities.</p></div></details></div></div>
+<div class="blocks" style="margin-top:30px"><details class="blk rv"><summary><span class="n">02</span><div><h2>Dark Mode</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+          The interface supports dark mode for a modern and user-friendly experience, ensuring accessibility and comfort across environments.
+        </p></div></details><details class="blk rv"><summary><span class="n">03</span><div><h2>Engineering Spotlight</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+<div>
+<h3>
+<span>01.</span> Advanced Drag &amp; Drop (DnD) Architecture
+            </h3>
+<p>
+              Implementing the Kanban board wasn't just about UI; it required precise event handling across devices. I utilized <code>@dnd-kit/core</code> with custom sensor orchestration: <i>MouseSensors</i> for desktop precision, and <i>TouchSensors</i> with delay/tolerance constraints to allow native page scrolling on mobile without triggering accidental drags. 
+              UI updates are handled optimistically on the client to ensure zero-latency feedback before syncing the new state to the PostgreSQL database.
+            </p>
+</div>
+<div>
+<h3>
+<span>02.</span> Complex State Lifting &amp; Component Decoupling
+            </h3>
+<p>
+              To keep the architecture clean, I heavily decoupled the UI components. For example, when a task is moved or marked 'COMPLETE', the <code>ProjectBoard</code> computes real-time statistics (completion rates and priority distributions) and lifts this state via an <code>onStatsChange</code> callback to the parent <code>ClientProjectPage</code>. This ensures the dashboard header reflects live data without prop-drilling or relying on heavy state management libraries.
+            </p>
+</div>
+</div></div></details><details class="blk rv"><summary><span class="n">04</span><div><h2>Tech Stack</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+          This project is powered by a modern full-stack JavaScript ecosystem, leveraging both frontend and backend technologies for performance, scalability, and developer efficiency.
+        </p>
+<div>
+<span class="tag">Next.js</span>
+<span class="tag">React</span>
+<span class="tag">TailwindCSS</span>
+<span class="tag">Prisma</span>
+<span class="tag">PostgreSQL</span>
+<span class="tag">Vercel</span>
+</div>
+<div>
+<p><strong>Frontend:</strong> React, Next.js, Tailwind CSS</p>
+<p><strong>Backend:</strong> Node.js, Next.js API Routes, Prisma</p>
+<p><strong>Database:</strong> PostgreSQL</p>
+<p><strong>Auth:</strong> NextAuth.js with JWT</p>
+<p><strong>Deployment:</strong> Vercel, PlanetScale</p>
+</div></div></details><details class="blk rv"><summary><span class="n">05</span><div><h2>Future Roadmap</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+<div>
+<h3>Gantt Chart</h3>
+<p>
+              Visualize task dependencies, ensuring sequential workflows are respected.
+            </p>
+</div>
+<div>
+<h3>Audit Trail</h3>
+<p>
+              When admins remove members, the system will generate a timestamped PDF report of their contributions and comments, safeguarding transparency and fairness.
+            </p>
+</div>
+<div>
+<h3>Custom Categories</h3>
+<p>
+              Members will be able to group their projects into personal categories for easier management.
+            </p>
+</div>
+</div></div></details></div></div>
+</div></section>
+<section class="sec" style="padding-top:40px;padding-bottom:60px"><div class="wrap pager"><a href="church-system.html"><span>← previous</span><b>Church Management System</b></a><a href="multi-seller-marketplace.html"><span>next →</span><b>Multi-Seller Marketplace Channel</b></a></div></section>
+</main>
+<footer><div class="wrap">
+<div class="smap"><div><h4>Pages</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../notes/index.html">Technical notes</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul><h4 style="margin-top:18px">Work</h4><ul><li><a href="../work/multi-seller-marketplace.html">Multi-Seller Marketplace Channel</a></li><li><a href="../work/lokatech.html">LokaTech — Internal Operations Platform</a></li><li><a href="../work/what-i-applied.html">What I Applied</a></li><li><a href="../work/church-system.html">Church Management System</a></li><li><a href="../work/task-system.html">Task Management System</a></li></ul></div><div style="grid-column:span 2"><h4>Technical notes</h4><ul style="grid-template-columns:1fr 1fr;display:grid"><li><a href="../notes/seller-onboarding-variants.html">Seller onboarding and product variants</a></li><li><a href="../notes/cart-stock-reservation.html">Cart and stock reservation</a></li><li><a href="../notes/cancel-vs-late-payment.html">Cancel vs a late confirmation</a></li><li><a href="../notes/order-lifecycle-refunds.html">Order lifecycle and refunds</a></li><li><a href="../notes/multi-level-revenue-splits.html">Multi-level revenue splits</a></li><li><a href="../notes/third-party-api-adapters.html">One interface for many third-party APIs</a></li><li><a href="../notes/background-job-failures.html">Background job failures</a></li><li><a href="../notes/flexible-financial-settlement.html">Flexible financial settlement</a></li><li><a href="../notes/performance-evaluation-360.html">360° performance evaluation</a></li><li><a href="../notes/frontend-architecture-refactoring.html">Frontend architecture refactoring</a></li><li><a href="../notes/fullstack-assessment-debugging.html">Full-stack assessment reflection</a></li></ul></div></div>
+<div class="row2"><span>© Nicholas Chong Shi Loong</span><span>Prototype — Direction A “Live Trace”</span></div></div></footer>
+<script src="../assets/app.js"></script>
+</body></html>

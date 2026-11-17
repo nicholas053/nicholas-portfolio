@@ -1,256 +1,168 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+
+<html data-accent="cyan" lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nicholas Chong — Full-Stack Developer & Product Engineer (redesign prototype)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
+<meta charset="utf-8"/><link href="data:," rel="icon"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Nicholas Chong — Full-Stack Developer &amp; Product Engineer — Nicholas Chong (redesign prototype)</title>
+<meta content="Portfolio of Nicholas Chong: full-stack apps in Next.js, React, and PostgreSQL; technical notes with sequence diagrams; case studies from independent products to enterprise delivery." name="description"/>
+<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'cyan'}catch(e){document.documentElement.dataset.accent='cyan'}</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="assets/styles.css" rel="stylesheet"/>
 </head>
 <body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs><marker id="ah" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10z"></path></marker></defs></svg>
 <nav class="nav"><div class="wrap">
-  <a class="brand" href="index.html"><i></i>Nic Chong</a>
-  <ul><li><a href="#work" data-spy>Work</a></li><li><a href="#notes" data-spy>Notes</a></li><li><a href="#experience" data-spy>Experience</a></li><li><a href="#contact" data-spy>Contact</a></li></ul>
-  <a class="btn btn-trace" href="https://nicholas-chong.com/resume">Resume ↗</a>
+<a class="brand" href="index.html"><i></i>Nic Chong</a>
+<button aria-controls="navlist" aria-expanded="false" class="menu-btn" type="button">Menu</button>
+<ul id="navlist"><li><a data-spy="" href="index.html#work">Work</a></li><li><a href="notes/index.html">Notes</a></li><li><a data-spy="" href="index.html#about">About</a></li><li><a href="resume.html">Resume</a></li><li><a data-spy="" href="index.html#contact">Contact</a></li></ul>
+<a class="btn btn-trace" href="resume.html">Resume</a>
 </div></nav>
-
+<main id="main">
 <header class="hero dark" id="home">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-  <div class="wrap">
-    <div>
-      <span class="status mono" style="font-size:12px"><b></b>Full-Stack Developer &amp; Product Engineer · KL / Seremban</span>
-      <h1 class="display"><span class="ln"><span>Hi, I'm</span></span><span class="ln hot"><span>Nic.</span></span></h1>
-      <p class="rot" aria-live="off">I <span class="slot" id="slot"><b class="on">understand the rule.</b><b>make it legible.</b><b>ship and maintain.</b></span></p>
-      <p class="lead">I clarify messy requirements, sketch the architecture, and ship full-stack web apps — from client builds to products I run myself.</p>
-      <div class="ctas"><a class="btn btn-trace" href="#work">See projects ↓</a><a class="btn btn-ghost" href="#notes">Technical notes</a></div>
-    </div>
-
-    <figure class="trace-card" aria-label="Animated diagram: an inbound third-party callback passing through a handler and adapter into the core service">
-      <header class="mono" style="font-size:11.5px"><span>live trace · callback via adapter</span><span id="scn">final</span></header>
-      <svg viewBox="0 0 560 320" id="trace" role="img">
-        <path class="wire" id="w1" d="M170 63 H205"/>
-        <path class="wire" id="w2" d="M355 63 H390"/>
-        <path class="wire" id="w3" d="M465 86 V150"/>
-        <path class="wire" id="w4a" d="M465 196 V250"/>
-        <path class="wire" id="w4b" d="M390 173 H300 V250"/>
-        <path class="wire" id="w5" d="M280 86 C280 128 95 128 95 86"/>
-        <path class="wire" id="w6" d="M95 150 V86"/>
-        <g class="node" id="nApi"><rect x="20" y="40" width="150" height="46" rx="4"/><text x="34" y="60">Third-party API</text><text class="sub" x="34" y="76">provider A / B / C</text></g>
-        <g class="node" id="nHandler"><rect x="205" y="40" width="150" height="46" rx="4"/><text x="219" y="60">Callback handler</text><text class="sub" x="219" y="76">POST /callbacks/:acct</text></g>
-        <g class="node" id="nAdapter"><rect x="390" y="40" width="150" height="46" rx="4"/><text x="404" y="60">Adapter</text><text class="sub" x="404" y="76">verify signature</text></g>
-        <g class="node" id="nCore"><rect x="390" y="150" width="150" height="46" rx="4"/><text x="404" y="170">Core service</text><text class="sub" x="404" y="186">ingest event</text></g>
-        <g class="node" id="nFinal"><rect x="390" y="250" width="150" height="46" rx="4"/><text x="404" y="270">final</text><text class="sub" x="404" y="286">state changes once</text></g>
-        <g class="node" id="nPending"><rect x="225" y="250" width="150" height="46" rx="4"/><text x="239" y="270">pending</text><text class="sub" x="239" y="286">no state change</text></g>
-        <g class="node" id="nJob"><rect x="20" y="150" width="150" height="46" rx="4"/><text x="34" y="170">Background job</text><text class="sub" x="34" y="186">claim row → call out</text></g>
-        <text x="132" y="136" fill="#9AA3AE" font-family="IBM Plex Mono" font-size="10">ack</text>
-        <circle id="pkt" r="5.5" fill="#FF5B1F" cx="-20" cy="-20"/>
-        <circle id="pktHalo" r="12" fill="#FF5B1F" opacity=".18" cx="-20" cy="-20"/>
-      </svg>
-      <div class="trace-log" id="log" aria-hidden="true"></div>
-    </figure>
-  </div>
-</header>
-
-<div class="band" aria-label="Tech stack">
-  <div class="marquee" id="mq">
-    <span>Next.js</span><span class="o">Laravel</span><span>PostgreSQL</span><span class="o">Go</span><span>React</span><span class="o">Angular</span><span>Node.js</span><span class="o">System Design</span>
-    <span>Next.js</span><span class="o">Laravel</span><span>PostgreSQL</span><span class="o">Go</span><span>React</span><span class="o">Angular</span><span>Node.js</span><span class="o">System Design</span>
-  </div>
+<div aria-hidden="true" class="hero-grid-bg"></div>
+<div class="wrap">
+<div>
+<!-- HERO EYEBROW: edit the text inside #hero-role only (maps to PERSON.role / HERO.roleLine) -->
+<span class="status mono" style="font-size:12px"><b></b><span data-editable="hero-eyebrow" id="hero-role">Full-Stack Developer &amp; Product Engineer · KL / Seremban</span></span>
+<h1 class="display"><span class="ln"><span>Hi, I'm</span></span><span class="ln hot"><span>Nic.</span></span></h1>
+<p aria-live="off" class="rot">I <span class="slot" id="slot"><b class="on">understand the rule.</b><b>make it legible.</b><b>ship and maintain.</b></span></p>
+<p class="lead">I clarify messy requirements, sketch the architecture, and ship full-stack web apps — from client builds to products I run myself.</p>
+<div class="ctas"><a class="btn btn-trace" href="#work">See projects ↓</a><a class="btn btn-ghost" href="#contact">Contact</a><a class="btn btn-ghost" href="notes/index.html">Technical notes</a></div>
+<p class="hint">Technical notes with sequence diagrams — for the full story behind the bullets.</p>
 </div>
-
-<section class="sec" id="how">
-  <div class="wrap">
-    <div class="sec-head rv"><div><span class="sec-num">01 —</span><h2 class="display">How I work</h2></div></div>
-    <div class="steps">
-      <div class="step rv">
-        <svg class="draw" viewBox="0 0 200 92" fill="none" stroke="#0D1014" stroke-width="2.2" aria-hidden="true">
-          <path d="M6 22 C60 22 70 22 100 46" style="--len:110"/><path d="M6 70 C60 70 70 70 100 46" stroke="#FF5B1F" style="--len:110"/>
-          <path d="M100 46 H150" style="--len:60"/><path d="M158 46 l10 10 l22 -24" stroke-width="3" style="--len:50"/>
-          <text x="6" y="14" font-family="IBM Plex Mono" font-size="10" fill="#5A6170" stroke="none">spec</text><text x="6" y="88" font-family="IBM Plex Mono" font-size="10" fill="#B8410F" stroke="none">reality</text>
-        </svg>
-        <span class="k">step 01</span><h3>Understand the rule</h3>
-        <p>Clarify requirements with stakeholders before coding. When specs and reality diverge, confirm scope early — don't build on wrong assumptions.</p>
-      </div>
-      <div class="step rv">
-        <svg class="draw" viewBox="0 0 200 92" fill="none" stroke="#0D1014" stroke-width="2" aria-hidden="true">
-          <line x1="30" y1="6" x2="30" y2="88" stroke-dasharray="3 4" style="--len:90"/><line x1="100" y1="6" x2="100" y2="88" style="--len:90"/><line x1="170" y1="6" x2="170" y2="88" style="--len:90"/>
-          <path d="M30 24 H96 m-6 -5 l6 5 l-6 5" stroke="#FF5B1F" stroke-width="2.4" style="--len:90"/><path d="M100 46 H166 m-6 -5 l6 5 l-6 5" style="--len:90"/><path d="M170 68 H34 m6 -5 l-6 5 l6 5" stroke-dasharray="5 4" style="--len:160"/>
-        </svg>
-        <span class="k">step 02</span><h3>Make it legible</h3>
-        <p>Workflow and sequence diagrams, state models, and scoped tasks that everyone can review before the big build.</p>
-      </div>
-      <div class="step rv">
-        <svg class="draw" viewBox="0 0 200 92" fill="none" stroke="#0D1014" stroke-width="2.2" aria-hidden="true">
-          <polyline points="6,84 46,84 46,62 86,62 86,40 126,40 126,18 150,18" style="--len:260"/>
-          <path d="M176 30 a16 16 0 1 1 -16 -16" stroke="#FF5B1F" stroke-width="2.6" style="--len:90"/><path d="M156 8 l6 6 l-6 6" stroke="#FF5B1F" stroke-width="2.6" style="--len:20"/>
-        </svg>
-        <span class="k">step 03</span><h3>Ship and maintain</h3>
-        <p>Pragmatic stack choices, clean API and UI boundaries, and refactors that fix once across roles and surfaces.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec dark" id="work">
-  <div class="wrap">
-    <div class="sec-head rv"><div><span class="sec-num">02 —</span><h2 class="display">Selected work</h2></div><p class="muted mono" style="font-size:12px">7 builds · 2 under NDA · click a card for the full case study</p></div>
-    <div class="bento">
-      <a class="card feature c-big rv" href="work/multi-seller-marketplace.html">
-        <span class="go">→</span>
-        <div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span><span class="tag">Lead backend · designer</span></div>
-        <h3 style="font-size:clamp(1.8rem,3.4vw,2.8rem);max-width:14ch">Multi-Seller Marketplace Channel</h3>
-        <p style="max-width:52ch">Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and orders kept correct under concurrency and late or duplicate confirmations.</p>
-        <div class="viz" aria-hidden="true">
-          <svg viewBox="0 0 640 120" id="mpviz">
-            <g font-family="IBM Plex Mono" font-size="11" fill="#9AA3AE">
-              <path id="mpPath" d="M40 60 H170 H300 C330 60 330 22 360 22 H470 M300 60 H470 M300 60 C330 60 330 98 360 98 H470" fill="none" stroke="#3A414C" stroke-width="1.4"/>
-              <path d="M470 22 C500 22 500 60 530 60 M470 98 C500 98 500 60 530 60 M470 60 H600" fill="none" stroke="#3A414C" stroke-width="1.4"/>
-              <circle cx="40" cy="60" r="7" fill="#161A20" stroke="#9AA3AE"/><text x="14" y="90">shared cart</text>
-              <circle cx="170" cy="60" r="7" fill="#161A20" stroke="#FF5B1F"/><text x="128" y="90">stock held</text>
-              <circle cx="300" cy="60" r="7" fill="#161A20" stroke="#9AA3AE"/><text x="250" y="40">1 checkout session</text>
-              <rect x="372" y="12" width="86" height="20" rx="3" fill="#161A20" stroke="#3A414C"/><text x="382" y="26">seller A</text>
-              <rect x="372" y="50" width="86" height="20" rx="3" fill="#161A20" stroke="#3A414C"/><text x="382" y="64">seller B</text>
-              <rect x="372" y="88" width="86" height="20" rx="3" fill="#161A20" stroke="#3A414C"/><text x="382" y="102">seller C</text>
-              <circle cx="600" cy="60" r="7" fill="#161A20" stroke="#8FB3FF"/><text x="560" y="90">refund-safe</text>
-            </g>
-            <circle r="5" fill="#FF5B1F" class="ride" style="offset-path:path('M40 60 H170 H300 C330 60 330 22 360 22 H470 C500 22 500 60 530 60 H600')"/>
-            <circle r="5" fill="#FF5B1F" class="ride d2" style="offset-path:path('M40 60 H170 H300 H470 H600')"/>
-            <circle r="5" fill="#8FB3FF" class="ride d3" style="offset-path:path('M40 60 H170 H300 C330 60 330 98 360 98 H470 C500 98 500 60 530 60 H600')"/>
-          </svg>
-        </div>
-        <div class="tags"><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">row locks</span><span class="tag">state machines</span><span class="tag">idempotent refunds</span></div>
-      </a>
-
-      <div class="card c-tall rv">
-        <div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span></div>
-        <h3>Fee splits, providers, and job recovery</h3>
-        <p class="mono" style="font-size:11.5px">Role: Backend developer · Go, PostgreSQL</p>
-        <svg viewBox="0 0 220 150" aria-hidden="true" class="split">
-          <g font-family="IBM Plex Mono" font-size="10" fill="#9AA3AE">
-            <text x="0" y="12">level</text><text x="150" y="12">share</text>
-            <text x="0" y="40">L1</text><rect x="28" y="30" width="110" height="12" fill="#262B33"/><rect class="sb" x="28" y="30" width="96" height="12" fill="#FF5B1F"/>
-            <text x="0" y="72">L2</text><rect x="28" y="62" width="110" height="12" fill="#262B33"/><rect class="sb" x="28" y="62" width="64" height="12" fill="#FF5B1F" style="animation-delay:.4s"/>
-            <text x="0" y="104">L3</text><rect x="28" y="94" width="110" height="12" fill="#262B33"/><rect class="sb" x="28" y="94" width="34" height="12" fill="#FF5B1F" style="animation-delay:.8s"/>
-            <text x="150" y="40">% + fixed</text><text x="150" y="72">% + fixed</text><text x="150" y="104">% + fixed</text>
-            <text x="0" y="140" fill="#8FB3FF">read-only preview before save</text>
-          </g>
-        </svg>
-        <p>Percent-plus-fixed fees walk down a partner chain, and a read-only preview shows every level's share before a rate is saved.</p>
-        <details class="more"><summary>+ providers &amp; jobs</summary><p>Already-settled records stay as they were. Each outside provider is one adapter behind a single interface: a pending callback is acknowledged, and only a final status changes state. A background job claims its row before calling out and records the stage and last error, so a retry cannot send twice and a stuck row shows why.</p></details>
-        <div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><a class="tag" href="https://nicholas-chong.com/notes/multi-level-revenue-splits">splits note ↗</a><a class="tag" href="https://nicholas-chong.com/notes/third-party-api-adapters">adapters note ↗</a><a class="tag" href="https://nicholas-chong.com/notes/background-job-failures">jobs note ↗</a></div>
-      </div>
-
-      <a class="card c-3 rv" href="https://nicholas-chong.com/projects/lokatech">
-        <span class="go">→</span>
-        <h3>LokaTech — Internal Operations Platform</h3>
-        <div class="pipe" aria-hidden="true"><span>Pricing</span><i></i><span>Scope sign-off</span><i></i><span>Billing</span><i></i><span>PDFs</span></div>
-        <p>Agency ops monorepo: pricing, scope sign-off, and project-first billing — replaced spreadsheet quote loops and email scope churn.</p>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div>
-      </a>
-
-      <a class="card c-3 rv" href="https://nicholas-chong.com/projects/what-i-applied">
-        <span class="go">→</span>
-        <div class="proof">~50<small>beta users · live on Vercel</small></div>
-        <h3>What I Applied</h3>
-        <p>Personal ATS and career prep with JD-grounded Gemini assets and follow-up nudges.</p>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div>
-      </a>
-
-      <a class="card c-2 rv" href="https://nicholas-chong.com/projects/church-system">
-        <span class="go">→</span>
-        <div class="proof">100+<small>users</small></div>
-        <h3>Church Management System</h3>
-        <p>Events, attendance, outings, and role-based admin — replaced scattered Forms/Sheets.</p>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span></div>
-      </a>
-      <a class="card c-2 rv" href="https://nicholas-chong.com/projects/task-system">
-        <span class="go">→</span>
-        <div class="proof">2<small>startup teams · ~5–10 people each</small></div>
-        <h3>Task Management System</h3>
-        <p>Self-hosted Kanban with voting, comments, and dashboards.</p>
-        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span></div>
-      </a>
-      <div class="card c-2 rv">
-        <div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span></div>
-        <h3>Enterprise system turnaround</h3>
-        <p class="mono" style="font-size:11.5px">Role: Tech BA &amp; front-end dev · Laravel, Angular</p>
-        <p>Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged.</p>
-        <details class="more"><summary>+ what I did</summary><p>I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.</p></details>
-        <div class="tags"><a class="tag" href="https://nicholas-chong.com/notes/flexible-financial-settlement">finance architecture note ↗</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="notes">
-  <div class="wrap">
-    <div class="sec-head rv"><div><span class="sec-num">03 —</span><h2 class="display">Technical notes</h2></div><p class="muted" style="max-width:38ch">Architecture write-ups with diagrams — when you want the how, not just the bullet.</p></div>
-    <div class="log rv" id="log2">
-      <a href="https://nicholas-chong.com/notes/third-party-api-adapters"><span class="n">N/01</span><div><h4>One interface for many third-party APIs</h4><p>Adapters, signature checks, and pending versus final callbacks.</p></div><span class="r">2 diagrams</span></a>
-      <a href="https://nicholas-chong.com/notes/background-job-failures"><span class="n">N/02</span><div><h4>Background job failures</h4><p>Claim before calling out, and record why a row is stuck so retries stay safe.</p></div><span class="r">2 diagrams</span></a>
-      <a href="https://nicholas-chong.com/notes/cancel-vs-late-payment"><span class="n">N/03</span><div><h4>Cancel vs a late confirmation</h4><p>One locked path for cancel, a late confirmation, and a background check.</p></div><span class="r">NDA · 3 diagrams</span></a>
-      <a href="https://nicholas-chong.com/notes/cart-stock-reservation"><span class="n">N/04</span><div><h4>Cart and stock reservation</h4><p>Holds at checkout summary so idle carts do not lock stock.</p></div><span class="r">NDA · 3 diagrams</span></a>
-      <a href="https://nicholas-chong.com/notes/multi-level-revenue-splits"><span class="n">N/05</span><div><h4>Multi-level revenue splits</h4><p>Percent-plus-fixed splits with a read-only preview before settle.</p></div><span class="r">2 diagrams</span></a>
-      <a class="hide" href="https://nicholas-chong.com/notes/seller-onboarding-variants"><span class="n">N/06</span><div><h4>Seller onboarding and product variants</h4><p>Shops on existing accounts, two variant axes, per-variant price and stock.</p></div><span class="r">NDA · 3 diagrams</span></a>
-      <a class="hide" href="https://nicholas-chong.com/notes/order-lifecycle-refunds"><span class="n">N/07</span><div><h4>Order lifecycle and refunds</h4><p>Per-seller orders, returns, and idempotent refunds on a shared checkout.</p></div><span class="r">NDA · 4 diagrams</span></a>
-      <a class="hide" href="https://nicholas-chong.com/notes/flexible-financial-settlement"><span class="n">N/08</span><div><h4>Flexible financial settlement</h4><p>Finance “shopping cart” batches, consolidated payment vouchers, commission states.</p></div><span class="r">NDA · 4 diagrams</span></a>
-      <a class="hide" href="https://nicholas-chong.com/notes/performance-evaluation-360"><span class="n">N/09</span><div><h4>360° performance evaluation</h4><p>Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.</p></div><span class="r">3 diagrams</span></a>
-      <a class="hide" href="https://nicholas-chong.com/notes/frontend-architecture-refactoring"><span class="n">N/10</span><div><h4>Frontend architecture refactoring</h4><p>Unified dynamic forms, shared library, RBAC across admin and agent portals.</p></div><span class="r">before / after</span></a>
-      <a class="hide" href="https://nicholas-chong.com/notes/fullstack-assessment-debugging"><span class="n">N/11</span><div><h4>Full-stack assessment reflection</h4><p>Pooling, infinite scroll stability, a live merge-order bug, and a transparent follow-up.</p></div><span class="r">1 diagram</span></a>
-    </div>
-    <button class="linkbtn" id="allNotes" aria-expanded="false">Show all 11 notes ↓</button>
-  </div>
-</section>
-
-<section class="sec dark" id="experience">
-  <div class="wrap">
-    <div class="sec-head rv"><div><span class="sec-num">04 —</span><h2 class="display">Experience</h2></div><p class="muted mono" style="font-size:12px">tap a row for the detail</p></div>
-    <div class="xp rv">
-      <details><summary><span class="when">Jul 2026 – Present</span><div><h3>Backend Developer <em>· Ocean Hub</em></h3><p class="sum">Own backend features from design to production. Passed probation early.</p></div><span class="pm">+</span></summary>
-        <ul>
-          <li><b>Multi-seller marketplace channel (NDA):</b> designed (lead-approved) and built a second sales channel on an existing marketplace app — onboarding, variants, stock reservation, multi-seller checkout, order and refund lifecycle.</li>
-          <li><b>Third-party API integrations:</b> each outside provider as one adapter behind a single interface; callback handling where a pending callback does not change state.</li>
-          <li><b>Background jobs &amp; data reconciliation:</b> jobs claim a row before calling out and record the stage and last error, so a retry cannot send twice; internal reconciliation tools.</li>
-          <li><b>Stack:</b> Laravel, MySQL, Go, PostgreSQL</li>
-        </ul></details>
-      <details><summary><span class="when">Oct 2025 – Jun 2026</span><div><h3>Web Developer / Product Engineer <em>· Data Flows</em></h3><p class="sum">Lead delivery, refactors, and technical BA on enterprise apps.</p></div><span class="pm">+</span></summary>
-        <ul>
-          <li><b>Flexible Financial Settlement Engine:</b> lead dev &amp; technical BA on a commission payout redesign — batching, partial line items, locks/state aligned with accounting; cut post-launch finance rework.</li>
-          <li><b>360° Performance Evaluation Module:</b> auto-assignment, tokenized external access, Angular schema-driven forms + JSONB — new question types via config.</li>
-          <li><b>Frontend Architecture Refactoring:</b> unified duplicated portals; RBAC-gated shared component library — fixes ship once across admin/agent views.</li>
-          <li><b>Stack:</b> Laravel, Angular</li>
-        </ul></details>
-      <details><summary><span class="when">Apr 2022 – Sep 2025</span><div><h3>Independent Full-Stack Developer</h3><p class="sum">Part-time freelance during university grew into full-time independent delivery.</p></div><span class="pm">+</span></summary>
-        <ul>
-          <li><b>2022 – 2024:</b> landing pages, product catalogs, ongoing maintenance and feature work while completing the degree.</li>
-          <li><b>2024 – 2025:</b> HR and badminton booking systems; church, task, and e-commerce platforms; What I Applied. Workflows, RBAC, audit trails, voting, DnD task UX.</li>
-          <li><b>Stack:</b> Next.js, React, .NET Core, Prisma, PostgreSQL</li>
-        </ul></details>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="about">
-  <div class="wrap about">
-    <div class="rv"><span class="sec-num">05 —</span><p class="big" style="margin-top:14px">Outside of work I write on philosophy and shoot photography — both push me to notice what people assume and what they overlook.</p><p class="muted" style="margin-top:14px;font-size:var(--t-sm)">That carries into how I gather requirements and design interfaces. <a href="https://instagram.com/nicholas_loong">Photography on Instagram ↗</a></p></div>
-    <div class="edu rv"><span class="eyebrow muted">Education</span>
-      <div><span><b>University Malaysia Sabah (UMS)</b><br><span class="muted">Bachelor of Software Engineering</span></span><span class="mono muted">2020 – 2024</span></div>
-      <div><span><b>St Paul Institution</b><br><span class="muted">STPM</span></span><span class="mono muted">2018 – 2019</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec contact" id="contact">
-  <div class="wrap">
-    <span class="eyebrow">06 — Contact</span>
-    <h2 class="display rv" style="margin-top:18px">Let's talk<br>backend.</h2>
-    <div class="row">
-      <p style="max-width:36ch;font-size:var(--t-lg)">Happy to chat about backend and product engineering. Easiest reach: email or WhatsApp.</p>
-      <ul><li><a href="mailto:shiloong53bii@gmail.com">shiloong53bii@gmail.com</a></li><li><a href="https://github.com/nicholas053">github.com/nicholas053</a></li><li><a href="https://wa.me/60122657856">+60122657856</a></li></ul>
-      <a class="btn" href="https://nicholas-chong.com/resume">Resume ↗</a>
-    </div>
-  </div>
-</section>
-<footer><div class="wrap"><span>© Nicholas Chong Shi Loong</span><span>Prototype — Direction A “Live Trace”</span></div></footer>
+<figure aria-label="Animated diagram: an outbound request and its inbound callback, step by step" class="trace-card"><header class="mono" style="font-size:12px"><span>live trace · request → callback</span><span id="scn">phase 1</span></header><div class="trace-scroll"><svg aria-labelledby="traceT" id="trace" role="img" viewbox="0 0 800 352"><title id="traceT">Phase 1: a background job claims a row, the adapter builds a provider request, the request goes to the third-party API. Phase 2: the third-party API calls back; the callback handler receives it, the adapter verifies the signature and normalises the body, the core service applies it idempotently, and an ack 200 is returned.</title><text class="phase" x="20" y="22">PHASE 1 · OUTBOUND</text><text class="phase" text-anchor="end" x="782" y="166">PHASE 2 · INBOUND CALLBACK</text><path class="wire" d="M188 66 H318" id="w1"></path><path class="wire" d="M488 66 H618" id="w2"></path><path class="wire async" d="M700 94 C700 124 620 128 400 128 S95 136 95 178" id="wA"></path><path class="wire" d="M170 206 H195" id="w3"></path><path class="wire" d="M400 206 H425" id="w4"></path><path class="wire" d="M600 206 H625" id="w5"></path><path class="wire ack" d="M703 234 V258 H95 V234" id="w6"></path><path class="wire dim" d="M200 318 H420"></path><text class="lbl" x="320" y="128">later · async callback</text><text class="lbl" x="330" y="252">08 · ack 200 returned to provider</text><g class="node" id="nJob"><rect height="56" rx="5" width="168" x="20" y="38"></rect><text class="t" x="34" y="62">Background job</text><text class="sub" x="34" y="82">claims a row</text><g class="badge"><circle cx="20" cy="38" r="13"></circle><text text-anchor="middle" x="20" y="43">01</text></g></g><g class="node" id="nAdOut"><rect height="56" rx="5" width="170" x="318" y="38"></rect><text class="t" x="332" y="62">Adapter</text><text class="sub" x="332" y="82">builds request</text><g class="badge"><circle cx="318" cy="38" r="13"></circle><text text-anchor="middle" x="318" y="43">02</text></g></g><g class="node" id="nApi1"><rect height="56" rx="5" width="164" x="618" y="38"></rect><text class="t" x="632" y="62">Third-party API</text><text class="sub" x="632" y="82">receives request</text><g class="badge"><circle cx="618" cy="38" r="13"></circle><text text-anchor="middle" x="618" y="43">03</text></g></g><g class="node" id="nApi2"><rect height="56" rx="5" width="150" x="20" y="178"></rect><text class="t" x="34" y="202">Third-party API</text><text class="sub" x="34" y="222">sends callback</text><g class="badge"><circle cx="20" cy="178" r="13"></circle><text text-anchor="middle" x="20" y="183">04</text></g></g><g class="node" id="nHandler"><rect height="56" rx="5" width="205" x="195" y="178"></rect><text class="t" x="209" y="202">Callback handler</text><text class="sub" x="209" y="222">POST /callbacks/:acct</text><g class="badge"><circle cx="195" cy="178" r="13"></circle><text text-anchor="middle" x="195" y="183">05</text></g></g><g class="node" id="nAdIn"><rect height="56" rx="5" width="175" x="425" y="178"></rect><text class="t" x="439" y="202">Adapter</text><text class="sub" x="439" y="222">verify · normalise</text><g class="badge"><circle cx="425" cy="178" r="13"></circle><text text-anchor="middle" x="425" y="183">06</text></g></g><g class="node" id="nCore"><rect height="56" rx="5" width="157" x="625" y="178"></rect><text class="t" x="639" y="202">Core service</text><text class="sub" x="639" y="222">idempotent apply</text><g class="badge"><circle cx="625" cy="178" r="13"></circle><text text-anchor="middle" x="625" y="183">07</text></g></g><g class="chip" id="cFinal"><rect height="28" rx="4" width="362" x="420" y="276"></rect><text x="432" y="295">final → state changes once</text></g><g class="chip" id="cNoop"><rect height="28" rx="4" width="362" x="420" y="310"></rect><text x="432" y="329">duplicate / pending → no state change</text></g><g class="node recon" id="nRecon"><rect height="56" rx="5" width="180" x="20" y="290"></rect><text class="t" x="34" y="314">Reconciliation job</text><text class="sub" x="34" y="334">later compares records</text></g><circle cx="-30" cy="-30" id="pktHalo" r="13"></circle><circle cx="-30" cy="-30" id="pkt" r="6"></circle></svg><svg aria-label="Phase 1: background job claims a row, adapter builds the request, request goes to the third-party API. Phase 2: the provider calls back, the handler receives it, the adapter verifies and normalises, the core service applies it idempotently, ack 200 is returned." class="trace-m" id="traceM" role="img" viewbox="0 0 340 434"><text class="phase" x="34" y="14">PHASE 1 · OUTBOUND</text><text class="phase" x="34" y="198">PHASE 2 · INBOUND</text><path class="wire" d="M184.0 62 V78" id="w1"></path><path class="wire" d="M184.0 118 V134" id="w2"></path><path class="wire async" d="M184.0 174 V206" id="wA"></path><path class="wire" d="M184.0 246 V262" id="w3"></path><path class="wire" d="M184.0 302 V318" id="w4"></path><path class="wire" d="M184.0 358 V374" id="w5"></path><path class="wire ack" d="M34 394 H12 V226 H34" id="w6"></path><text class="lbl" x="194.0" y="194">later · async</text><g class="node" id="nJob"><rect height="40" rx="5" width="300" x="34" y="22"></rect><text class="t" x="60" y="39">Background job</text><text class="sub" x="60" y="55">claims a row</text><g class="badge"><circle cx="34" cy="42" r="11"></circle><text text-anchor="middle" x="34" y="46.5">01</text></g></g><g class="node" id="nAdOut"><rect height="40" rx="5" width="300" x="34" y="78"></rect><text class="t" x="60" y="95">Adapter</text><text class="sub" x="60" y="111">builds provider request</text><g class="badge"><circle cx="34" cy="98" r="11"></circle><text text-anchor="middle" x="34" y="102.5">02</text></g></g><g class="node" id="nApi1"><rect height="40" rx="5" width="300" x="34" y="134"></rect><text class="t" x="60" y="151">Third-party API</text><text class="sub" x="60" y="167">receives request</text><g class="badge"><circle cx="34" cy="154" r="11"></circle><text text-anchor="middle" x="34" y="158.5">03</text></g></g><g class="node" id="nApi2"><rect height="40" rx="5" width="300" x="34" y="206"></rect><text class="t" x="60" y="223">Third-party API</text><text class="sub" x="60" y="239">sends callback</text><g class="badge"><circle cx="34" cy="226" r="11"></circle><text text-anchor="middle" x="34" y="230.5">04</text></g></g><g class="node" id="nHandler"><rect height="40" rx="5" width="300" x="34" y="262"></rect><text class="t" x="60" y="279">Callback handler</text><text class="sub" x="60" y="295">POST /callbacks/:acct</text><g class="badge"><circle cx="34" cy="282" r="11"></circle><text text-anchor="middle" x="34" y="286.5">05</text></g></g><g class="node" id="nAdIn"><rect height="40" rx="5" width="300" x="34" y="318"></rect><text class="t" x="60" y="335">Adapter</text><text class="sub" x="60" y="351">verify signature · normalise</text><g class="badge"><circle cx="34" cy="338" r="11"></circle><text text-anchor="middle" x="34" y="342.5">06</text></g></g><g class="node" id="nCore"><rect height="40" rx="5" width="300" x="34" y="374"></rect><text class="t" x="60" y="391">Core service</text><text class="sub" x="60" y="407">final → once · dup/pending → none</text><g class="badge"><circle cx="34" cy="394" r="11"></circle><text text-anchor="middle" x="34" y="398.5">07</text></g></g><text class="lbl" x="12" y="431">08 · ack 200 ↑</text><circle cx="-30" cy="-30" id="pktHalo" r="12"></circle><circle cx="-30" cy="-30" id="pkt" r="5.5"></circle></svg></div><div aria-hidden="true" class="trace-log" id="log"></div></figure>
+</div>
+</header>
+<div aria-label="Tech stack" class="band"><div class="marquee" id="mq"><span>Golang</span><span class="o">Laravel</span><span>PHP</span><span class="o">PostgreSQL</span><span>MySQL</span><span class="o">Node.js</span><span>TypeScript</span><span class="o">System Design</span><span>Golang</span><span class="o">Laravel</span><span>PHP</span><span class="o">PostgreSQL</span><span>MySQL</span><span class="o">Node.js</span><span>TypeScript</span><span class="o">System Design</span></div></div>
+<section class="sec" id="how"><div class="wrap">
+<div class="sec-head rv"><div><span class="sec-num">01 —</span><h2 class="display">How I work</h2></div></div>
+<div class="steps"><div class="step rv" tabindex="0"><svg aria-hidden="true" class="ic ic1" viewbox="0 0 80 80">
+<g class="c c1"><circle cx="5" cy="12" r="2.2"></circle><rect height="12" rx="3" width="44" x="12" y="6"></rect></g>
+<g class="c c2"><circle cx="5" cy="30" r="2.2"></circle><rect height="12" rx="3" width="34" x="12" y="24"></rect></g>
+<g class="c c3"><circle cx="5" cy="48" r="2.2"></circle><rect height="12" rx="3" width="40" x="12" y="42"></rect></g>
+<g class="c c4"><circle cx="5" cy="66" r="2.2"></circle><rect height="12" rx="3" width="28" x="12" y="60"></rect></g>
+<path class="chk" d="M56 60 l7 7 l14 -17"></path></svg><span class="k">step 01</span><h3>Understand the rule</h3><p>Clarify requirements with stakeholders before coding. When specs and reality diverge, confirm scope early — don't build on wrong assumptions.</p></div><div class="step rv" tabindex="0"><svg aria-hidden="true" class="ic ic2" viewbox="0 0 80 80">
+<path class="ln l1" d="M28 13 H52"></path><path class="ln l2" d="M64 22 V58"></path><path class="ln l3" d="M16 22 V58"></path><path class="ln l4" d="M28 67 H52"></path>
+<rect class="bx b1" height="18" rx="4" width="24" x="4" y="4"></rect><rect class="bx b2" height="18" rx="4" width="24" x="52" y="4"></rect>
+<rect class="bx b3" height="18" rx="4" width="24" x="4" y="58"></rect><rect class="bx b4 act" height="18" rx="4" width="24" x="52" y="58"></rect>
+<circle class="pk" r="3.5"></circle></svg><span class="k">step 02</span><h3>Make it legible</h3><p>Workflow and sequence diagrams, state models, and scoped tasks that everyone can review before the big build.</p></div><div class="step rv" tabindex="0"><svg aria-hidden="true" class="ic ic3" viewbox="0 0 80 80">
+<text x="0" y="16">build</text><text x="0" y="42">test</text><text x="0" y="68">deploy</text>
+<path class="ln" d="M60 18 V30"></path><path class="ln" d="M60 44 V56"></path>
+<rect class="st" height="12" rx="3" width="24" x="48" y="6"></rect><rect class="st" height="12" rx="3" width="24" x="48" y="32"></rect><rect class="st" height="12" rx="3" width="24" x="48" y="58"></rect>
+<rect class="fl f1" height="12" rx="3" width="24" x="48" y="6"></rect><rect class="fl f2" height="12" rx="3" width="24" x="48" y="32"></rect><rect class="fl f3" height="12" rx="3" width="24" x="48" y="58"></rect>
+<circle class="live" cx="78" cy="64" r="3.5"></circle><circle class="ring" cx="78" cy="64" r="3.5"></circle></svg><span class="k">step 03</span><h3>Ship and maintain</h3><p>Pragmatic stack choices, clean API and UI boundaries, and refactors that fix once across roles and surfaces.</p></div></div>
+</div></section>
+<section class="sec alt" id="work"><div class="wrap">
+<div class="sec-head rv"><div><span class="sec-num">02 —</span><h2 class="display">Selected work</h2></div><p class="muted mono" style="font-size:12px">click a card for the full case study</p></div>
+<div class="bento">
+<a class="card feature c-big rv" href="work/multi-seller-marketplace.html">
+<span class="go">→</span>
+<div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span><span class="tag">Lead backend · designer</span></div>
+<h3 style="font-size:clamp(1.8rem,3.4vw,2.8rem);max-width:14ch">Multi-Seller Marketplace Channel</h3>
+<p style="max-width:52ch">Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and orders kept correct under concurrency and late or duplicate confirmations.</p>
+<div aria-hidden="true" class="viz">
+<svg id="mpviz" viewbox="0 0 640 120">
+<g fill="#9AA3AE" font-family="IBM Plex Mono" font-size="12">
+<path d="M40 60 H170 H300 C330 60 330 22 360 22 H470 M300 60 H470 M300 60 C330 60 330 98 360 98 H470" fill="none" id="mpPath" stroke-width="1.4" style="stroke:var(--ink-line)"></path>
+<path d="M470 22 C500 22 500 60 530 60 M470 98 C500 98 500 60 530 60 M470 60 H600" fill="none" stroke-width="1.4" style="stroke:var(--ink-line)"></path>
+<circle cx="40" cy="60" r="7" stroke="#9AA3AE" style="fill:var(--ink-2)"></circle><text x="14" y="90">shared cart</text>
+<circle cx="170" cy="60" r="7" style="fill:var(--ink-2);stroke:var(--trace)"></circle><text x="128" y="90">stock held</text>
+<circle cx="300" cy="60" r="7" stroke="#9AA3AE" style="fill:var(--ink-2)"></circle><text x="250" y="40">1 checkout session</text>
+<rect height="20" rx="3" style="fill:var(--ink-2);stroke:var(--ink-line)" width="86" x="372" y="12"></rect><text x="382" y="26">seller A</text>
+<rect height="20" rx="3" style="fill:var(--ink-2);stroke:var(--ink-line)" width="86" x="372" y="50"></rect><text x="382" y="64">seller B</text>
+<rect height="20" rx="3" style="fill:var(--ink-2);stroke:var(--ink-line)" width="86" x="372" y="88"></rect><text x="382" y="102">seller C</text>
+<circle cx="600" cy="60" r="7" stroke="#8FB3FF" style="fill:var(--ink-2)"></circle><text x="560" y="90">refund-safe</text>
+</g>
+<circle class="ride" r="5" style="offset-path:path('M40 60 H170 H300 C330 60 330 22 360 22 H470 C500 22 500 60 530 60 H600');fill:var(--trace)"></circle>
+<circle class="ride d2" r="5" style="offset-path:path('M40 60 H170 H300 H470 H600');fill:var(--trace)"></circle>
+<circle class="ride d3" fill="#8FB3FF" r="5" style="offset-path:path('M40 60 H170 H300 C330 60 330 98 360 98 H470 C500 98 500 60 530 60 H600')"></circle>
+</svg>
+</div>
+<div class="tags"><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">row locks</span><span class="tag">state machines</span><span class="tag">idempotent refunds</span></div>
+</a>
+<div class="card c-tall rv">
+<div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span></div>
+<h3>Fee splits, providers, and job recovery</h3>
+<p class="mono" style="font-size:11.5px">Role: Backend developer · Go, PostgreSQL</p>
+<svg aria-hidden="true" class="split" viewbox="0 0 220 150">
+<g fill="#9AA3AE" font-family="IBM Plex Mono" font-size="12">
+<text x="0" y="12">level</text><text x="150" y="12">share</text>
+<text x="0" y="40">L1</text><rect height="12" style="fill:#2A303A" width="110" x="28" y="30"></rect><rect class="sb" height="12" style="fill:var(--trace)" width="96" x="28" y="30"></rect>
+<text x="0" y="72">L2</text><rect height="12" style="fill:#2A303A" width="110" x="28" y="62"></rect><rect class="sb" height="12" style="animation-delay:.4s;fill:var(--trace)" width="64" x="28" y="62"></rect>
+<text x="0" y="104">L3</text><rect height="12" style="fill:#2A303A" width="110" x="28" y="94"></rect><rect class="sb" height="12" style="animation-delay:.8s;fill:var(--trace)" width="34" x="28" y="94"></rect>
+<text x="150" y="40">% + fixed</text><text x="150" y="72">% + fixed</text><text x="150" y="104">% + fixed</text>
+<text fill="#8FB3FF" x="0" y="140">read-only preview before save</text>
+</g>
+</svg>
+<p>Percent-plus-fixed fees walk down a partner chain, and a read-only preview shows every level's share before a rate is saved.</p>
+<details class="more"><summary>+ providers &amp; jobs</summary><p>Already-finalised records stay as they were. Each outside provider is one adapter behind a single interface: a pending callback is acknowledged, and only a final status changes state. A background job claims its row before calling out and records the stage and last error, so a retry cannot send twice and a stuck row shows why.</p></details>
+<div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><a class="tag" href="notes/multi-level-revenue-splits.html">splits note ↗</a><a class="tag" href="notes/third-party-api-adapters.html">adapters note ↗</a><a class="tag" href="notes/background-job-failures.html">jobs note ↗</a></div>
+</div>
+<a class="card c-3 rv" href="work/lokatech.html">
+<span class="go">→</span>
+<h3>LokaTech — Internal Operations Platform</h3>
+<div aria-hidden="true" class="pipe"><span>Pricing</span><i></i><span>Scope sign-off</span><i></i><span>Billing</span><i></i><span>PDFs</span></div>
+<p>Agency ops monorepo: pricing, scope sign-off, and project-first billing — replaced spreadsheet quote loops and email scope churn.</p>
+<div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div>
+</a>
+<a class="card c-3 rv" href="work/what-i-applied.html">
+<span class="go">→</span>
+<div class="proof">~50<small>beta users · live on Vercel</small></div>
+<h3>What I Applied</h3>
+<p>Personal ATS and career prep with JD-grounded Gemini assets and follow-up nudges.</p>
+<div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div>
+</a>
+<a class="card c-2 rv" href="work/church-system.html">
+<span class="go">→</span>
+<div class="proof">100+<small>users</small></div>
+<h3>Church Management System</h3>
+<p>Events, attendance, outings, and role-based admin — replaced scattered Forms/Sheets.</p>
+<div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span></div>
+</a>
+<a class="card c-2 rv" href="work/task-system.html">
+<span class="go">→</span>
+<div class="proof">2<small>startup teams · ~5–10 people each</small></div>
+<h3>Task Management System</h3>
+<p>Self-hosted Kanban with voting, comments, and dashboards.</p>
+<div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span></div>
+</a>
+<div class="card c-2 rv">
+<div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span></div>
+<h3>Enterprise system turnaround</h3>
+<p class="mono" style="font-size:11.5px">Role: Tech BA &amp; front-end dev · Laravel, Angular</p>
+<p>Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged.</p>
+<details class="more"><summary>+ what I did</summary><p>I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.</p></details>
+<div class="tags"><a class="tag" href="notes/flexible-financial-settlement.html">finance architecture note ↗</a></div>
+</div>
+<div class="card c-6 loka rv"><div><span class="tag" style="display:inline-block;margin-bottom:10px">Client work</span><h3>Client work — LokaTech</h3><p style="margin-top:8px">Alongside this portfolio I run LokaTech for scoped freelance and product engagements — discovery, build, and ongoing support.</p></div><a class="btn btn-ghost" href="https://lokatech.co" rel="noopener">Visit lokatech.co →</a></div>
+</div>
+</div></section>
+<section class="sec" id="notes"><div class="wrap">
+<div class="sec-head rv"><div><span class="sec-num">03 —</span><h2 class="display">Technical notes</h2></div><p class="muted" style="max-width:38ch">Architecture write-ups with diagrams — when you want the how, not just the bullet.</p></div>
+<div class="log rv" id="log2"><a href="notes/seller-onboarding-variants.html"><span class="n">N/01</span><div><h4>Seller onboarding and product variants</h4><p>Shops on existing accounts, two variant axes, per-variant price and stock (NDA).</p></div><span class="r">3 diagrams</span></a><a href="notes/cart-stock-reservation.html"><span class="n">N/02</span><div><h4>Cart and stock reservation</h4><p>Holds at checkout summary so idle carts do not lock stock (NDA).</p></div><span class="r">3 diagrams</span></a><a href="notes/cancel-vs-late-payment.html"><span class="n">N/03</span><div><h4>Cancel vs a late confirmation</h4><p>One locked path for cancel, a late confirmation, and a background check (NDA).</p></div><span class="r">3 diagrams</span></a><a href="notes/order-lifecycle-refunds.html"><span class="n">N/04</span><div><h4>Order lifecycle and refunds</h4><p>Per-seller orders, returns, and idempotent refunds on a shared checkout (NDA).</p></div><span class="r">4 diagrams</span></a><a href="notes/multi-level-revenue-splits.html"><span class="n">N/05</span><div><h4>Multi-level revenue splits</h4><p>Percent-plus-fixed splits with a read-only preview before rates are saved.</p></div><span class="r">2 diagrams</span></a><a class="hide" href="notes/third-party-api-adapters.html"><span class="n">N/06</span><div><h4>One interface for many third-party APIs</h4><p>Adapters, signature checks, and pending versus final callbacks.</p></div><span class="r">2 diagrams</span></a><a class="hide" href="notes/background-job-failures.html"><span class="n">N/07</span><div><h4>Background job failures</h4><p>Claim before calling out, and record why a row is stuck so retries stay safe.</p></div><span class="r">2 diagrams</span></a><a class="hide" href="notes/flexible-financial-settlement.html"><span class="n">N/08</span><div><h4>Flexible financial settlement</h4><p>Finance “shopping cart” batches, consolidated checkout vouchers, commission states (NDA).</p></div><span class="r">4 diagrams</span></a><a class="hide" href="notes/performance-evaluation-360.html"><span class="n">N/09</span><div><h4>360° performance evaluation</h4><p>Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.</p></div><span class="r">3 diagrams</span></a><a class="hide" href="notes/frontend-architecture-refactoring.html"><span class="n">N/10</span><div><h4>Frontend architecture refactoring</h4><p>Unified dynamic forms, shared library, RBAC across admin and agent portals.</p></div><span class="r">2 diagrams</span></a><a class="hide" href="notes/fullstack-assessment-debugging.html"><span class="n">N/11</span><div><h4>Full-stack assessment reflection</h4><p>Pooling, infinite scroll stability, a live merge-order bug, and a transparent post-interview follow-up.</p></div><span class="r">1 diagram</span></a></div>
+<div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center"><button aria-expanded="false" class="linkbtn" id="allNotes">Show all 11 notes ↓</button><a class="linkbtn" href="notes/index.html" style="text-decoration:none">All technical notes →</a></div>
+</div></section>
+<section class="sec alt" id="about"><div class="wrap">
+<div class="sec-head rv"><div><span class="sec-num">04 —</span><h2 class="display">About</h2></div><p class="muted mono" style="font-size:12px">tap a row for the detail</p></div>
+<div class="xp rv"><details><summary><span class="when">July 2026 – Present</span><div><h3>Backend Developer <em>· Ocean Hub Management Sdn Bhd</em></h3><p class="sum">Own backend features from design to production. Passed probation early.</p></div><span class="pm">+</span></summary><ul><li><b>Multi-seller marketplace channel (NDA):</b> designed (lead-approved) and built a second sales channel on an existing marketplace app: seller onboarding, product variants, cart with stock reservation, one checkout across multiple sellers that stays correct when provider confirmations arrive late or twice, and the full order and refund lifecycle. <a href="work/multi-seller-marketplace.html">See full →</a></li><li><b>Fee splits, providers, and job recovery (NDA):</b> percent-plus-fixed fees walked down a partner chain, with a read-only preview of every level's share before a rate is saved and already-finalised records left unchanged; each outside provider as one adapter behind a single interface, so a pending callback does not change state; background jobs claim a row before calling out and record the stage and last error, so a retry cannot send twice.</li><li><b>Internal operations and reconciliation tools.</b> </li><li><b>Stack:</b> Laravel, MySQL, Go, PostgreSQL</li></ul></details><details><summary><span class="when">Oct 2025 – June 2026 · 8 months</span><div><h3>Web Developer / Product Engineer <em>· <a href="https://www.dataflows.co/" rel="noopener">Data Flows Sdn Bhd</a></em></h3><p class="sum">Lead delivery, refactors, and technical BA on enterprise apps; aligned schemas and UI with real finance/ops workflows.</p></div><span class="pm">+</span></summary><ul><li><b>Architected Flexible Financial Settlement Engine:</b> Lead dev &amp; technical BA: commission payout redesign — batching, partial line items, locks/state aligned with accounting; cut post-launch finance rework. <a href="notes/flexible-financial-settlement.html">See full →</a></li><li><b>Engineered 360° Performance Evaluation Module:</b> Owned KPI-linked 360° reviews: auto-assignment, tokenized external access, Angular schema-driven forms + JSONB — new question types via config. <a href="notes/performance-evaluation-360.html">See full →</a></li><li><b>Led Frontend Architecture Refactoring:</b> Unified duplicated portals: dynamic forms by route, RBAC-gated shared component library — fixes ship once across admin/agent views. <a href="notes/frontend-architecture-refactoring.html">See full →</a></li><li><b>Stack:</b> Laravel, Angular</li></ul></details><details><summary><span class="when">Apr 2022 – Sept 2025 · 3.5 years</span><div><h3>Independent Full-Stack Developer</h3><p class="sum">Part-time freelance during university grew into full-time independent delivery — church, task, and booking systems, plus products I still run.</p></div><span class="pm">+</span></summary><ul><li><b>Web Development &amp; Maintenance (Apr 2022 – Mar 2024):</b> Landing pages, product catalogs, ongoing maintenance and feature work while completing the degree.</li><li><b>Systems &amp; products (Mar 2024 – Sept 2025):</b> HR and badminton booking systems; church, task, and e-commerce platforms; personal applicant-tracking / AI-assisted career prep (What I Applied). Workflows, RBAC, audit trails, voting, DnD task UX, clean API/UI (Next.js, Prisma, PostgreSQL, .NET).</li><li><b>Stack:</b> Next.js, React, .NET Core, Prisma, PostgreSQL.</li></ul></details><details><summary><span class="when">Oct 2020 – Mar 2024</span><div><h3>University Malaysia Sabah (UMS)</h3></div><span class="pm">+</span></summary><ul><li>Pursued Software Engineering at University Malaysia Sabah. Self-funded studies while taking on freelance maintenance projects to support tuition.</li></ul></details></div>
+<div class="about" style="margin-top:56px">
+<div class="rv"><span class="eyebrow muted">Philosophy</span><p class="big" style="margin-top:14px">Outside of work I write on philosophy and shoot photography — both push me to notice what people assume and what they overlook, which carries into how I gather requirements and design interfaces.</p><p class="muted" style="margin-top:14px;font-size:var(--t-sm)"><a href="https://www.instagram.com/nicholas_loong" rel="noopener">Photography on Instagram ↗</a> (@nicholas_loong)</p></div>
+<div class="edu rv"><span class="eyebrow muted">Education</span><div><span><b>University Malaysia Sabah (UMS)</b><br/><span class="muted">Bachelor of Software Engineering</span></span><span class="mono muted">2020 – 2024</span></div><div><span><b>St Paul Institution</b><br/><span class="muted">STPM</span></span><span class="mono muted">2018 – 2019</span></div></div>
+</div>
+</div></section>
+<section class="sec contact" id="contact"><div class="wrap">
+<span class="eyebrow">05 — Contact</span>
+<h2 class="display rv" style="margin-top:18px">Contact</h2>
+<div class="row">
+<p style="max-width:36ch;font-size:var(--t-lg)">Happy to chat about backend and product engineering. Easiest reach: email or WhatsApp.</p>
+<ul><li><a href="mailto:shiloong53bii@gmail.com">shiloong53bii@gmail.com</a></li><li><a href="https://github.com/nicholas053" rel="noopener">github.com/nicholas053</a></li><li><a href="https://wa.me/60122657856" rel="noopener">+60122657856</a></li></ul>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-line" href="resume.html">Resume</a><a class="btn" href="#work">See projects</a></div>
+</div>
+</div></section>
+</main>
+<footer><div class="wrap">
+<div class="smap"><div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="notes/index.html">Technical notes</a></li><li><a href="resume.html">Resume</a></li><li><a href="index.html#contact">Contact</a></li></ul><h4 style="margin-top:18px">Work</h4><ul><li><a href="work/multi-seller-marketplace.html">Multi-Seller Marketplace Channel</a></li><li><a href="work/lokatech.html">LokaTech — Internal Operations Platform</a></li><li><a href="work/what-i-applied.html">What I Applied</a></li><li><a href="work/church-system.html">Church Management System</a></li><li><a href="work/task-system.html">Task Management System</a></li></ul></div><div style="grid-column:span 2"><h4>Technical notes</h4><ul style="grid-template-columns:1fr 1fr;display:grid"><li><a href="notes/seller-onboarding-variants.html">Seller onboarding and product variants</a></li><li><a href="notes/cart-stock-reservation.html">Cart and stock reservation</a></li><li><a href="notes/cancel-vs-late-payment.html">Cancel vs a late confirmation</a></li><li><a href="notes/order-lifecycle-refunds.html">Order lifecycle and refunds</a></li><li><a href="notes/multi-level-revenue-splits.html">Multi-level revenue splits</a></li><li><a href="notes/third-party-api-adapters.html">One interface for many third-party APIs</a></li><li><a href="notes/background-job-failures.html">Background job failures</a></li><li><a href="notes/flexible-financial-settlement.html">Flexible financial settlement</a></li><li><a href="notes/performance-evaluation-360.html">360° performance evaluation</a></li><li><a href="notes/frontend-architecture-refactoring.html">Frontend architecture refactoring</a></li><li><a href="notes/fullstack-assessment-debugging.html">Full-stack assessment reflection</a></li></ul></div></div>
+<div class="row2"><span>© Nicholas Chong Shi Loong</span><span>Prototype — Direction A “Live Trace”</span></div></div></footer>
 <script src="assets/app.js"></script>
 </body></html>

@@ -1,0 +1,203 @@
+/* Notes + resume only. Shared tokens/primitives stay in styles.css. */
+
+/* Keep diagrams from forcing a horizontal scrollbar (styles.css sets .mm min-width). */
+.notes-page .mmwrap,
+.resume-page .mmwrap{
+  overflow:hidden;
+  width:100%;
+}
+.notes-page .mm,
+.notes-page .nmm,
+.resume-page .mm,
+.resume-page .nmm{
+  min-width:0 !important;
+  width:100%;
+  height:auto;
+  display:block;
+}
+.notes-page,
+.resume-page{overflow-x:hidden}
+
+/* SVG type: never drop below 12px, even if a diagram has a tight viewBox. */
+.notes-page .mm text,
+.notes-page .nmm text,
+.resume-page .mm text,
+.resume-page .nmm text{font-size:13px}
+
+/* Hero log uses accent tokens so the switcher recolors it. */
+.notes-page .diag-hero .mm-log b,
+.resume-page .diag-hero .mm-log b{color:var(--trace)}
+.notes-page .diag-hero header button,
+.resume-page .diag-hero header button{
+  min-height:44px;
+  min-width:44px;
+  padding:8px 12px;
+  color:var(--paper);
+  border-color:var(--ink-line);
+}
+
+/* Stable state: a revealed step stays on. */
+.notes-page .mm.lanes .msg.revealed,
+.notes-page .nmm.lanes .msg.revealed{opacity:1}
+.notes-page .mm .node.lit rect,
+.notes-page .nmm .node.lit rect{stroke:var(--trace);fill:var(--trace-tint);stroke-width:2}
+
+/* ---- Mobile steppers (notes.js renames .mm-steps → .note-steps before app.js binds) ---- */
+.note-steps{
+  list-style:none;
+  display:none;
+  gap:8px;
+  padding:14px;
+}
+@media (max-width:760px){
+  .note-steps{display:grid}
+}
+.note-steps li{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:10px;
+  border:1px solid var(--ink-line);
+  border-radius:5px;
+  padding:12px 14px;
+  min-height:44px;
+  background:var(--ink);
+  transition:border-color .3s,background .3s;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.note-steps li .i{font:13px var(--f-mono);color:var(--mute-ink)}
+.note-steps li b{display:block;font:500 14px/1.4 var(--f-mono);color:var(--paper)}
+.note-steps li .who{display:block;font:12px var(--f-mono);color:var(--ack);margin-bottom:2px}
+.note-steps li .nx{display:block;font:12px var(--f-mono);color:var(--mute-ink);margin-top:4px}
+.note-steps li .nx em{font-style:normal;color:var(--ack)}
+.note-steps li.on{border-color:var(--trace);background:var(--trace-tint)}
+.note-steps li.on .i{color:var(--trace)}
+.note-steps li.done,
+.note-steps li.revealed{opacity:1}
+.note-steps li.done{opacity:.85}
+.note-steps-nav{
+  display:none;
+  padding:0 14px 14px;
+  gap:8px;
+}
+@media (max-width:760px){
+  .note-steps-nav{display:flex}
+}
+.note-steps-nav button{
+  flex:1;
+  min-height:44px;
+  border:1px solid var(--ink-line);
+  background:var(--ink);
+  color:var(--paper);
+  font:13px var(--f-mono);
+  border-radius:5px;
+  cursor:pointer;
+}
+.note-steps-nav button:disabled{opacity:.4;cursor:default}
+.note-steps-nav button.primary{
+  border-color:var(--trace);
+  color:var(--ink);
+  background:var(--trace);
+}
+
+/* Caption under the hero (desktop log is hidden on mobile in styles.css). */
+.note-caption{
+  display:none;
+  font:13px var(--f-mono);
+  color:var(--mute-ink);
+  padding:0 16px 14px;
+  min-height:44px;
+}
+.note-caption b{color:var(--trace);font-weight:500}
+@media (max-width:760px){
+  .notes-page .diag-hero .note-caption,
+  .resume-page .diag-hero .note-caption{display:block}
+}
+
+/* ---- Notes index ---- */
+.notes-page .nlist summary{
+  min-height:44px;
+  align-items:center;
+}
+.notes-page .nlist .bl a{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  color:var(--trace);
+}
+.notes-page .nlist summary b{overflow-wrap:anywhere}
+@media (max-width:760px){
+  .notes-page .theme{grid-template-columns:1fr;gap:10px;padding:28px 0}
+  .notes-page .theme h2{font-size:var(--t-lg)}
+  .notes-page .nlist summary{gap:10px}
+  .notes-page .nlist summary small{white-space:normal;text-align:right}
+  .notes-page .nlist .bl{flex-direction:column;align-items:stretch;gap:8px}
+  .notes-page .pg-hero h1{max-width:none;overflow-wrap:anywhere}
+  .notes-page .pager a{min-height:44px}
+}
+
+/* ---- Note article typography / details ---- */
+.notes-page .blk>summary{
+  min-height:44px;
+  align-items:center;
+}
+.notes-page .blk>summary h2,
+.notes-page .blk>summary h3{overflow-wrap:anywhere}
+.notes-page .dtabs [role=tab]{
+  min-height:44px;
+  padding:10px 14px;
+  cursor:pointer;
+}
+.notes-page .ent-c{
+  min-height:44px;
+}
+.notes-page .rels li{
+  min-height:44px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+}
+.notes-page .tldr{max-width:80ch}
+
+/* ---- Resume ---- */
+.resume-page .lede a{color:var(--trace);text-decoration:none}
+.resume-page .lede a:hover{text-decoration:underline}
+.resume-page .rs details summary{
+  min-height:44px;
+  display:flex;
+  align-items:center;
+}
+.resume-page .btn{min-height:44px}
+@media (max-width:760px){
+  .resume-page .rs{grid-template-columns:1fr;gap:10px;padding:24px 0}
+  .resume-page .pg-hero h1{max-width:none;overflow-wrap:anywhere;font-size:clamp(2rem,12vw,3.2rem)}
+  .resume-page .pg-hero .lede{font-size:var(--t-sm);overflow-wrap:anywhere}
+  .resume-page .ctas{flex-direction:column}
+  .resume-page .ctas .btn{justify-content:center;width:100%}
+  .resume-page .skills span{min-height:44px;display:inline-flex;align-items:center}
+}
+@media print{
+  .resume-page .diag-hero,
+  .resume-page .note-steps,
+  .resume-page .note-steps-nav,
+  .resume-page .note-caption,
+  .resume-page .crumb{display:none!important}
+  .resume-page .rs details{open:revert}
+  .resume-page .rs details[open] ul,
+  .resume-page .rs details ul{display:grid!important}
+  .resume-page .rs details{border:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .notes-page .mm .pkt,
+  .notes-page .nmm .pkt,
+  .resume-page .mm .pkt,
+  .resume-page .nmm .pkt{display:none}
+  .notes-page .mm.lanes .msg,
+  .notes-page .nmm.lanes .msg,
+  .resume-page .mm.lanes .msg,
+  .resume-page .nmm.lanes .msg{opacity:1}
+  .notes-page .rv,
+  .resume-page .rv{opacity:1;transform:none}
+}

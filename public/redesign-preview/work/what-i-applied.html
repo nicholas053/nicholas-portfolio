@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html data-accent="cyan" lang="en">
+<head>
+<meta charset="utf-8"/><link href="data:," rel="icon"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>What I Applied — Nicholas Chong (redesign prototype)</title>
+<meta content="A personal applicant-tracking and AI-assisted career prep web app: one profile, one record per application, and
+          AI where it speeds up grounded prep—whether that is JD-specific materials or speculative outreach when no
+          posting exists—without replacing your judgment." name="description"/>
+<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'cyan'}catch(e){document.documentElement.dataset.accent='cyan'}</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs><marker id="ah" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10z"></path></marker></defs></svg>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="../index.html"><i></i>Nic Chong</a>
+<button aria-controls="navlist" aria-expanded="false" class="menu-btn" type="button">Menu</button>
+<ul id="navlist"><li><a aria-current="page" class="on" href="../index.html#work">Work</a></li><li><a href="../notes/index.html">Notes</a></li><li><a href="../index.html#about">About</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+<a class="btn btn-trace" href="../resume.html">Resume</a>
+</div></nav>
+<main id="main">
+<header class="pg-hero proj-hero"><div aria-hidden="true" class="hero-grid-bg"></div><div class="wrap" style="position:relative">
+<a class="crumb" href="../index.html#work">← Selected work</a>
+<h1 class="display">What I <em class="acc">Applied</em></h1>
+<p class="lede">A personal applicant-tracking and AI-assisted career prep web app: one profile, one record per application, and
+          AI where it speeds up grounded prep—whether that is JD-specific materials or speculative outreach when no
+          posting exists—without replacing your judgment.</p>
+<dl class="facts4"><div><dt>Role</dt><dd>Personal build</dd></div><div><dt>Stack</dt><dd>Next.js, Prisma, PostgreSQL, NextAuth, Gemini</dd></div><div><dt>Scope</dt><dd>Personal ATS and AI-assisted career prep</dd></div><div><dt>Result</dt><dd>Beta: ~50 users; live on Vercel</dd></div></dl>
+<div class="ctas"><a class="btn btn-ghost" href="https://what-i-applied.vercel.app/" rel="noopener">
+            Try the live app  ↗
+          </a></div>
+</div></header>
+<section class="sec" style="padding-top:28px"><div class="wrap">
+<div class="psec rv"><div class="psec-h"><span class="kicker">01 — Flow</span><h2 class="sub-h">One application</h2><span class="src">source: site copy · case study</span></div>
+<figure aria-label="Flow: One application" class="diag-hero pfig pfig-flow"><header><span>live trace · One application</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Flow diagram" class="mm graph" data-anim="graph" data-traces='[[[null, "n4_A", "Sign in: email + password"], ["e4_0", "n4_B", "Master profile: experience, skills, About me"], ["e4_1", "n4_C", "Log application: company match-or-create"], ["e4_2", "n4_D", "Job description saved?"], ["e4_3", "n4_E", "Coach aligned to the posting"], ["e4_5", "n4_G", "One Gemini call, Zod-validated JSON"], ["e4_7", "n4_H", "AiAsset saved; match score copied to Job"]], [[null, "n4_A", "Sign in: email + password"], ["e4_0", "n4_B", "Master profile: experience, skills, About me"], ["e4_1", "n4_C", "Log application: company match-or-create"], ["e4_2", "n4_D", "Job description saved?"], ["e4_4", "n4_F", "Speculative outreach: title, company, resume"], ["e4_6", "n4_G", "One Gemini call, Zod-validated JSON"], ["e4_7", "n4_H", "AiAsset saved; match score copied to Job"]], [[null, "n4_A", "Sign in: email + password"], ["e4_0", "n4_B", "Master profile: experience, skills, About me"], ["e4_1", "n4_C", "Log application: company match-or-create"], ["e4_8", "n4_I", "Pipeline stages: overlap hints, never block"], ["e4_9", "n4_J", "7 days with no activity?"], ["e4_10", "n4_K", "Follow-up email template"]]]' role="img" style="--w:992px" viewbox="0 0 992 380">
+<path class="wire" d="M216 75 C244 75 244 75 272 75" id="e4_0" marker-end="url(#ah)"></path>
+<path class="wire" d="M468 75 C496 75 496 75 524 75" id="e4_1" marker-end="url(#ah)"></path>
+<path class="wire" d="M720 75 C748 75 748 39 776 39" id="e4_2" marker-end="url(#ah)"></path>
+<path class="wire" d="M874 58 C874 118 118 118 118 178" id="e4_3" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="25" x="484" y="107"></rect><text text-anchor="middle" x="496" y="122">JD</text></g>
+<path class="wire" d="M874 58 C874 154 118 154 118 250" id="e4_4" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="121" x="436" y="143"></rect><text text-anchor="middle" x="496" y="158">No JD available</text></g>
+<path class="wire" d="M216 205 C244 205 244 241 272 241" id="e4_5" marker-end="url(#ah)"></path>
+<path class="wire" d="M216 277 C244 277 244 241 272 241" id="e4_6" marker-end="url(#ah)"></path>
+<path class="wire" d="M468 241 C496 241 496 269 524 269" id="e4_7" marker-end="url(#ah)"></path>
+<path class="wire" d="M720 75 C748 75 748 103 776 103" id="e4_8" marker-end="url(#ah)"></path>
+<path class="wire" d="M874 130 C874 226 118 226 118 322" id="e4_9" marker-end="url(#ah)"></path>
+<path class="wire" d="M216 341 C244 341 244 305 272 305" id="e4_10" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="232" x="128" y="312"></rect><text text-anchor="middle" x="244" y="327">yes, not Exploring or terminal</text></g>
+<g class="node" id="n4_A"><rect height="54" rx="4" width="196" x="20" y="48"></rect><text x="32" y="72">Sign in: email +</text><text x="32" y="88">password</text></g>
+<g class="node" id="n4_B"><rect height="70" rx="4" width="196" x="272" y="40"></rect><text x="284" y="64">Master profile:</text><text x="284" y="80">experience, skills,</text><text x="284" y="96">About me</text></g>
+<g class="node" id="n4_C"><rect height="54" rx="4" width="196" x="524" y="48"></rect><text x="536" y="72">Log application: company</text><text x="536" y="88">match-or-create</text></g>
+<g class="node dec" id="n4_D"><rect height="38" rx="14" width="196" x="776" y="20"></rect><text x="788" y="44">◆ Job description saved?</text></g>
+<g class="node" id="n4_E"><rect height="54" rx="4" width="196" x="20" y="178"></rect><text x="32" y="202">Coach aligned to the</text><text x="32" y="218">posting</text></g>
+<g class="node" id="n4_F"><rect height="54" rx="4" width="196" x="20" y="250"></rect><text x="32" y="274">Speculative outreach:</text><text x="32" y="290">title, company, resume</text></g>
+<g class="node" id="n4_G"><rect height="54" rx="4" width="196" x="272" y="214"></rect><text x="284" y="238">One Gemini call,</text><text x="284" y="254">Zod-validated JSON</text></g>
+<g class="node" id="n4_H"><rect height="54" rx="4" width="196" x="524" y="242"></rect><text x="536" y="266">AiAsset saved; match</text><text x="536" y="282">score copied to Job</text></g>
+<g class="node" id="n4_I"><rect height="54" rx="4" width="196" x="776" y="76"></rect><text x="788" y="100">Pipeline stages: overlap</text><text x="788" y="116">hints, never block</text></g>
+<g class="node dec" id="n4_J"><rect height="38" rx="14" width="196" x="20" y="322"></rect><text x="32" y="346">◆ 7 days with no activity?</text></g>
+<g class="node" id="n4_K"><rect height="38" rx="4" width="196" x="272" y="286"></rect><text x="284" y="310">Follow-up email template</text></g>
+<circle class="pkt" cx="-20" cy="-20" r="5.5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><b>Sign in: email + password</b><span class="nx">→ Master profile: experience, skills, About me</span></div></li><li><span class="i">02</span><div><b>Master profile: experience, skills, About me</b><span class="nx">→ Log application: company match-or-create</span></div></li><li><span class="i">03</span><div><b>Log application: company match-or-create</b><span class="nx">→ Job description saved?</span><span class="nx">→ Pipeline stages: overlap hints, never block</span></div></li><li><span class="i">04</span><div><b>◆ Job description saved?</b><span class="nx">→ Coach aligned to the posting <em>[JD]</em></span><span class="nx">→ Speculative outreach: title, company, resume <em>[No JD available]</em></span></div></li><li><span class="i">05</span><div><b>Pipeline stages: overlap hints, never block</b><span class="nx">→ 7 days with no activity?</span></div></li><li><span class="i">06</span><div><b>Coach aligned to the posting</b><span class="nx">→ One Gemini call, Zod-validated JSON</span></div></li><li><span class="i">07</span><div><b>Speculative outreach: title, company, resume</b><span class="nx">→ One Gemini call, Zod-validated JSON</span></div></li><li><span class="i">08</span><div><b>◆ 7 days with no activity?</b><span class="nx">→ Follow-up email template <em>[yes, not Exploring or terminal]</em></span></div></li><li><span class="i">09</span><div><b>One Gemini call, Zod-validated JSON</b><span class="nx">→ AiAsset saved; match score copied to Job</span></div></li><li><span class="i">10</span><div><b>Follow-up email template</b></div></li><li><span class="i">11</span><div><b>AiAsset saved; match score copied to Job</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">02 — Sequence</span><h2 class="sub-h">Per-job AI coach</h2><span class="src">source: site copy · engineering spotlight</span></div>
+<figure aria-label="Sequence: Per-job AI coach" class="diag-hero pfig pfig-seq"><header><span>live trace · Per-job AI coach</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Sequence diagram" class="mm lanes" data-anim="lanes" role="img" style="--w:890px" viewbox="0 0 890 442">
+<line class="lane" x1="105.0" x2="105.0" y1="44" y2="432"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="28.0" y="6"></rect><text text-anchor="middle" x="105.0" y="27">User</text></g>
+<line class="lane" x1="275.0" x2="275.0" y1="44" y2="432"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="198.0" y="6"></rect><text text-anchor="middle" x="275.0" y="27">API</text></g>
+<line class="lane" x1="445.0" x2="445.0" y1="44" y2="432"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="368.0" y="6"></rect><text text-anchor="middle" x="445.0" y="27">Database</text></g>
+<line class="lane" x1="615.0" x2="615.0" y1="44" y2="432"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="538.0" y="6"></rect><text text-anchor="middle" x="615.0" y="27">Gemini</text></g>
+<line class="lane" x1="785.0" x2="785.0" y1="44" y2="432"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="708.0" y="6"></rect><text text-anchor="middle" x="785.0" y="27">Zod</text></g>
+<g class="msg" data-i="0"><path class="mline" d="M105.0 88 H275.0"></path><path class="head" d="M275.0 88 l-8 -5 v10z"></path><text class="num" x="115.0" y="80">01</text><text x="139.0" y="80">generate assets for this job</text></g>
+<g class="msg" data-i="1"><path class="mline" d="M275.0 140 H445.0"></path><path class="head" d="M445.0 140 l-8 -5 v10z"></path><text class="num" x="285.0" y="132">02</text><text x="309.0" y="132">match fields already set → 409</text></g>
+<g class="msg" data-i="2"><path class="mline" d="M275.0 192 H615.0"></path><path class="head" d="M615.0 192 l-8 -5 v10z"></path><text class="num" x="285.0" y="184">03</text><text x="309.0" y="184">single call, JSON MIME type</text></g>
+<g class="msg async" data-i="3"><path class="mline" d="M615.0 244 H275.0"></path><path class="head" d="M275.0 244 l8 -5 v10z"></path><text class="num" x="285.0" y="236">04</text><text x="309.0" y="236">cover letter, pitch, questions, match score</text></g>
+<g class="msg" data-i="4"><path class="mline" d="M275.0 296 H785.0"></path><path class="head" d="M785.0 296 l-8 -5 v10z"></path><text class="num" x="285.0" y="288">05</text><text x="309.0" y="288">validate before persistence</text></g>
+<g class="msg" data-i="5"><path class="mline" d="M275.0 348 H445.0"></path><path class="head" d="M445.0 348 l-8 -5 v10z"></path><text class="num" x="285.0" y="340">06</text><text x="309.0" y="340">save AiAsset; copy match to Job</text></g>
+<g class="msg async" data-i="6"><path class="mline" d="M275.0 400 H105.0"></path><path class="head" d="M105.0 400 l8 -5 v10z"></path><text class="num" x="115.0" y="392">07</text><text x="139.0" y="392">assets, or static cover-letter fallback</text></g>
+<circle class="pkt" cx="-20" cy="-20" r="5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><span class="who">User → API</span><b>generate assets for this job</b></div></li><li><span class="i">02</span><div><span class="who">API → Database</span><b>match fields already set → 409</b></div></li><li><span class="i">03</span><div><span class="who">API → Gemini</span><b>single call, JSON MIME type</b></div></li><li><span class="i">04</span><div><span class="who">Gemini → API</span><b>cover letter, pitch, questions, match score</b></div></li><li><span class="i">05</span><div><span class="who">API → Zod</span><b>validate before persistence</b></div></li><li><span class="i">06</span><div><span class="who">API → Database</span><b>save AiAsset; copy match to Job</b></div></li><li><span class="i">07</span><div><span class="who">API → User</span><b>assets, or static cover-letter fallback</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">03 — Data model</span><h2 class="sub-h">Data model (simplified, from the case-study copy)</h2><span class="src">source: site copy · entity names only</span></div>
+<figure aria-label="Data model: Data model (simplified, from the case-study copy)" class="diag-hero pfig pfig-er"><header><span>explorer · Data model (simplified, from the case-study copy)</span><span>click a table</span></header><div class="erc"><p class="er-hint">Tap a table to see what it links to.</p><div class="ents"><div class="ent-c" data-e="USER" role="button" tabindex="0"><b>USER</b></div><div class="ent-c" data-e="PROFILE" role="button" tabindex="0"><b>PROFILE</b><span>text aboutMe</span></div><div class="ent-c" data-e="JOB" role="button" tabindex="0"><b>JOB</b><span>enum status</span><span>text description</span><span>int matchScore</span><span>text matchJustification</span></div><div class="ent-c" data-e="COMPANY" role="button" tabindex="0"><b>COMPANY</b></div><div class="ent-c" data-e="JOB_STAGE" role="button" tabindex="0"><b>JOB_STAGE</b><span>enum status</span><span>datetime schedule</span></div><div class="ent-c" data-e="AI_ASSET" role="button" tabindex="0"><b>AI_ASSET</b></div><div class="ent-c" data-e="CAREER_DIRECTION_INSIGHT" role="button" tabindex="0"><b>CAREER_DIRECTION_INSIGHT</b></div><div class="ent-c" data-e="REQUEST_LOG" role="button" tabindex="0"><b>REQUEST_LOG</b></div></div><ul class="rels"><li data-a="USER" data-b="PROFILE"><b>USER</b> <em>master profile</em> <b>PROFILE</b> <small>1 → 1</small></li><li data-a="USER" data-b="JOB"><b>USER</b> <em>tracks</em> <b>JOB</b> <small>1 → many</small></li><li data-a="COMPANY" data-b="JOB"><b>COMPANY</b> <em>deduplicated by name</em> <b>JOB</b> <small>1 → many</small></li><li data-a="JOB" data-b="JOB_STAGE"><b>JOB</b> <em>pipeline</em> <b>JOB_STAGE</b> <small>1 → many</small></li><li data-a="JOB" data-b="AI_ASSET"><b>JOB</b> <em>generates</em> <b>AI_ASSET</b> <small>1 → many</small></li><li data-a="USER" data-b="CAREER_DIRECTION_INSIGHT"><b>USER</b> <em>stores</em> <b>CAREER_DIRECTION_INSIGHT</b> <small>1 → many</small></li><li data-a="USER" data-b="REQUEST_LOG"><b>USER</b> <em>rate limits</em> <b>REQUEST_LOG</b> <small>1 → many</small></li></ul></div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">04 — Details</span><h2 class="sub-h">Details</h2><span class="src">open a row to read more</span></div>
+<div class="blocks"><div class="rv" style="padding:26px 0;border-bottom:1px solid var(--ink-line)"><span class="kicker">01 — The Problem / The Solution</span><div class="ps"><div class="rv"><span class="lab">The Problem</span><h3>Pipeline chaos for one job seeker</h3>
+<p>
+            Job seekers juggle many employers, different job descriptions, and interview stages across spreadsheets,
+            notes apps, and email. That leads to:
+          </p>
+<ul>
+<li>
+<strong>Lost context</strong> — "What did I say I applied
+              for?" and "Where is that posting's JD?" are hard to answer weeks later.
+            </li>
+<li>
+<strong>Weak reuse</strong> — each new application restarts
+              cover-letter and prep work from scratch instead of reusing a structured profile.
+            </li>
+<li>
+<strong>Forgotten follow-ups</strong> — opportunities go cold
+              because there is no simple signal when to nudge a recruiter.
+            </li>
+</ul>
+<p>
+            Corporate ATS tools are built for hiring teams, not for one candidate managing their own pipeline. I wanted a
+            small, honest workspace: one profile, one place per application, and AI where it speeds up 
+            <strong>grounded</strong> prep—whether that is 
+            <strong>JD-specific</strong> materials or 
+            <strong>speculative outreach</strong> when no posting
+            exists—without replacing judgment.
+          </p>
+</div><div class="rv"><span class="lab">The Solution</span><h3>System of record + selective AI</h3>
+<p>Signed-in users can:</p>
+<ol>
+<li>
+<strong>Maintain a master profile</strong> — structured
+              experience, education, skills, and an "About me" narrative; optional PDF-assisted extraction (text
+              only — the file is not stored).
+            </li>
+<li>
+<strong>Log each application</strong> — company (deduplicated
+              by name), role, posting URL, optional full job description, or "No JD available" for speculative
+              outreach (for example email without a posting). Status includes <strong>Exploring</strong> as the default for
+              new roles, plus pipeline states such as Applied, Screening, <strong>Being ghosted</strong>, Offer, Rejected,
+              Withdrawn.
+            </li>
+<li>
+<strong>Track a per-job pipeline</strong> — stages (type,
+              format, schedule, notes, links, status) as a lightweight timeline. 
+              <strong>Schedule overlap hints</strong> (same user, about
+              one-hour blocks on <code>SCHEDULED</code> 
+              stages) show as informational warnings on list and detail views — they never block saves.
+            </li>
+<li>
+<strong>Generate tailored assets per job</strong> — one Gemini
+              call returns a cover letter, elevator pitch, anticipated interview questions (with reasoning), strategic
+              focus points, and a <strong>role match score (0–10)</strong> with 
+              <strong>honest justification</strong>, validated with Zod.
+              With a saved JD, copy aligns to the posting; <strong>without a JD</strong>, the same JSON shape supports
+              email-style inquiry and conservative fit versus title, company context, and resume only — no invented
+              requirements. Assets live in <code>AiAsset</code>; match score and rationale are copied to 
+              <code>Job</code> for fast list and detail
+              display. The coach prompt stresses <strong>humble, evidenced</strong> output — no fabricated credentials.
+            </li>
+<li>
+<strong>Job search direction (dashboard)</strong> — a gated
+              questionnaire (profile or long About me required) captures industries, target roles, location and work
+              preferences, priorities, optional avoid-list and context, and yes or no signals (remote, company size,
+              geography, mission, relocation, visa, comp discussion). One Gemini call returns a narrative summary and at
+              least ten company suggestions, stored in 
+              <code>CareerDirectionInsight</code>. 
+              <strong>Rate limits</strong> (cooldown plus rolling 24-hour cap
+              via request logs) protect the API; users can <strong>regenerate</strong> within those limits.
+            </li>
+<li>
+<strong>Get gentle operational nudges</strong> — jobs with no
+              activity for seven days surface a non-AI follow-up email template (copy to clipboard), 
+              <strong>except</strong> while status is Exploring (no
+              follow-up draft). Terminal outcomes (offer, rejected, withdrawn) turn the stale reminder off. 
+              <strong>Rejected</strong> applications get an optional
+              thank-you or feedback-request email template.
+            </li>
+</ol>
+<p>
+            Authentication is email and password (bcrypt, NextAuth JWT). Data is scoped per user in PostgreSQL.
+          </p>
+</div></div></div></div>
+<div class="blocks" style="margin-top:30px"><details class="blk rv"><summary><span class="n">02</span><div><h2>Impact (qualitative)</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+          This is a personal portfolio build rather than a shipped product with analytics. The value is in day-to-day
+          clarity, velocity, and disciplined communication — with explicit limits on spend.
+        </p>
+<div>
+<div>
+<h3>Clarity</h3>
+<p>
+              One system of record for what you applied for — including cases <strong>without</strong> a saved posting —
+              and what each role asked when a JD exists.
+            </p>
+</div>
+<div>
+<h3>Velocity</h3>
+<p>
+              Parsing plus structured save reduces retyping; one-shot AI cuts time to a first draft of role-specific or
+              speculative outreach (plus an explicit fit score when enabled). The dashboard job-search-direction flow
+              offers a structured starting point for <strong>where</strong> to look next.
+            </p>
+</div>
+<div>
+<h3>Discipline</h3>
+<p>
+              Stale-job reminders and static email templates (follow-up plus post-rejection thank-you) encourage
+              consistent communication without building a mailer.
+            </p>
+</div>
+<div>
+<h3>Cost awareness</h3>
+<p>
+<strong>Per-job coach:</strong> one successful full generation after match metadata exists (API returns 
+              <code>409</code> if repeated); one extra run is
+              allowed when legacy rows have assets but no match score or justification yet. Retries stay available when
+              generation fails. <strong>Job search direction:</strong> rate limits (spacing plus a daily-style cap) bound
+              repeat Gemini calls while still allowing intentional regeneration.
+            </p>
+</div>
+</div></div></details><details class="blk rv"><summary><span class="n">03</span><div><h2>Features</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+<div>
+<h3>Product surface</h3>
+<ul>
+<li>Landing page for anonymous visitors; signed-in users go to the dashboard.</li>
+<li>
+                Register and login with protected routes (Next.js <code>proxy</code>); login includes a password visibility toggle.
+              </li>
+<li>
+                Dashboard: snapshot counts, shortcuts, and <strong>Job search direction</strong> (questionnaire plus
+                stored Gemini report when the profile is ready; rate-limited regeneration).
+              </li>
+<li>
+                Applications CRUD: list (whole row opens detail, <strong>match score</strong> in the meta line, pipeline
+                schedule warnings), create, detail; company match-or-create by name; default status Exploring; optional JD
+                via <strong>No JD available</strong>.
+              </li>
+<li>
+                Job detail: inline edit of title, URL, description (or none), <strong>No JD</strong> toggle, status;
+                pipeline stage CRUD; stage updates bump <code>updatedAt</code> for reminder logic; 
+                <strong>match rationale</strong> when present; AI section respects one-generation plus legacy backfill
+                rules; coach adapts when there is no posting text.
+              </li>
+</ul>
+</div>
+<div>
+<h3>Profile, AI, and ops</h3>
+<ul>
+<li>
+                Resume editor: load and save profile; PDF upload to parse API, human-in-the-loop edit, transactional save
+                (replaces resume rows, updates <code>aboutMe</code>).
+              </li>
+<li>Personal information: read-only review of stored profile.</li>
+<li>
+                AI career coach: Gemini JSON validated with Zod; persists <code>AiAsset</code> plus 
+                <code>Job.matchScore</code> / 
+                <code>Job.matchJustification</code>; static
+                cover-letter fallback when AI fails; clearer API errors for bad <code>GEMINI_MODEL</code> versus DB drift in development.
+              </li>
+<li>
+                Follow-up and rejection helpers: follow-up template and clipboard when eligible; Exploring skips
+                follow-up; Rejected shows a post-rejection thank-you template; terminal statuses suppress stale reminders.
+              </li>
+<li>Responsive UI: mobile-friendly navigation and layouts.</li>
+</ul>
+</div>
+</div></div></details><details class="blk rv"><summary><span class="n">04</span><div><h2>Engineering spotlight</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+<div>
+<h3>
+<span>01.</span> Grounded AI with guardrails
+            </h3>
+<p>
+              Google Gemini is called server-side with a JSON MIME type and <strong>single-attempt</strong> calls mapped to
+              structured errors (versus open-ended retries). <strong>Zod</strong> validates payloads before persistence;
+              the prompt favors humble, evidenced copy so the model does not invent credentials. Per-job assets live in 
+              <code>AiAsset</code>, with match score and
+              rationale denormalized to <code>Job</code> for
+              list performance. The API enforces one successful full generation once match fields exist (
+              <code>409</code>), with a narrow backfill path
+              for older rows missing match metadata.
+            </p>
+</div>
+<div>
+<h3>
+<span>02.</span> Privacy-minded resume intake
+            </h3>
+<p>
+<strong>pdf-parse</strong> extracts text only for optional profile bootstrapping; the binary is not stored.
+              Profile updates use a transactional replace of resume-related rows plus 
+              <code>aboutMe</code> so partial writes do not
+              leave the profile half-migrated.
+            </p>
+</div>
+<div>
+<h3>
+<span>03.</span> Scheduling hints and bounded “direction” AI
+            </h3>
+<p>
+              Overlap detection compares scheduled stage blocks for the same user and surfaces ~one-hour conflicts as 
+              <strong>informational</strong> UI warnings — never blocking saves. The career-direction feature gates on
+              profile richness, then uses request logging for <strong>cooldown and rolling 24-hour caps</strong> so
+              intentional regeneration stays possible without unbounded Gemini spend across the user base.
+            </p>
+</div>
+</div></div></details><details class="blk rv"><summary><span class="n">05</span><div><h2>Tech stack</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+          Full-stack TypeScript on Next.js App Router, with PostgreSQL as the source of truth and validation at API and
+          AI boundaries.
+        </p>
+<div>
+<span class="tag">Next.js</span>
+<span class="tag">React</span>
+<span class="tag">Tailwind CSS</span>
+<span class="tag">Prisma</span>
+<span class="tag">PostgreSQL</span>
+</div>
+<div>
+<p>
+<strong>Framework:</strong> Next.js (App Router), React · <strong>Language:</strong> TypeScript
+          </p>
+<p>
+<strong>Database:</strong> PostgreSQL (e.g. Neon) · <strong>ORM:</strong> Prisma 7 with Neon serverless adapter
+          </p>
+<p>
+<strong>Auth:</strong> NextAuth.js (credentials provider, JWT sessions, bcryptjs)
+          </p>
+<p>
+<strong>Validation:</strong> Zod (API bodies, AI JSON, resume shapes)
+          </p>
+<p>
+<strong>AI:</strong> Google Gemini (<code>@google/genai</code>
+            ), JSON MIME type, single-attempt calls with structured error mapping.
+          </p>
+<p>
+<strong>PDF:</strong> pdf-parse (text extraction only) · <strong>Styling:</strong> Tailwind CSS 4, responsive shell
+          </p>
+</div></div></details><details class="blk rv"><summary><span class="n">06</span><div><h2>Future roadmap</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+<div>
+<h3>Paid tier</h3>
+<p>
+              Relaxed per-job regenerate rules, higher job-search-direction quotas, optional email send (today: coach 
+              <code>409</code> when assets and match fields
+              already exist, with one legacy backfill; career direction uses shared rate limits for all users).
+            </p>
+</div>
+<div>
+<h3>Calendar integration</h3>
+<p>
+              Push <code>JobStage</code> times to Google or
+              Outlook instead of overlap warnings only.
+            </p>
+</div>
+<div>
+<h3>Richer pipeline</h3>
+<p>
+              Attachments, interviewer names, reminders (email or push) integrated with calendar.
+            </p>
+</div>
+<div>
+<h3>OAuth and export</h3>
+<p>
+              Google or LinkedIn sign-in alongside credentials; PDF or Markdown export of applications and AI assets for
+              offline backup.
+            </p>
+</div>
+<div>
+<h3>Analytics, accessibility, i18n</h3>
+<p>
+              Funnel stats (applied to interview to offer) for personal retrospectives; deeper accessibility audit and
+              localized templates.
+            </p>
+</div>
+</div></div></details></div></div>
+</div></section>
+<section class="sec" style="padding-top:40px;padding-bottom:60px"><div class="wrap pager"><a href="lokatech.html"><span>← previous</span><b>LokaTech — Internal Operations Platform</b></a><a href="church-system.html"><span>next →</span><b>Church Management System</b></a></div></section>
+</main>
+<footer><div class="wrap">
+<div class="smap"><div><h4>Pages</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../notes/index.html">Technical notes</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul><h4 style="margin-top:18px">Work</h4><ul><li><a href="../work/multi-seller-marketplace.html">Multi-Seller Marketplace Channel</a></li><li><a href="../work/lokatech.html">LokaTech — Internal Operations Platform</a></li><li><a href="../work/what-i-applied.html">What I Applied</a></li><li><a href="../work/church-system.html">Church Management System</a></li><li><a href="../work/task-system.html">Task Management System</a></li></ul></div><div style="grid-column:span 2"><h4>Technical notes</h4><ul style="grid-template-columns:1fr 1fr;display:grid"><li><a href="../notes/seller-onboarding-variants.html">Seller onboarding and product variants</a></li><li><a href="../notes/cart-stock-reservation.html">Cart and stock reservation</a></li><li><a href="../notes/cancel-vs-late-payment.html">Cancel vs a late confirmation</a></li><li><a href="../notes/order-lifecycle-refunds.html">Order lifecycle and refunds</a></li><li><a href="../notes/multi-level-revenue-splits.html">Multi-level revenue splits</a></li><li><a href="../notes/third-party-api-adapters.html">One interface for many third-party APIs</a></li><li><a href="../notes/background-job-failures.html">Background job failures</a></li><li><a href="../notes/flexible-financial-settlement.html">Flexible financial settlement</a></li><li><a href="../notes/performance-evaluation-360.html">360° performance evaluation</a></li><li><a href="../notes/frontend-architecture-refactoring.html">Frontend architecture refactoring</a></li><li><a href="../notes/fullstack-assessment-debugging.html">Full-stack assessment reflection</a></li></ul></div></div>
+<div class="row2"><span>© Nicholas Chong Shi Loong</span><span>Prototype — Direction A “Live Trace”</span></div></div></footer>
+<script src="../assets/app.js"></script>
+</body></html>

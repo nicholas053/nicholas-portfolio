@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html data-accent="cyan" lang="en">
+<head>
+<meta charset="utf-8"/><link href="data:," rel="icon"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Seller onboarding and product variants — Nicholas Chong (redesign prototype)</title>
+<meta content="NDA note: shop applications, category attributes, and up to two variant axes with a price and stock row per variant." name="description"/>
+<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'cyan'}catch(e){document.documentElement.dataset.accent='cyan'}</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="../assets/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0"><defs><marker id="ah" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10z"></path></marker></defs></svg>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="../index.html"><i></i>Nic Chong</a>
+<button aria-controls="navlist" aria-expanded="false" class="menu-btn" type="button">Menu</button>
+<ul id="navlist"><li><a href="../index.html#work">Work</a></li><li><a aria-current="page" class="on" href="../notes/index.html">Notes</a></li><li><a href="../index.html#about">About</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+<a class="btn btn-trace" href="../resume.html">Resume</a>
+</div></nav>
+<main id="main">
+<header class="pg-hero"><div aria-hidden="true" class="hero-grid-bg"></div><div class="wrap" style="position:relative">
+<a class="crumb" href="index.html">← Technical notes</a>
+<div class="meta"><span class="tag nda">Confidential / NDA</span><span class="tag">3 diagrams</span></div>
+<h1 class="display">Seller onboarding and product variants</h1>
+<p class="lede">Independent sellers needed to open shops inside an app whose accounts, addresses and categories already existed.</p>
+<div class="tldr"><b>TL;DR</b><p>NDA note: shop applications, category attributes, and up to two variant axes with a price and stock row per variant.</p></div>
+<figure aria-label="Animated diagram: Application flow" class="diag-hero rv in"><header><span>live trace · Application flow</span><span>from the original diagram</span></header><div class="mmwrap d-only"><svg aria-label="Sequence diagram" class="mm lanes" data-anim="lanes" role="img" style="--w:890px" viewbox="0 0 890 338">
+<line class="lane" x1="105.0" x2="105.0" y1="44" y2="328"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="28.0" y="6"></rect><text text-anchor="middle" x="105.0" y="27">Seller</text></g>
+<line class="lane" x1="275.0" x2="275.0" y1="44" y2="328"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="198.0" y="6"></rect><text text-anchor="middle" x="275.0" y="27">Apply API</text></g>
+<line class="lane" x1="445.0" x2="445.0" y1="44" y2="328"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="368.0" y="6"></rect><text text-anchor="middle" x="445.0" y="27">Seller store</text></g>
+<line class="lane" x1="615.0" x2="615.0" y1="44" y2="328"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="538.0" y="6"></rect><text text-anchor="middle" x="615.0" y="27">Store location</text></g>
+<line class="lane" x1="785.0" x2="785.0" y1="44" y2="328"></line>
+<g class="actor"><rect height="34" rx="3" width="154" x="708.0" y="6"></rect><text text-anchor="middle" x="785.0" y="27">Account detail</text></g>
+<g class="msg" data-i="0"><path class="mline" d="M105.0 88 H275.0"></path><path class="head" d="M275.0 88 l-8 -5 v10z"></path><text class="num" x="115.0" y="80">01</text><text x="139.0" y="80">apply with profile, address, account details, documents</text></g>
+<g class="msg" data-i="1"><path class="mline" d="M275.0 140 H445.0"></path><path class="head" d="M445.0 140 l-8 -5 v10z"></path><text class="num" x="285.0" y="132">02</text><text x="309.0" y="132">insert or update if rejected, status pending</text></g>
+<g class="msg" data-i="2"><path class="mline" d="M275.0 192 H615.0"></path><path class="head" d="M615.0 192 l-8 -5 v10z"></path><text class="num" x="285.0" y="184">03</text><text x="309.0" y="184">create default location from address</text></g>
+<g class="msg" data-i="3"><path class="mline" d="M275.0 244 H785.0"></path><path class="head" d="M785.0 244 l-8 -5 v10z"></path><text class="num" x="285.0" y="236">04</text><text x="309.0" y="236">create default account detail</text></g>
+<g class="msg async" data-i="4"><path class="mline" d="M275.0 296 H105.0"></path><path class="head" d="M105.0 296 l8 -5 v10z"></path><text class="num" x="115.0" y="288">05</text><text x="139.0" y="288">application submitted</text></g>
+<circle class="pkt" cx="-20" cy="-20" r="5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><span class="who">Seller → Apply API</span><b>apply with profile, address, account details, documents</b></div></li><li><span class="i">02</span><div><span class="who">Apply API → Seller store</span><b>insert or update if rejected, status pending</b></div></li><li><span class="i">03</span><div><span class="who">Apply API → Store location</span><b>create default location from address</b></div></li><li><span class="i">04</span><div><span class="who">Apply API → Account detail</span><b>create default account detail</b></div></li><li><span class="i">05</span><div><span class="who">Apply API → Seller</span><b>application submitted</b></div></li></ol><div aria-hidden="true" class="mm-log">…</div></figure>
+</div></header>
+<section class="sec" style="padding-top:48px"><div class="wrap">
+<div class="blocks"><details class="blk rv" open=""><summary><span class="n">01</span><div><h2>Background</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+          Independent sellers needed to open shops inside an app whose accounts, addresses and categories already
+          existed. Products needed variants (for example size and colour) with their own price and stock.
+        </p></div></details><details class="blk rv"><summary><span class="n">02</span><div><h2>How it works</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><ol>
+<li>
+            The seller applies using an existing account address and account details detail; the application copies them into
+            the shop's default location and account details record.
+          </li>
+<li>One shop per account. A rejected application is updated in place and resubmitted, not duplicated.</li>
+<li>Admin approves or rejects. Only an active shop can list products.</li>
+<li>
+            Categories define attribute templates; the seller fills attributes and defines up to two variant axes.
+          </li>
+<li>
+            Every combination of axis values becomes a variant row with its own price and stock. The product keeps a
+            denormalised minimum price for listing pages.
+          </li>
+<li>
+            Edits keep existing variant rows where possible, so stock and order references stay stable. Structural
+            edits are blocked while stock is held by an unpaid checkout.
+          </li>
+</ol></div></details><details class="blk rv"><summary><span class="n">03</span><div><h2>Design decisions</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><ul>
+<li>
+            Snapshot address and account details onto the shop at apply time, so later edits to the buyer profile do
+            not silently change the shop.
+          </li>
+<li>
+            Two fixed variant axes instead of an open-ended axis table: simpler queries and admin UI, matching what
+            sellers actually need.
+          </li>
+<li>
+            Uniqueness enforced by database constraints (one shop per account, unique slug), with application checks
+            in front.
+          </li>
+</ul></div></details></div>
+<div style="margin-top:44px"><span class="kicker">All diagrams</span><h2 class="sub-h" style="margin-top:8px">Other views</h2><div class="dtabs"><div role="tablist"><button aria-selected="true" role="tab">Data model</button><button aria-selected="false" role="tab">Shop status</button></div><div role="tabpanel"><div class="erc"><p class="er-hint">Tap a table to see what it links to.</p><div class="ents"><div class="ent-c" data-e="ACCOUNT" role="button" tabindex="0"><b>ACCOUNT</b></div><div class="ent-c" data-e="SELLER_STORE" role="button" tabindex="0"><b>SELLER_STORE</b></div><div class="ent-c" data-e="STORE_LOCATION" role="button" tabindex="0"><b>STORE_LOCATION</b></div><div class="ent-c" data-e="OPENING_HOURS" role="button" tabindex="0"><b>OPENING_HOURS</b></div><div class="ent-c" data-e="PAYOUT_DETAIL" role="button" tabindex="0"><b>ACCOUNT_DETAIL</b></div><div class="ent-c" data-e="CATEGORY" role="button" tabindex="0"><b>CATEGORY</b></div><div class="ent-c" data-e="ATTRIBUTE_TEMPLATE" role="button" tabindex="0"><b>ATTRIBUTE_TEMPLATE</b></div><div class="ent-c" data-e="PRODUCT" role="button" tabindex="0"><b>PRODUCT</b></div><div class="ent-c" data-e="VARIANT_AXIS" role="button" tabindex="0"><b>VARIANT_AXIS</b></div><div class="ent-c" data-e="AXIS_VALUE" role="button" tabindex="0"><b>AXIS_VALUE</b></div><div class="ent-c" data-e="VARIANT" role="button" tabindex="0"><b>VARIANT</b></div><div class="ent-c" data-e="ATTRIBUTE_VALUE" role="button" tabindex="0"><b>ATTRIBUTE_VALUE</b></div></div><ul class="rels"><li data-a="ACCOUNT" data-b="SELLER_STORE"><b>ACCOUNT</b> <em>owns</em> <b>SELLER_STORE</b> <small>1 → 0..1</small></li><li data-a="SELLER_STORE" data-b="STORE_LOCATION"><b>SELLER_STORE</b> <em>has</em> <b>STORE_LOCATION</b> <small>1 → many</small></li><li data-a="STORE_LOCATION" data-b="OPENING_HOURS"><b>STORE_LOCATION</b> <em>has</em> <b>OPENING_HOURS</b> <small>1 → many</small></li><li data-a="SELLER_STORE" data-b="PAYOUT_DETAIL"><b>SELLER_STORE</b> <em>has</em> <b>ACCOUNT_DETAIL</b> <small>1 → many</small></li><li data-a="CATEGORY" data-b="ATTRIBUTE_TEMPLATE"><b>CATEGORY</b> <em>defines</em> <b>ATTRIBUTE_TEMPLATE</b> <small>1 → many</small></li><li data-a="SELLER_STORE" data-b="PRODUCT"><b>SELLER_STORE</b> <em>lists</em> <b>PRODUCT</b> <small>1 → many</small></li><li data-a="CATEGORY" data-b="PRODUCT"><b>CATEGORY</b> <em>classifies</em> <b>PRODUCT</b> <small>1 → many</small></li><li data-a="PRODUCT" data-b="VARIANT_AXIS"><b>PRODUCT</b> <em>has</em> <b>VARIANT_AXIS</b> <small>1 → many</small></li><li data-a="VARIANT_AXIS" data-b="AXIS_VALUE"><b>VARIANT_AXIS</b> <em>has</em> <b>AXIS_VALUE</b> <small>1 → many</small></li><li data-a="PRODUCT" data-b="VARIANT"><b>PRODUCT</b> <em>has</em> <b>VARIANT</b> <small>1 → many</small></li><li data-a="PRODUCT" data-b="ATTRIBUTE_VALUE"><b>PRODUCT</b> <em>has</em> <b>ATTRIBUTE_VALUE</b> <small>1 → many</small></li></ul></div></div><div hidden="" role="tabpanel"><div class="mmwrap d-only"><svg aria-label="Flow diagram" class="mm graph" data-anim="graph" data-traces='[[[null, "n1_start", "\u25cf"], ["e1_0", "n1_pending", "pending"], ["e1_1", "n1_active", "active"], ["e1_4", "n1_suspended", "suspended"]], [[null, "n1_start", "\u25cf"], ["e1_0", "n1_pending", "pending"], ["e1_2", "n1_rejected", "rejected"]]]' role="img" style="--w:992px" viewbox="0 0 992 134">
+<path class="wire" d="M127 67 C200 67 200 67 272 67" id="e1_0" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="47" x="176" y="56"></rect><text text-anchor="middle" x="200" y="71">apply</text></g>
+<path class="wire" d="M468 67 C496 67 496 39 524 39" id="e1_1" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="114" x="439" y="42"></rect><text text-anchor="middle" x="496" y="57">admin approves</text></g>
+<path class="wire" d="M468 67 C496 67 496 95 524 95" id="e1_2" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="106" x="443" y="70"></rect><text text-anchor="middle" x="496" y="85">admin rejects</text></g>
+<path class="wire" d="M622 76 C622 36 370 126 370 86" id="e1_3" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="69" x="461" y="70"></rect><text text-anchor="middle" x="496" y="85">re-apply</text></g>
+<path class="wire" d="M720 39 C748 39 748 67 776 67" id="e1_4" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="84" x="706" y="42"></rect><text text-anchor="middle" x="748" y="57">moderation</text></g>
+<path class="wire" d="M874 48 C874 8 622 98 622 58" id="e1_5" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="91" x="702" y="42"></rect><text text-anchor="middle" x="748" y="57">reactivated</text></g>
+<g class="node dotn" id="n1_start"><circle cx="118.0" cy="67.0" r="7"></circle></g>
+<g class="node" id="n1_pending"><rect height="38" rx="4" width="196" x="272" y="48"></rect><text x="284" y="72">pending</text></g>
+<g class="node" id="n1_active"><rect height="38" rx="4" width="196" x="524" y="20"></rect><text x="536" y="44">active</text></g>
+<g class="node" id="n1_rejected"><rect height="38" rx="4" width="196" x="524" y="76"></rect><text x="536" y="100">rejected</text></g>
+<g class="node" id="n1_suspended"><rect height="38" rx="4" width="196" x="776" y="48"></rect><text x="788" y="72">suspended</text></g>
+<circle class="pkt" cx="-20" cy="-20" r="5.5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><b>active</b><span class="nx">→ suspended <em>[moderation]</em></span></div></li><li><span class="i">02</span><div><b>rejected</b><span class="nx">→ pending <em>[re-apply]</em></span></div></li><li><span class="i">03</span><div><b>pending</b><span class="nx">→ active <em>[admin approves]</em></span><span class="nx">→ rejected <em>[admin rejects]</em></span></div></li><li><span class="i">04</span><div><b>suspended</b><span class="nx">→ active <em>[reactivated]</em></span></div></li></ol></div></div></div>
+<p style="margin-top:40px"><a class="crumb" href="../index.html#notes">← Technical notes on the home page</a></p>
+</div></section>
+<section class="sec" style="padding-top:40px;padding-bottom:60px"><div class="wrap pager"><a href="fullstack-assessment-debugging.html"><span>← previous</span><b>Full-stack assessment reflection</b></a><a href="cart-stock-reservation.html"><span>next →</span><b>Cart and stock reservation</b></a></div></section>
+</main>
+<footer><div class="wrap">
+<div class="smap"><div><h4>Pages</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../notes/index.html">Technical notes</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul><h4 style="margin-top:18px">Work</h4><ul><li><a href="../work/multi-seller-marketplace.html">Multi-Seller Marketplace Channel</a></li><li><a href="../work/lokatech.html">LokaTech — Internal Operations Platform</a></li><li><a href="../work/what-i-applied.html">What I Applied</a></li><li><a href="../work/church-system.html">Church Management System</a></li><li><a href="../work/task-system.html">Task Management System</a></li></ul></div><div style="grid-column:span 2"><h4>Technical notes</h4><ul style="grid-template-columns:1fr 1fr;display:grid"><li><a href="../notes/seller-onboarding-variants.html">Seller onboarding and product variants</a></li><li><a href="../notes/cart-stock-reservation.html">Cart and stock reservation</a></li><li><a href="../notes/cancel-vs-late-payment.html">Cancel vs a late confirmation</a></li><li><a href="../notes/order-lifecycle-refunds.html">Order lifecycle and refunds</a></li><li><a href="../notes/multi-level-revenue-splits.html">Multi-level revenue splits</a></li><li><a href="../notes/third-party-api-adapters.html">One interface for many third-party APIs</a></li><li><a href="../notes/background-job-failures.html">Background job failures</a></li><li><a href="../notes/flexible-financial-settlement.html">Flexible financial settlement</a></li><li><a href="../notes/performance-evaluation-360.html">360° performance evaluation</a></li><li><a href="../notes/frontend-architecture-refactoring.html">Frontend architecture refactoring</a></li><li><a href="../notes/fullstack-assessment-debugging.html">Full-stack assessment reflection</a></li></ul></div></div>
+<div class="row2"><span>© Nicholas Chong Shi Loong</span><span>Prototype — Direction A “Live Trace”</span></div></div></footer>
+<script src="../assets/app.js"></script>
+</body></html>
