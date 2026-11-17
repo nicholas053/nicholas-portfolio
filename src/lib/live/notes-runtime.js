@@ -1,8 +1,11 @@
+/** Notes + resume behaviour from the Live Trace prototype. Runs before the site runtime. */
 /* Notes + resume behaviour. Load BEFORE assets/app.js.
    - Disarms looping mermaid players in app.js
    - Stable hero reveals (note articles only)
    - Layout fixer: edge-label pills on clear path segments, zero text overlaps */
-(() => {
+export function startNotesRuntime() {
+  if (document.documentElement.dataset.ltNotes === "1") return;
+  document.documentElement.dataset.ltNotes = "1";
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -961,4 +964,5 @@
     addEventListener('resize', () => { clearTimeout(timer); timer = setTimeout(run, 120); }, { passive: true });
   };
   setTimeout(start, 0);
-})();
+
+}

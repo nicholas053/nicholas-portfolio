@@ -1,3 +1,7 @@
+/** Site behaviour from the Live Trace prototype. Accent switcher removed; accent is fixed to Signal Lime. */
+export function startSiteRuntime() {
+  if (document.documentElement.dataset.ltSite === "1") return;
+  document.documentElement.dataset.ltSite = "1";
 // Prototype behaviour. Each block maps to one React component when ported (see PORTING.md).
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -137,20 +141,6 @@ if (er) {
 }
 
 // ===== v2 =====
-// 9. Accent switcher (→ small client component; tokens in globals.css [data-accent])
-(() => {
-  const ACC = [['lime', '#C6F24E', 'Signal Lime'], ['peach', '#E0B089', 'Peach'], ['violet', '#A78BFA', 'Soft Violet'], ['mint', '#5EEAD4', 'Mint'], ['orange', '#FF5B1F', 'Orange']];
-  const root = document.documentElement;
-  let cur = root.dataset.accent || 'lime';
-  const box = document.createElement('div'); box.className = 'accent-sw'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', 'Accent colour');
-  box.innerHTML = '<button type="button" class="acc-tg" aria-expanded="false" aria-label="Change accent colour"></button><span class="lbl">accent</span>' + ACC.map(([k, c, n]) => `<button type="button" data-k="${k}" style="--c:${c}" title="${n}" aria-label="${n}" aria-pressed="${k === cur}"></button>`).join('');
-  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
-    if (b.classList.contains('acc-tg')) { const o = box.classList.toggle('open'); b.setAttribute('aria-expanded', o); return; }
-    box.classList.remove('open'); $('.acc-tg', box).setAttribute('aria-expanded', false); cur = b.dataset.k; root.dataset.accent = cur; try { localStorage.setItem('accent', cur); } catch (_) {}
-    $$('button', box).forEach(x => x.setAttribute('aria-pressed', x.dataset.k === cur)); });
-  document.body.appendChild(box);
-})();
-
 // 10. Mermaid-derived diagrams: lanes play message by message; graphs run a packet along real edges
 const wait2 = ms => new Promise(r => setTimeout(r, ms));
 const movePkt = (pkt, path, dur) => new Promise(res => {
@@ -233,7 +223,7 @@ function openFull(src, title) {
 }
 // Same interaction as notes.js armStepper: top bar "i / n" + "Full view"; below: Previous / Next step (Done at the end);
 // tap a step; swipe left/right; plus auto-advance once while in view (stops at the last step or on any interaction).
-const onNotes = document.body.classList.contains('notes-page') || document.body.classList.contains('resume-page');
+const onNotes = document.body.classList.contains('notes-page') || document.body.classList.contains('resume-page') || !!document.querySelector('.notes-page, .resume-page');
 $$('.mm-steps').forEach(ol => {
   if (onNotes || ol.classList.contains('note-steps')) return;   // notes.js owns steppers there
   if (ol.closest('.trace-card') && matchMedia('(max-width: 640px)').matches) return;   // hero diagram is not shown on phones
@@ -266,16 +256,6 @@ $$('.mm-steps').forEach(ol => {
     if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2) { touched = true; stop(); show(i + (dx < 0 ? 1 : -1)); } }, { passive: true });
   new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !touched) { if (!seen) { seen = true; show(0); } auto(); } else stop(); }), { threshold: .35 }).observe(ol);
 });
-
-// 15b. Phone: the floating accent switcher steps aside while a carousel / step-through / diagram is on screen
-(() => {
-  const sw = $('.accent-sw'); if (!sw) return;
-  const mq = matchMedia('(max-width: 640px)'); const vis = new Set();
-  const sync = () => sw.classList.toggle('away', mq.matches && vis.size > 0 && !sw.classList.contains('open'));
-  const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)); sync(); }, { threshold: 0 });
-  const arm = () => $$('.mcar, .mcar-nav, .mm-steps, .stp-bar, .stp-nav, .note-steps, .note-steps-bar, .note-steps-nav, .note-dots, .diag-hero, .pfig, .trace-card').forEach(el => io.observe(el));
-  arm(); setTimeout(arm, 600); mq.addEventListener('change', sync);
-})();
 
 // 17. Mobile carousels (shared pattern: any .mcar). <=640px the grid becomes a scroll-snap strip (card ≈85%, next peeks);
 //     a bar under it shows "n / N", dots and 44px prev/next buttons. Above 640px nothing changes.
@@ -325,3 +305,5 @@ $$('.erc').forEach(er => {
   };
   cards.forEach(c => { c.addEventListener('click', () => pick(c.dataset.e)); c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(c.dataset.e); } }); });
 });
+
+}

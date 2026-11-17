@@ -23,7 +23,7 @@ export function SiteJsonLd() {
     "@type": "Person",
     "@id": `${url}/#person`,
     name: SITE_NAME,
-    alternateName: [PERSON.preferredName, PERSON.legalName],
+    alternateName: [PERSON.preferredName, PERSON.legalName, "Chong Shi Loong Nicholas"],
     url,
     jobTitle: PERSON.role,
     description: SITE_TAGLINE,
