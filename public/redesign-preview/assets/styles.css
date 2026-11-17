@@ -597,3 +597,20 @@ footer .row2{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .psec-h .src{font:12px var(--f-mono);color:var(--mute-ink)}
 .pfig{margin:0}
 @media (max-width:900px){#traceM .node .t{font-size:14.5px}#traceM .node .sub{font-size:13px}#traceM .badge text{font-size:13px}#traceM .phase,#traceM .lbl{font-size:13px}}
+/* batch2 hero polish */
+@media (min-width:901px){.hero .status{white-space:nowrap;letter-spacing:0;font-size:12px;padding:6px 14px}}
+#trace .phase,#trace .lbl,#traceM .phase,#traceM .lbl{font-family:var(--f-mono)}
+#traceM .phase{letter-spacing:.06em;fill:var(--mute-ink)}#traceM .lbl{fill:var(--mute-ink)}
+#traceM .badge circle{fill:var(--ink-2,#161A20);stroke:var(--ink-line)}
+#traceM .node.lit .badge circle{stroke:var(--trace)}
+@media (max-width:900px){.trace-log{height:118px;display:flex;flex-direction:column;justify-content:flex-end}
+  .trace-log div{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.4;margin-top:2px}}
+/* accent switcher: collapsible pill on mobile */
+.accent-sw .acc-tg{display:none}
+@media (max-width:760px){
+  .accent-sw{right:10px;bottom:10px;padding:5px;gap:5px}
+  .accent-sw .acc-tg{display:block;width:26px;height:26px;background:var(--trace);border:2px solid var(--paper)}
+  .accent-sw:not(.open) button[data-k]{display:none}
+  .accent-sw button[data-k]{width:26px;height:26px}
+}
+.mm-steps li>div{min-width:0}.mm-steps li b,.mm-steps li .nx{overflow-wrap:anywhere}

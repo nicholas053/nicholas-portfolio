@@ -140,8 +140,10 @@ if (er) {
   const root = document.documentElement;
   let cur = root.dataset.accent || 'cyan';
   const box = document.createElement('div'); box.className = 'accent-sw'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', 'Accent colour');
-  box.innerHTML = '<span class="lbl">accent</span>' + ACC.map(([k, c, n]) => `<button type="button" data-k="${k}" style="--c:${c}" title="${n}" aria-label="${n}" aria-pressed="${k === cur}"></button>`).join('');
-  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.k; root.dataset.accent = cur; try { localStorage.setItem('accent', cur); } catch (_) {}
+  box.innerHTML = '<button type="button" class="acc-tg" aria-expanded="false" aria-label="Change accent colour"></button><span class="lbl">accent</span>' + ACC.map(([k, c, n]) => `<button type="button" data-k="${k}" style="--c:${c}" title="${n}" aria-label="${n}" aria-pressed="${k === cur}"></button>`).join('');
+  box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+    if (b.classList.contains('acc-tg')) { const o = box.classList.toggle('open'); b.setAttribute('aria-expanded', o); return; }
+    box.classList.remove('open'); $('.acc-tg', box).setAttribute('aria-expanded', false); cur = b.dataset.k; root.dataset.accent = cur; try { localStorage.setItem('accent', cur); } catch (_) {}
     $$('button', box).forEach(x => x.setAttribute('aria-pressed', x.dataset.k === cur)); });
   document.body.appendChild(box);
 })();

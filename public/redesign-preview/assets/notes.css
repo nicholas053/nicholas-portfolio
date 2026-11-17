@@ -201,3 +201,27 @@
   .notes-page .rv,
   .resume-page .rv{opacity:1;transform:none}
 }
+
+/* Mobile header: hide the secondary caption so Replay doesn't break the shared
+   `span:last-child` rule, and keep the accent switcher off the steppers. */
+@media (max-width:760px){
+  .notes-page,
+  .resume-page{padding-bottom:80px}
+  .notes-page .diag-hero header,
+  .resume-page .diag-hero header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .notes-page .diag-hero header span:not(:first-of-type),
+  .resume-page .diag-hero header span:not(:first-of-type){display:none}
+  .notes-page .diag-hero header span:first-of-type,
+  .resume-page .diag-hero header span:first-of-type{
+    flex:1;
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+  .notes-page .accent-sw,
+  .resume-page .accent-sw{bottom:12px;right:12px}
+}
