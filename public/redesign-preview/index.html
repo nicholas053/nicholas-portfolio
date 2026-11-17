@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nicholas Chong — Full-Stack Developer & Product Engineer (redesign prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><i></i>Nic Chong</a>
+  <ul><li><a href="#work" data-spy>Work</a></li><li><a href="#notes" data-spy>Notes</a></li><li><a href="#experience" data-spy>Experience</a></li><li><a href="#contact" data-spy>Contact</a></li></ul>
+  <a class="btn btn-trace" href="https://nicholas-chong.com/resume">Resume ↗</a>
+</div></nav>
+
+<header class="hero dark" id="home">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <span class="status mono" style="font-size:12px"><b></b>Full-Stack Developer &amp; Product Engineer · KL / Seremban</span>
+      <h1 class="display"><span class="ln"><span>Hi, I'm</span></span><span class="ln hot"><span>Nic.</span></span></h1>
+      <p class="rot" aria-live="off">I <span class="slot" id="slot"><b class="on">understand the rule.</b><b>make it legible.</b><b>ship and maintain.</b></span></p>
+      <p class="lead">I clarify messy requirements, sketch the architecture, and ship full-stack web apps — from client builds to products I run myself.</p>
+      <div class="ctas"><a class="btn btn-trace" href="#work">See projects ↓</a><a class="btn btn-ghost" href="#notes">Technical notes</a></div>
+    </div>
+
+    <figure class="trace-card" aria-label="Animated diagram: an inbound third-party callback passing through a handler and adapter into the core service">
+      <header class="mono" style="font-size:11.5px"><span>live trace · callback via adapter</span><span id="scn">final</span></header>
+      <svg viewBox="0 0 560 320" id="trace" role="img">
+        <path class="wire" id="w1" d="M170 63 H205"/>
+        <path class="wire" id="w2" d="M355 63 H390"/>
+        <path class="wire" id="w3" d="M465 86 V150"/>
+        <path class="wire" id="w4a" d="M465 196 V250"/>
+        <path class="wire" id="w4b" d="M390 173 H300 V250"/>
+        <path class="wire" id="w5" d="M280 86 C280 128 95 128 95 86"/>
+        <path class="wire" id="w6" d="M95 150 V86"/>
+        <g class="node" id="nApi"><rect x="20" y="40" width="150" height="46" rx="4"/><text x="34" y="60">Third-party API</text><text class="sub" x="34" y="76">provider A / B / C</text></g>
+        <g class="node" id="nHandler"><rect x="205" y="40" width="150" height="46" rx="4"/><text x="219" y="60">Callback handler</text><text class="sub" x="219" y="76">POST /callbacks/:acct</text></g>
+        <g class="node" id="nAdapter"><rect x="390" y="40" width="150" height="46" rx="4"/><text x="404" y="60">Adapter</text><text class="sub" x="404" y="76">verify signature</text></g>
+        <g class="node" id="nCore"><rect x="390" y="150" width="150" height="46" rx="4"/><text x="404" y="170">Core service</text><text class="sub" x="404" y="186">ingest event</text></g>
+        <g class="node" id="nFinal"><rect x="390" y="250" width="150" height="46" rx="4"/><text x="404" y="270">final</text><text class="sub" x="404" y="286">state changes once</text></g>
+        <g class="node" id="nPending"><rect x="225" y="250" width="150" height="46" rx="4"/><text x="239" y="270">pending</text><text class="sub" x="239" y="286">no state change</text></g>
+        <g class="node" id="nJob"><rect x="20" y="150" width="150" height="46" rx="4"/><text x="34" y="170">Background job</text><text class="sub" x="34" y="186">claim row → call out</text></g>
+        <text x="132" y="136" fill="#9AA3AE" font-family="IBM Plex Mono" font-size="10">ack</text>
+        <circle id="pkt" r="5.5" fill="#FF5B1F" cx="-20" cy="-20"/>
+        <circle id="pktHalo" r="12" fill="#FF5B1F" opacity=".18" cx="-20" cy="-20"/>
+      </svg>
+      <div class="trace-log" id="log" aria-hidden="true"></div>
+    </figure>
+  </div>
+</header>
+
+<div class="band" aria-label="Tech stack">
+  <div class="marquee" id="mq">
+    <span>Next.js</span><span class="o">Laravel</span><span>PostgreSQL</span><span class="o">Go</span><span>React</span><span class="o">Angular</span><span>Node.js</span><span class="o">System Design</span>
+    <span>Next.js</span><span class="o">Laravel</span><span>PostgreSQL</span><span class="o">Go</span><span>React</span><span class="o">Angular</span><span>Node.js</span><span class="o">System Design</span>
+  </div>
+</div>
+
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="sec-num">01 —</span><h2 class="display">How I work</h2></div></div>
+    <div class="steps">
+      <div class="step rv">
+        <svg class="draw" viewBox="0 0 200 92" fill="none" stroke="#0D1014" stroke-width="2.2" aria-hidden="true">
+          <path d="M6 22 C60 22 70 22 100 46" style="--len:110"/><path d="M6 70 C60 70 70 70 100 46" stroke="#FF5B1F" style="--len:110"/>
+          <path d="M100 46 H150" style="--len:60"/><path d="M158 46 l10 10 l22 -24" stroke-width="3" style="--len:50"/>
+          <text x="6" y="14" font-family="IBM Plex Mono" font-size="10" fill="#5A6170" stroke="none">spec</text><text x="6" y="88" font-family="IBM Plex Mono" font-size="10" fill="#B8410F" stroke="none">reality</text>
+        </svg>
+        <span class="k">step 01</span><h3>Understand the rule</h3>
+        <p>Clarify requirements with stakeholders before coding. When specs and reality diverge, confirm scope early — don't build on wrong assumptions.</p>
+      </div>
+      <div class="step rv">
+        <svg class="draw" viewBox="0 0 200 92" fill="none" stroke="#0D1014" stroke-width="2" aria-hidden="true">
+          <line x1="30" y1="6" x2="30" y2="88" stroke-dasharray="3 4" style="--len:90"/><line x1="100" y1="6" x2="100" y2="88" style="--len:90"/><line x1="170" y1="6" x2="170" y2="88" style="--len:90"/>
+          <path d="M30 24 H96 m-6 -5 l6 5 l-6 5" stroke="#FF5B1F" stroke-width="2.4" style="--len:90"/><path d="M100 46 H166 m-6 -5 l6 5 l-6 5" style="--len:90"/><path d="M170 68 H34 m6 -5 l-6 5 l6 5" stroke-dasharray="5 4" style="--len:160"/>
+        </svg>
+        <span class="k">step 02</span><h3>Make it legible</h3>
+        <p>Workflow and sequence diagrams, state models, and scoped tasks that everyone can review before the big build.</p>
+      </div>
+      <div class="step rv">
+        <svg class="draw" viewBox="0 0 200 92" fill="none" stroke="#0D1014" stroke-width="2.2" aria-hidden="true">
+          <polyline points="6,84 46,84 46,62 86,62 86,40 126,40 126,18 150,18" style="--len:260"/>
+          <path d="M176 30 a16 16 0 1 1 -16 -16" stroke="#FF5B1F" stroke-width="2.6" style="--len:90"/><path d="M156 8 l6 6 l-6 6" stroke="#FF5B1F" stroke-width="2.6" style="--len:20"/>
+        </svg>
+        <span class="k">step 03</span><h3>Ship and maintain</h3>
+        <p>Pragmatic stack choices, clean API and UI boundaries, and refactors that fix once across roles and surfaces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="work">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="sec-num">02 —</span><h2 class="display">Selected work</h2></div><p class="muted mono" style="font-size:12px">7 builds · 2 under NDA · click a card for the full case study</p></div>
+    <div class="bento">
+      <a class="card feature c-big rv" href="work/multi-seller-marketplace.html">
+        <span class="go">→</span>
+        <div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span><span class="tag">Lead backend · designer</span></div>
+        <h3 style="font-size:clamp(1.8rem,3.4vw,2.8rem);max-width:14ch">Multi-Seller Marketplace Channel</h3>
+        <p style="max-width:52ch">Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and orders kept correct under concurrency and late or duplicate confirmations.</p>
+        <div class="viz" aria-hidden="true">
+          <svg viewBox="0 0 640 120" id="mpviz">
+            <g font-family="IBM Plex Mono" font-size="11" fill="#9AA3AE">
+              <path id="mpPath" d="M40 60 H170 H300 C330 60 330 22 360 22 H470 M300 60 H470 M300 60 C330 60 330 98 360 98 H470" fill="none" stroke="#3A414C" stroke-width="1.4"/>
+              <path d="M470 22 C500 22 500 60 530 60 M470 98 C500 98 500 60 530 60 M470 60 H600" fill="none" stroke="#3A414C" stroke-width="1.4"/>
+              <circle cx="40" cy="60" r="7" fill="#161A20" stroke="#9AA3AE"/><text x="14" y="90">shared cart</text>
+              <circle cx="170" cy="60" r="7" fill="#161A20" stroke="#FF5B1F"/><text x="128" y="90">stock held</text>
+              <circle cx="300" cy="60" r="7" fill="#161A20" stroke="#9AA3AE"/><text x="250" y="40">1 checkout session</text>
+              <rect x="372" y="12" width="86" height="20" rx="3" fill="#161A20" stroke="#3A414C"/><text x="382" y="26">seller A</text>
+              <rect x="372" y="50" width="86" height="20" rx="3" fill="#161A20" stroke="#3A414C"/><text x="382" y="64">seller B</text>
+              <rect x="372" y="88" width="86" height="20" rx="3" fill="#161A20" stroke="#3A414C"/><text x="382" y="102">seller C</text>
+              <circle cx="600" cy="60" r="7" fill="#161A20" stroke="#8FB3FF"/><text x="560" y="90">refund-safe</text>
+            </g>
+            <circle r="5" fill="#FF5B1F" class="ride" style="offset-path:path('M40 60 H170 H300 C330 60 330 22 360 22 H470 C500 22 500 60 530 60 H600')"/>
+            <circle r="5" fill="#FF5B1F" class="ride d2" style="offset-path:path('M40 60 H170 H300 H470 H600')"/>
+            <circle r="5" fill="#8FB3FF" class="ride d3" style="offset-path:path('M40 60 H170 H300 C330 60 330 98 360 98 H470 C500 98 500 60 530 60 H600')"/>
+          </svg>
+        </div>
+        <div class="tags"><span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">row locks</span><span class="tag">state machines</span><span class="tag">idempotent refunds</span></div>
+      </a>
+
+      <div class="card c-tall rv">
+        <div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span></div>
+        <h3>Fee splits, providers, and job recovery</h3>
+        <p class="mono" style="font-size:11.5px">Role: Backend developer · Go, PostgreSQL</p>
+        <svg viewBox="0 0 220 150" aria-hidden="true" class="split">
+          <g font-family="IBM Plex Mono" font-size="10" fill="#9AA3AE">
+            <text x="0" y="12">level</text><text x="150" y="12">share</text>
+            <text x="0" y="40">L1</text><rect x="28" y="30" width="110" height="12" fill="#262B33"/><rect class="sb" x="28" y="30" width="96" height="12" fill="#FF5B1F"/>
+            <text x="0" y="72">L2</text><rect x="28" y="62" width="110" height="12" fill="#262B33"/><rect class="sb" x="28" y="62" width="64" height="12" fill="#FF5B1F" style="animation-delay:.4s"/>
+            <text x="0" y="104">L3</text><rect x="28" y="94" width="110" height="12" fill="#262B33"/><rect class="sb" x="28" y="94" width="34" height="12" fill="#FF5B1F" style="animation-delay:.8s"/>
+            <text x="150" y="40">% + fixed</text><text x="150" y="72">% + fixed</text><text x="150" y="104">% + fixed</text>
+            <text x="0" y="140" fill="#8FB3FF">read-only preview before save</text>
+          </g>
+        </svg>
+        <p>Percent-plus-fixed fees walk down a partner chain, and a read-only preview shows every level's share before a rate is saved.</p>
+        <details class="more"><summary>+ providers &amp; jobs</summary><p>Already-settled records stay as they were. Each outside provider is one adapter behind a single interface: a pending callback is acknowledged, and only a final status changes state. A background job claims its row before calling out and records the stage and last error, so a retry cannot send twice and a stuck row shows why.</p></details>
+        <div class="tags"><span class="tag">Go</span><span class="tag">PostgreSQL</span><a class="tag" href="https://nicholas-chong.com/notes/multi-level-revenue-splits">splits note ↗</a><a class="tag" href="https://nicholas-chong.com/notes/third-party-api-adapters">adapters note ↗</a><a class="tag" href="https://nicholas-chong.com/notes/background-job-failures">jobs note ↗</a></div>
+      </div>
+
+      <a class="card c-3 rv" href="https://nicholas-chong.com/projects/lokatech">
+        <span class="go">→</span>
+        <h3>LokaTech — Internal Operations Platform</h3>
+        <div class="pipe" aria-hidden="true"><span>Pricing</span><i></i><span>Scope sign-off</span><i></i><span>Billing</span><i></i><span>PDFs</span></div>
+        <p>Agency ops monorepo: pricing, scope sign-off, and project-first billing — replaced spreadsheet quote loops and email scope churn.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div>
+      </a>
+
+      <a class="card c-3 rv" href="https://nicholas-chong.com/projects/what-i-applied">
+        <span class="go">→</span>
+        <div class="proof">~50<small>beta users · live on Vercel</small></div>
+        <h3>What I Applied</h3>
+        <p>Personal ATS and career prep with JD-grounded Gemini assets and follow-up nudges.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span></div>
+      </a>
+
+      <a class="card c-2 rv" href="https://nicholas-chong.com/projects/church-system">
+        <span class="go">→</span>
+        <div class="proof">100+<small>users</small></div>
+        <h3>Church Management System</h3>
+        <p>Events, attendance, outings, and role-based admin — replaced scattered Forms/Sheets.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span></div>
+      </a>
+      <a class="card c-2 rv" href="https://nicholas-chong.com/projects/task-system">
+        <span class="go">→</span>
+        <div class="proof">2<small>startup teams · ~5–10 people each</small></div>
+        <h3>Task Management System</h3>
+        <p>Self-hosted Kanban with voting, comments, and dashboards.</p>
+        <div class="tags"><span class="tag">Next.js</span><span class="tag">Prisma</span></div>
+      </a>
+      <div class="card c-2 rv">
+        <div class="tags" style="margin:0"><span class="tag nda">Confidential / NDA</span></div>
+        <h3>Enterprise system turnaround</h3>
+        <p class="mono" style="font-size:11.5px">Role: Tech BA &amp; front-end dev · Laravel, Angular</p>
+        <p>Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged.</p>
+        <details class="more"><summary>+ what I did</summary><p>I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.</p></details>
+        <div class="tags"><a class="tag" href="https://nicholas-chong.com/notes/flexible-financial-settlement">finance architecture note ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="notes">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="sec-num">03 —</span><h2 class="display">Technical notes</h2></div><p class="muted" style="max-width:38ch">Architecture write-ups with diagrams — when you want the how, not just the bullet.</p></div>
+    <div class="log rv" id="log2">
+      <a href="https://nicholas-chong.com/notes/third-party-api-adapters"><span class="n">N/01</span><div><h4>One interface for many third-party APIs</h4><p>Adapters, signature checks, and pending versus final callbacks.</p></div><span class="r">2 diagrams</span></a>
+      <a href="https://nicholas-chong.com/notes/background-job-failures"><span class="n">N/02</span><div><h4>Background job failures</h4><p>Claim before calling out, and record why a row is stuck so retries stay safe.</p></div><span class="r">2 diagrams</span></a>
+      <a href="https://nicholas-chong.com/notes/cancel-vs-late-payment"><span class="n">N/03</span><div><h4>Cancel vs a late confirmation</h4><p>One locked path for cancel, a late confirmation, and a background check.</p></div><span class="r">NDA · 3 diagrams</span></a>
+      <a href="https://nicholas-chong.com/notes/cart-stock-reservation"><span class="n">N/04</span><div><h4>Cart and stock reservation</h4><p>Holds at checkout summary so idle carts do not lock stock.</p></div><span class="r">NDA · 3 diagrams</span></a>
+      <a href="https://nicholas-chong.com/notes/multi-level-revenue-splits"><span class="n">N/05</span><div><h4>Multi-level revenue splits</h4><p>Percent-plus-fixed splits with a read-only preview before settle.</p></div><span class="r">2 diagrams</span></a>
+      <a class="hide" href="https://nicholas-chong.com/notes/seller-onboarding-variants"><span class="n">N/06</span><div><h4>Seller onboarding and product variants</h4><p>Shops on existing accounts, two variant axes, per-variant price and stock.</p></div><span class="r">NDA · 3 diagrams</span></a>
+      <a class="hide" href="https://nicholas-chong.com/notes/order-lifecycle-refunds"><span class="n">N/07</span><div><h4>Order lifecycle and refunds</h4><p>Per-seller orders, returns, and idempotent refunds on a shared checkout.</p></div><span class="r">NDA · 4 diagrams</span></a>
+      <a class="hide" href="https://nicholas-chong.com/notes/flexible-financial-settlement"><span class="n">N/08</span><div><h4>Flexible financial settlement</h4><p>Finance “shopping cart” batches, consolidated payment vouchers, commission states.</p></div><span class="r">NDA · 4 diagrams</span></a>
+      <a class="hide" href="https://nicholas-chong.com/notes/performance-evaluation-360"><span class="n">N/09</span><div><h4>360° performance evaluation</h4><p>Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.</p></div><span class="r">3 diagrams</span></a>
+      <a class="hide" href="https://nicholas-chong.com/notes/frontend-architecture-refactoring"><span class="n">N/10</span><div><h4>Frontend architecture refactoring</h4><p>Unified dynamic forms, shared library, RBAC across admin and agent portals.</p></div><span class="r">before / after</span></a>
+      <a class="hide" href="https://nicholas-chong.com/notes/fullstack-assessment-debugging"><span class="n">N/11</span><div><h4>Full-stack assessment reflection</h4><p>Pooling, infinite scroll stability, a live merge-order bug, and a transparent follow-up.</p></div><span class="r">1 diagram</span></a>
+    </div>
+    <button class="linkbtn" id="allNotes" aria-expanded="false">Show all 11 notes ↓</button>
+  </div>
+</section>
+
+<section class="sec dark" id="experience">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="sec-num">04 —</span><h2 class="display">Experience</h2></div><p class="muted mono" style="font-size:12px">tap a row for the detail</p></div>
+    <div class="xp rv">
+      <details><summary><span class="when">Jul 2026 – Present</span><div><h3>Backend Developer <em>· Ocean Hub</em></h3><p class="sum">Own backend features from design to production. Passed probation early.</p></div><span class="pm">+</span></summary>
+        <ul>
+          <li><b>Multi-seller marketplace channel (NDA):</b> designed (lead-approved) and built a second sales channel on an existing marketplace app — onboarding, variants, stock reservation, multi-seller checkout, order and refund lifecycle.</li>
+          <li><b>Third-party API integrations:</b> each outside provider as one adapter behind a single interface; callback handling where a pending callback does not change state.</li>
+          <li><b>Background jobs &amp; data reconciliation:</b> jobs claim a row before calling out and record the stage and last error, so a retry cannot send twice; internal reconciliation tools.</li>
+          <li><b>Stack:</b> Laravel, MySQL, Go, PostgreSQL</li>
+        </ul></details>
+      <details><summary><span class="when">Oct 2025 – Jun 2026</span><div><h3>Web Developer / Product Engineer <em>· Data Flows</em></h3><p class="sum">Lead delivery, refactors, and technical BA on enterprise apps.</p></div><span class="pm">+</span></summary>
+        <ul>
+          <li><b>Flexible Financial Settlement Engine:</b> lead dev &amp; technical BA on a commission payout redesign — batching, partial line items, locks/state aligned with accounting; cut post-launch finance rework.</li>
+          <li><b>360° Performance Evaluation Module:</b> auto-assignment, tokenized external access, Angular schema-driven forms + JSONB — new question types via config.</li>
+          <li><b>Frontend Architecture Refactoring:</b> unified duplicated portals; RBAC-gated shared component library — fixes ship once across admin/agent views.</li>
+          <li><b>Stack:</b> Laravel, Angular</li>
+        </ul></details>
+      <details><summary><span class="when">Apr 2022 – Sep 2025</span><div><h3>Independent Full-Stack Developer</h3><p class="sum">Part-time freelance during university grew into full-time independent delivery.</p></div><span class="pm">+</span></summary>
+        <ul>
+          <li><b>2022 – 2024:</b> landing pages, product catalogs, ongoing maintenance and feature work while completing the degree.</li>
+          <li><b>2024 – 2025:</b> HR and badminton booking systems; church, task, and e-commerce platforms; What I Applied. Workflows, RBAC, audit trails, voting, DnD task UX.</li>
+          <li><b>Stack:</b> Next.js, React, .NET Core, Prisma, PostgreSQL</li>
+        </ul></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap about">
+    <div class="rv"><span class="sec-num">05 —</span><p class="big" style="margin-top:14px">Outside of work I write on philosophy and shoot photography — both push me to notice what people assume and what they overlook.</p><p class="muted" style="margin-top:14px;font-size:var(--t-sm)">That carries into how I gather requirements and design interfaces. <a href="https://instagram.com/nicholas_loong">Photography on Instagram ↗</a></p></div>
+    <div class="edu rv"><span class="eyebrow muted">Education</span>
+      <div><span><b>University Malaysia Sabah (UMS)</b><br><span class="muted">Bachelor of Software Engineering</span></span><span class="mono muted">2020 – 2024</span></div>
+      <div><span><b>St Paul Institution</b><br><span class="muted">STPM</span></span><span class="mono muted">2018 – 2019</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow">06 — Contact</span>
+    <h2 class="display rv" style="margin-top:18px">Let's talk<br>backend.</h2>
+    <div class="row">
+      <p style="max-width:36ch;font-size:var(--t-lg)">Happy to chat about backend and product engineering. Easiest reach: email or WhatsApp.</p>
+      <ul><li><a href="mailto:shiloong53bii@gmail.com">shiloong53bii@gmail.com</a></li><li><a href="https://github.com/nicholas053">github.com/nicholas053</a></li><li><a href="https://wa.me/60122657856">+60122657856</a></li></ul>
+      <a class="btn" href="https://nicholas-chong.com/resume">Resume ↗</a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>© Nicholas Chong Shi Loong</span><span>Prototype — Direction A “Live Trace”</span></div></footer>
+<script src="assets/app.js"></script>
+</body></html>
