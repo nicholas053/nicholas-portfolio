@@ -1,11 +1,30 @@
-/* Notes + resume only. Shared tokens/primitives stay in styles.css. */
+/* Notes + resume only. Shared tokens stay in styles.css. */
 
-/* Keep diagrams from forcing a horizontal scrollbar (styles.css sets .mm min-width). */
-.notes-page .mmwrap,
-.resume-page .mmwrap{
-  overflow:hidden;
-  width:100%;
+/* ---------- Accent: dark text on lime (and any bright) fills; AA ---------- */
+.notes-page .btn-trace,
+.resume-page .btn-trace,
+.notes-page .dtabs [role=tab][aria-selected=true],
+.resume-page .dtabs [role=tab][aria-selected=true],
+.notes-page .note-steps-nav button.primary{
+  color:#0D1014;
+  background:var(--trace);
+  border-color:var(--trace);
 }
+.notes-page a:focus-visible,
+.notes-page button:focus-visible,
+.notes-page summary:focus-visible,
+.resume-page a:focus-visible,
+.resume-page button:focus-visible,
+.resume-page summary:focus-visible{
+  outline:2px solid var(--trace);
+  outline-offset:3px;
+}
+
+/* Keep diagrams from forcing a horizontal scrollbar. */
+.notes-page,
+.resume-page{overflow-x:hidden}
+.notes-page .mmwrap,
+.resume-page .mmwrap{overflow:hidden;width:100%}
 .notes-page .mm,
 .notes-page .nmm,
 .resume-page .mm,
@@ -14,99 +33,76 @@
   width:100%;
   height:auto;
   display:block;
+  font-size:13px; /* presentation-size; notes.js also sets the SVG attribute in user units */
 }
-.notes-page,
-.resume-page{overflow-x:hidden}
 
-/* SVG type: never drop below 12px, even if a diagram has a tight viewBox. */
+/* Prefer SVG user units so labels scale with the viewBox (notes.js unsets the
+   styles.css 13px CSS-pixel size that caused labels to overrun nodes). */
 .notes-page .mm text,
 .notes-page .nmm text,
 .resume-page .mm text,
-.resume-page .nmm text{font-size:13px}
+.resume-page .nmm text{font-size:inherit}
 
-/* Hero log uses accent tokens so the switcher recolors it. */
+/* Solid ink pills behind edge labels — cover wires, never transparent. */
+.notes-page .mm .elab rect,
+.notes-page .nmm .elab rect{
+  fill:var(--ink);
+  stroke:var(--ink-line);
+  stroke-width:1;
+}
+.notes-page .mm .elab text,
+.notes-page .nmm .elab text{
+  fill:var(--paper);
+  font-weight:500;
+}
+
 .notes-page .diag-hero .mm-log b,
 .resume-page .diag-hero .mm-log b{color:var(--trace)}
 .notes-page .diag-hero header button,
 .resume-page .diag-hero header button{
-  min-height:44px;
-  min-width:44px;
-  padding:8px 12px;
-  color:var(--paper);
-  border-color:var(--ink-line);
+  min-height:44px;min-width:44px;padding:8px 12px;
+  color:var(--paper);border-color:var(--ink-line);
 }
 
-/* Stable state: a revealed step stays on. */
 .notes-page .mm.lanes .msg.revealed,
 .notes-page .nmm.lanes .msg.revealed{opacity:1}
 .notes-page .mm .node.lit rect,
 .notes-page .nmm .node.lit rect{stroke:var(--trace);fill:var(--trace-tint);stroke-width:2}
 
-/* ---- Mobile steppers (notes.js renames .mm-steps → .note-steps before app.js binds) ---- */
-.note-steps{
-  list-style:none;
-  display:none;
-  gap:8px;
-  padding:14px;
-}
-@media (max-width:760px){
-  .note-steps{display:grid}
-}
+/* ---- Mobile steppers ---- */
+.note-steps{list-style:none;display:none;gap:8px;padding:14px}
+@media (max-width:760px){.note-steps{display:grid}}
 .note-steps li{
-  display:grid;
-  grid-template-columns:34px 1fr;
-  gap:10px;
-  border:1px solid var(--ink-line);
-  border-radius:5px;
-  padding:12px 14px;
-  min-height:44px;
+  display:grid;grid-template-columns:34px 1fr;gap:10px;
+  border:1px solid var(--ink-line);border-radius:5px;
+  padding:12px 14px;min-height:44px;min-width:0;
   background:var(--ink);
   transition:border-color .3s,background .3s;
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
 }
+.note-steps li>div{min-width:0}
 .note-steps li .i{font:13px var(--f-mono);color:var(--mute-ink)}
-.note-steps li b{display:block;font:500 14px/1.4 var(--f-mono);color:var(--paper)}
-.note-steps li .who{display:block;font:12px var(--f-mono);color:var(--ack);margin-bottom:2px}
-.note-steps li .nx{display:block;font:12px var(--f-mono);color:var(--mute-ink);margin-top:4px}
+.note-steps li b{display:block;font:500 14px/1.4 var(--f-mono);color:var(--paper);overflow-wrap:anywhere}
+.note-steps li .who{display:block;font:12px var(--f-mono);color:var(--ack);margin-bottom:2px;overflow-wrap:anywhere}
+.note-steps li .nx{display:block;font:12px var(--f-mono);color:var(--mute-ink);margin-top:4px;overflow-wrap:anywhere}
 .note-steps li .nx em{font-style:normal;color:var(--ack)}
 .note-steps li.on{border-color:var(--trace);background:var(--trace-tint)}
 .note-steps li.on .i{color:var(--trace)}
-.note-steps li.done,
-.note-steps li.revealed{opacity:1}
+.note-steps li.done,.note-steps li.revealed{opacity:1}
 .note-steps li.done{opacity:.85}
-.note-steps-nav{
-  display:none;
-  padding:0 14px 14px;
-  gap:8px;
-}
-@media (max-width:760px){
-  .note-steps-nav{display:flex}
-}
+.note-steps-nav{display:none;padding:0 14px 14px;gap:8px}
+@media (max-width:760px){.note-steps-nav{display:flex}}
 .note-steps-nav button{
-  flex:1;
-  min-height:44px;
-  border:1px solid var(--ink-line);
-  background:var(--ink);
-  color:var(--paper);
-  font:13px var(--f-mono);
-  border-radius:5px;
-  cursor:pointer;
+  flex:1;min-height:44px;border:1px solid var(--ink-line);
+  background:var(--ink);color:var(--paper);
+  font:13px var(--f-mono);border-radius:5px;cursor:pointer;
 }
 .note-steps-nav button:disabled{opacity:.4;cursor:default}
-.note-steps-nav button.primary{
-  border-color:var(--trace);
-  color:var(--ink);
-  background:var(--trace);
-}
+.note-steps-nav button.primary{border-color:var(--trace);color:#0D1014;background:var(--trace)}
 
-/* Caption under the hero (desktop log is hidden on mobile in styles.css). */
 .note-caption{
-  display:none;
-  font:13px var(--f-mono);
-  color:var(--mute-ink);
-  padding:0 16px 14px;
-  min-height:44px;
+  display:none;font:13px var(--f-mono);color:var(--mute-ink);
+  padding:0 16px 14px;min-height:44px;
 }
 .note-caption b{color:var(--trace);font-weight:500}
 @media (max-width:760px){
@@ -114,18 +110,36 @@
   .resume-page .diag-hero .note-caption{display:block}
 }
 
-/* ---- Notes index ---- */
+/* ---- Notes index: calm staggered fade + 8px rise; hover = accent rule ---- */
+@keyframes n-rise{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.notes-page .n-enter{
+  opacity:0;
+  animation:n-rise .48s var(--ease) forwards;
+  animation-delay:calc(var(--d, 0) * 55ms);
+}
+.notes-page .nlist details{
+  border-left:3px solid transparent;
+  padding-left:12px;
+  margin-left:-3px;
+  transition:background .2s ease,border-color .2s ease;
+}
+.notes-page .nlist details:hover,
+.notes-page .nlist details:focus-within,
+.notes-page .nlist details[open]{
+  background:var(--trace-tint);
+  border-left-color:var(--trace);
+}
 .notes-page .nlist summary{
   min-height:44px;
   align-items:center;
 }
-.notes-page .nlist .bl a{
-  display:inline-flex;
-  align-items:center;
-  min-height:44px;
-  color:var(--trace);
-}
 .notes-page .nlist summary b{overflow-wrap:anywhere}
+.notes-page .nlist .bl a{
+  display:inline-flex;align-items:center;min-height:44px;color:var(--trace);
+}
 @media (max-width:760px){
   .notes-page .theme{grid-template-columns:1fr;gap:10px;padding:28px 0}
   .notes-page .theme h2{font-size:var(--t-lg)}
@@ -134,41 +148,61 @@
   .notes-page .nlist .bl{flex-direction:column;align-items:stretch;gap:8px}
   .notes-page .pg-hero h1{max-width:none;overflow-wrap:anywhere}
   .notes-page .pager a{min-height:44px}
+  .notes-page .diag-hero header,
+  .resume-page .diag-hero header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .notes-page .diag-hero header span:not(:first-of-type),
+  .resume-page .diag-hero header span:not(:first-of-type){display:none}
+  .notes-page,
+  .resume-page{padding-bottom:80px}
+  .notes-page .accent-sw,
+  .resume-page .accent-sw{bottom:12px;right:12px}
 }
 
 /* ---- Note article typography / details ---- */
-.notes-page .blk>summary{
-  min-height:44px;
-  align-items:center;
-}
+.notes-page .blk>summary{min-height:44px;align-items:center}
 .notes-page .blk>summary h2,
 .notes-page .blk>summary h3{overflow-wrap:anywhere}
-.notes-page .dtabs [role=tab]{
-  min-height:44px;
-  padding:10px 14px;
-  cursor:pointer;
-}
-.notes-page .ent-c{
-  min-height:44px;
-}
-.notes-page .rels li{
-  min-height:44px;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:6px;
-}
+.notes-page .dtabs [role=tab]{min-height:44px;padding:10px 14px;cursor:pointer}
+.notes-page .ent-c{min-height:44px}
+.notes-page .rels li{min-height:44px;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .notes-page .tldr{max-width:80ch}
 
-/* ---- Resume ---- */
+/* ---- Resume: thin accent timeline, one-time fade, no gimmicks ---- */
 .resume-page .lede a{color:var(--trace);text-decoration:none}
 .resume-page .lede a:hover{text-decoration:underline}
-.resume-page .rs details summary{
-  min-height:44px;
-  display:flex;
-  align-items:center;
-}
+.resume-page .rs details summary{min-height:44px;display:flex;align-items:center}
 .resume-page .btn{min-height:44px}
+.resume-page .rs-timeline{
+  position:relative;
+  padding-left:22px;
+}
+.resume-page .rs-timeline::before{
+  content:"";
+  position:absolute;
+  left:3px;top:8px;bottom:8px;
+  width:1px;
+  background:color-mix(in srgb,var(--trace) 55%,var(--ink-line));
+  pointer-events:none;
+}
+.resume-page .rs-timeline .rs>h2{position:relative}
+.resume-page .rs-timeline .rs>h2::before{
+  content:"";
+  position:absolute;
+  left:-19px;top:6px;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--trace);
+  box-shadow:0 0 0 3px var(--ink);
+}
+@keyframes rs-rise{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+.resume-page .rs-enter{
+  opacity:0;
+  animation:rs-rise .5s var(--ease) forwards;
+  animation-delay:calc(var(--d, 0) * 70ms);
+}
+
 @media (max-width:760px){
   .resume-page .rs{grid-template-columns:1fr;gap:10px;padding:24px 0}
   .resume-page .pg-hero h1{max-width:none;overflow-wrap:anywhere;font-size:clamp(2rem,12vw,3.2rem)}
@@ -178,13 +212,14 @@
   .resume-page .skills span{min-height:44px;display:inline-flex;align-items:center}
 }
 @media print{
-  .resume-page .diag-hero,
   .resume-page .note-steps,
   .resume-page .note-steps-nav,
   .resume-page .note-caption,
-  .resume-page .crumb{display:none!important}
-  .resume-page .rs details{open:revert}
-  .resume-page .rs details[open] ul,
+  .resume-page .crumb,
+  .resume-page .rs-timeline::before,
+  .resume-page .rs-timeline .rs>h2::before{display:none!important}
+  .resume-page .rs-timeline{padding-left:0}
+  .resume-page .rs-enter{opacity:1;animation:none;transform:none}
   .resume-page .rs details ul{display:grid!important}
   .resume-page .rs details{border:0}
 }
@@ -195,33 +230,173 @@
   .resume-page .mm .pkt,
   .resume-page .nmm .pkt{display:none}
   .notes-page .mm.lanes .msg,
-  .notes-page .nmm.lanes .msg,
-  .resume-page .mm.lanes .msg,
-  .resume-page .nmm.lanes .msg{opacity:1}
+  .notes-page .nmm.lanes .msg{opacity:1}
+  .notes-page .n-enter,
+  .resume-page .rs-enter,
   .notes-page .rv,
-  .resume-page .rv{opacity:1;transform:none}
+  .resume-page .rv{opacity:1;animation:none;transform:none}
 }
 
-/* Mobile header: hide the secondary caption so Replay doesn't break the shared
-   `span:last-child` rule, and keep the accent switcher off the steppers. */
-@media (max-width:760px){
-  .notes-page,
-  .resume-page{padding-bottom:80px}
-  .notes-page .diag-hero header,
-  .resume-page .diag-hero header{
+/* ========== Mobile (≤640): breathing room, carousels, compact steppers, full-view ========== */
+@media (max-width:640px){
+  .notes-page .wrap,
+  .resume-page .wrap{padding-left:20px;padding-right:20px}
+  .notes-page .pg-hero,
+  .resume-page .pg-hero{padding:28px 0 24px}
+  .notes-page .pg-hero h1,
+  .resume-page .pg-hero h1{
+    font-size:clamp(1.7rem,7.6vw,2.05rem);
+    line-height:1.15;
+    max-width:16ch;
+    margin:12px 0 10px;
+    overflow-wrap:anywhere;
+  }
+  .notes-page .pg-hero .lede,
+  .resume-page .pg-hero .lede{font-size:1rem;line-height:1.5;margin:0}
+  .notes-page .pg-hero .meta,
+  .resume-page .pg-hero .meta{margin-top:12px}
+  .notes-page .tldr{margin-top:16px;padding:14px 16px}
+  .notes-page .tldr p,
+  .notes-page .prose{font-size:1rem;line-height:1.55}
+  .notes-page .sec,
+  .resume-page .sec{padding:36px 0}
+  .notes-page .sec[style],
+  .resume-page .sec[style]{padding-top:28px !important;padding-bottom:28px !important}
+  .notes-page .theme{padding:22px 0;gap:8px}
+  .notes-page .theme h2{font-size:1.2rem;line-height:1.25}
+  .notes-page .blk>summary h2,
+  .notes-page .blk>summary h3{font-size:1.2rem;line-height:1.25}
+  .notes-page .sub-h{font-size:1.35rem;margin-bottom:12px}
+  .notes-page .prose{padding:0 0 20px}
+
+  /* Entity cards: horizontal scroll-snap carousel, 85% width, next peeks */
+  .notes-page .ents{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:0;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:4px 0 8px;
+    grid-template-columns:none;
+  }
+  .notes-page .ents::-webkit-scrollbar{display:none}
+  .notes-page .ents .ent-c{
+    flex:0 0 85%;
+    scroll-snap-align:start;
+    min-height:88px;
+    padding:16px;
+    font-size:14px;
+  }
+  .notes-page .rels{
+    grid-template-columns:1fr;
+    font-size:14px;
+  }
+  .notes-page .dtabs [role=tablist]{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .notes-page .dtabs [role=tab]{flex:0 0 auto;font-size:14px}
+
+  /* Step-through: only current + next visible; 14px+ type; generous padding */
+  .note-steps{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:16px 16px 8px;
+  }
+  .note-steps li{display:none !important;padding:16px;gap:12px}
+  .note-steps li.on,
+  .note-steps li.peek{display:grid !important}
+  .note-steps li.peek{opacity:.55}
+  .note-steps li .i{font-size:14px}
+  .note-steps li b{font-size:15px;line-height:1.45}
+  .note-steps li .who,
+  .note-steps li .nx{font-size:14px;line-height:1.4}
+  .note-steps-bar{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:8px;
+    gap:10px;
+    padding:4px 16px 0;
   }
-  .notes-page .diag-hero header span:not(:first-of-type),
-  .resume-page .diag-hero header span:not(:first-of-type){display:none}
-  .notes-page .diag-hero header span:first-of-type,
-  .resume-page .diag-hero header span:first-of-type{
-    flex:1;
-    min-width:0;
-    overflow-wrap:anywhere;
+  .note-steps-count{font:14px var(--f-mono);color:var(--mute-ink)}
+  .note-full-btn{
+    min-height:44px;
+    padding:8px 14px;
+    border:1px solid var(--ink-line);
+    background:var(--ink);
+    color:var(--paper);
+    font:14px var(--f-mono);
+    border-radius:5px;
+    cursor:pointer;
   }
-  .notes-page .accent-sw,
-  .resume-page .accent-sw{bottom:12px;right:12px}
+  .resume-page .rs{padding:18px 0}
+  .resume-page .rs .it{margin-bottom:16px}
+  .resume-page .rs .it h3{font-size:1.15rem}
+  .resume-page .skills{gap:8px}
 }
+
+.note-steps-bar{display:none}
+@media (max-width:640px){.note-steps-bar{display:flex}}
+.note-dots{display:none}
+@media (max-width:640px){
+  .note-dots{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    padding:4px 0 8px;
+  }
+  .note-dots button{
+    width:8px;height:8px;padding:0;border-radius:50%;
+    border:0;background:var(--ink-line);cursor:pointer;
+    min-width:8px;min-height:8px;
+  }
+  /* larger invisible hit target */
+  .note-dots button{box-shadow:0 0 0 12px transparent}
+  .note-dots button[aria-current="true"]{background:var(--trace)}
+}
+
+/* Full-diagram overlay */
+.diag-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:color-mix(in srgb,var(--ink) 96%,transparent);
+  display:none;
+  flex-direction:column;
+}
+.diag-overlay.open{display:flex}
+.diag-overlay-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 16px;
+  border-bottom:1px solid var(--ink-line);
+  flex:0 0 auto;
+  background:var(--ink);
+}
+.diag-overlay-bar span{font:14px var(--f-mono);color:var(--mute-ink)}
+.diag-overlay-close{
+  min-height:44px;min-width:44px;padding:8px 14px;
+  border:1px solid var(--ink-line);background:var(--ink);color:var(--paper);
+  font:14px var(--f-mono);border-radius:5px;cursor:pointer;
+}
+.diag-overlay-body{
+  flex:1;overflow:auto;-webkit-overflow-scrolling:touch;
+  padding:16px;
+  background:var(--ink-2);
+}
+.diag-overlay-body svg,
+.notes-page .diag-overlay-body svg.mm,
+.notes-page .diag-overlay-body svg.nmm,
+.resume-page .diag-overlay-body svg.mm,
+.resume-page .diag-overlay-body svg.nmm{
+  display:block;
+  min-width:720px !important;
+  width:max(100%, 720px) !important;
+  height:auto;
+  background:var(--ink);
+  border:1px solid var(--ink-line);
+  border-radius:6px;
+}
+body.diag-lock{overflow:hidden}

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html data-accent="cyan" lang="en">
+<html data-accent="lime" lang="en">
 <head>
 <meta charset="utf-8"/><link href="data:," rel="icon"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Multi-Seller Marketplace Channel — Nicholas Chong (redesign prototype)</title>
 <meta content="Client, brand and business rules are white-labelled. Lead backend developer and designer
           (lead-approved) — Laravel, MySQL." name="description"/>
-<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'cyan'}catch(e){document.documentElement.dataset.accent='cyan'}</script>
+<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'lime'}catch(e){document.documentElement.dataset.accent='lime'}</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="../assets/styles.css" rel="stylesheet"/>
@@ -16,7 +16,7 @@
 <nav class="nav"><div class="wrap">
 <a class="brand" href="../index.html"><i></i>Nic Chong</a>
 <button aria-controls="navlist" aria-expanded="false" class="menu-btn" type="button">Menu</button>
-<ul id="navlist"><li><a aria-current="page" class="on" href="../index.html#work">Work</a></li><li><a href="../notes/index.html">Notes</a></li><li><a href="../index.html#about">About</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+<ul id="navlist"><li><a aria-current="page" class="on" href="../index.html#work">Work</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
 <a class="btn btn-trace" href="../resume.html">Resume</a>
 </div></nav>
 <main id="main">
@@ -29,37 +29,49 @@
 <dl class="facts4"><div><dt>Role</dt><dd>Lead backend developer and designer (lead-approved)</dd></div><div><dt>Stack</dt><dd>Laravel, MySQL</dd></div><div><dt>Scope</dt><dd>Seller onboarding to refunds, in a second channel of an existing app</dd></div><div><dt>Result</dt><dd>Full flow went live; handed over, the team continues to run and extend it</dd></div></dl>
 </div></header>
 <section class="sec" style="padding-top:28px"><div class="wrap">
-<div class="psec rv"><div class="psec-h"><span class="kicker">01 — Flow</span><h2 class="sub-h">Overall flow</h2><span class="src">source: site · original diagram</span></div>
-<figure aria-label="Flow: Overall flow" class="diag-hero pfig pfig-flow"><header><span>live trace · Overall flow</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Flow diagram" class="mm graph" data-anim="graph" data-traces='[[[null, "n0_A", "Seller applies"], ["e0_0", "n0_B", "Admin approves"], ["e0_1", "n0_C", "Seller lists products and variants"], ["e0_2", "n0_D", "Buyer adds to shared cart"], ["e0_3", "n0_E", "Checkout summary: stock held"], ["e0_4", "n0_F", "Place order: one session, one order per seller"], ["e0_5", "n0_G", "Confirmed by provider?"], ["e0_6", "n0_H", "Seller confirms and ships"], ["e0_8", "n0_I", "Delivered"], ["e0_9", "n0_J", "Completed"], ["e0_10", "n0_K", "Seller income released after buffer"]], [[null, "n0_A", "Seller applies"], ["e0_0", "n0_B", "Admin approves"], ["e0_1", "n0_C", "Seller lists products and variants"], ["e0_2", "n0_D", "Buyer adds to shared cart"], ["e0_3", "n0_E", "Checkout summary: stock held"], ["e0_4", "n0_F", "Place order: one session, one order per seller"], ["e0_5", "n0_G", "Confirmed by provider?"], ["e0_6", "n0_H", "Seller confirms and ships"], ["e0_8", "n0_I", "Delivered"], ["e0_11", "n0_R", "Return or refund case"]], [[null, "n0_A", "Seller applies"], ["e0_0", "n0_B", "Admin approves"], ["e0_1", "n0_C", "Seller lists products and variants"], ["e0_2", "n0_D", "Buyer adds to shared cart"], ["e0_3", "n0_E", "Checkout summary: stock held"], ["e0_4", "n0_F", "Place order: one session, one order per seller"], ["e0_5", "n0_G", "Confirmed by provider?"], ["e0_7", "n0_X", "Holds released"]]]' role="img" style="--w:992px" viewbox="0 0 992 394">
-<path class="wire" d="M216 47 C244 47 244 47 272 47" id="e0_0" marker-end="url(#ah)"></path>
-<path class="wire" d="M468 47 C496 47 496 47 524 47" id="e0_1" marker-end="url(#ah)"></path>
-<path class="wire" d="M720 47 C748 47 748 47 776 47" id="e0_2" marker-end="url(#ah)"></path>
-<path class="wire" d="M874 74 C874 112 874 112 874 150" id="e0_3" marker-end="url(#ah)"></path>
-<path class="wire" d="M776 177 C748 177 748 177 720 177" id="e0_4" marker-end="url(#ah)"></path>
-<path class="wire" d="M524 177 C496 177 496 177 468 177" id="e0_5" marker-end="url(#ah)"></path>
-<path class="wire" d="M272 177 C244 177 244 149 216 149" id="e0_6" marker-end="url(#ah)"></path>
-<g class="elab"><rect height="20" rx="3" width="32" x="228" y="152"></rect><text text-anchor="middle" x="244" y="167">yes</text></g>
-<path class="wire" d="M272 177 C244 177 244 213 216 213" id="e0_7" marker-end="url(#ah)"></path>
-<g class="elab"><rect height="20" rx="3" width="114" x="187" y="184"></rect><text text-anchor="middle" x="244" y="199">no / cancelled</text></g>
-<path class="wire" d="M118 176 C118 242 118 242 118 308" id="e0_8" marker-end="url(#ah)"></path>
-<path class="wire" d="M216 327 C244 327 244 299 272 299" id="e0_9" marker-end="url(#ah)"></path>
-<path class="wire" d="M468 299 C496 299 496 327 524 327" id="e0_10" marker-end="url(#ah)"></path>
-<path class="wire" d="M216 327 C244 327 244 355 272 355" id="e0_11" marker-end="url(#ah)"></path>
+<div class="psec rv"><div class="psec-h"><span class="kicker">01 — Problem → solution</span><h2 class="sub-h">The problem → the solution</h2><span class="src">source: project write-up</span></div><div class="ps2 mcar"><div class="ps2-col bad"><header><span class="st"><i></i>before · the problem</span><svg aria-hidden="true" class="ps-mini bad" viewbox="0 0 240 28"><path class="w" d="M10 14 H96"></path><path class="w broken" d="M118 14 H230"></path>
+<circle class="n" cx="10" cy="14" r="5"></circle><circle class="n" cx="60" cy="14" r="5"></circle><g class="x" transform="translate(107 14)"><circle r="9"></circle><path d="M-4 -4 L4 4 M4 -4 L-4 4"></path></g><circle class="n dim" cx="170" cy="14" r="5"></circle><circle class="n dim" cx="230" cy="14" r="5"></circle><circle class="pk" cx="10" cy="14" r="4"></circle></svg></header><h3></h3><ol class="ps2-stops" data-mclamp="380"><li><i class="mk">✕</i><div>Two channels had to share one cart and one checkout, while stock, checkout and order flows stayed
+              separate per seller.</div></li><li><i class="mk">✕</i><div>Stock is limited per variant. Two buyers must never both get the last unit, but idle carts should
+              not lock stock either.</div></li><li><i class="mk">✕</i><div>Provider confirmation is asynchronous. It can arrive late (after the buyer cancelled), twice, or
+              not at all.</div></li><li><i class="mk">✕</i><div>One checkout can include orders from several sellers, and each can be cancelled or refunded on
+              its own.</div></li></ol></div><div aria-hidden="true" class="ps2-mid"><svg viewbox="0 0 40 40"><path d="M6 20 H32 M24 12 L32 20 L24 28"></path></svg></div><div class="ps2-col good"><header><span class="st"><i></i>after · the solution</span><svg aria-hidden="true" class="ps-mini good" viewbox="0 0 240 28"><path class="w" d="M10 14 H230"></path>
+<circle class="n" cx="10" cy="14" r="5"></circle><circle class="n" cx="70" cy="14" r="5"></circle><circle class="n" cx="130" cy="14" r="5"></circle><circle class="n" cx="190" cy="14" r="5"></circle><g class="ok" transform="translate(230 14)"><circle r="9"></circle><path d="M-4 0 L-1 3 L4 -3"></path></g><circle class="pk" cx="10" cy="14" r="4"></circle></svg></header><h3></h3><ol class="ps2-stops" data-mclamp="380"><li><i class="mk">01</i><div>A seller onboarding and catalog module with up to two variant axes per product and a price and
+              stock row per variant.</div></li><li><i class="mk">02</i><div>A cart extended with a channel flag so both channels coexist in one basket.</div></li><li><i class="mk">03</i><div>Stock is <strong>held when the buyer opens the checkout summary</strong>,
+              not when they add to cart, and released when they leave or the hold expires.</div></li><li><i class="mk">04</i><div>One <strong>checkout session</strong> groups child orders, one per seller,
+              under one checkout.</div></li><li><i class="mk">05</i><div>Cancel, provider confirmation and a background check all go through the same locked path,
+              so the order ends in one consistent state whichever arrives first.</div></li><li><i class="mk">06</i><div>A per-seller order lifecycle with cancellation, return and refund cases, and seller income
+              credited only after a buffer period.</div></li></ol></div></div></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">02 — Flow</span><h2 class="sub-h">Overall flow</h2><span class="src">source: site · original diagram</span></div>
+<figure aria-label="Flow: Overall flow" class="diag-hero pfig pfig-flow"><header><span>live trace · Overall flow</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Flow diagram" class="mm graph" data-anim="graph" data-traces='[[[null, "n0_A", "Seller applies"], ["e0_0", "n0_B", "Admin approves"], ["e0_1", "n0_C", "Seller lists products and variants"], ["e0_2", "n0_D", "Buyer adds to shared cart"], ["e0_3", "n0_E", "Checkout summary: stock held"], ["e0_4", "n0_F", "Place order: one session, one order per seller"], ["e0_5", "n0_G", "Confirmed by provider?"], ["e0_6", "n0_H", "Seller confirms and ships"], ["e0_8", "n0_I", "Delivered"], ["e0_9", "n0_J", "Completed"], ["e0_10", "n0_K", "Seller income released after buffer"]], [[null, "n0_A", "Seller applies"], ["e0_0", "n0_B", "Admin approves"], ["e0_1", "n0_C", "Seller lists products and variants"], ["e0_2", "n0_D", "Buyer adds to shared cart"], ["e0_3", "n0_E", "Checkout summary: stock held"], ["e0_4", "n0_F", "Place order: one session, one order per seller"], ["e0_5", "n0_G", "Confirmed by provider?"], ["e0_6", "n0_H", "Seller confirms and ships"], ["e0_8", "n0_I", "Delivered"], ["e0_11", "n0_R", "Return or refund case"]], [[null, "n0_A", "Seller applies"], ["e0_0", "n0_B", "Admin approves"], ["e0_1", "n0_C", "Seller lists products and variants"], ["e0_2", "n0_D", "Buyer adds to shared cart"], ["e0_3", "n0_E", "Checkout summary: stock held"], ["e0_4", "n0_F", "Place order: one session, one order per seller"], ["e0_5", "n0_G", "Confirmed by provider?"], ["e0_7", "n0_X", "Holds released"]]]' role="img" style="--w:918px" viewbox="0 0 918 544">
+<path class="wire" d="M216 47 C288 47 288 47 361 47" id="e0_0" marker-end="url(#ah)"></path>
+<path class="wire" d="M557 47 C630 47 630 47 702 47" id="e0_1" marker-end="url(#ah)"></path>
+<path class="wire" d="M800 74 C800 106 800 106 800 138" id="e0_2" marker-end="url(#ah)"></path>
+<path class="wire" d="M702 165 C630 165 630 165 557 165" id="e0_3" marker-end="url(#ah)"></path>
+<path class="wire" d="M361 165 C288 165 288 165 216 165" id="e0_4" marker-end="url(#ah)"></path>
+<path class="wire" d="M118 200 C118 243 118 243 118 286" id="e0_5" marker-end="url(#ah)"></path>
+<path class="wire" d="M216 313 C288 313 288 283 361 283" id="e0_6" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="32" x="321" y="272"></rect><text text-anchor="middle" x="337" y="287">yes</text></g>
+<path class="wire" d="M216 313 C288 313 288 351 361 351" id="e0_7" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="114" x="239" y="340"></rect><text text-anchor="middle" x="296" y="355">no / cancelled</text></g>
+<path class="wire" d="M557 283 C630 283 630 313 702 313" id="e0_8" marker-end="url(#ah)"></path>
+<path class="wire" d="M800 332 C800 379 800 379 800 426" id="e0_9" marker-end="url(#ah)"></path>
+<path class="wire" d="M702 445 C630 445 630 475 557 475" id="e0_10" marker-end="url(#ah)"></path>
+<path class="wire" d="M800 332 V398 H630 V505 H702" id="e0_11" marker-end="url(#ah)"></path>
 <g class="node" id="n0_A"><rect height="38" rx="4" width="196" x="20" y="28"></rect><text x="32" y="52">Seller applies</text></g>
-<g class="node" id="n0_B"><rect height="38" rx="4" width="196" x="272" y="28"></rect><text x="284" y="52">Admin approves</text></g>
-<g class="node" id="n0_C"><rect height="54" rx="4" width="196" x="524" y="20"></rect><text x="536" y="44">Seller lists products</text><text x="536" y="60">and variants</text></g>
-<g class="node" id="n0_D"><rect height="54" rx="4" width="196" x="776" y="20"></rect><text x="788" y="44">Buyer adds to shared</text><text x="788" y="60">cart</text></g>
-<g class="node" id="n0_E"><rect height="54" rx="4" width="196" x="776" y="150"></rect><text x="788" y="174">Checkout summary: stock</text><text x="788" y="190">held</text></g>
-<g class="node" id="n0_F"><rect height="70" rx="4" width="196" x="524" y="142"></rect><text x="536" y="166">Place order: one</text><text x="536" y="182">session, one order per</text><text x="536" y="198">seller</text></g>
-<g class="node dec" id="n0_G"><rect height="38" rx="14" width="196" x="272" y="158"></rect><text x="284" y="182">◆ Confirmed by provider?</text></g>
-<g class="node" id="n0_H"><rect height="54" rx="4" width="196" x="20" y="122"></rect><text x="32" y="146">Seller confirms and</text><text x="32" y="162">ships</text></g>
-<g class="node" id="n0_X"><rect height="38" rx="4" width="196" x="20" y="194"></rect><text x="32" y="218">Holds released</text></g>
-<g class="node" id="n0_I"><rect height="38" rx="4" width="196" x="20" y="308"></rect><text x="32" y="332">Delivered</text></g>
-<g class="node" id="n0_J"><rect height="38" rx="4" width="196" x="272" y="280"></rect><text x="284" y="304">Completed</text></g>
-<g class="node" id="n0_K"><rect height="54" rx="4" width="196" x="524" y="300"></rect><text x="536" y="324">Seller income released</text><text x="536" y="340">after buffer</text></g>
-<g class="node" id="n0_R"><rect height="38" rx="4" width="196" x="272" y="336"></rect><text x="284" y="360">Return or refund case</text></g>
+<g class="node" id="n0_B"><rect height="38" rx="4" width="196" x="361" y="28"></rect><text x="373" y="52">Admin approves</text></g>
+<g class="node" id="n0_C"><rect height="54" rx="4" width="196" x="702" y="20"></rect><text x="714" y="44">Seller lists products</text><text x="714" y="60">and variants</text></g>
+<g class="node" id="n0_D"><rect height="54" rx="4" width="196" x="702" y="138"></rect><text x="714" y="162">Buyer adds to shared</text><text x="714" y="178">cart</text></g>
+<g class="node" id="n0_E"><rect height="54" rx="4" width="196" x="361" y="138"></rect><text x="373" y="162">Checkout summary:</text><text x="373" y="178">stock held</text></g>
+<g class="node" id="n0_F"><rect height="70" rx="4" width="196" x="20" y="130"></rect><text x="32" y="154">Place order: one</text><text x="32" y="170">session, one order per</text><text x="32" y="186">seller</text></g>
+<g class="node dec" id="n0_G"><rect height="54" rx="14" width="196" x="20" y="286"></rect><text x="32" y="310">◆ Confirmed by</text><text x="32" y="326">provider?</text></g>
+<g class="node" id="n0_H"><rect height="54" rx="4" width="196" x="361" y="256"></rect><text x="373" y="280">Seller confirms and</text><text x="373" y="296">ships</text></g>
+<g class="node" id="n0_X"><rect height="38" rx="4" width="196" x="361" y="332"></rect><text x="373" y="356">Holds released</text></g>
+<g class="node" id="n0_I"><rect height="38" rx="4" width="196" x="702" y="294"></rect><text x="714" y="318">Delivered</text></g>
+<g class="node" id="n0_J"><rect height="38" rx="4" width="196" x="702" y="426"></rect><text x="714" y="450">Completed</text></g>
+<g class="node" id="n0_K"><rect height="54" rx="4" width="196" x="361" y="448"></rect><text x="373" y="472">Seller income released</text><text x="373" y="488">after buffer</text></g>
+<g class="node" id="n0_R"><rect height="38" rx="4" width="196" x="702" y="486"></rect><text x="714" y="510">Return or refund case</text></g>
 <circle class="pkt" cx="-20" cy="-20" r="5.5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><b>Seller applies</b><span class="nx">→ Admin approves</span></div></li><li><span class="i">02</span><div><b>Admin approves</b><span class="nx">→ Seller lists products and variants</span></div></li><li><span class="i">03</span><div><b>Seller lists products and variants</b><span class="nx">→ Buyer adds to shared cart</span></div></li><li><span class="i">04</span><div><b>Buyer adds to shared cart</b><span class="nx">→ Checkout summary: stock held</span></div></li><li><span class="i">05</span><div><b>Checkout summary: stock held</b><span class="nx">→ Place order: one session, one order per seller</span></div></li><li><span class="i">06</span><div><b>Place order: one session, one order per seller</b><span class="nx">→ Confirmed by provider?</span></div></li><li><span class="i">07</span><div><b>◆ Confirmed by provider?</b><span class="nx">→ Seller confirms and ships <em>[yes]</em></span><span class="nx">→ Holds released <em>[no / cancelled]</em></span></div></li><li><span class="i">08</span><div><b>Seller confirms and ships</b><span class="nx">→ Delivered</span></div></li><li><span class="i">09</span><div><b>Holds released</b></div></li><li><span class="i">10</span><div><b>Delivered</b><span class="nx">→ Completed</span><span class="nx">→ Return or refund case</span></div></li><li><span class="i">11</span><div><b>Completed</b><span class="nx">→ Seller income released after buffer</span></div></li><li><span class="i">12</span><div><b>Return or refund case</b></div></li><li><span class="i">13</span><div><b>Seller income released after buffer</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
-<div class="psec rv"><div class="psec-h"><span class="kicker">02 — Sequence</span><h2 class="sub-h">Checkout to confirmation</h2><span class="src">source: site · original diagram</span></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">03 — Sequence</span><h2 class="sub-h">Checkout to confirmation</h2><span class="src">source: site · original diagram</span></div>
 <figure aria-label="Sequence: Checkout to confirmation" class="diag-hero pfig pfig-seq"><header><span>live trace · Checkout to confirmation</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Sequence diagram" class="mm lanes" data-anim="lanes" role="img" style="--w:890px" viewbox="0 0 890 494">
 <line class="lane" x1="105.0" x2="105.0" y1="44" y2="484"></line>
 <g class="actor"><rect height="34" rx="3" width="154" x="28.0" y="6"></rect><text text-anchor="middle" x="105.0" y="27">Buyer</text></g>
@@ -80,10 +92,10 @@
 <g class="msg" data-i="6"><path class="mline" d="M275.0 400 H615.0"></path><path class="head" d="M615.0 400 l-8 -5 v10z"></path><text class="num" x="285.0" y="392">07</text><text x="309.0" y="392">lock session, mark paid</text></g>
 <g class="msg" data-i="7"><path class="mline" d="M275.0 452 H445.0"></path><path class="head" d="M445.0 452 l-8 -5 v10z"></path><text class="num" x="285.0" y="444">08</text><text x="309.0" y="444">consume holds</text></g>
 <circle class="pkt" cx="-20" cy="-20" r="5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><span class="who">Buyer → API</span><b>open checkout summary</b></div></li><li><span class="i">02</span><div><span class="who">API → Stock holds</span><b>hold each variant, row lock</b></div></li><li><span class="i">03</span><div><span class="who">Buyer → API</span><b>place order</b></div></li><li><span class="i">04</span><div><span class="who">API → Checkout session</span><b>create session and one order per seller</b></div></li><li><span class="i">05</span><div><span class="who">API → Provider</span><b>create provider request</b></div></li><li><span class="i">06</span><div><span class="who">Provider → API</span><b>confirmed, async</b></div></li><li><span class="i">07</span><div><span class="who">API → Checkout session</span><b>lock session, mark paid</b></div></li><li><span class="i">08</span><div><span class="who">API → Stock holds</span><b>consume holds</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
-<div class="psec rv"><div class="psec-h"><span class="kicker">03 — Data model</span><h2 class="sub-h">Main data model (simplified)</h2><span class="src">source: site · original diagram</span></div>
-<figure aria-label="Data model: Main data model (simplified)" class="diag-hero pfig pfig-er"><header><span>explorer · Main data model (simplified)</span><span>click a table</span></header><div class="erc"><p class="er-hint">Tap a table to see what it links to.</p><div class="ents"><div class="ent-c" data-e="SELLER_STORE" role="button" tabindex="0"><b>SELLER_STORE</b></div><div class="ent-c" data-e="PRODUCT" role="button" tabindex="0"><b>PRODUCT</b></div><div class="ent-c" data-e="VARIANT" role="button" tabindex="0"><b>VARIANT</b></div><div class="ent-c" data-e="BUYER" role="button" tabindex="0"><b>BUYER</b></div><div class="ent-c" data-e="CART_LINE" role="button" tabindex="0"><b>CART_LINE</b></div><div class="ent-c" data-e="STOCK_HOLD" role="button" tabindex="0"><b>STOCK_HOLD</b></div><div class="ent-c" data-e="CHECKOUT_SESSION" role="button" tabindex="0"><b>CHECKOUT_SESSION</b></div><div class="ent-c" data-e="CHILD_ORDER" role="button" tabindex="0"><b>CHILD_ORDER</b></div><div class="ent-c" data-e="PROVIDER_RECORD" role="button" tabindex="0"><b>PROVIDER_RECORD</b></div><div class="ent-c" data-e="ORDER_LINE" role="button" tabindex="0"><b>ORDER_LINE</b></div><div class="ent-c" data-e="SELLER_INCOME" role="button" tabindex="0"><b>SELLER_INCOME</b></div><div class="ent-c" data-e="RETURN_CASE" role="button" tabindex="0"><b>RETURN_CASE</b></div></div><ul class="rels"><li data-a="SELLER_STORE" data-b="PRODUCT"><b>SELLER_STORE</b> <em>lists</em> <b>PRODUCT</b> <small>1 → many</small></li><li data-a="PRODUCT" data-b="VARIANT"><b>PRODUCT</b> <em>has</em> <b>VARIANT</b> <small>1 → many</small></li><li data-a="BUYER" data-b="CART_LINE"><b>BUYER</b> <em>has</em> <b>CART_LINE</b> <small>1 → many</small></li><li data-a="VARIANT" data-b="CART_LINE"><b>VARIANT</b> <em>in</em> <b>CART_LINE</b> <small>1 → many</small></li><li data-a="VARIANT" data-b="STOCK_HOLD"><b>VARIANT</b> <em>reserved by</em> <b>STOCK_HOLD</b> <small>1 → many</small></li><li data-a="CHECKOUT_SESSION" data-b="STOCK_HOLD"><b>CHECKOUT_SESSION</b> <em>owns</em> <b>STOCK_HOLD</b> <small>1 → many</small></li><li data-a="CHECKOUT_SESSION" data-b="CHILD_ORDER"><b>CHECKOUT_SESSION</b> <em>groups</em> <b>CHILD_ORDER</b> <small>1 → many</small></li><li data-a="CHECKOUT_SESSION" data-b="PROVIDER_RECORD"><b>CHECKOUT_SESSION</b> <em>confirmed by</em> <b>PROVIDER_RECORD</b> <small>1 → many</small></li><li data-a="SELLER_STORE" data-b="CHILD_ORDER"><b>SELLER_STORE</b> <em>fulfils</em> <b>CHILD_ORDER</b> <small>1 → many</small></li><li data-a="CHILD_ORDER" data-b="ORDER_LINE"><b>CHILD_ORDER</b> <em>has</em> <b>ORDER_LINE</b> <small>1 → many</small></li><li data-a="CHILD_ORDER" data-b="SELLER_INCOME"><b>CHILD_ORDER</b> <em>credits</em> <b>SELLER_INCOME</b> <small>1 → 0..1</small></li><li data-a="CHILD_ORDER" data-b="RETURN_CASE"><b>CHILD_ORDER</b> <em>may have</em> <b>RETURN_CASE</b> <small>1 → many</small></li></ul></div></figure></div>
-<div class="psec rv"><div class="psec-h"><span class="kicker">04 — Details</span><h2 class="sub-h">Details</h2><span class="src">open a row to read more</span></div>
-<div class="blocks"><details class="blk rv"><summary><span class="n">01</span><div><h2>Overview</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+<div class="psec rv"><div class="psec-h"><span class="kicker">04 — Data model</span><h2 class="sub-h">Main data model (simplified)</h2><span class="src">source: site · original diagram</span></div>
+<figure aria-label="Data model: Main data model (simplified)" class="diag-hero pfig pfig-er"><header><span>explorer · Main data model (simplified)</span><span>click a table</span></header><div class="erc"><p class="er-hint">Tap a table to see what it links to.</p><div class="ents"><div class="ent-c" data-e="SELLER_STORE" role="button" tabindex="0"><b>SELLER_STORE</b></div><div class="ent-c" data-e="PRODUCT" role="button" tabindex="0"><b>PRODUCT</b></div><div class="ent-c" data-e="VARIANT" role="button" tabindex="0"><b>VARIANT</b></div><div class="ent-c" data-e="BUYER" role="button" tabindex="0"><b>BUYER</b></div><div class="ent-c" data-e="CART_LINE" role="button" tabindex="0"><b>CART_LINE</b></div><div class="ent-c" data-e="STOCK_HOLD" role="button" tabindex="0"><b>STOCK_HOLD</b></div><div class="ent-c" data-e="CHECKOUT_SESSION" role="button" tabindex="0"><b>CHECKOUT_SESSION</b></div><div class="ent-c" data-e="CHILD_ORDER" role="button" tabindex="0"><b>CHILD_ORDER</b></div><div class="ent-c" data-e="PROVIDER_RECORD" role="button" tabindex="0"><b>PROVIDER_RECORD</b></div><div class="ent-c" data-e="ORDER_LINE" role="button" tabindex="0"><b>ORDER_LINE</b></div><div class="ent-c" data-e="SELLER_INCOME" role="button" tabindex="0"><b>SELLER_INCOME</b></div><div class="ent-c" data-e="RETURN_CASE" role="button" tabindex="0"><b>RETURN_CASE</b></div></div><ul class="rels" data-mclamp="150"><li data-a="SELLER_STORE" data-b="PRODUCT"><b>SELLER_STORE</b> <em>lists</em> <b>PRODUCT</b> <small>1 → many</small></li><li data-a="PRODUCT" data-b="VARIANT"><b>PRODUCT</b> <em>has</em> <b>VARIANT</b> <small>1 → many</small></li><li data-a="BUYER" data-b="CART_LINE"><b>BUYER</b> <em>has</em> <b>CART_LINE</b> <small>1 → many</small></li><li data-a="VARIANT" data-b="CART_LINE"><b>VARIANT</b> <em>in</em> <b>CART_LINE</b> <small>1 → many</small></li><li data-a="VARIANT" data-b="STOCK_HOLD"><b>VARIANT</b> <em>reserved by</em> <b>STOCK_HOLD</b> <small>1 → many</small></li><li data-a="CHECKOUT_SESSION" data-b="STOCK_HOLD"><b>CHECKOUT_SESSION</b> <em>owns</em> <b>STOCK_HOLD</b> <small>1 → many</small></li><li data-a="CHECKOUT_SESSION" data-b="CHILD_ORDER"><b>CHECKOUT_SESSION</b> <em>groups</em> <b>CHILD_ORDER</b> <small>1 → many</small></li><li data-a="CHECKOUT_SESSION" data-b="PROVIDER_RECORD"><b>CHECKOUT_SESSION</b> <em>confirmed by</em> <b>PROVIDER_RECORD</b> <small>1 → many</small></li><li data-a="SELLER_STORE" data-b="CHILD_ORDER"><b>SELLER_STORE</b> <em>fulfils</em> <b>CHILD_ORDER</b> <small>1 → many</small></li><li data-a="CHILD_ORDER" data-b="ORDER_LINE"><b>CHILD_ORDER</b> <em>has</em> <b>ORDER_LINE</b> <small>1 → many</small></li><li data-a="CHILD_ORDER" data-b="SELLER_INCOME"><b>CHILD_ORDER</b> <em>credits</em> <b>SELLER_INCOME</b> <small>1 → 0..1</small></li><li data-a="CHILD_ORDER" data-b="RETURN_CASE"><b>CHILD_ORDER</b> <em>may have</em> <b>RETURN_CASE</b> <small>1 → many</small></li></ul></div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">05 — Features</span><h2 class="sub-h">Features</h2><span class="src">10 items</span></div><ol class="flist" data-mclamp="300"><li><i>01</i><span>Seller apply, re-apply after rejection, admin approve or reject</span></li><li><i>02</i><span>Shop locations with operating hours, account details, vacation mode</span></li><li><i>03</i><span>Category-driven attributes; products with up to 2 variant axes and per-variant price and stock</span></li><li><i>04</i><span>Shared cart across channels</span></li><li><i>05</i><span>Checkout summary with stock holds and automatic expiry</span></li><li><i>06</i><span>Multi-seller checkout under one checkout</span></li><li><i>07</i><span>Seller flow: confirm, ship (with tracking), mark delivered</span></li><li><i>08</i><span>Buyer flow: received, cancel request, return and refund request, escalation</span></li><li><i>09</i><span>Admin attention queue: disputes, forced cancels, manual refund confirmation</span></li><li><i>10</i><span>Scheduled jobs: hold expiry, seller reminders, overdue cancellation, auto-complete, seller income release</span></li></ol></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">06 — Details</span><h2 class="sub-h">More details</h2><span class="src">open a row to read more</span></div><div class="blocks"><details class="blk rv"><summary><span class="n">01</span><div><h3>Overview</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
           The client already ran a marketplace app with its own catalog, accounts and cart. They wanted a
           second channel where independent sellers open shops and sell their own products, inside the same
           app, the same cart and the same checkout. I designed the channel end to end (approved by my lead)
@@ -94,56 +106,7 @@
           addresses, category tree, authentication, admin panel shell, media library, and the original
           channel's orders. Some later moderation features on shops (suspensions, visibility rules) were
           added by a colleague.
-        </p></div></details></div>
-<div class="blocks" style="margin-top:30px"><details class="blk rv"><summary><span class="n">02</span><div><h2></h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
-<div>The Problem</div>
-<ul>
-<li>
-              Two channels had to share one cart and one checkout, while stock, checkout and order flows stayed
-              separate per seller.
-            </li>
-<li>
-              Stock is limited per variant. Two buyers must never both get the last unit, but idle carts should
-              not lock stock either.
-            </li>
-<li>
-              Provider confirmation is asynchronous. It can arrive late (after the buyer cancelled), twice, or
-              not at all.
-            </li>
-<li>
-              One checkout can include orders from several sellers, and each can be cancelled or refunded on
-              its own.
-            </li>
-</ul>
-</div>
-<div>
-<div>The Solution</div>
-<ul>
-<li>
-              A seller onboarding and catalog module with up to two variant axes per product and a price and
-              stock row per variant.
-            </li>
-<li>A cart extended with a channel flag so both channels coexist in one basket.</li>
-<li>
-              Stock is <strong>held when the buyer opens the checkout summary</strong>,
-              not when they add to cart, and released when they leave or the hold expires.
-            </li>
-<li>
-              One <strong>checkout session</strong> groups child orders, one per seller,
-              under one checkout.
-            </li>
-<li>
-              Cancel, provider confirmation and a background check all go through the same locked path,
-              so the order ends in one consistent state whichever arrives first.
-            </li>
-<li>
-              A per-seller order lifecycle with cancellation, return and refund cases, and seller income
-              credited only after a buffer period.
-            </li>
-</ul>
-</div></div></details><details class="blk rv"><summary><span class="n">03</span><div><h2>Features</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><ul>
-<ul><li>Seller apply, re-apply after rejection, admin approve or reject</li><li>Shop locations with operating hours, account details, vacation mode</li><li>Category-driven attributes; products with up to 2 variant axes and per-variant price and stock</li><li>Shared cart across channels</li><li>Checkout summary with stock holds and automatic expiry</li><li>Multi-seller checkout under one checkout</li><li>Seller flow: confirm, ship (with tracking), mark delivered</li><li>Buyer flow: received, cancel request, return and refund request, escalation</li><li>Admin attention queue: disputes, forced cancels, manual refund confirmation</li><li>Scheduled jobs: hold expiry, seller reminders, overdue cancellation, auto-complete, seller income release</li></ul>
-</ul></div></details><details class="blk rv"><summary><span class="n">04</span><div><h2>Engineering highlights</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+        </p></div></details><details class="blk rv"><summary><span class="n">02</span><div><h3>Engineering highlights</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
 <p>
 <strong>Stock correctness under concurrency:</strong> row locks on the variant
             before checking availability; a separate held counter, so on-hand stock only changes when an order is
@@ -168,10 +131,10 @@
 <strong>Scheduled jobs that cannot overlap</strong>, and seller income credited
             once with a timestamp guard.
           </p>
-</div></div></details><details class="blk rv"><summary><span class="n">05</span><div><h2>Result</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+</div></div></details><details class="blk rv"><summary><span class="n">03</span><div><h3>Result</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
           The full flow from seller onboarding to checkout, fulfilment and refunds went live. I handed it over
           after delivery and the team continues to run and extend it.
-        </p></div></details><details class="blk rv"><summary><span class="n">06</span><div><h2>Technical notes</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><ul>
+        </p></div></details><details class="blk rv"><summary><span class="n">04</span><div><h3>Technical notes</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><ul>
 <ul><li><a href="../notes/seller-onboarding-variants.html">Seller onboarding and product variants →</a></li><li><a href="../notes/cart-stock-reservation.html">Cart and stock reservation →</a></li><li><a href="../notes/cancel-vs-late-payment.html">Cancel vs a late confirmation →</a></li><li><a href="../notes/order-lifecycle-refunds.html">Order lifecycle and refunds →</a></li></ul>
 </ul></div></details></div></div>
 </div></section>

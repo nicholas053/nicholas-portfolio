@@ -38,7 +38,7 @@ if (slot && !RM) {
 }
 
 // 3. Hero live trace — two phases, numbered steps, packet + log in lockstep (→ LiveTrace.tsx)
-const svg = matchMedia('(max-width: 900px)').matches ? $('#traceM') : $('#trace');
+const svg = matchMedia('(max-width: 640px)').matches ? null : matchMedia('(max-width: 900px)').matches ? $('#traceM') : $('#trace');  // <=640px: hero uses the step-through (§15)
 if (svg) {
   const pkt = svg.querySelector('#pkt'), halo = svg.querySelector('#pktHalo'), log = $('#log'), scn = $('#scn');
   const N = id => svg.querySelector('#' + id);
@@ -136,9 +136,9 @@ if (er) {
 // ===== v2 =====
 // 9. Accent switcher (→ small client component; tokens in globals.css [data-accent])
 (() => {
-  const ACC = [['cyan', '#3EE0FF', 'Electric Cyan'], ['peach', '#E0B089', 'Peach'], ['lime', '#C6F24E', 'Signal Lime'], ['violet', '#A78BFA', 'Soft Violet'], ['mint', '#5EEAD4', 'Mint'], ['orange', '#FF5B1F', 'Orange']];
+  const ACC = [['lime', '#C6F24E', 'Signal Lime'], ['peach', '#E0B089', 'Peach'], ['violet', '#A78BFA', 'Soft Violet'], ['mint', '#5EEAD4', 'Mint'], ['orange', '#FF5B1F', 'Orange']];
   const root = document.documentElement;
-  let cur = root.dataset.accent || 'cyan';
+  let cur = root.dataset.accent || 'lime';
   const box = document.createElement('div'); box.className = 'accent-sw'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', 'Accent colour');
   box.innerHTML = '<button type="button" class="acc-tg" aria-expanded="false" aria-label="Change accent colour"></button><span class="lbl">accent</span>' + ACC.map(([k, c, n]) => `<button type="button" data-k="${k}" style="--c:${c}" title="${n}" aria-label="${n}" aria-pressed="${k === cur}"></button>`).join('');
   box.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
@@ -210,16 +210,95 @@ const nb = $('.menu-btn');
 if (nb) nb.addEventListener('click', () => { const n = nb.closest('.nav'); const o = n.classList.toggle('open'); nb.setAttribute('aria-expanded', o); nb.textContent = o ? 'Close' : 'Menu'; });
 $$('.nav ul a').forEach(a => a.addEventListener('click', () => { const n = a.closest('.nav'); n.classList.remove('open'); if (nb) { nb.setAttribute('aria-expanded', false); nb.textContent = 'Menu'; } }));
 
-// 15. Mobile diagram steps: auto-advance while in view; tap jumps to a step (and pauses auto-play)
+// 15. Mobile step-through (shared pattern: any ol.mm-steps). One step + the next one peeking, counter,
+//     prev/next (44px), swipe or tap to advance, auto-advance while in view, and a "Full view" overlay
+//     that shows the full diagram (pinch / scroll / zoom). Source svg: data-full selector, else the figure's .mmwrap svg.
+function openFull(src, title) {
+  // same bar as notes.js .diag-overlay: title + 44px Close; Escape closes; pan / pinch inside
+  const ov = document.createElement('div'); ov.className = 'fv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Full view: ' + title);
+  ov.innerHTML = `<div class="fv-bar"><span>${esc(title || 'Full view')}</span><button type="button" class="fv-x">Close</button></div><div class="fv-body"></div>`;
+  const c = src.cloneNode(true); c.classList.add('fv-svg'); $$('[id]', c).forEach(n => n.removeAttribute('id'));
+  $$('.node,.msg,.wire,.edge', c).forEach(n => n.classList.add('lit', 'on'));
+  const vb = (src.getAttribute('viewBox') || '0 0 1000 600').split(/\s+/).map(Number);
+  c.style.width = Math.max(720, vb[2]) + 'px'; c.style.height = 'auto';
+  $('.fv-body', ov).appendChild(c); document.body.appendChild(ov); document.body.classList.add('fv-open');
+  const prev = document.activeElement;
+  const key = e => { if (e.key === 'Escape') close(); };
+  const close = () => { ov.remove(); document.body.classList.remove('fv-open'); removeEventListener('keydown', key); prev && prev.focus && prev.focus(); };
+  addEventListener('keydown', key);
+  $('.fv-x', ov).addEventListener('click', close); $('.fv-x', ov).focus();
+}
+// Same interaction as notes.js armStepper: top bar "i / n" + "Full view"; below: Previous / Next step (Done at the end);
+// tap a step; swipe left/right; plus auto-advance once while in view (stops at the last step or on any interaction).
+const onNotes = document.body.classList.contains('notes-page') || document.body.classList.contains('resume-page');
 $$('.mm-steps').forEach(ol => {
-  const lis = $$('li', ol); let i = -1, t = null;
-  const show = k => { i = k; lis.forEach((li, j) => { li.classList.toggle('on', j === i); li.classList.toggle('done', j < i); }); };
-  if (RM) { lis.forEach(li => li.classList.add('done')); return; }
-  const auto = () => { if (t) return; t = setInterval(() => show((i + 1) % lis.length), 1400); };
+  if (onNotes || ol.classList.contains('note-steps')) return;   // notes.js owns steppers there
+  const lis = $$('li', ol); if (!lis.length) return; let i = 0, t = null, seen = false;
+  const fig = ol.closest('figure') || ol.parentNode;
+  const src = ol.dataset.full ? $(ol.dataset.full) : fig.querySelector('.mmwrap svg');
+  const title = ol.dataset.title || ((fig.querySelector('header span') || {}).textContent || 'Full view');
+  const bar = document.createElement('div'); bar.className = 'stp-bar';
+  bar.innerHTML = `<span class="stp-c" aria-live="polite"></span>${src ? '<button type="button" class="stp-f">Full view</button>' : ''}`;
+  const nav = document.createElement('div'); nav.className = 'stp-nav';
+  nav.innerHTML = '<button type="button" class="prev">Previous</button><button type="button" class="primary">Next step</button>';
+  ol.classList.add('stp'); ol.before(bar); ol.after(nav);
+  const [pb, nb2] = $$('button', nav);
+  const show = k => { i = Math.max(0, Math.min(k, lis.length - 1));
+    lis.forEach((li, j) => { li.classList.toggle('on', j === i); li.classList.toggle('nxt', j === i + 1); li.classList.toggle('done', j < i); li.setAttribute('aria-current', j === i ? 'step' : 'false'); });
+    $('.stp-c', bar).textContent = (i + 1) + ' / ' + lis.length;
+    pb.disabled = i <= 0; nb2.disabled = i >= lis.length - 1; nb2.textContent = i >= lis.length - 1 ? 'Done' : 'Next step'; };
   const stop = () => { clearInterval(t); t = null; };
-  lis.forEach((li, j) => li.addEventListener('click', () => { stop(); show(j === i ? (j + 1) % lis.length : j); }));
-  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && i < 0) { show(0); auto(); } else if (!e.isIntersecting) stop(); }), { threshold: .2 }).observe(ol);
+  const auto = () => { if (t || RM || i >= lis.length - 1) return; t = setInterval(() => { if (i >= lis.length - 1) return stop(); show(i + 1); }, 2600); };
+  let touched = false; const user = f => () => { touched = true; stop(); f(); };
+  show(0);
+  pb.addEventListener('click', user(() => show(i - 1))); nb2.addEventListener('click', user(() => show(i + 1)));
+  if (src) $('.stp-f', bar).addEventListener('click', user(() => openFull(src, title)));
+  lis.forEach((li, j) => { li.tabIndex = 0; li.setAttribute('role', 'button');
+    const go = user(() => show(j === i ? i + 1 : j)); li.addEventListener('click', go);
+    li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } }); });
+  let x0 = 0, y0 = 0;
+  ol.addEventListener('touchstart', e => { x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY; }, { passive: true });
+  ol.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2) { touched = true; stop(); show(i + (dx < 0 ? 1 : -1)); } }, { passive: true });
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !touched) { if (!seen) { seen = true; show(0); } auto(); } else stop(); }), { threshold: .35 }).observe(ol);
 });
+
+// 15b. Phone: the floating accent switcher steps aside while a carousel / step-through / diagram is on screen
+(() => {
+  const sw = $('.accent-sw'); if (!sw) return;
+  const mq = matchMedia('(max-width: 640px)'); const vis = new Set();
+  const sync = () => sw.classList.toggle('away', mq.matches && vis.size > 0 && !sw.classList.contains('open'));
+  const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)); sync(); }, { threshold: 0 });
+  const arm = () => $$('.mcar, .mcar-nav, .mm-steps, .stp-bar, .stp-nav, .note-steps, .note-steps-bar, .note-steps-nav, .note-dots, .diag-hero, .pfig, .trace-card').forEach(el => io.observe(el));
+  arm(); setTimeout(arm, 600); mq.addEventListener('change', sync);
+})();
+
+// 17. Mobile carousels (shared pattern: any .mcar). <=640px the grid becomes a scroll-snap strip (card ≈85%, next peeks);
+//     a bar under it shows "n / N", dots and 44px prev/next buttons. Above 640px nothing changes.
+$$('.mcar').forEach(car => {
+  const items = [...car.children].filter(c => !c.classList.contains('ps2-mid')); if (items.length < 2) return;
+  const nav = document.createElement('div'); nav.className = 'mcar-nav';
+  nav.innerHTML = `<button type="button" class="mc-p" aria-label="Previous card">←</button><span class="mc-dots" aria-hidden="true">${items.map(() => '<i></i>').join('')}</span><span class="mc-c" aria-live="polite"></span><button type="button" class="mc-n" aria-label="Next card">→</button>`;
+  car.after(nav);
+  const dots = $$('.mc-dots i', nav);
+  const cur = () => { const L = car.getBoundingClientRect().left; let b = 0, bd = 1e9; items.forEach((it, k) => { const d = Math.abs(it.getBoundingClientRect().left - L - parseFloat(getComputedStyle(car).paddingLeft || 0)); if (d < bd) { bd = d; b = k; } }); return b; };
+  const paint = () => { const k = cur(); dots.forEach((d, j) => d.classList.toggle('on', j === k)); $('.mc-c', nav).textContent = `${k + 1} / ${items.length}`; };
+  const go = k => { const it = items[Math.max(0, Math.min(items.length - 1, k))]; car.scrollTo({ left: it.offsetLeft - car.offsetLeft - parseFloat(getComputedStyle(car).paddingLeft || 0), behavior: RM ? 'auto' : 'smooth' }); };
+  $('.mc-p', nav).addEventListener('click', () => go(cur() - 1)); $('.mc-n', nav).addEventListener('click', () => go(cur() + 1));
+  let raf = 0; car.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(paint); }, { passive: true });
+  paint(); addEventListener('resize', paint);
+});
+
+// 18. Mobile "show more" (shared pattern: [data-mclamp="<px>"]). <=640px the block is clamped to that height with a fade and a 44px toggle.
+const mq640 = matchMedia('(max-width: 640px)');
+$$('[data-mclamp]').forEach(el => {
+  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'mclamp-btn'; btn.setAttribute('aria-expanded', 'false'); btn.textContent = 'Show more ↓'; el.after(btn);
+  const apply = () => { const on = mq640.matches && el.scrollHeight > (+el.dataset.mclamp) + 60; el.classList.toggle('mclamp', on && !el.classList.contains('open')); btn.hidden = !on;
+    if (on) el.style.setProperty('--mclamp', el.dataset.mclamp + 'px'); };
+  btn.addEventListener('click', () => { const o = el.classList.toggle('open'); el.classList.toggle('mclamp', !o); btn.setAttribute('aria-expanded', o); btn.textContent = o ? 'Show less ↑' : 'Show more ↓'; });
+  apply(); mq640.addEventListener('change', apply);
+});
+if (mq640.matches) $$('.xp details[open]').forEach(d => d.removeAttribute('open'));
 
 // 16. Data model: click/tap (not hover) highlights a table, its relations and linked tables
 $$('.erc').forEach(er => {

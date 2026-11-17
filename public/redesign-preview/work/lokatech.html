@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html data-accent="cyan" lang="en">
+<html data-accent="lime" lang="en">
 <head>
 <meta charset="utf-8"/><link href="data:," rel="icon"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>LokaTech — Internal Operations Platform — Nicholas Chong (redesign prototype)</title>
 <meta content="A full-stack operations platform for professional digital services teams — unifying scoped pricing,
           collaborative client sign-off, billing, and technical documentation in a single Next.js monorepo." name="description"/>
-<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'cyan'}catch(e){document.documentElement.dataset.accent='cyan'}</script>
+<script>try{document.documentElement.dataset.accent=localStorage.getItem('accent')||'lime'}catch(e){document.documentElement.dataset.accent='lime'}</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="../assets/styles.css" rel="stylesheet"/>
@@ -16,7 +16,7 @@
 <nav class="nav"><div class="wrap">
 <a class="brand" href="../index.html"><i></i>Nic Chong</a>
 <button aria-controls="navlist" aria-expanded="false" class="menu-btn" type="button">Menu</button>
-<ul id="navlist"><li><a aria-current="page" class="on" href="../index.html#work">Work</a></li><li><a href="../notes/index.html">Notes</a></li><li><a href="../index.html#about">About</a></li><li><a href="../resume.html">Resume</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+<ul id="navlist"><li><a aria-current="page" class="on" href="../index.html#work">Work</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
 <a class="btn btn-trace" href="../resume.html">Resume</a>
 </div></nav>
 <main id="main">
@@ -33,33 +33,44 @@
           </a></div>
 </div></header>
 <section class="sec" style="padding-top:28px"><div class="wrap">
-<div class="psec rv"><div class="psec-h"><span class="kicker">01 — Flow</span><h2 class="sub-h">Quote to billing</h2><span class="src">source: site copy · case study</span></div>
-<figure aria-label="Flow: Quote to billing" class="diag-hero pfig pfig-flow"><header><span>live trace · Quote to billing</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Flow diagram" class="mm graph" data-anim="graph" data-traces='[[[null, "n2_A", "Typed project: portfolio, landing, corporate, custom"], ["e2_0", "n2_B", "Pricing engine: catalog + rules-based calculators"], ["e2_1", "n2_C", "Scope builder with live breakdown"], ["e2_2", "n2_D", "Admin publishes a review round"], ["e2_3", "n2_E", "Magic link to client, scoped to one project"], ["e2_4", "n2_F", "Client accepts?"], ["e2_5", "n2_K", "Next round: NEW / MODIFIED flags"]], [[null, "n2_A", "Typed project: portfolio, landing, corporate, custom"], ["e2_0", "n2_B", "Pricing engine: catalog + rules-based calculators"], ["e2_1", "n2_C", "Scope builder with live breakdown"], ["e2_2", "n2_D", "Admin publishes a review round"], ["e2_3", "n2_E", "Magic link to client, scoped to one project"], ["e2_4", "n2_F", "Client accepts?"], ["e2_6", "n2_G", "Baseline locked + snapshot PDF"], ["e2_7", "n2_H", "Change orders with audit history"]], [[null, "n2_A", "Typed project: portfolio, landing, corporate, custom"], ["e2_0", "n2_B", "Pricing engine: catalog + rules-based calculators"], ["e2_1", "n2_C", "Scope builder with live breakdown"], ["e2_2", "n2_D", "Admin publishes a review round"], ["e2_3", "n2_E", "Magic link to client, scoped to one project"], ["e2_4", "n2_F", "Client accepts?"], ["e2_6", "n2_G", "Baseline locked + snapshot PDF"], ["e2_8", "n2_I", "Project-first billing: invoices + PDF"], ["e2_9", "n2_J", "Overdue \u2192 dashboard attention feed"]]]' role="img" style="--w:992px" viewbox="0 0 992 386">
-<path class="wire" d="M216 55 C244 55 244 55 272 55" id="e2_0" marker-end="url(#ah)"></path>
-<path class="wire" d="M468 55 C496 55 496 55 524 55" id="e2_1" marker-end="url(#ah)"></path>
-<path class="wire" d="M720 55 C748 55 748 55 776 55" id="e2_2" marker-end="url(#ah)"></path>
-<path class="wire" d="M874 82 C874 128 874 128 874 174" id="e2_3" marker-end="url(#ah)"></path>
-<path class="wire" d="M776 201 C748 201 748 201 720 201" id="e2_4" marker-end="url(#ah)"></path>
-<path class="wire" d="M524 201 C496 201 496 165 468 165" id="e2_5" marker-end="url(#ah)"></path>
-<g class="elab"><rect height="20" rx="3" width="69" x="461" y="172"></rect><text text-anchor="middle" x="496" y="187">comments</text></g>
-<path class="wire" d="M524 201 C496 201 496 237 468 237" id="e2_6" marker-end="url(#ah)"></path>
-<g class="elab"><rect height="20" rx="3" width="54" x="469" y="208"></rect><text text-anchor="middle" x="496" y="223">accept</text></g>
-<path class="wire" d="M272 237 C244 237 244 165 216 165" id="e2_7" marker-end="url(#ah)"></path>
-<path class="wire" d="M272 237 C244 237 244 237 216 237" id="e2_8" marker-end="url(#ah)"></path>
-<path class="wire" d="M118 264 C118 288 118 288 118 312" id="e2_9" marker-end="url(#ah)"></path>
+<div class="psec rv"><div class="psec-h"><span class="kicker">01 — Problem → solution</span><h2 class="sub-h">The problem → the solution</h2><span class="src">source: project write-up</span></div><div class="ps2 mcar"><div class="ps2-col bad"><header><span class="st"><i></i>before · the problem</span><svg aria-hidden="true" class="ps-mini bad" viewbox="0 0 240 28"><path class="w" d="M10 14 H96"></path><path class="w broken" d="M118 14 H230"></path>
+<circle class="n" cx="10" cy="14" r="5"></circle><circle class="n" cx="60" cy="14" r="5"></circle><g class="x" transform="translate(107 14)"><circle r="9"></circle><path d="M-4 -4 L4 4 M4 -4 L-4 4"></path></g><circle class="n dim" cx="170" cy="14" r="5"></circle><circle class="n dim" cx="230" cy="14" r="5"></circle><circle class="pk" cx="10" cy="14" r="4"></circle></svg></header><h3>Fragmented agency operations</h3><ol class="ps2-stops" data-mclamp="380"><li><i class="mk">✕</i><div><strong>Inconsistent quoting:</strong> Every project type
+              had different pricing rules; manual calculation led to under-pricing and rework.</div></li><li><i class="mk">✕</i><div><strong>No audit trail:</strong> Scope changed mid-negotiation
+              with no single source of truth for what changed or what the client agreed to.</div></li><li><i class="mk">✕</i><div><strong>Slow sign-off:</strong> Proposals bounced over email
+              and PDF with no structured feedback or formal baseline acceptance.</div></li><li><i class="mk">✕</i><div><strong>Disconnected billing &amp; docs:</strong> Invoices were
+              typed from scratch; requirements and architecture lived in separate tools.</div></li></ol></div><div aria-hidden="true" class="ps2-mid"><svg viewbox="0 0 40 40"><path d="M6 20 H32 M24 12 L32 20 L24 28"></path></svg></div><div class="ps2-col good"><header><span class="st"><i></i>after · the solution</span><svg aria-hidden="true" class="ps-mini good" viewbox="0 0 240 28"><path class="w" d="M10 14 H230"></path>
+<circle class="n" cx="10" cy="14" r="5"></circle><circle class="n" cx="70" cy="14" r="5"></circle><circle class="n" cx="130" cy="14" r="5"></circle><circle class="n" cx="190" cy="14" r="5"></circle><g class="ok" transform="translate(230 14)"><circle r="9"></circle><path d="M-4 0 L-1 3 L4 -3"></path></g><circle class="pk" cx="10" cy="14" r="4"></circle></svg></header><h3>One system for pre-sale → billing</h3><ol class="ps2-stops" data-mclamp="380"><li><i class="mk">01</i><div><strong>Catalog + pricing engine:</strong> Master scope
+              catalog and rules-based calculators with transparent step-by-step breakdowns.</div></li><li><i class="mk">02</i><div><strong>Collaborative scope review:</strong> Admins publish
+              rounds; clients interact via magic links — ticks, comments, and baseline lock on accept.</div></li><li><i class="mk">03</i><div><strong>Project-first billing:</strong> Multi-line invoices,
+              payment status, overdue detection, and branded PDF export per project.</div></li><li><i class="mk">04</i><div><strong>Command dashboard:</strong> Attention feed for open
+              reviews, client feedback, and overdue invoices — admin, marketing, and portal in one repo.</div></li></ol></div></div></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">02 — Flow</span><h2 class="sub-h">Quote to billing</h2><span class="src">source: site copy · case study</span></div>
+<figure aria-label="Flow: Quote to billing" class="diag-hero pfig pfig-flow"><header><span>live trace · Quote to billing</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Flow diagram" class="mm graph" data-anim="graph" data-traces='[[[null, "n2_A", "Typed project: portfolio, landing, corporate, custom"], ["e2_0", "n2_B", "Pricing engine: catalog + rules-based calculators"], ["e2_1", "n2_C", "Scope builder with live breakdown"], ["e2_2", "n2_D", "Admin publishes a review round"], ["e2_3", "n2_E", "Magic link to client, scoped to one project"], ["e2_4", "n2_F", "Client accepts?"], ["e2_5", "n2_K", "Next round: NEW / MODIFIED flags"]], [[null, "n2_A", "Typed project: portfolio, landing, corporate, custom"], ["e2_0", "n2_B", "Pricing engine: catalog + rules-based calculators"], ["e2_1", "n2_C", "Scope builder with live breakdown"], ["e2_2", "n2_D", "Admin publishes a review round"], ["e2_3", "n2_E", "Magic link to client, scoped to one project"], ["e2_4", "n2_F", "Client accepts?"], ["e2_6", "n2_G", "Baseline locked + snapshot PDF"], ["e2_7", "n2_H", "Change orders with audit history"]], [[null, "n2_A", "Typed project: portfolio, landing, corporate, custom"], ["e2_0", "n2_B", "Pricing engine: catalog + rules-based calculators"], ["e2_1", "n2_C", "Scope builder with live breakdown"], ["e2_2", "n2_D", "Admin publishes a review round"], ["e2_3", "n2_E", "Magic link to client, scoped to one project"], ["e2_4", "n2_F", "Client accepts?"], ["e2_6", "n2_G", "Baseline locked + snapshot PDF"], ["e2_8", "n2_I", "Project-first billing: invoices + PDF"], ["e2_9", "n2_J", "Overdue \u2192 dashboard attention feed"]]]' role="img" style="--w:830px" viewbox="0 0 830 406">
+<path class="wire" d="M216 55 C266 55 266 55 317 55" id="e2_0" marker-end="url(#ah)"></path>
+<path class="wire" d="M513 55 C564 55 564 55 614 55" id="e2_1" marker-end="url(#ah)"></path>
+<path class="wire" d="M712 82 C712 114 712 114 712 146" id="e2_2" marker-end="url(#ah)"></path>
+<path class="wire" d="M614 173 C564 173 564 173 513 173" id="e2_3" marker-end="url(#ah)"></path>
+<path class="wire" d="M317 173 C266 173 266 173 216 173" id="e2_4" marker-end="url(#ah)"></path>
+<path class="wire" d="M118 192 C118 224 118 224 118 256" id="e2_5" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="69" x="83" y="221"></rect><text text-anchor="middle" x="118" y="236">comments</text></g>
+<path class="wire" d="M118 192 V228 H266 V359 H216" id="e2_6" marker-end="url(#ah)"></path>
+<g class="elab"><rect height="20" rx="3" width="54" x="239" y="326"></rect><text text-anchor="middle" x="266" y="341">accept</text></g>
+<path class="wire" d="M216 359 C266 359 266 283 317 283" id="e2_7" marker-end="url(#ah)"></path>
+<path class="wire" d="M216 359 C266 359 266 359 317 359" id="e2_8" marker-end="url(#ah)"></path>
+<path class="wire" d="M513 359 C564 359 564 321 614 321" id="e2_9" marker-end="url(#ah)"></path>
 <g class="node" id="n2_A"><rect height="70" rx="4" width="196" x="20" y="20"></rect><text x="32" y="44">Typed project:</text><text x="32" y="60">portfolio, landing,</text><text x="32" y="76">corporate, custom</text></g>
-<g class="node" id="n2_B"><rect height="70" rx="4" width="196" x="272" y="20"></rect><text x="284" y="44">Pricing engine: catalog</text><text x="284" y="60">+ rules-based</text><text x="284" y="76">calculators</text></g>
-<g class="node" id="n2_C"><rect height="54" rx="4" width="196" x="524" y="28"></rect><text x="536" y="52">Scope builder with live</text><text x="536" y="68">breakdown</text></g>
-<g class="node" id="n2_D"><rect height="54" rx="4" width="196" x="776" y="28"></rect><text x="788" y="52">Admin publishes a review</text><text x="788" y="68">round</text></g>
-<g class="node" id="n2_E"><rect height="54" rx="4" width="196" x="776" y="174"></rect><text x="788" y="198">Magic link to client,</text><text x="788" y="214">scoped to one project</text></g>
-<g class="node dec" id="n2_F"><rect height="38" rx="14" width="196" x="524" y="182"></rect><text x="536" y="206">◆ Client accepts?</text></g>
-<g class="node" id="n2_K"><rect height="54" rx="4" width="196" x="272" y="138"></rect><text x="284" y="162">Next round: NEW /</text><text x="284" y="178">MODIFIED flags</text></g>
-<g class="node" id="n2_G"><rect height="54" rx="4" width="196" x="272" y="210"></rect><text x="284" y="234">Baseline locked +</text><text x="284" y="250">snapshot PDF</text></g>
-<g class="node" id="n2_H"><rect height="54" rx="4" width="196" x="20" y="138"></rect><text x="32" y="162">Change orders with audit</text><text x="32" y="178">history</text></g>
-<g class="node" id="n2_I"><rect height="54" rx="4" width="196" x="20" y="210"></rect><text x="32" y="234">Project-first billing:</text><text x="32" y="250">invoices + PDF</text></g>
-<g class="node" id="n2_J"><rect height="54" rx="4" width="196" x="20" y="312"></rect><text x="32" y="336">Overdue → dashboard</text><text x="32" y="352">attention feed</text></g>
+<g class="node" id="n2_B"><rect height="70" rx="4" width="196" x="317" y="20"></rect><text x="329" y="44">Pricing engine:</text><text x="329" y="60">catalog + rules-based</text><text x="329" y="76">calculators</text></g>
+<g class="node" id="n2_C"><rect height="54" rx="4" width="196" x="614" y="28"></rect><text x="626" y="52">Scope builder with</text><text x="626" y="68">live breakdown</text></g>
+<g class="node" id="n2_D"><rect height="54" rx="4" width="196" x="614" y="146"></rect><text x="626" y="170">Admin publishes a</text><text x="626" y="186">review round</text></g>
+<g class="node" id="n2_E"><rect height="54" rx="4" width="196" x="317" y="146"></rect><text x="329" y="170">Magic link to client,</text><text x="329" y="186">scoped to one project</text></g>
+<g class="node dec" id="n2_F"><rect height="38" rx="14" width="196" x="20" y="154"></rect><text x="32" y="178">◆ Client accepts?</text></g>
+<g class="node" id="n2_K"><rect height="54" rx="4" width="196" x="20" y="256"></rect><text x="32" y="280">Next round: NEW /</text><text x="32" y="296">MODIFIED flags</text></g>
+<g class="node" id="n2_G"><rect height="54" rx="4" width="196" x="20" y="332"></rect><text x="32" y="356">Baseline locked +</text><text x="32" y="372">snapshot PDF</text></g>
+<g class="node" id="n2_H"><rect height="54" rx="4" width="196" x="317" y="256"></rect><text x="329" y="280">Change orders with</text><text x="329" y="296">audit history</text></g>
+<g class="node" id="n2_I"><rect height="54" rx="4" width="196" x="317" y="332"></rect><text x="329" y="356">Project-first billing:</text><text x="329" y="372">invoices + PDF</text></g>
+<g class="node" id="n2_J"><rect height="54" rx="4" width="196" x="614" y="294"></rect><text x="626" y="318">Overdue → dashboard</text><text x="626" y="334">attention feed</text></g>
 <circle class="pkt" cx="-20" cy="-20" r="5.5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><b>Typed project: portfolio, landing, corporate, custom</b><span class="nx">→ Pricing engine: catalog + rules-based calculators</span></div></li><li><span class="i">02</span><div><b>Pricing engine: catalog + rules-based calculators</b><span class="nx">→ Scope builder with live breakdown</span></div></li><li><span class="i">03</span><div><b>Scope builder with live breakdown</b><span class="nx">→ Admin publishes a review round</span></div></li><li><span class="i">04</span><div><b>Admin publishes a review round</b><span class="nx">→ Magic link to client, scoped to one project</span></div></li><li><span class="i">05</span><div><b>Magic link to client, scoped to one project</b><span class="nx">→ Client accepts?</span></div></li><li><span class="i">06</span><div><b>◆ Client accepts?</b><span class="nx">→ Next round: NEW / MODIFIED flags <em>[comments]</em></span><span class="nx">→ Baseline locked + snapshot PDF <em>[accept]</em></span></div></li><li><span class="i">07</span><div><b>Next round: NEW / MODIFIED flags</b></div></li><li><span class="i">08</span><div><b>Baseline locked + snapshot PDF</b><span class="nx">→ Change orders with audit history</span><span class="nx">→ Project-first billing: invoices + PDF</span></div></li><li><span class="i">09</span><div><b>Change orders with audit history</b></div></li><li><span class="i">10</span><div><b>Project-first billing: invoices + PDF</b><span class="nx">→ Overdue → dashboard attention feed</span></div></li><li><span class="i">11</span><div><b>Overdue → dashboard attention feed</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
-<div class="psec rv"><div class="psec-h"><span class="kicker">02 — Sequence</span><h2 class="sub-h">Client scope review</h2><span class="src">source: site copy · engineering spotlight</span></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">03 — Sequence</span><h2 class="sub-h">Client scope review</h2><span class="src">source: site copy · engineering spotlight</span></div>
 <figure aria-label="Sequence: Client scope review" class="diag-hero pfig pfig-seq"><header><span>live trace · Client scope review</span><span>scroll to play · tap a step on mobile</span></header><div class="mmwrap d-only"><svg aria-label="Sequence diagram" class="mm lanes" data-anim="lanes" role="img" style="--w:1060px" viewbox="0 0 1060 442">
 <line class="lane" x1="105.0" x2="105.0" y1="44" y2="432"></line>
 <g class="actor"><rect height="34" rx="3" width="154" x="28.0" y="6"></rect><text text-anchor="middle" x="105.0" y="27">Admin</text></g>
@@ -81,50 +92,10 @@
 <g class="msg async" data-i="5"><path class="mline" d="M785.0 348 H445.0"></path><path class="head" d="M445.0 348 l8 -5 v10z"></path><text class="num" x="455.0" y="340">06</text><text x="479.0" y="340">accept: baseline locked</text></g>
 <g class="msg" data-i="6"><path class="mline" d="M445.0 400 H955.0"></path><path class="head" d="M955.0 400 l-8 -5 v10z"></path><text class="num" x="455.0" y="392">07</text><text x="479.0" y="392">attention feed: comments, open rounds</text></g>
 <circle class="pkt" cx="-20" cy="-20" r="5"></circle></svg></div><ol aria-label="Diagram as steps" class="mm-steps m-only"><li><span class="i">01</span><div><span class="who">Admin → Server action</span><b>publish review round</b></div></li><li><span class="i">02</span><div><span class="who">Server action → Database</span><b>Zod, requireSession(), then Prisma</b></div></li><li><span class="i">03</span><div><span class="who">Server action → Database</span><b>32-byte token, SHA-256 hash at rest</b></div></li><li><span class="i">04</span><div><span class="who">Client → Portal</span><b>open magic link (type + expiry per route)</b></div></li><li><span class="i">05</span><div><span class="who">Client → Portal</span><b>tick lines, comment</b></div></li><li><span class="i">06</span><div><span class="who">Portal → Database</span><b>accept: baseline locked</b></div></li><li><span class="i">07</span><div><span class="who">Database → Dashboard</span><b>attention feed: comments, open rounds</b></div></li></ol><div aria-hidden="true" class="mm-log d-only">…</div></figure></div>
-<div class="psec rv"><div class="psec-h"><span class="kicker">03 — Data model</span><h2 class="sub-h">Data model (simplified, from the case-study copy)</h2><span class="src">source: site copy · entity names only</span></div>
-<figure aria-label="Data model: Data model (simplified, from the case-study copy)" class="diag-hero pfig pfig-er"><header><span>explorer · Data model (simplified, from the case-study copy)</span><span>click a table</span></header><div class="erc"><p class="er-hint">Tap a table to see what it links to.</p><div class="ents"><div class="ent-c" data-e="CLIENT" role="button" tabindex="0"><b>CLIENT</b></div><div class="ent-c" data-e="PROJECT" role="button" tabindex="0"><b>PROJECT</b><span>enum type</span></div><div class="ent-c" data-e="REVIEW_ROUND" role="button" tabindex="0"><b>REVIEW_ROUND</b></div><div class="ent-c" data-e="PORTAL_LINK" role="button" tabindex="0"><b>PORTAL_LINK</b><span>string tokenHash</span><span>enum linkType</span><span>datetime expiry</span></div><div class="ent-c" data-e="SCOPE_LINE" role="button" tabindex="0"><b>SCOPE_LINE</b><span>enum flag</span><span>bool ticked</span></div><div class="ent-c" data-e="BASELINE" role="button" tabindex="0"><b>BASELINE</b></div><div class="ent-c" data-e="CHANGE_ORDER" role="button" tabindex="0"><b>CHANGE_ORDER</b></div><div class="ent-c" data-e="INVOICE" role="button" tabindex="0"><b>INVOICE</b><span>enum status</span></div></div><ul class="rels"><li data-a="CLIENT" data-b="PROJECT"><b>CLIENT</b> <em>has</em> <b>PROJECT</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="REVIEW_ROUND"><b>PROJECT</b> <em>publishes</em> <b>REVIEW_ROUND</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="PORTAL_LINK"><b>PROJECT</b> <em>scoped to</em> <b>PORTAL_LINK</b> <small>1 → many</small></li><li data-a="REVIEW_ROUND" data-b="SCOPE_LINE"><b>REVIEW_ROUND</b> <em>contains</em> <b>SCOPE_LINE</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="BASELINE"><b>PROJECT</b> <em>locks on accept</em> <b>BASELINE</b> <small>1 → 0..1</small></li><li data-a="BASELINE" data-b="CHANGE_ORDER"><b>BASELINE</b> <em>audits</em> <b>CHANGE_ORDER</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="INVOICE"><b>PROJECT</b> <em>bills</em> <b>INVOICE</b> <small>1 → many</small></li></ul></div></figure></div>
-<div class="psec rv"><div class="psec-h"><span class="kicker">04 — Details</span><h2 class="sub-h">Details</h2><span class="src">open a row to read more</span></div>
-<div class="blocks"><div class="rv" style="padding:26px 0;border-bottom:1px solid var(--ink-line)"><span class="kicker">01 — The Problem / The Solution</span><div class="ps"><div class="rv"><span class="lab">The Problem</span><h3>Fragmented agency operations</h3>
-<ul>
-<li>
-<strong>Inconsistent quoting:</strong> Every project type
-              had different pricing rules; manual calculation led to under-pricing and rework.
-            </li>
-<li>
-<strong>No audit trail:</strong> Scope changed mid-negotiation
-              with no single source of truth for what changed or what the client agreed to.
-            </li>
-<li>
-<strong>Slow sign-off:</strong> Proposals bounced over email
-              and PDF with no structured feedback or formal baseline acceptance.
-            </li>
-<li>
-<strong>Disconnected billing &amp; docs:</strong> Invoices were
-              typed from scratch; requirements and architecture lived in separate tools.
-            </li>
-</ul>
-</div><div class="rv"><span class="lab">The Solution</span><h3>One system for pre-sale → billing</h3>
-<ul>
-<li>
-<strong>Catalog + pricing engine:</strong> Master scope
-              catalog and rules-based calculators with transparent step-by-step breakdowns.
-            </li>
-<li>
-<strong>Collaborative scope review:</strong> Admins publish
-              rounds; clients interact via magic links — ticks, comments, and baseline lock on accept.
-            </li>
-<li>
-<strong>Project-first billing:</strong> Multi-line invoices,
-              payment status, overdue detection, and branded PDF export per project.
-            </li>
-<li>
-<strong>Command dashboard:</strong> Attention feed for open
-              reviews, client feedback, and overdue invoices — admin, marketing, and portal in one repo.
-            </li>
-</ul>
-</div></div></div></div>
-<div style="margin:44px 0 10px"><span class="kicker">Features</span><h2 class="sub-h" style="margin-top:8px">Features</h2><div class="blocks"><details class="blk rv"><summary><span class="n">01</span><div><h3>Dashboard &amp; attention feed</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Billing metrics — unpaid total, overdue count, MTD revenue, active projects — plus a needs-attention feed for unread client comments, open review rounds, and overdue invoices. Quick links jump straight to the project or invoice that needs action.</p></div></details><details class="blk rv"><summary><span class="n">02</span><div><h3>Pricing &amp; project workspace</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Each engagement gets a typed project (portfolio, landing page, corporate site, or custom system) with a rules-based pricing engine, live breakdown, scope builder, requirements notebook, and live UML editor — all in one workspace.</p></div></details><details class="blk rv"><summary><span class="n">03</span><div><h3>Collaborative scope review</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Admins publish review rounds and generate secure magic links. Clients tick lines, leave structured comments, and formally accept a locked baseline — replacing email back-and-forth with an auditable negotiation workflow.</p></div></details><details class="blk rv"><summary><span class="n">04</span><div><h3>Billing &amp; documents</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Project-first billing hub with invoice CRUD, mark paid/unpaid, filters, and overdue detection. Branded PDF export for scope proposals, invoices, and baseline scope snapshots after client acceptance.</p></div></details></div></div>
-<div class="blocks" style="margin-top:30px"><details class="blk rv"><summary><span class="n">02</span><div><h2>Impact</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">04 — Data model</span><h2 class="sub-h">Data model (simplified, from the case-study copy)</h2><span class="src">source: site copy · entity names only</span></div>
+<figure aria-label="Data model: Data model (simplified, from the case-study copy)" class="diag-hero pfig pfig-er"><header><span>explorer · Data model (simplified, from the case-study copy)</span><span>click a table</span></header><div class="erc"><p class="er-hint">Tap a table to see what it links to.</p><div class="ents"><div class="ent-c" data-e="CLIENT" role="button" tabindex="0"><b>CLIENT</b></div><div class="ent-c" data-e="PROJECT" role="button" tabindex="0"><b>PROJECT</b><span>enum type</span></div><div class="ent-c" data-e="REVIEW_ROUND" role="button" tabindex="0"><b>REVIEW_ROUND</b></div><div class="ent-c" data-e="PORTAL_LINK" role="button" tabindex="0"><b>PORTAL_LINK</b><span>string tokenHash</span><span>enum linkType</span><span>datetime expiry</span></div><div class="ent-c" data-e="SCOPE_LINE" role="button" tabindex="0"><b>SCOPE_LINE</b><span>enum flag</span><span>bool ticked</span></div><div class="ent-c" data-e="BASELINE" role="button" tabindex="0"><b>BASELINE</b></div><div class="ent-c" data-e="CHANGE_ORDER" role="button" tabindex="0"><b>CHANGE_ORDER</b></div><div class="ent-c" data-e="INVOICE" role="button" tabindex="0"><b>INVOICE</b><span>enum status</span></div></div><ul class="rels" data-mclamp="150"><li data-a="CLIENT" data-b="PROJECT"><b>CLIENT</b> <em>has</em> <b>PROJECT</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="REVIEW_ROUND"><b>PROJECT</b> <em>publishes</em> <b>REVIEW_ROUND</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="PORTAL_LINK"><b>PROJECT</b> <em>scoped to</em> <b>PORTAL_LINK</b> <small>1 → many</small></li><li data-a="REVIEW_ROUND" data-b="SCOPE_LINE"><b>REVIEW_ROUND</b> <em>contains</em> <b>SCOPE_LINE</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="BASELINE"><b>PROJECT</b> <em>locks on accept</em> <b>BASELINE</b> <small>1 → 0..1</small></li><li data-a="BASELINE" data-b="CHANGE_ORDER"><b>BASELINE</b> <em>audits</em> <b>CHANGE_ORDER</b> <small>1 → many</small></li><li data-a="PROJECT" data-b="INVOICE"><b>PROJECT</b> <em>bills</em> <b>INVOICE</b> <small>1 → many</small></li></ul></div></figure></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">05 — Features</span><h2 class="sub-h">Features</h2><span class="src">open a row to read more</span></div><div class="blocks"><details class="blk rv"><summary><span class="n">01</span><div><h3>Dashboard &amp; attention feed</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Billing metrics — unpaid total, overdue count, MTD revenue, active projects — plus a needs-attention feed for unread client comments, open review rounds, and overdue invoices. Quick links jump straight to the project or invoice that needs action.</p></div></details><details class="blk rv"><summary><span class="n">02</span><div><h3>Pricing &amp; project workspace</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Each engagement gets a typed project (portfolio, landing page, corporate site, or custom system) with a rules-based pricing engine, live breakdown, scope builder, requirements notebook, and live UML editor — all in one workspace.</p></div></details><details class="blk rv"><summary><span class="n">03</span><div><h3>Collaborative scope review</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Admins publish review rounds and generate secure magic links. Clients tick lines, leave structured comments, and formally accept a locked baseline — replacing email back-and-forth with an auditable negotiation workflow.</p></div></details><details class="blk rv"><summary><span class="n">04</span><div><h3>Billing &amp; documents</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>Project-first billing hub with invoice CRUD, mark paid/unpaid, filters, and overdue detection. Branded PDF export for scope proposals, invoices, and baseline scope snapshots after client acceptance.</p></div></details></div></div>
+<div class="psec rv"><div class="psec-h"><span class="kicker">06 — Details</span><h2 class="sub-h">More details</h2><span class="src">open a row to read more</span></div><div class="blocks"><details class="blk rv"><summary><span class="n">01</span><div><h3>Impact</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
 <div>
 <h3>Quoting</h3>
 <p>
@@ -153,7 +124,7 @@
               feed links directly to what needs action.
             </p>
 </div>
-</div></div></details><details class="blk rv"><summary><span class="n">03</span><div><h2>Engineering Spotlight</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+</div></div></details><details class="blk rv"><summary><span class="n">02</span><div><h3>Engineering Spotlight</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
 <div>
 <h3>
 <span>01.</span> Server action architecture
@@ -179,7 +150,7 @@
               boundary.
             </p>
 </div>
-</div></div></details><details class="blk rv"><summary><span class="n">04</span><div><h2>Audience snapshot</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+</div></div></details><details class="blk rv"><summary><span class="n">03</span><div><h3>Audience snapshot</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
 <div>
 <h3>Admin</h3>
 <p>
@@ -198,7 +169,7 @@
               Token-based magic links, no account — separate URLs for interactive scope review vs read-only project docs.
             </p>
 </div>
-</div></div></details><details class="blk rv"><summary><span class="n">05</span><div><h2>Tech Stack</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
+</div></div></details><details class="blk rv"><summary><span class="n">04</span><div><h3>Tech Stack</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><p>
           Full-stack TypeScript on Next.js App Router — PostgreSQL as the source of truth, validation at every mutation
           boundary.
         </p>
@@ -223,7 +194,7 @@
 <strong>Validation:</strong> Zod · <strong>Diagrams:</strong> Mermaid · <strong>PDF:</strong> 
             @react-pdf/renderer (client-side)
           </p>
-</div></div></details><details class="blk rv"><summary><span class="n">06</span><div><h2>Future Roadmap</h2></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
+</div></div></details><details class="blk rv"><summary><span class="n">05</span><div><h3>Future Roadmap</h3></div><span aria-hidden="true" class="pm">+</span></summary><div class="prose"><div>
 <div>
 <h3>Project status pipeline</h3>
 <p>
