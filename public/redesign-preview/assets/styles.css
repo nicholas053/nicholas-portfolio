@@ -751,7 +751,7 @@ body.fv-open .accent-sw{display:none}
   .about.mcar{margin-top:32px!important}
   .about.mcar>*{border:1px solid var(--ink-line);border-radius:6px;padding:16px;background:var(--ink-2)}
 }
-@media (max-width:640px) and (prefers-reduced-motion:reduce){.marquee{gap:10px 18px;padding:14px 0}.marquee span{font-size:1.1rem;gap:18px}.marquee span:nth-child(n+9){display:none}}
+@media (max-width:640px) and (prefers-reduced-motion:reduce){.marquee{gap:10px 18px;padding:14px 0}.marquee span{font-size:1.1rem;gap:18px}.marquee span:nth-child(n+10){display:none}}
 
 /* batch6: phones show no hero diagram at all (Nicholas) — headline, intro, status and CTAs only */
 @media (max-width:640px){
@@ -759,3 +759,20 @@ body.fv-open .accent-sw{display:none}
   .hero h1.display{font-size:3.4rem;line-height:.98;margin-bottom:6px}
   .hero .wrap{padding-top:12px;padding-bottom:20px}
 }
+
+/* batch7: 12px floor for every visible text at <=640px (tags, eyebrows, mono labels, captions, mini charts) */
+@media (max-width:640px){
+  .tag,.tags .tag,.meta .tag,.pipe span,.proof small,.card p.mono,.mm-steps .who,.mm-steps .nx,.mc-c,.er-hint,.kicker,.sec-num,.src{font-size:12px!important}
+  svg.split text{font-size:12.6px}
+  #mpviz{display:none}   /* 640-wide mini diagram would render its labels at ~4px on a phone; the card text carries the same points */
+}
+/* hero status badge: one line on phones — location shown on desktop only */
+@media (max-width:640px){
+  .hero .status .loc{display:none}
+  .hero .status{white-space:nowrap;max-width:100%;gap:8px;padding:6px 10px}
+}
+
+/* marquee: trailing gap so translateX(-50%) equals exactly one period (seamless at every width) */
+.marquee{padding-right:48px}
+@media (max-width:640px) and (prefers-reduced-motion:reduce){.marquee{padding-right:0}}
+.marquee{animation-duration:86s} /* period is now 2 passes of 9 labels; keeps the old ~38s-per-8-label speed */
