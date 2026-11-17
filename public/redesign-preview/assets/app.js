@@ -96,8 +96,11 @@ if (allBtn) allBtn.addEventListener('click', () => { const l = $('#log2'); const
 
 // 5. Nav scroll-spy
 const spies = $$('[data-spy]');
-if (spies.length) { const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) spies.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
-  spies.forEach(a => { const t = $(a.getAttribute('href')); if (t) so.observe(t); }); }
+if (spies.length) {
+  const spyHash = a => ((a.getAttribute('href') || '').split('#')[1] || '');
+  const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) spies.forEach(a => a.classList.toggle('on', spyHash(a) === e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
+  spies.forEach(a => { const id = spyHash(a); const t = id && document.getElementById(id); if (t) so.observe(t); });
+}
 
 // ===== Case study =====
 // 6. Scroll-driven overall flow: each text step lights its node + wire
