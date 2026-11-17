@@ -883,7 +883,7 @@ export function startNotesRuntime() {
     };
     lis.forEach((li, j) => {
       li.tabIndex = 0;
-      li.setAttribute('role', 'button');
+      li.removeAttribute('role');
       const go = () => show(j === i ? Math.min(j + 1, lis.length - 1) : j);
       li.addEventListener('click', go);
       li.addEventListener('keydown', e => {
@@ -924,7 +924,7 @@ export function startNotesRuntime() {
     if (scroller.nextElementSibling && scroller.nextElementSibling.classList.contains('note-dots')) return;
     const dots = document.createElement('div');
     dots.className = 'note-dots';
-    dots.setAttribute('role', 'tablist');
+    dots.setAttribute('role', 'group');
     dots.setAttribute('aria-label', 'Cards');
     dots.innerHTML = items.map((_, n) => '<button type="button" aria-label="Card ' + (n + 1) + '"></button>').join('');
     scroller.after(dots);

@@ -34,14 +34,14 @@ function Footer({ kind }: { kind: PageKind }) {
       <div className="wrap">
         <div className="smap">
           <div>
-            <h4>Pages</h4>
+            <p className="smap-h">Pages</p>
             <ul>
               <li><a href="/">Home</a></li>
               <li><a href="/notes">Technical notes</a></li>
               {showResume ? <li><a href="/resume">Resume</a></li> : null}
               <li><a href={contact}>Contact</a></li>
             </ul>
-            <h4 style={{ marginTop: 18 }}>Work</h4>
+            <p className="smap-h" style={{ marginTop: 18 }}>Work</p>
             <ul>
               {WORK.map(([href, label]) => (
                 <li key={href}><a href={href}>{label}</a></li>
@@ -49,7 +49,7 @@ function Footer({ kind }: { kind: PageKind }) {
             </ul>
           </div>
           <div style={{ gridColumn: "span 2" }}>
-            <h4>Technical notes</h4>
+            <p className="smap-h">Technical notes</p>
             <ul style={{ gridTemplateColumns: "1fr 1fr", display: "grid" }}>
               {NOTES.map(([href, label]) => (
                 <li key={href}><a href={href}>{label}</a></li>

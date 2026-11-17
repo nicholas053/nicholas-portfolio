@@ -247,7 +247,7 @@ $$('.mm-steps').forEach(ol => {
   show(0);
   pb.addEventListener('click', user(() => show(i - 1))); nb2.addEventListener('click', user(() => show(i + 1)));
   if (src) $('.stp-f', bar).addEventListener('click', user(() => openFull(src, title)));
-  lis.forEach((li, j) => { li.tabIndex = 0; li.setAttribute('role', 'button');
+  lis.forEach((li, j) => { li.tabIndex = 0; li.removeAttribute('role');
     const go = user(() => show(j === i ? i + 1 : j)); li.addEventListener('click', go);
     li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } }); });
   let x0 = 0, y0 = 0;

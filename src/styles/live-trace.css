@@ -128,7 +128,7 @@ details.more[open] summary{margin-bottom:8px}
 .log a{display:grid;grid-template-columns:70px 1fr auto;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--paper-line);text-decoration:none;transition:padding .25s var(--ease),background .25s}
 .log a:hover{padding-left:14px;background:var(--paper-2)}
 .log .n{font-family:var(--f-mono);font-size:var(--t-sm);color:var(--trace-text)}
-.log h4{font-family:var(--f-display);font-stretch:108%;font-weight:700;font-size:var(--t-lg);letter-spacing:-.01em}
+.log h3,.log h4{font-family:var(--f-display);font-stretch:108%;font-weight:700;font-size:var(--t-lg);letter-spacing:-.01em}
 .log p{color:var(--mute-paper);font-size:var(--t-sm)}
 .log .r{font-family:var(--f-mono);font-size:11px;color:var(--mute-paper);white-space:nowrap}
 .log a.hide{display:none}
@@ -458,7 +458,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .card.loka p{max-width:60ch}
 /* sitemap footer */
 footer .smap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:12px 0 24px;border-bottom:1px solid var(--ink-line);margin-bottom:18px;width:100%}
-footer .smap h4{font:12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--trace);margin-bottom:8px}
+footer .smap h4,footer .smap .smap-h{font:12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--trace);margin-bottom:8px}
 footer .smap ul{list-style:none;display:grid;gap:4px}
 footer .smap a{text-decoration:none;color:var(--mute-ink);font-size:13px}
 footer .smap a:hover{color:var(--paper)}
