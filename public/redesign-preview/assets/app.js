@@ -233,6 +233,7 @@ function openFull(src, title) {
 const onNotes = document.body.classList.contains('notes-page') || document.body.classList.contains('resume-page');
 $$('.mm-steps').forEach(ol => {
   if (onNotes || ol.classList.contains('note-steps')) return;   // notes.js owns steppers there
+  if (ol.closest('.trace-card') && matchMedia('(max-width: 640px)').matches) return;   // hero diagram is not shown on phones
   const lis = $$('li', ol); if (!lis.length) return; let i = 0, t = null, seen = false;
   const fig = ol.closest('figure') || ol.parentNode;
   const src = ol.dataset.full ? $(ol.dataset.full) : fig.querySelector('.mmwrap svg');
