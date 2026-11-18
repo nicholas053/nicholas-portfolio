@@ -504,7 +504,7 @@ export const RESUME_PROJECTS: ResumeCaseStudy[] = [
     solution:
       "Catalog-driven pricing; magic-link client review with baseline lock; project-first billing and branded PDFs; admin/marketing/portal route groups in one app.",
     impact:
-      "Replaced manual quote math and email scope loops with typed workflows, change-order history, and a dashboard attention feed. Powers my practice at lokatech.co.",
+      "Replaced manual quote math and email scope loops with typed workflows, change-order history, and a dashboard attention feed.",
     impactAccentPhrase: "Replaced manual quote math and email scope loops with typed workflows",
     linkPath: "/projects/lokatech",
   },
