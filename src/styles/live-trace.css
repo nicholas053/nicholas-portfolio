@@ -827,7 +827,7 @@ body.fv-open .accent-sw{display:none}
     padding:0;
   }
   #about .about p.big{font-size:1.1rem;line-height:1.5;border-left:3px solid var(--trace);padding-left:14px}
-  #how .mcar-nav{justify-content:center}
-  #how .mcar-nav .mc-p,#how .mcar-nav .mc-n,#how .mcar-nav .mc-c{display:none}
-  #how .mcar-nav .mc-dots{flex:none}
+  #how .mcar-nav,#work .mcar-nav{justify-content:center}
+  #how .mcar-nav .mc-p,#how .mcar-nav .mc-n,#how .mcar-nav .mc-c,#work .mcar-nav .mc-p,#work .mcar-nav .mc-n,#work .mcar-nav .mc-c{display:none}
+  #how .mcar-nav .mc-dots,#work .mcar-nav .mc-dots{flex:none}
 }
