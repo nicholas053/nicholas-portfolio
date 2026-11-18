@@ -41,7 +41,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL("https://nicholas-chong.com"),
   title: {
     default: title,
     template: `%s | ${SITE_NAME}`,

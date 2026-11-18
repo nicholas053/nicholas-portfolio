@@ -521,7 +521,7 @@ footer .row2{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .ic rect,.ic circle,.ic path{fill:none;stroke:var(--mute-ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .ic text{font:12px var(--f-mono);fill:var(--mute-ink);stroke:none}
 .ic1 .c rect{stroke:var(--paper)} .ic1 .c circle{fill:var(--mute-ink);stroke:none}
-.ic1 .chk{stroke:var(--trace);stroke-width:2.2;stroke-dasharray:30;stroke-dashoffset:0}
+.ic1 .chk{stroke:var(--trace);stroke-width:2.2;stroke-linecap:butt;stroke-dasharray:32;stroke-dashoffset:36;opacity:0}
 .ic2 .bx{fill:var(--ink)} .ic2 .bx.act{stroke:var(--trace)}
 .ic2 .ln{stroke-dasharray:40;stroke-dashoffset:0}
 .ic2 .pk{fill:var(--trace);stroke:none;offset-path:path('M16 22 V67 H52');offset-distance:100%}
@@ -534,7 +534,7 @@ footer .row2{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .ic1 .c{transform-box:fill-box;transform-origin:center}
 @keyframes snap{0%{transform:var(--f);opacity:.35}60%{opacity:1}100%{transform:none;opacity:1}}
 .ic.play .chk{animation:draw .5s .95s ease-out both}
-@keyframes draw{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}
+@keyframes draw{0%{opacity:0;stroke-dashoffset:36;stroke-linecap:butt}1%{opacity:1}100%{opacity:1;stroke-dashoffset:0;stroke-linecap:round}}
 .ic2 .bx{transform-box:fill-box;transform-origin:center}
 .ic.play .bx{animation:pop .35s cubic-bezier(.2,.8,.2,1) both}.ic.play .b2{animation-delay:.12s}.ic.play .b3{animation-delay:.24s}.ic.play .b4{animation-delay:.36s}
 @keyframes pop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
@@ -546,7 +546,7 @@ footer .row2{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .ic.play .live{animation:pop .3s 1.45s both}.ic.play .ring{animation:ring 1.6s 1.6s ease-out 2}
 @keyframes ring{0%{opacity:.9;r:4}100%{opacity:0;r:11}}
-@media (prefers-reduced-motion:reduce){.ic.play *{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.ic.play *{animation:none!important}.ic1 .chk{opacity:1;stroke-dashoffset:0;stroke-linecap:round}}
 .trace-m{display:none}
 @media (max-width:900px){.trace-scroll svg{min-width:0}#trace{display:none}.trace-m{display:block;width:100%;height:auto}
   #traceM .node .t{font-size:13px}#traceM .node .sub{font-size:12px}#traceM .badge text{font-size:12px}#traceM .phase,#traceM .lbl{font-size:12px}
