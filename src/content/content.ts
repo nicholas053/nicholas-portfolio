@@ -1,7 +1,8 @@
 /**
- * Single source of truth for profile copy on the home page and `/resume`.
- * Case studies under `/projects` and write-ups under `/notes` stay as-is.
+ * Single source of truth for profile copy, and (via `PAGES`) every page body.
+ * Page markup is the approved Live Trace wording with the live site's URLs.
  */
+export { PAGES, type LivePage, type PageId, type PageKind } from "./pages"
 
 export const PERSON = {
   legalName: "Nicholas Chong Shi Loong",
@@ -102,7 +103,7 @@ export const HOME_NDA_BANNERS: readonly HomeNdaBanner[] = [
     role: "Role: Backend developer · Go, PostgreSQL",
     stack: "Go, PostgreSQL",
     body:
-      "Percent-plus-fixed fees walk down a partner chain, and a read-only preview shows every level's share before a rate is saved. Already-settled records stay as they were. Each outside provider is one adapter behind a single interface: a pending callback is acknowledged, and only a final status changes state. A background job claims its row before calling out and records the stage and last error, so a retry cannot send twice and a stuck row shows why.",
+      "Percent-plus-fixed fees walk down a partner chain, and a read-only preview shows every level's share before a rate is saved. Already-finalised records stay as they were. Each outside provider is one adapter behind a single interface: a pending callback is acknowledged, and only a final status changes state. A background job claims its row before calling out and records the stage and last error, so a retry cannot send twice and a stuck row shows why.",
     links: [
       { href: "/notes/multi-level-revenue-splits", label: "Revenue splits note →" },
       { href: "/notes/third-party-api-adapters", label: "Third-party APIs note →" },
@@ -112,7 +113,7 @@ export const HOME_NDA_BANNERS: readonly HomeNdaBanner[] = [
   {
     badge: "Confidential / NDA",
     title: "Enterprise system turnaround",
-    role: "Role: Tech BA & front-end dev",
+    role: "Role: Tech BA & front-end dev · Laravel, Angular",
     stack: "Laravel, Angular",
     body:
       "Joined mid-flight on a confidential enterprise CRM where logic and expectations had diverged. I stopped build-on-bad-assumptions, realigned scope, translated ambiguity into sequence diagrams and actionable work, and kept front-end architecture moving while advising client syncs on feasibility.",
@@ -136,7 +137,7 @@ export const HOME_PROJECTS: HomeProjectCard[] = [
   {
     title: "Multi-Seller Marketplace Channel",
     description:
-      "Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and money kept correct under concurrency and late payment events.",
+      "Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and orders kept correct under concurrency and late or duplicate confirmations.",
     linkPath: "/projects/multi-seller-marketplace",
     linkLabel: "Read case study →",
     stack: "Laravel, MySQL",
@@ -194,20 +195,20 @@ export const HOME_TECH_NOTE_LINKS = [
   },
   {
     href: "/notes/cancel-vs-late-payment",
-    title: "Cancel vs a late payment",
+    title: "Cancel vs a late or duplicate payment confirmation",
     blurb: "One locked path for cancel, a late confirmation, and a background check (NDA).",
     featureOnMobile: true,
   },
   {
     href: "/notes/order-lifecycle-refunds",
     title: "Order lifecycle and refunds",
-    blurb: "Per-seller orders, returns, and idempotent refunds on a shared payment (NDA).",
+    blurb: "Per-seller orders, returns, and idempotent refunds on a shared checkout (NDA).",
     featureOnMobile: false,
   },
   {
     href: "/notes/multi-level-revenue-splits",
     title: "Multi-level revenue splits",
-    blurb: "Percent-plus-fixed splits with a read-only preview before settle.",
+    blurb: "Percent-plus-fixed splits with a read-only preview before rates are saved.",
     featureOnMobile: false,
   },
   {
@@ -225,7 +226,7 @@ export const HOME_TECH_NOTE_LINKS = [
   {
     href: "/notes/flexible-financial-settlement",
     title: "Flexible financial settlement",
-    blurb: "Finance “shopping cart” batches, consolidated payment vouchers, commission states (NDA).",
+    blurb: "Finance “shopping cart” batches, consolidated checkout vouchers, commission states (NDA).",
     featureOnMobile: true,
   },
   {
@@ -325,18 +326,18 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
     period: "July 2026 – Present",
     jobTitle: "Backend Developer",
     summaryLead:
-      "Own backend features from design to production on commerce and transaction systems. Passed probation early.",
+      "Own backend features from design to production. Passed probation early.",
     highlights: [
       {
         label: "Multi-seller marketplace channel (NDA):",
         body:
-          "designed (lead-approved) and built a second sales channel on an existing marketplace app: seller onboarding, product variants, cart with stock reservation, one checkout across multiple sellers that stays correct when payment confirmations arrive late or twice, and the full order and refund lifecycle.",
+          "designed (lead-approved) and built a second sales channel on an existing marketplace app: seller onboarding, product variants, cart with stock reservation, one checkout across multiple sellers that stays correct when provider confirmations arrive late or twice, and the full order and refund lifecycle.",
         technicalNotePath: "/projects/multi-seller-marketplace",
       },
       {
         label: "Fee splits, providers, and job recovery (NDA):",
         body:
-          "percent-plus-fixed fees walked down a partner chain, with a read-only preview of every level's share before a rate is saved and already-settled records left unchanged; each outside provider as one adapter behind a single interface, so a pending callback does not change state; background jobs claim a row before calling out and record the stage and last error, so a retry cannot send twice.",
+          "percent-plus-fixed fees walked down a partner chain, with a read-only preview of every level's share before a rate is saved and already-finalised records left unchanged; each outside provider as one adapter behind a single interface, so a pending callback does not change state; background jobs claim a row before calling out and record the stage and last error, so a retry cannot send twice.",
       },
       {
         label: "Internal operations and reconciliation tools.",
@@ -348,9 +349,9 @@ export const EXPERIENCE_TIMELINE: ExperienceTimelineEntry[] = [
         resumeAccentPhrase: "Laravel, MySQL, Go, PostgreSQL",
       },
     ],
-    body: "At Ocean Hub Management Sdn Bhd: backend features from design to production on commerce and transaction systems, including a multi-seller marketplace channel, partner fee splits, provider adapters, and job recovery.",
+    body: "At Ocean Hub Management Sdn Bhd: own backend features from design to production, including a multi-seller marketplace channel, partner fee splits, provider adapters, and job recovery. Passed probation early.",
     resumeBody:
-      "Ocean Hub: backend on commerce and transaction systems — multi-seller marketplace channel (Laravel, MySQL); fee splits, provider adapters, and job recovery (Go, PostgreSQL).",
+      "Ocean Hub: backend features from design to production — multi-seller marketplace channel (Laravel, MySQL); fee splits, provider adapters, and job recovery (Go, PostgreSQL). Passed probation early.",
     employer: { name: "Ocean Hub Management Sdn Bhd" },
   },
   {
@@ -432,6 +433,7 @@ export const TECH_STACK_ITEMS = [
   { id: "react", label: "React" },
   { id: "prisma", label: "Prisma" },
   { id: "postgresql", label: "PostgreSQL" },
+  { id: "mysql", label: "MySQL" },
   { id: "angular", label: "Angular" },
   { id: "laravel", label: "Laravel" },
   { id: "golang", label: "Golang" },
@@ -453,18 +455,19 @@ export const TECH_STACK_LINE = TECH_STACK_ITEMS.map((s) => s.label).join(", ")
 export type TechStackId = (typeof TECH_STACK_ITEMS)[number]["id"]
 
 export const TECH_STACK_MARQUEE_IDS = [
-  "next",
-  "react",
-  "postgresql",
-  "laravel",
   "golang",
-  "angular",
+  "laravel",
+  "php",
+  "postgresql",
+  "mysql",
   "nodejs",
+  "typescript",
+  "next",
   "system-design",
 ] as const satisfies readonly TechStackId[]
 
 export const TECH_STACK_MARQUEE_CAPTION =
-  "Mostly Next.js, React, and PostgreSQL; also Laravel, Angular, Node.js, and Go."
+  "Golang, Laravel, PHP, PostgreSQL, MySQL, Node.js, TypeScript, Next.js, and system design."
 
 /** Emphasized on resume/PDF skills line (core stack). */
 export const RESUME_SKILL_ACCENT_IDS = new Set<TechStackId>(["next", "react", "typescript", "prisma", "postgresql", "angular", "laravel", "system-design"])

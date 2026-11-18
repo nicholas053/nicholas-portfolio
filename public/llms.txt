@@ -1,0 +1,85 @@
+Nicholas Chong
+Full-Stack Developer & Product Engineer
+
+I clarify messy requirements, sketch the architecture, and ship full-stack web apps — from client builds to products I run myself.
+
+Portfolio of Nicholas Chong: full-stack apps in Next.js, React, and PostgreSQL; technical notes with sequence diagrams; case studies from independent products to enterprise delivery.
+
+Site: https://nicholas-chong.com
+GitHub: https://github.com/nicholas053
+Email: shiloong53bii@gmail.com
+WhatsApp: https://wa.me/60122657856
+
+Work
+
+Multi-Seller Marketplace Channel
+https://nicholas-chong.com/projects/multi-seller-marketplace
+Added a multi-seller shop channel to an existing marketplace app: seller onboarding to refunds, with stock and orders kept correct under concurrency and late or duplicate confirmations.
+
+LokaTech — Internal Operations Platform
+https://nicholas-chong.com/projects/lokatech
+Agency ops monorepo: pricing, scope sign-off, and project-first billing — replaced spreadsheet quote loops and email scope churn.
+
+What I Applied
+https://nicholas-chong.com/projects/what-i-applied
+Personal ATS and career prep with JD-grounded Gemini assets and follow-up nudges. Beta: ~50 users; live on Vercel.
+
+Church Management System
+https://nicholas-chong.com/projects/church-system
+Events, attendance, outings, and role-based admin — replaced scattered Forms/Sheets for 100+ users.
+
+Task Management System
+https://nicholas-chong.com/projects/task-system
+Self-hosted Kanban with voting, comments, and dashboards — used by two startup teams (~5–10 people each).
+
+Technical notes
+https://nicholas-chong.com/notes
+Architecture write-ups with diagrams — when you want the how, not just the bullet.
+
+Seller onboarding and product variants
+https://nicholas-chong.com/notes/seller-onboarding-variants
+Shops on existing accounts, two variant axes, per-variant price and stock (NDA).
+
+Cart and stock reservation
+https://nicholas-chong.com/notes/cart-stock-reservation
+Holds at checkout summary so idle carts do not lock stock (NDA).
+
+Cancel vs a late or duplicate payment confirmation
+https://nicholas-chong.com/notes/cancel-vs-late-payment
+One locked path for cancel, a late confirmation, and a background check (NDA).
+
+Order lifecycle and refunds
+https://nicholas-chong.com/notes/order-lifecycle-refunds
+Per-seller orders, returns, and idempotent refunds on a shared checkout (NDA).
+
+Multi-level revenue splits
+https://nicholas-chong.com/notes/multi-level-revenue-splits
+Percent-plus-fixed splits with a read-only preview before rates are saved.
+
+One interface for many third-party APIs
+https://nicholas-chong.com/notes/third-party-api-adapters
+Adapters, signature checks, and pending versus final callbacks.
+
+Background job failures
+https://nicholas-chong.com/notes/background-job-failures
+Claim before calling out, and record why a row is stuck so retries stay safe.
+
+Flexible financial settlement
+https://nicholas-chong.com/notes/flexible-financial-settlement
+Finance “shopping cart” batches, consolidated checkout vouchers, commission states (NDA).
+
+360° performance evaluation
+https://nicholas-chong.com/notes/performance-evaluation-360
+Assignment engine, JSONB, tokenized partner API, schema-driven Angular + mobile Likert layouts.
+
+Frontend architecture refactoring
+https://nicholas-chong.com/notes/frontend-architecture-refactoring
+Unified dynamic forms, shared library, RBAC across admin and agent portals.
+
+Full-stack assessment reflection
+https://nicholas-chong.com/notes/fullstack-assessment-debugging
+Pooling, infinite scroll stability, a live merge-order bug, and a transparent post-interview follow-up.
+
+Resume
+https://nicholas-chong.com/resume
+Full-stack developer and product engineer: clarify requirements, sketch pragmatic architecture, ship maintainable web apps.

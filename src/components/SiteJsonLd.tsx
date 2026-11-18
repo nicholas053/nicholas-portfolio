@@ -23,7 +23,7 @@ export function SiteJsonLd() {
     "@type": "Person",
     "@id": `${url}/#person`,
     name: SITE_NAME,
-    alternateName: [PERSON.preferredName, PERSON.legalName],
+    alternateName: [PERSON.preferredName, PERSON.legalName, "Chong Shi Loong Nicholas"],
     url,
     jobTitle: PERSON.role,
     description: SITE_TAGLINE,
@@ -40,6 +40,7 @@ export function SiteJsonLd() {
     },
     sameAs: [
       `https://github.com/${PERSON.githubUsername}`,
+      "https://www.linkedin.com/in/shi-loong-chong-b029b51b7/",
       `https://www.instagram.com/${PERSON.instagramHandle}/`,
     ],
   }
