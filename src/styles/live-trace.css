@@ -764,7 +764,7 @@ body.fv-open .accent-sw{display:none}
 @media (max-width:640px){
   .tag,.tags .tag,.meta .tag,.pipe span,.proof small,.card p.mono,.mm-steps .who,.mm-steps .nx,.mc-c,.er-hint,.kicker,.sec-num,.src{font-size:12px!important}
   svg.split text{font-size:12.6px}
-  #mpviz{display:none}   /* 640-wide mini diagram would render its labels at ~4px on a phone; the card text carries the same points */
+  #mpviz{display:block;width:100%;height:auto}
 }
 /* hero status badge: one line on phones — location shown on desktop only */
 @media (max-width:640px){
