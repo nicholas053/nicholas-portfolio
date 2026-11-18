@@ -776,3 +776,58 @@ body.fv-open .accent-sw{display:none}
 .marquee{padding-right:48px}
 @media (max-width:640px) and (prefers-reduced-motion:reduce){.marquee{padding-right:0}}
 .marquee{animation-duration:86s} /* period is now 2 passes of 9 labels; keeps the old ~38s-per-8-label speed */
+
+/* About on phones: stacked rows, education before philosophy. Desktop stays the two-column layout. */
+@media (max-width:760px){
+  #about .sec-head>p{display:none}
+  #about .xp.mcar{
+    display:block!important;
+    overflow:visible!important;
+    scroll-snap-type:none!important;
+    margin-inline:0!important;
+    padding:0!important;
+    border-top:1px solid var(--ink-line);
+  }
+  #about .xp.mcar>details{
+    flex:none!important;
+    max-width:none!important;
+    width:auto!important;
+    scroll-snap-align:none!important;
+    border:0;
+    border-bottom:1px solid var(--ink-line);
+    border-radius:0;
+    background:none;
+    padding:0;
+  }
+  #about .xp summary{grid-template-columns:1fr 24px;gap:2px 12px;padding:16px 0;align-items:start}
+  #about .xp .when{grid-column:1/-1;font-size:12px}
+  #about .xp h3{font-size:1.1rem;line-height:1.25}
+  #about .xp .sum{display:none}
+  #about .xp details[open] .sum{display:block}
+  #about .xp.mcar+.mcar-nav,#about .about.mcar+.mcar-nav{display:none!important}
+  #about .about.mcar{
+    display:flex!important;
+    flex-direction:column;
+    overflow:visible!important;
+    scroll-snap-type:none!important;
+    margin-top:36px!important;
+    margin-inline:0!important;
+    padding:0!important;
+    gap:28px;
+  }
+  #about .about.mcar>.edu{order:-1}
+  #about .about.mcar>*{
+    flex:none!important;
+    max-width:none!important;
+    width:auto!important;
+    scroll-snap-align:none!important;
+    border:0;
+    border-radius:0;
+    background:none;
+    padding:0;
+  }
+  #about .about p.big{font-size:1.1rem;line-height:1.5;border-left:3px solid var(--trace);padding-left:14px}
+  #how .mcar-nav{justify-content:center}
+  #how .mcar-nav .mc-p,#how .mcar-nav .mc-n,#how .mcar-nav .mc-c{display:none}
+  #how .mcar-nav .mc-dots{flex:none}
+}

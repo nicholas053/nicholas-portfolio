@@ -260,6 +260,7 @@ $$('.mm-steps').forEach(ol => {
 // 17. Mobile carousels (shared pattern: any .mcar). <=640px the grid becomes a scroll-snap strip (card ≈85%, next peeks);
 //     a bar under it shows "n / N", dots and 44px prev/next buttons. Above 640px nothing changes.
 $$('.mcar').forEach(car => {
+  if (car.matches('#about .xp.mcar, #about .about.mcar')) return;
   const items = [...car.children].filter(c => !c.classList.contains('ps2-mid')); if (items.length < 2) return;
   const nav = document.createElement('div'); nav.className = 'mcar-nav';
   nav.innerHTML = `<button type="button" class="mc-p" aria-label="Previous card">←</button><span class="mc-dots" aria-hidden="true">${items.map(() => '<i></i>').join('')}</span><span class="mc-c" aria-live="polite"></span><button type="button" class="mc-n" aria-label="Next card">→</button>`;
