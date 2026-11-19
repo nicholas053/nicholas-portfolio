@@ -198,7 +198,7 @@ svg *{transform-box:fill-box}
 .v14a text,.v14c text{font-family:Archivo;font-stretch:125%;font-weight:800;font-size:24px;fill:var(--tx)}.v14c text{font-size:28px}
 .v14b text{font-family:Fraunces;font-weight:600;font-size:28px;fill:var(--tx)}
 .v14a .s,.v14b .s,.v14c .s{fill:var(--a);transform-box:fill-box;transform-origin:center;animation:twinkle .9s .4s cubic-bezier(.3,1.5,.5,1) both}
-.v14a .s{scale:.55}.v14b .s2{scale:.45;animation-delay:.8s}
+.v14b .s2{animation-delay:.8s}
 .v26a text,.v26b text,.v26c text{font-family:Fraunces;font-weight:600;font-size:30px;fill:var(--tx)}.v26b text{font-size:24px;animation:sl .5s .6s both}.v26c text{font-size:26px}
 .v26a .lf,.v26b .lf,.v26c .lf{fill:var(--a);transform-box:fill-box;transform-origin:right bottom;animation:pop .5s .3s both}
 .v26a .l2,.v26b .l2,.v26c .l2{transform-origin:left bottom;animation-delay:.5s}
@@ -321,8 +321,8 @@ function fit(r){
 
  if(q('.v01a')){const w=q('.v01a text').getComputedTextLength();q('.v01a .sw').setAttribute('d',`M8 52 C${w*0.5} 46 ${w*0.9} 46 ${w+6} 38`);q('.v01a .d').setAttribute('cx',w+12);q('.v01a .d').setAttribute('cy',34);}
  if(q('.v01b')){const w=q('.v01b text').getComputedTextLength();q('.v01b .sw').setAttribute('d',`M${w*0.32} 24 C${w*0.55} 15 ${w*0.85} 12 ${w+6} 17`);}
- if(q('.v14a')){const e=q('.v14a text').getExtentOfChar(1);q('.v14a .pg').setAttribute('transform',`translate(${e.x+e.width/2} ${e.y+e.height*0.2})`);}
- if(q('.v14b')){const w=q('.v14b text').getComputedTextLength();q('.v14b .p1').setAttribute('transform',`translate(${w+10} 12)`);q('.v14b .p2').setAttribute('transform',`translate(${w+20} 27)`);}
+ if(q('.v14a')){const e=q('.v14a text').getExtentOfChar(1);q('.v14a .pg').setAttribute('transform',`translate(${e.x+e.width/2} ${e.y+e.height*0.2}) scale(.55)`);}
+ if(q('.v14b')){const w=q('.v14b text').getComputedTextLength();q('.v14b .p1').setAttribute('transform',`translate(${w+10} 12)`);q('.v14b .p2').setAttribute('transform',`translate(${w+20} 27) scale(.45)`);}
  if(q('.v14c')){const w=q('.v14c text').getComputedTextLength();q('.v14c .pg').setAttribute('transform',`translate(${w+9} 13)`);}
  if(q('.v26a')){const e=q('.v26a text').getExtentOfChar(1);q('.v26a .pg').setAttribute('transform',`translate(${e.x+e.width/2} 28)`);}
  if(q('.v26c')){const w=q('.v26c text').getComputedTextLength();q('.v26c .pg').setAttribute('transform',`translate(${w+7} 36)`);}
