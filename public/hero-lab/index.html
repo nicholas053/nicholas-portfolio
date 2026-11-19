@@ -1,5 +1,5 @@
 <!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Hero lab · 8</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Allura&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=block" rel="stylesheet">
 <style>
 :root{--bg:#0E1116;--bg2:#151A21;--tx:#EDEAE2;--mu:#A3ABB5;--a:#A9D18E;--ln:#262D37}
 *{box-sizing:border-box;margin:0}body{background:#07090C;color:var(--tx);font:15px/1.5 "IBM Plex Sans",sans-serif;padding:32px 24px 80px}
@@ -99,11 +99,17 @@
 @keyframes hl{0%,30%{color:var(--a)}36%,100%{color:#4A5361}}
 .h8 .st .m:nth-child(1)>span{animation-delay:.1s,1.4s}.h8 .st .m:nth-child(2)>span{animation-delay:.25s,4.4s}.h8 .st .m:nth-child(3)>span{animation-delay:.4s,7.4s}
 .h8 .st .m>span{color:#4A5361}
+.nav .lg svg.v01a{width:96px;height:48px;margin:0;fill:none}
+.v01a text{font-family:Allura;font-size:50px;fill:transparent;stroke:var(--tx);stroke-width:.8;stroke-dasharray:600;--L:600;animation:draw 1.4s .1s ease-in-out both,fillin .5s 1.2s forwards}
+.v01a .sw{fill:none;stroke:var(--a);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:160;--L:160;animation:draw .6s 1.3s ease-out both}
+.v01a .d{fill:var(--a);transform-box:fill-box;transform-origin:center;animation:pop .4s 1.8s both}
+@keyframes fillin{to{fill:var(--tx)}}@keyframes pop{from{transform:scale(0)}60%{transform:scale(1.5)}to{transform:none}}
+.h7 .v01a text{stroke:#0E1116}.h7 .v01a{--tx:#0E1116}.h7 .v01a .sw{stroke:#0E1116}.h7 .v01a .d{fill:#0E1116}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
 </style></head><body>
 <div class=top><div><h1>Hero lab · 8</h1><p>Same copy as the live site, 1440 × 820 frames. Pick by number, e.g. H4.</p></div><label><input type=checkbox id=auto checked> Auto replay every 10s</label></div>
 <main id=m></main>
-<template id=nav><div class=nav><div class=lg>Nicholas<svg viewBox="-10 -10 20 20"><path d="M0 -9 C1 -2 2 -1 9 0 C2 1 1 2 0 9 C-1 2 -2 1 -9 0 C-2 -1 -1 -2 0 -9Z"/></svg></div><ul><li>Work</li><li>About</li><li>Contact</li></ul><span class=rb>Resume</span></div></template>
+<template id=nav><div class=nav><div class=lg><svg viewBox="0 0 120 60" width=96 height=48 class=v01a><text x=4 y=42>Nic</text><path class=sw d=""/><circle class=d r=3 cx=0 cy=0 /></svg></div><ul><li>Work</li><li>About</li><li>Contact</li></ul><span class=rb>Resume</span></div></template>
 <div id=src hidden>
 <section data-n=H1 data-t="Giant name" data-d="Name fills the width; one sage line splits it from the copy." class="f h1">
  <div class=big><span class=m><span>Hi, I'm</span></span><span class=m><span style="animation-delay:.12s">Nic<span class=d>.</span></span></span></div>
@@ -157,7 +163,8 @@ const m=document.getElementById('m'),nav=document.getElementById('nav').innerHTM
 c.innerHTML=`<div class=cap><div><b>${s.dataset.n}</b><span>${s.dataset.t}</span><small>${s.dataset.d}</small></div><button>Replay</button></div><div class=vp></div>`;
 s.insertAdjacentHTML('afterbegin',nav);const vp=c.querySelector('.vp');vp.appendChild(s);c._src=s.outerHTML;
 c.querySelector('button').onclick=()=>rp(c);m.appendChild(c)});
-function sc(){document.querySelectorAll('.vp').forEach(v=>v.firstElementChild.style.transform=`scale(${v.clientWidth/1440})`)}
+function fit(){document.querySelectorAll('.v01a').forEach(g=>{const w=g.querySelector('text').getComputedTextLength();g.querySelector('.sw').setAttribute('d',`M8 52 C${w*0.5} 46 ${w*0.9} 46 ${w+6} 38`);const d=g.querySelector('.d');d.setAttribute('cx',w+12);d.setAttribute('cy',34)})}
+function sc(){fit();document.querySelectorAll('.vp').forEach(v=>v.firstElementChild.style.transform=`scale(${v.clientWidth/1440})`)}
 function rp(c){const v=c.querySelector('.vp');v.innerHTML=c._src;sc()}
 addEventListener('resize',sc);document.fonts.ready.then(()=>{sc();document.body.dataset.ok=1});sc();
 if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{if(auto.checked)document.querySelectorAll('.card').forEach(rp)},10000);
