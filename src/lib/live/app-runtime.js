@@ -200,8 +200,74 @@ $$('.step .ic').forEach(ic => {
 
 // 14. Mobile nav panel
 const nb = $('.menu-btn');
+const closeMobileNav = () => {
+  const n = $('.nav');
+  if (!n) return;
+  n.classList.remove('open');
+  if (nb) { nb.setAttribute('aria-expanded', 'false'); nb.textContent = 'Menu'; }
+};
 if (nb) nb.addEventListener('click', () => { const n = nb.closest('.nav'); const o = n.classList.toggle('open'); nb.setAttribute('aria-expanded', o); nb.textContent = o ? 'Close' : 'Menu'; });
-$$('.nav ul a').forEach(a => a.addEventListener('click', () => { const n = a.closest('.nav'); n.classList.remove('open'); if (nb) { nb.setAttribute('aria-expanded', false); nb.textContent = 'Menu'; } }));
+$$('.nav ul a').forEach(a => a.addEventListener('click', closeMobileNav));
+
+// In-page section jumps used to be buttons (scroll, no hash). The Live Trace port
+// (08c52a1) switched them to real anchors and dropped the replaceState cleanup,
+// so #work / #about / #contact stayed in the URL. Scroll, then strip the hash.
+const headerOffset = () => $('.nav')?.getBoundingClientRect().height || 60;
+const scrollToId = (id) => {
+  const el = document.getElementById(id);
+  if (!el) return false;
+  const top = window.scrollY + el.getBoundingClientRect().top - headerOffset();
+  window.scrollTo({ top: Math.max(0, top), behavior: RM ? 'auto' : 'smooth' });
+  return true;
+};
+const clearHash = () => {
+  if (!location.hash) return;
+  history.replaceState(history.state, '', location.pathname + location.search);
+};
+let hashTimer = 0;
+const clearHashAfterScroll = () => {
+  clearTimeout(hashTimer);
+  if (RM || !('onscrollend' in window)) {
+    requestAnimationFrame(() => requestAnimationFrame(clearHash));
+    return;
+  }
+  const finish = () => { clearTimeout(hashTimer); removeEventListener('scrollend', finish); clearHash(); };
+  addEventListener('scrollend', finish);
+  hashTimer = setTimeout(finish, 1000);
+};
+const homeSectionLink = (a) => {
+  const raw = a.getAttribute('href');
+  if (!raw || /^(mailto:|tel:)/.test(raw)) return null;
+  let url;
+  try { url = new URL(raw, location.href); } catch (e) { return null; }
+  if (url.origin !== location.origin || !url.hash || url.hash === '#') return null;
+  const path = url.pathname.replace(/\/$/, '') || '/';
+  if (path !== '/') return null;
+  const here = location.pathname.replace(/\/$/, '') || '/';
+  return { id: decodeURIComponent(url.hash.slice(1)), samePage: here === '/' };
+};
+document.addEventListener('click', (e) => {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const origin = e.target && e.target.nodeType === 1 ? e.target : e.target && e.target.parentElement;
+  const a = origin && origin.closest && origin.closest('a[href]');
+  if (!a || (a.target && a.target !== '_self')) return;
+  const link = homeSectionLink(a);
+  if (!link || !link.samePage || !document.getElementById(link.id)) return;
+  e.preventDefault();
+  if (a.closest('.nav')) closeMobileNav();
+  scrollToId(link.id);
+  clearHashAfterScroll();
+});
+const onHome = () => (location.pathname.replace(/\/$/, '') || '/') === '/';
+const consumeHash = () => {
+  if (!onHome() || location.hash.length < 2) return;
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!document.getElementById(id)) return;
+  scrollToId(id);
+  clearHashAfterScroll();
+};
+consumeHash();
+addEventListener('hashchange', consumeHash);
 
 // 15. Mobile step-through (shared pattern: any ol.mm-steps). One step + the next one peeking, counter,
 //     prev/next (44px), swipe or tap to advance, auto-advance while in view, and a "Full view" overlay

@@ -20,6 +20,8 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+#work,#about,#contact,#how,#home{scroll-margin-top:60px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{font-family:var(--f-sans);font-size:var(--t-base);line-height:1.6;background:var(--ink);color:var(--paper);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
