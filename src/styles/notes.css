@@ -1,12 +1,12 @@
 /* Notes + resume only. Shared tokens stay in styles.css. */
 
-/* ---------- Accent: dark text on lime (and any bright) fills; AA ---------- */
+/* ---------- Accent: dark text on sage fills; AA (11.0:1) ---------- */
 .notes-page .btn-trace,
 .resume-page .btn-trace,
 .notes-page .dtabs [role=tab][aria-selected=true],
 .resume-page .dtabs [role=tab][aria-selected=true],
 .notes-page .note-steps-nav button.primary{
-  color:#0D1014;
+  color:var(--ink);
   background:var(--trace);
   border-color:var(--trace);
 }
@@ -98,7 +98,7 @@
   font:13px var(--f-mono);border-radius:5px;cursor:pointer;
 }
 .note-steps-nav button:disabled{opacity:.4;cursor:default}
-.note-steps-nav button.primary{border-color:var(--trace);color:#0D1014;background:var(--trace)}
+.note-steps-nav button.primary{border-color:var(--trace);color:var(--ink);background:var(--trace)}
 
 .note-caption{
   display:none;font:13px var(--f-mono);color:var(--mute-ink);

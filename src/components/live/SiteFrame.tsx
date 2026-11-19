@@ -2,7 +2,9 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { ReactNode } from "react"
 import type { PageKind } from "@/content/pages"
+import { HeroNavSync } from "@/components/live/HeroNavSync"
 import { LiveRuntime } from "@/components/live/LiveRuntime"
+import { LogoMark } from "@/components/live/LogoMark"
 
 const WORK = [
   ["/projects/multi-seller-marketplace", "Multi-Seller Marketplace Channel"],
@@ -79,9 +81,11 @@ export function SiteFrame({ kind, children }: { kind: PageKind; children: ReactN
           </marker>
         </defs>
       </svg>
-      <nav className="nav">
+      <nav className={home ? "nav nav-on-hero nav-on-sage" : "nav"}>
         <div className="wrap">
-          <a className="brand" href="/"><i></i>Nic Chong</a>
+          <a aria-label="Nicholas Chong, home" className="brand" href="/">
+            <LogoMark />
+          </a>
           <button aria-controls="navlist" aria-expanded="false" className="menu-btn" type="button">Menu</button>
           <ul id="navlist">
             <li>
@@ -105,6 +109,7 @@ export function SiteFrame({ kind, children }: { kind: PageKind; children: ReactN
           </a>
         </div>
       </nav>
+      {home ? <HeroNavSync /> : null}
       {children}
       <Footer kind={kind} />
       <LiveRuntime notes={kind === "notes" || kind === "resume"} />

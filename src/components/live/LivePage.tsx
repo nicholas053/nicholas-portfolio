@@ -1,4 +1,5 @@
 import { PageJsonLd } from "@/components/PageJsonLd"
+import { HomeHero } from "@/components/live/HomeHero"
 import { SiteFrame } from "@/components/live/SiteFrame"
 import { PAGE_SEO } from "@/content/page-seo"
 import { PAGES, type PageId } from "@/content/pages"
@@ -57,10 +58,21 @@ export function LivePage({ id }: { id: PageId }) {
     )
   }
 
+  const home = page.kind === "home"
+  const html = home ? stripHomeHero(page.html) : page.html
+
   return (
     <SiteFrame kind={page.kind}>
       {nodes.length > 0 ? <PageJsonLd data={nodes} /> : null}
-      <main id="main" dangerouslySetInnerHTML={{ __html: page.html }} />
+      {home ? <HomeHero /> : null}
+      <main id="main" dangerouslySetInnerHTML={{ __html: html }} />
     </SiteFrame>
   )
+}
+
+/** Drop the old hero, including its live-trace card. The markup stays in `pages.ts`. */
+function stripHomeHero(html: string) {
+  const marker = '<div aria-label="Tech stack"'
+  const start = html.indexOf(marker)
+  return start === -1 ? html : html.slice(start)
 }
