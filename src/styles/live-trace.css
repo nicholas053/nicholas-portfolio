@@ -108,8 +108,8 @@ section{position:relative}
 .card h3{font-family:var(--f-display);font-stretch:110%;font-weight:800;font-size:clamp(1.3rem,2vw,1.75rem);line-height:1.05;letter-spacing:-.02em}
 .card p{color:var(--mute-ink);font-size:var(--t-sm);line-height:1.55}
 .card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
-.tag{font-family:var(--f-mono);font-size:11px;padding:3px 8px;border:1px solid var(--ink-line);border-radius:99px;color:var(--mute-ink)}
-.tag.nda{border-color:var(--ack);color:var(--ack)}
+.tag{font-family:var(--f-mono);font-size:11px;padding:3px 8px;border:1px solid var(--trace);border-radius:99px;color:var(--mute-ink)}
+.tag.nda{color:var(--ack)}
 .card .proof{font-family:var(--f-display);font-weight:900;font-stretch:120%;font-size:clamp(2.2rem,4vw,3.4rem);color:var(--trace);line-height:1}
 .card .proof small{display:block;font-family:var(--f-mono);font-weight:400;font-size:11px;color:var(--mute-ink);letter-spacing:.06em;margin-top:6px;text-transform:uppercase}
 .card .go{position:absolute;top:22px;right:22px;width:34px;height:34px;border-radius:50%;border:1px solid var(--ink-line);display:grid;place-items:center;transition:all .25s}
@@ -839,7 +839,7 @@ body.fv-open .accent-sw{display:none}
 @keyframes logo-draw{from{stroke-dashoffset:var(--L,600)}to{stroke-dashoffset:0}}
 @keyframes logo-fill{to{fill:var(--logo-ink)}}
 @keyframes logo-pop{from{transform:scale(0)}60%{transform:scale(1.5)}to{transform:none}}
-.nav.nav-on-hero ul{margin-left:auto}
+.nav.nav-on-hero ul{margin-left:auto;margin-right:28px}
 .nav.nav-on-sage{background:transparent;border-bottom-color:transparent;backdrop-filter:none}
 .nav.nav-on-sage .v01a{--logo-ink:#0E1116}
 .nav.nav-on-sage .v01a .sw{stroke:#0E1116}
@@ -878,9 +878,9 @@ body.fv-open .accent-sw{display:none}
 @media (max-width:767px){
   .home-hero{display:flex;flex-direction:column;min-height:0}
   .home-hero .blk{transform-origin:top;animation-name:h7-grow-y}
-  .home-hero .sage-col{min-height:0;padding:68px 20px 8px}
+  .home-hero .sage-col{min-height:0;padding:68px 20px 18px}
   .home-hero .nm{font-size:clamp(56px,18vw,76px);letter-spacing:-.04em}
-  .home-hero .nm2{flex-direction:column;gap:1px;font-size:11px}
+  .home-hero .nm2{flex-direction:column;gap:2px;font-size:11px;margin-top:18px}
   .home-hero .r{align-self:stretch;padding:12px 20px 32px;max-width:none}
   .home-hero .eb{font-size:12px}
   .home-hero .rot{font-size:26px;line-height:1.1;margin:6px 0 8px}
