@@ -86,7 +86,7 @@ export function SiteFrame({ kind, children }: { kind: PageKind; children: ReactN
           <a aria-label="Nicholas Chong, home" className="brand" href="/">
             <LogoMark />
           </a>
-          <button aria-controls="navlist" aria-expanded="false" className="menu-btn" type="button">Menu</button>
+          <button aria-controls="navlist" aria-expanded="false" className="menu-btn nav-pill" type="button">Menu</button>
           <ul id="navlist">
             <li>
               <a
@@ -104,7 +104,7 @@ export function SiteFrame({ kind, children }: { kind: PageKind; children: ReactN
               <a {...(home ? { "data-spy": "" } : {})} href={hash("contact")}>Contact</a>
             </li>
           </ul>
-          <a className="btn btn-trace" href="/resume" {...(kind === "resume" ? { "aria-current": "page" as const } : {})}>
+          <a className="btn btn-trace nav-pill" href="/resume" {...(kind === "resume" ? { "aria-current": "page" as const } : {})}>
             Resume
           </a>
         </div>
