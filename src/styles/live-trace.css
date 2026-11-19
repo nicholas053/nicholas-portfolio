@@ -550,13 +550,29 @@ footer .row2{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   #traceM .node .t{font-size:13px}#traceM .node .sub{font-size:12px}#traceM .badge text{font-size:12px}#traceM .phase,#traceM .lbl{font-size:12px}
   .trace-log{height:66px}.trace-card header span:last-child{white-space:nowrap}.trace-card header span:first-child{display:none}}
 /* mobile nav panel */
-.menu-btn{display:none;background:none;border:1px solid var(--ink-line);color:var(--paper);font:500 14px var(--f-sans);padding:10px 14px;border-radius:3px;min-height:44px;cursor:pointer}
+.menu-btn{display:none;cursor:pointer}
 @media (max-width:760px){
-  .menu-btn{display:block;order:3}
+  .menu-btn{display:inline-flex;order:3}
+  .nav{--gutter:20px}
   .nav ul{display:none!important}
-  .nav.open ul{display:grid!important;position:absolute;top:60px;left:0;right:0;background:var(--ink);border-bottom:1px solid var(--ink-line);padding:8px clamp(20px,4vw,40px) 16px;gap:0}
+  .nav.open ul{
+    display:grid!important;
+    position:fixed;
+    z-index:60;
+    top:60px;
+    left:0;
+    right:0;
+    width:auto;
+    max-width:100%;
+    margin:0;
+    box-sizing:border-box;
+    background:var(--ink);
+    border-bottom:1px solid var(--ink-line);
+    padding:8px max(var(--gutter), env(safe-area-inset-left)) 16px max(var(--gutter), env(safe-area-inset-right));
+    gap:0;
+  }
   .nav.open ul a{display:block;padding:14px 0;font-size:17px;border-bottom:1px solid var(--ink-soft);color:var(--paper)}
-  .nav .btn{display:inline-flex;margin-left:auto;margin-right:10px;padding:10px 14px;min-height:44px}
+  .nav .btn{display:inline-flex;margin-left:auto;margin-right:10px}
 }
 /* mobile diagram steps */
 .mm-steps{list-style:none;display:none;gap:8px;padding:14px}
@@ -841,19 +857,21 @@ body.fv-open .accent-sw{display:none}
 .nav.nav-on-hero,
 .home-hero{--gutter:64px}
 .nav.nav-on-hero .wrap{max-width:none;width:100%;padding-left:var(--gutter);padding-right:var(--gutter)}
-.nav.nav-on-hero ul{margin-left:auto;margin-right:28px}
+@media (min-width:761px){.nav.nav-on-hero ul{margin-left:auto;margin-right:28px}}
 .nav.nav-on-sage{background:transparent;border-bottom-color:transparent;backdrop-filter:none}
 .nav.nav-on-sage .v01a{--logo-ink:#0E1116}
 .nav.nav-on-sage .v01a .sw{stroke:#0E1116}
 .nav.nav-on-sage .v01a .d{fill:#0E1116}
-.nav a.btn.btn-trace{background:transparent;color:var(--trace);border:1px solid var(--trace);border-radius:999px;padding:7px 16px;font:500 14px var(--f-mono);min-height:0}
-.nav a.btn.btn-trace:hover{transform:none;background:color-mix(in srgb,var(--trace) 16%,transparent)}
-.nav.nav-on-sage .menu-btn{background:transparent;color:#0E1116;border:1px solid #0E1116;border-radius:999px;padding:6px 14px;min-height:0;font:500 13px var(--f-mono)}
+.nav .nav-pill{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;background:transparent;color:var(--trace);border:1px solid var(--trace);border-radius:999px;padding:7px 16px;font:500 14px/1.2 var(--f-mono);min-height:0;height:auto;line-height:1.2}
+@media (min-width:761px){.nav .menu-btn{display:none}}
+.nav .nav-pill:hover{transform:none;background:color-mix(in srgb,currentColor 12%,transparent)}
+@media (max-width:760px){
+  .nav.nav-on-sage .nav-pill{color:#0E1116;border-color:#0E1116;background:transparent}
+  .nav.nav-on-sage .nav-pill:hover{background:color-mix(in srgb,#0E1116 10%,transparent)}
+}
 @media (max-width:767px){
-  .nav.nav-on-hero,.home-hero{--gutter:20px}
+  .nav.nav-on-hero,.home-hero,.nav{--gutter:20px}
   .brand .v01a{width:76px;height:38px}
-  .nav.nav-on-sage a.btn.btn-trace{background:transparent;color:#0E1116;border-color:#0E1116}
-  .nav.nav-on-sage a.btn.btn-trace:hover{background:color-mix(in srgb,#0E1116 10%,transparent)}
 }
 
 /* Homepage H7 — sage block left (desktop) / top (mobile). */

@@ -1,6 +1,12 @@
 /* Notes + resume only. Shared tokens stay in styles.css. */
 
 /* ---------- Accent: dark text on sage fills; AA (11.0:1) ---------- */
+.notes-page .nav a.nav-pill,
+.resume-page .nav a.nav-pill{
+  background:transparent;
+  color:var(--trace);
+  border:1px solid var(--trace);
+}
 .notes-page .btn-trace,
 .resume-page .btn-trace,
 .notes-page .dtabs [role=tab][aria-selected=true],
