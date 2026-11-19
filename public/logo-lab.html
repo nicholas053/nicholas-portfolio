@@ -1,6 +1,6 @@
 <!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noindex,nofollow"><title>Logo lab · Nicholas</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Allura&family=Caveat:wght@600&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@500&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Allura&family=Caveat:wght@600&family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Syne:wght@800&family=DM+Serif+Display&family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Unbounded:wght@800&family=Playfair+Display:ital@1&family=Pacifico&family=IBM+Plex+Mono:wght@500&display=block" rel="stylesheet">
 <style>
 :root{--a:#A9D18E;--ink:#0D1014;--tx:#F3EFE6;--mu:#8A94A0;--bd:#3A424C;--card:#12161B}
 *{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--tx);font-family:'IBM Plex Mono',monospace}
@@ -85,8 +85,53 @@ svg *{transform-box:fill-box}
 @keyframes wm{from{font-weight:100;opacity:.2}to{font-weight:800;opacity:1}}
 /* 20 */.l20 .s{font-family:'Instrument Serif';font-size:34px;fill:var(--tx)}.l20 .n{animation:fin .5s both;opacity:0}.l20 .p{fill:var(--a);animation:fin .2s .45s both;opacity:0}.l20 .c{opacity:0;animation:fin .6s .65s forwards}
 
+/* 21 */.l21 text{font-family:Fraunces;font-style:italic;font-weight:600;font-size:34px;fill:var(--tx);opacity:0;animation:fin .7s forwards}
+.l21 .sw{fill:none;stroke:var(--a);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:200;stroke-dashoffset:200;animation:draw .8s .5s ease-out forwards}
+/* 22 */.l22 text{font-family:Syne;font-weight:800;font-size:22px;fill:var(--tx);letter-spacing:1px}.l22 tspan{opacity:0;animation:drop .6s cubic-bezier(.3,1.5,.5,1) forwards}.l22 tspan:last-child{fill:var(--a)}
+@keyframes drop{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+/* 23 */.l23 .e{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:4px;fill:var(--a);animation:sl .5s both}.l23 .c{font-family:'DM Serif Display';font-size:36px;fill:var(--tx);animation:up .7s .2s both}
+/* 24 */.l24 text{font-family:'Bricolage Grotesque';font-weight:700;font-size:28px;fill:var(--tx)}.l24 tspan{opacity:0;animation:flip .5s forwards}
+@keyframes flip{from{opacity:0;transform:rotateX(90deg)}to{opacity:1;transform:none}}
+/* 25 */.l25 .r{fill:none;stroke:var(--a);stroke-width:2.4;stroke-dasharray:90;stroke-dashoffset:90;transform:rotate(-90deg);transform-origin:center;animation:draw .8s ease-out forwards}.l25 .c{fill:var(--a);transform-origin:center;animation:pop .4s .7s both}
+.l25 text{font-family:Archivo;font-stretch:125%;font-weight:800;font-size:21px;fill:var(--tx);animation:sl .5s .5s both}
+/* 26 */.l26 .st{fill:none;stroke:var(--a);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .5s ease-out forwards}
+.l26 .lf{fill:var(--a);transform-origin:right bottom;animation:pop .5s .45s both}.l26 .l2{transform-origin:left bottom;animation-delay:.65s}
+.l26 text{font-family:Fraunces;font-weight:600;font-size:26px;fill:var(--tx);animation:sl .6s .3s both}
+/* 27 */.l27 .sun{fill:var(--a);animation:rise 1s cubic-bezier(.2,.8,.2,1) both}.l27 .hz{fill:var(--mu)}
+@keyframes rise{from{transform:translateY(16px)}to{transform:none}}
+.l27 text{font-family:'DM Serif Display';font-size:28px;fill:var(--tx);animation:fin .6s .5s both;opacity:0}
+/* 28 */.l28 .p{fill:none;stroke:var(--a);stroke-width:2;stroke-dasharray:520;stroke-dashoffset:520;animation:draw 1s ease-in-out forwards}
+.l28 text{font-family:'Bricolage Grotesque';font-weight:700;font-size:18px;fill:var(--tx);opacity:0;animation:fin .5s .5s forwards}
+/* 29 */.l29 text{font-family:Unbounded;font-weight:800;font-size:30px;fill:var(--tx)}.l29 .a,.l29 .b{opacity:0;animation:up .5s forwards}.l29 .b{animation-delay:.15s}.l29 .d{fill:var(--a);opacity:0;animation:fin .2s .55s forwards}
+/* 30 */.l30 text{font-family:Archivo;font-stretch:125%;font-weight:800;font-size:20px;fill:var(--tx)}.l30 .a{animation:sl .5s both}.l30 .b{animation:sl .5s .55s both}
+.l30 .s{fill:none;stroke:var(--a);stroke-width:3;stroke-linecap:round;stroke-dasharray:32;stroke-dashoffset:32;animation:draw .3s .35s ease-out forwards}
+/* 31 */.l31 text{font-family:'Playfair Display';font-style:italic;font-size:34px;fill:var(--tx)}.l31 .m{transform-origin:left;animation:sweep 1s cubic-bezier(.6,0,.3,1) both}.l31 .d{fill:var(--a);animation:pop .4s .9s both;transform-origin:center}
+/* 32 */.l32 text{font-family:Archivo;font-stretch:125%;font-weight:800;font-size:24px;fill:var(--tx)}.l32 .b{animation:fin .4s both}
+.l32 .lp{fill:none;stroke:var(--a);stroke-width:4;stroke-linecap:round;stroke-dasharray:80;stroke-dashoffset:80;animation:draw .7s .2s ease-in-out forwards}
+/* 33 */.l33 text{font-family:Archivo;font-stretch:125%;font-weight:800;font-size:24px;fill:var(--tx)}.l33 tspan{animation:csw .9s forwards}
+@keyframes csw{0%{fill:var(--tx)}35%{fill:var(--a)}100%{fill:var(--tx)}}.l33 tspan:first-child{animation-name:cstay}@keyframes cstay{0%{fill:var(--tx)}35%,100%{fill:var(--a)}}
+/* 34 */.l34 .k path{fill:none;stroke:var(--a);stroke-width:2.4;stroke-linecap:round}.l34 .k{animation:kin .6s cubic-bezier(.2,.8,.2,1) both}
+.l34 .k1{--kx:-14px;--ky:-8px}.l34 .k2{--kx:14px;--ky:-8px}.l34 .k3{--kx:-14px;--ky:8px}.l34 .k4{--kx:14px;--ky:8px}
+@keyframes kin{from{opacity:0;transform:translate(var(--kx),var(--ky))}to{opacity:1;transform:none}}
+.l34 text{font-family:Archivo;font-stretch:110%;font-weight:800;font-size:18px;fill:var(--tx);animation:fin .5s .4s both;opacity:0}
+/* 35 */.l35 .sg{transform-origin:center;animation:stamp .5s cubic-bezier(.3,1.6,.5,1) both}.l35 rect{fill:none;stroke:var(--a);stroke-width:2.4}.l35 text{font-family:Archivo;font-stretch:100%;font-weight:800;font-size:12.5px;letter-spacing:1.2px;fill:var(--a)}
+@keyframes stamp{from{transform:scale(1.8) rotate(-12deg);opacity:0}to{transform:rotate(-3deg);opacity:1}}
+/* 36 */.l36 .r1{fill:none;stroke:var(--a);stroke-width:2;transform-origin:center;animation:rip 1s .2s ease-out both}.l36 .c{fill:var(--a);transform-origin:center;animation:pop .4s both}
+@keyframes rip{from{transform:scale(.4);opacity:1}to{transform:scale(1.8);opacity:0}}
+.l36 text{font-family:Fraunces;font-weight:600;font-size:26px;fill:var(--tx);animation:sl .5s .35s both}
+/* 37 */.l37 text{font-family:Pacifico;font-size:28px;fill:var(--tx)}.l37 tspan{opacity:0;animation:drop .6s cubic-bezier(.3,1.7,.5,1) forwards}.l37 tspan:first-child{fill:var(--a)}
+/* 38 */.l38 text{font-family:Archivo;font-stretch:62%;font-weight:800;font-size:38px;fill:var(--tx);letter-spacing:1px}.l38 tspan{animation:rs .6s cubic-bezier(.2,.8,.2,1) both}.l38 tspan:first-child{fill:var(--a)}
+@keyframes rs{from{transform:translateY(40px)}to{transform:none}}
+/* 39 */.l39 .bar{fill:var(--a);transform-origin:top;animation:grow .5s cubic-bezier(.2,.8,.2,1) both}@keyframes grow{from{transform:scaleY(0)}}
+.l39 text{font-family:Archivo;font-stretch:62%;font-weight:800;font-size:22px;fill:var(--tx);letter-spacing:2px}.l39 .a{animation:sl .5s .3s both}.l39 .b{animation:sl .5s .45s both;fill:var(--mu)}
+/* 40 */.l40 text{font-family:'DM Serif Display';font-size:30px;fill:var(--tx)}.l40 .d{fill:var(--a)}
+.l40 .d1{animation:dt1 1.4s both}.l40 .d2{animation:dt2 1.4s both}.l40 .d3{animation:dt3 1.4s both}
+@keyframes dt1{0%{opacity:0}10%,60%{opacity:1;transform:none}100%{opacity:1;transform:none}}
+@keyframes dt2{0%,10%{opacity:0}20%,60%{opacity:1;transform:none}100%{opacity:0;transform:translateX(-10px)}}
+@keyframes dt3{0%,20%{opacity:0}30%,60%{opacity:1;transform:none}100%{opacity:0;transform:translateX(-20px)}}
+
 </style></head><body>
-<header><div><h1>Logo lab · 20</h1><p>Each logo plays once on load. Click a logo or Replay to watch it again. Pick by number.</p></div>
+<header><div><h1>Logo lab · 40</h1><p>Each logo plays once on load. Click a logo or Replay to watch it again. Pick by number.</p></div>
 <div class=ctl><button class=sw data-c="#A9D18E" style="background:#A9D18E" title="sage"></button><button class=sw data-c="#F0A97A" style="background:#F0A97A" title="apricot"></button><button id=all>Replay all</button></div></header>
 <main id=m></main>
 <div id=src><div class=card data-i="01" data-n="Signature"><svg viewBox="0 0 200 60" width=200 height=60 class=l01><text x=2 y=40>Nicholas</text><path class=sw d="M20 50 C60 44 110 44 150 48"/></svg></div>
@@ -108,7 +153,27 @@ svg *{transform-box:fill-box}
 <div class=card data-i="17" data-n="One-stroke N"><svg viewBox="0 0 170 44" width=170 height=44 class=l17><path class=n d="M2 30 V13 L15 30 V13"/><text class=w x=19 y=30>icholas</text></svg></div>
 <div class=card data-i="18" data-n="Smile"><svg viewBox="0 0 170 50" width=170 height=50 class=l18><text class=w x=0 y=28>nicholas</text><path class=sm d=""/></svg></div>
 <div class=card data-i="19" data-n="Weight morph"><div class=l19>Nicholas<span>.</span></div></div>
-<div class=card data-i="20" data-n="N. Chong"><svg viewBox="0 0 170 48" width=170 height=48 class=l20><text class=s x=0 y=34><tspan class=n>N</tspan><tspan class=p>.</tspan><tspan class=c dx=6>Chong</tspan></text></svg></div></div>
+<div class=card data-i="20" data-n="N. Chong"><svg viewBox="0 0 170 48" width=170 height=48 class=l20><text class=s x=0 y=34><tspan class=n>N</tspan><tspan class=p>.</tspan><tspan class=c dx=6>Chong</tspan></text></svg></div>
+<div class=card data-i="21" data-n="Fraunces italic"><svg viewBox="0 0 190 54" width=190 height=54 class=l21><text x=0 y=34>Nicholas</text><path class=sw d=""/></svg></div>
+<div class=card data-i="22" data-n="Letter drop"><svg viewBox="0 0 250 44" width=250 height=44 class=l22><text x=0 y=32><tspan style="animation-delay:0.00s">N</tspan><tspan style="animation-delay:0.07s">I</tspan><tspan style="animation-delay:0.14s">C</tspan><tspan style="animation-delay:0.21s">H</tspan><tspan style="animation-delay:0.28s">O</tspan><tspan style="animation-delay:0.35s">L</tspan><tspan style="animation-delay:0.42s">A</tspan><tspan style="animation-delay:0.49s">S</tspan></text></svg></div>
+<div class=card data-i="23" data-n="Eyebrow + Chong"><svg viewBox="0 0 150 54" width=150 height=54 class=l23><text class=e x=1 y=14>NICHOLAS</text><text class=c x=0 y=46>Chong</text></svg></div>
+<div class=card data-i="24" data-n="Flip letters"><svg viewBox="0 0 190 44" width=190 height=44 class=l24><text x=0 y=31><tspan style="animation-delay:0.00s">n</tspan><tspan style="animation-delay:0.06s">i</tspan><tspan style="animation-delay:0.12s">c</tspan><tspan style="animation-delay:0.18s">&#160;</tspan><tspan style="animation-delay:0.24s">c</tspan><tspan style="animation-delay:0.30s">h</tspan><tspan style="animation-delay:0.36s">o</tspan><tspan style="animation-delay:0.42s">n</tspan><tspan style="animation-delay:0.48s">g</tspan></text></svg></div>
+<div class=card data-i="25" data-n="Ring + name"><svg viewBox="0 0 200 44" width=200 height=44 class=l25><circle class=r cx=20 cy=22 r=14 /><circle class=c cx=20 cy=22 r=5 /><text x=44 y=29>Nicholas</text></svg></div>
+<div class=card data-i="26" data-n="Sprout"><svg viewBox="0 0 190 48" width=190 height=48 class=l26><path class=st d="M14 42 C14 32 14 26 15 18"/><path class="lf l1" d="M15 28 C8 28 4 23 4 17 C10 17 15 21 15 28Z"/><path class="lf l2" d="M15 21 C15 13 20 8 27 8 C27 15 22 21 15 21Z"/><text x=36 y=34>Nicholas</text></svg></div>
+<div class=card data-i="27" data-n="Rising sun"><svg viewBox="0 0 190 48" width=190 height=48 class=l27><defs><clipPath id=hz><rect x=0 y=0 width=200 height=36 /></clipPath></defs><circle class=sun cx=24 cy=36 r=14 clip-path="url(#hz)"/><rect class=hz x=4 y=36 width=40 height=2 rx=1 /><text x=52 y=33>Nicholas</text></svg></div>
+<div class=card data-i="28" data-n="Pill outline"><svg viewBox="0 0 210 48" width=210 height=48 class=l28><rect class=p x=2 y=6 width=200 height=36 rx=18 /><text x=102 y=30 text-anchor=middle>Nicholas Chong</text></svg></div>
+<div class=card data-i="29" data-n="NC. heavy"><svg viewBox="0 0 110 48" width=110 height=48 class=l29><text x=0 y=36><tspan class=a>N</tspan><tspan class=b>C</tspan><tspan class=d>.</tspan></text></svg></div>
+<div class=card data-i="30" data-n="Slash pair"><svg viewBox="0 0 220 44" width=220 height=44 class=l30><text class=a x=0 y=30>Nicholas</text><path class=s d="M0 36 L10 8"/><text class=b x=0 y=30>Chong</text></svg></div>
+<div class=card data-i="31" data-n="Ink reveal"><svg viewBox="0 0 200 54" width=200 height=54 class=l31><defs><clipPath id=rv><rect class=m x=0 y=0 width=200 height=54 /></clipPath></defs><text x=0 y=36 clip-path="url(#rv)">Nicholas</text><circle class=d r=3.4 cx=0 cy=33 /></svg></div>
+<div class=card data-i="32" data-n="Loop l"><svg viewBox="0 0 180 48" width=180 height=48 class=l32><text class=a x=0 y=32>nicho</text><path class=lp d=""/><text class=b x=0 y=32>as</text></svg></div>
+<div class=card data-i="33" data-n="Colour sweep"><svg viewBox="0 0 190 44" width=190 height=44 class=l33><text x=0 y=30><tspan style="animation-delay:0.00s">N</tspan><tspan style="animation-delay:0.08s">i</tspan><tspan style="animation-delay:0.16s">c</tspan><tspan style="animation-delay:0.24s">h</tspan><tspan style="animation-delay:0.32s">o</tspan><tspan style="animation-delay:0.40s">l</tspan><tspan style="animation-delay:0.48s">a</tspan><tspan style="animation-delay:0.56s">s</tspan></text></svg></div>
+<div class=card data-i="34" data-n="Viewfinder"><svg viewBox="0 0 200 52" width=200 height=52 class=l34><g class="k k1"><path d="M2 12 V2 H12"/></g><g class="k k2"><path d="M188 2 H198 V12"/></g><g class="k k3"><path d="M2 40 V50 H12"/></g><g class="k k4"><path d="M188 50 H198 V40"/></g><text x=100 y=33 text-anchor=middle>Nicholas Chong</text></svg></div>
+<div class=card data-i="35" data-n="Stamp"><svg viewBox="0 0 170 56" width=170 height=56 class=l35><g class=sg><rect x=4 y=10 width=162 height=36 rx=4 /><text x=84 y=34 text-anchor=middle>NICHOLAS CHONG</text></g></svg></div>
+<div class=card data-i="36" data-n="Ripple"><svg viewBox="0 0 200 44" width=200 height=44 class=l36><circle class=r1 cx=18 cy=22 r=12 /><circle class=c cx=18 cy=22 r=6 /><text x=40 y=29>Nicholas</text></svg></div>
+<div class=card data-i="37" data-n="Bouncy script"><svg viewBox="0 0 190 56" width=190 height=56 class=l37><text x=2 y=38><tspan style="animation-delay:0.00s">N</tspan><tspan style="animation-delay:0.07s">i</tspan><tspan style="animation-delay:0.14s">c</tspan><tspan style="animation-delay:0.21s">h</tspan><tspan style="animation-delay:0.28s">o</tspan><tspan style="animation-delay:0.35s">l</tspan><tspan style="animation-delay:0.42s">a</tspan><tspan style="animation-delay:0.49s">s</tspan></text></svg></div>
+<div class=card data-i="38" data-n="Masked rise"><svg viewBox="0 0 170 46" width=170 height=46 class=l38><defs><clipPath id=mk><rect x=0 y=0 width=200 height=38 /></clipPath></defs><g clip-path="url(#mk)"><text x=0 y=36><tspan style="animation-delay:0.00s">N</tspan><tspan style="animation-delay:0.05s">I</tspan><tspan style="animation-delay:0.10s">C</tspan><tspan style="animation-delay:0.15s">H</tspan><tspan style="animation-delay:0.20s">O</tspan><tspan style="animation-delay:0.25s">L</tspan><tspan style="animation-delay:0.30s">A</tspan><tspan style="animation-delay:0.35s">S</tspan></text></g></svg></div>
+<div class=card data-i="39" data-n="Bar + condensed"><svg viewBox="0 0 150 52" width=150 height=52 class=l39><rect class=bar x=0 y=4 width=4 height=44 rx=2 /><text class=a x=12 y=24>NICHOLAS</text><text class=b x=12 y=46>CHONG</text></svg></div>
+<div class=card data-i="40" data-n="Dots to period"><svg viewBox="0 0 180 44" width=180 height=44 class=l40><text x=0 y=30>Nicholas</text><g class=ds><circle class="d d1" r=3.2 /><circle class="d d2" r=3.2 /><circle class="d d3" r=3.2 /></g></svg></div></div>
 <script>
 let uid=0;
 function uniq(el){const ids=[...el.querySelectorAll('[id]')];let h=el.innerHTML;ids.forEach(e=>{const o=e.id,n=o+'_'+(++uid);h=h.split('id="'+o+'"').join('id="'+n+'"').split('id='+o+' ').join('id="'+n+'" ').split('id='+o+'>').join('id="'+n+'">').split('#'+o+')').join('#'+n+')').split('"#'+o+'"').join('"#'+n+'"')});el.innerHTML=h}
@@ -122,10 +187,17 @@ function fit(r){
  if(q('.l12')){const t=q('.l12 .w'),w=t.getSubStringLength(0,3),x=10,cx=x+w/2,rx=w/2+9;q('.l12 .cir').setAttribute('d',`M${cx-rx+3} 16 C${cx-rx-6} 30 ${cx-6} 44 ${cx+rx} 34 C${cx+rx+10} 26 ${cx+rx-4} 8 ${cx-4} 10 C${cx-rx+6} 11 ${cx-rx-2} 20 ${cx-rx+2} 26`);}
  if(q('.l14')){const w=q('.l14 .w').getComputedTextLength();q('.l14 .spg').setAttribute('transform',`translate(${w+12} 10)`);}
  if(q('.l15')){const w=q('.l15 .w').getComputedTextLength();q('.l15 .ar').style.setProperty('--ax',(w+8)+'px');q('.l15 .ar').setAttribute('transform-origin','0 0');q('.l15 .ar path').setAttribute('transform','translate(0 22)');}
+
+ if(q('.l21')){const t=q('.l21 text'),b=t.getBBox(),e=t.getExtentOfChar(7);q('.l21 .sw').setAttribute('d',`M${e.x+e.width*0.6} ${b.y+b.height-6} C${e.x+20} 50 ${b.x+40} 52 ${b.x+6} 46`);}
+ if(q('.l30')){const w=q('.l30 .a').getComputedTextLength();q('.l30 .s').setAttribute('d',`M${w+8} 36 L${w+18} 10`);q('.l30 .b').setAttribute('x',w+26);}
+ if(q('.l31')){const w=q('.l31 text').getComputedTextLength();q('.l31 .d').setAttribute('cx',w+6);}
+ if(q('.l32')){const t=q('.l32 .a'),w=t.getComputedTextLength(),x=w+3;q('.l32 .lp').setAttribute('d',`M${x} 32 C${x+2} 22 ${x+2} 10 ${x+6} 8 C${x+11} 6 ${x+11} 16 ${x+5} 22 C${x+2} 27 ${x+4} 32 ${x+10} 32`);q('.l32 .b').setAttribute('x',x+13);}
+ if(q('.l40')){const w=q('.l40 text').getComputedTextLength();['.d1','.d2','.d3'].forEach((s,i)=>{const d=q('.l40 '+s);d.setAttribute('cx',w+5+i*10);d.setAttribute('cy',27)});}
+
  if(q('.l18')){const t=q('.l18 .w'),a=t.getExtentOfChar(2),b=t.getExtentOfChar(5);q('.l18 .sm').setAttribute('d',`M${a.x} 36 Q${(a.x+b.x+b.width)/2} 48 ${b.x+b.width} 36`);}
 }
 function replay(el){el.getAnimations({subtree:true}).forEach(a=>{a.cancel();a.play()})}
-Promise.all(['800 24px Archivo','24px Allura','600 24px Caveat','24px "Instrument Serif"','italic 24px "Instrument Serif"','500 12px "IBM Plex Mono"'].map(f=>document.fonts.load(f))).then(()=>document.fonts.ready).then(()=>{
+Promise.all(['800 24px Archivo','24px Allura','600 24px Caveat','24px "Instrument Serif"','italic 24px "Instrument Serif"','500 12px "IBM Plex Mono"','600 24px Fraunces','italic 600 24px Fraunces','800 24px Syne','24px "DM Serif Display"','700 24px "Bricolage Grotesque"','800 24px Unbounded','italic 24px "Playfair Display"','24px Pacifico'].map(f=>document.fonts.load(f))).then(()=>document.fonts.ready).then(()=>{
  const m=document.getElementById('m');
  document.querySelectorAll('#src .card').forEach(s=>{
   const c=document.createElement('div');c.className='c';
