@@ -108,8 +108,7 @@ section{position:relative}
 .card h3{font-family:var(--f-display);font-stretch:110%;font-weight:800;font-size:clamp(1.3rem,2vw,1.75rem);line-height:1.05;letter-spacing:-.02em}
 .card p{color:var(--mute-ink);font-size:var(--t-sm);line-height:1.55}
 .card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
-.tag{font-family:var(--f-mono);font-size:11px;padding:3px 8px;border:1px solid var(--trace);border-radius:99px;color:var(--mute-ink)}
-.tag.nda{color:var(--ack)}
+.tag{font-family:var(--f-mono);font-size:11px;padding:3px 8px;border:1px solid var(--trace);border-radius:99px;background:transparent;color:var(--trace)}
 .card .proof{font-family:var(--f-display);font-weight:900;font-stretch:120%;font-size:clamp(2.2rem,4vw,3.4rem);color:var(--trace);line-height:1}
 .card .proof small{display:block;font-family:var(--f-mono);font-weight:400;font-size:11px;color:var(--mute-ink);letter-spacing:.06em;margin-top:6px;text-transform:uppercase}
 .card .go{position:absolute;top:22px;right:22px;width:34px;height:34px;border-radius:50%;border:1px solid var(--ink-line);display:grid;place-items:center;transition:all .25s}
