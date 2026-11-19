@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { SITE_NAME } from "@/lib/site-config"
+import { OG_IMAGE, SITE_NAME } from "@/lib/site-config"
 
 type OgType = "website" | "article"
 
@@ -24,20 +24,13 @@ export function pageSocialMeta({
       url: path,
       siteName: SITE_NAME,
       type,
-      images: [
-        {
-          url: "/opengraph-image",
-          width: 1200,
-          height: 630,
-          alt: "Nicholas Chong — Full-Stack Developer & Product Engineer",
-        },
-      ],
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/opengraph-image"],
+      images: [OG_IMAGE],
     },
   }
 }

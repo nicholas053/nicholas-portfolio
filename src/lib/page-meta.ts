@@ -3,14 +3,18 @@ import { PERSON } from "@/content/content"
 import { PAGE_SEO } from "@/content/page-seo"
 import type { LivePage } from "@/content/pages"
 import { pageSocialMeta } from "@/lib/seo"
-import { SITE_NAME } from "@/lib/site-config"
+import { OG_IMAGE, SITE_NAME } from "@/lib/site-config"
 
 /** Home document title: the existing name plus the hero role, unchanged. */
 export const HOME_TITLE = `${SITE_NAME} — ${PERSON.role}`
 
 export function pageMeta(page: LivePage): Metadata {
   if (page.kind === "home") {
-    return { title: { absolute: HOME_TITLE } }
+    return {
+      title: { absolute: HOME_TITLE },
+      openGraph: { images: [OG_IMAGE] },
+      twitter: { card: "summary_large_image", images: [OG_IMAGE] },
+    }
   }
 
   if (page.path === "/resume") {
@@ -18,6 +22,8 @@ export function pageMeta(page: LivePage): Metadata {
       title: { absolute: "Resume" },
       description: `Resume for ${PERSON.legalName}: ${PERSON.role}.`,
       robots: { index: false, follow: true },
+      openGraph: { images: [OG_IMAGE] },
+      twitter: { card: "summary_large_image", images: [OG_IMAGE] },
     }
   }
 
