@@ -19,6 +19,16 @@ export function getSiteUrl(): string {
   return "http://localhost:3000"
 }
 
+/** Social cards always advertise the production host, including on preview deploys. */
+export const CANONICAL_ORIGIN = "https://nicholas-chong.com"
+
+export const OG_IMAGE = {
+  url: `${CANONICAL_ORIGIN}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: "Nicholas Chong — Full-Stack Developer & Product Engineer",
+} as const
+
 export const SITE_NAME = "Nicholas Chong"
 export const SITE_TAGLINE = SITE_SEO.tagline
 

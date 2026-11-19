@@ -5,9 +5,11 @@ import { PERSON } from "@/content/content"
 import {
   DEFAULT_DESCRIPTION,
   getSiteUrl,
+  OG_IMAGE,
   SITE_NAME,
   SITE_TAGLINE,
 } from "@/lib/site-config"
+import { ACCENT, INK } from "@/lib/theme"
 import "./globals.css"
 
 const archivo = Archivo({
@@ -49,7 +51,7 @@ const siteUrl = getSiteUrl()
 const title = `${SITE_NAME} — ${PERSON.role}`
 
 export const viewport: Viewport = {
-  themeColor: "#0E1116",
+  themeColor: INK,
   width: "device-width",
   initialScale: 1,
 }
@@ -104,13 +106,18 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon-anim.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
       { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-anim.svg", type: "image/svg+xml" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
@@ -129,11 +136,13 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title,
     description: SITE_TAGLINE,
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description: SITE_TAGLINE,
+    images: [OG_IMAGE],
   },
 }
 
@@ -147,6 +156,7 @@ export default function RootLayout({
       lang="en"
       data-accent="lime"
       className={`${archivo.variable} ${allura.variable} ${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}
+      style={{ ["--accent" as string]: ACCENT }}
     >
       <body>
         <SiteJsonLd />

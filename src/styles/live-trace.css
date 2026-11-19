@@ -2,7 +2,7 @@
 :root{
   --ink:#0E1116; --ink-2:#161A20; --ink-line:#666E7B; --ink-soft:#2A303A; --alt:#181D28;
   --paper:#EDEAE2; --paper-2:#181D28; --paper-line:#666E7B;
-  --trace:#A9D18E;          /* single accent: sage. 11.0:1 on --ink, and --ink on sage is 11.0:1 */
+  --trace:var(--accent); /* hex lives in src/lib/theme.ts; the root layout sets --accent */
   --trace-tint:color-mix(in srgb,var(--trace) 14%,var(--ink));
   --trace-glow:color-mix(in srgb,var(--trace) 55%,transparent);
   --trace-text:var(--trace);
@@ -294,7 +294,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 /* ===================== v2: dark throughout + accent switcher + full-site templates ===================== */
 html[data-accent="peach"]{--trace:#E0B089}
-html[data-accent="lime"]{--trace:#A9D18E}
+html[data-accent="lime"]{--trace:var(--accent)}
 html[data-accent="violet"]{--trace:#A78BFA}
 html[data-accent="mint"]{--trace:#5EEAD4}
 html[data-accent="orange"]{--trace:#FF5B1F}
