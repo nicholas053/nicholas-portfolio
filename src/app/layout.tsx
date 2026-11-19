@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
+import { Allura, Archivo, Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
 import { SiteJsonLd } from "@/components/SiteJsonLd"
 import { PERSON } from "@/content/content"
 import {
@@ -15,6 +15,20 @@ const archivo = Archivo({
   display: "swap",
   axes: ["wdth"],
   variable: "--font-archivo",
+})
+
+const allura = Allura({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-allura",
+})
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  style: ["italic"],
+  display: "swap",
+  variable: "--font-fraunces",
 })
 
 const plexSans = IBM_Plex_Sans({
@@ -35,7 +49,7 @@ const siteUrl = getSiteUrl()
 const title = `${SITE_NAME} — ${PERSON.role}`
 
 export const viewport: Viewport = {
-  themeColor: "#0D1014",
+  themeColor: "#0E1116",
   width: "device-width",
   initialScale: 1,
 }
@@ -132,7 +146,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-accent="lime"
-      className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable}`}
+      className={`${archivo.variable} ${allura.variable} ${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}
     >
       <body>
         <SiteJsonLd />
