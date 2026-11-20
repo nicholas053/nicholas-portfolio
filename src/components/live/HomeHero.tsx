@@ -1,4 +1,5 @@
 import { HERO, HOME_CTA } from "@/content/content"
+import { HeroScreenFit } from "@/components/live/HeroScreenFit"
 
 /**
  * Existing homepage rotator, written as the three full lines H7 cycles.
@@ -59,6 +60,7 @@ export function HomeHero() {
         </div>
         <p className="hint">{HERO.notesHint}</p>
       </div>
+      <HeroScreenFit />
     </header>
   )
 }
