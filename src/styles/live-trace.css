@@ -904,6 +904,53 @@ body.fv-open .accent-sw{display:none}
 .home-hero .lead{font-size:19px;line-height:1.6;color:#A3ABB5;max-width:34em}
 .home-hero .ctas{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
 .home-hero .hint{max-width:42em}
+/* Desktop and tablet: exactly one visible screen. vh, then dvh, then svh.
+   24svh / 13.34svh / 7.12svh clamp to today's 200px / 120px / 64px from 900px up.
+   .is-pinned is added only when those units are taller than the visible screen
+   (iPadOS toolbar/tab bar, Split View, Stage Manager, webviews, page zoom). */
+@media (min-width:768px){
+  .home-hero{
+    min-height:0;
+    height:100vh;
+    height:100dvh;
+    height:100svh;
+  }
+  .home-hero .nm{
+    font-size:clamp(72px,15vw,200px);
+    font-size:clamp(72px,min(15vw,24svh),200px);
+  }
+  .home-hero .sage-col,
+  .home-hero .r{
+    padding-top:clamp(68px,13.34svh,120px);
+    padding-bottom:clamp(24px,7.12svh,64px);
+  }
+  .home-hero.is-pinned{height:var(--vis-h)}
+  .home-hero.is-pinned .nm{font-size:clamp(72px,min(15vw,calc(var(--vis-h) * .24)),200px)}
+  .home-hero.is-pinned .sage-col,
+  .home-hero.is-pinned .r{
+    padding-top:clamp(68px,calc(var(--vis-h) * .1334),120px);
+    padding-bottom:clamp(24px,calc(var(--vis-h) * .0712),64px);
+  }
+  /* Stage Manager / short Split View windows. Same values as the max-height block. */
+  .home-hero.is-short .nm{font-size:clamp(56px,min(15vw,18svh),160px)}
+  .home-hero.is-pinned.is-short .nm{font-size:clamp(56px,min(15vw,calc(var(--vis-h) * .18)),160px)}
+  .home-hero.is-pinned.is-short .rot{font-size:clamp(22px,min(3.2vw,calc(var(--vis-h) * .05)),32px)}
+  .home-hero.is-short .sage-col{padding-top:68px;padding-bottom:24px}
+  .home-hero.is-short .r{padding-top:24px;padding-bottom:24px}
+  .home-hero.is-short .rot{margin:8px 0 12px;font-size:clamp(22px,min(3.2vw,5svh),32px)}
+  .home-hero.is-short .lead{font-size:16px;line-height:1.45}
+  .home-hero.is-short .ctas{margin-top:14px}
+  .home-hero.is-short .hint{margin-top:8px}
+}
+@media (min-width:768px) and (max-height:640px){
+  .home-hero .nm{font-size:clamp(56px,min(15vw,18svh),160px)}
+  .home-hero .sage-col{padding-top:68px;padding-bottom:24px}
+  .home-hero .r{padding-top:24px;padding-bottom:24px}
+  .home-hero .rot{margin:8px 0 12px;font-size:clamp(22px,min(3.2vw,5svh),32px)}
+  .home-hero .lead{font-size:16px;line-height:1.45}
+  .home-hero .ctas{margin-top:14px}
+  .home-hero .hint{margin-top:8px}
+}
 @media (max-width:767px){
   .home-hero{display:flex;flex-direction:column;min-height:0}
   .home-hero .blk{transform-origin:top;animation-name:h7-grow-y}
